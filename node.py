@@ -953,7 +953,11 @@ def readdb(arg, ascii=False):
     d = dbm.open(arg)
     if ascii:
         #for x in d.keys(): print (x.decode('ascii'), '->', d[x].decode('ascii'))
-        for x in d.keys(): print (x.decode('utf8'), '->', d[x].decode('utf8'))
+        for x in d.keys():
+            if reg(re.match(r'(.+) - (\d{4,5})', x.decode('utf8'))):
+                print (reg.v.group(2), reg.v.group(1), '->', d[x].decode('utf8'))
+            else:
+                print (x.decode('utf8'), '->', d[x].decode('utf8'))
         #for x in d.keys(): print (x, '->', d[x])
     else:
         for x in d.keys(): print ('%02d:%03d' % (len(x), len(d[x])), btob64(x), '->', btob64(d[x]))
@@ -2714,7 +2718,9 @@ def list_mairies():
     "_"
     host = 'lannuaire.service-public.fr'
     host2 = 'www.annuaire-des-mairies.com'
-    deps = ( 'ain', 'aisne', 'allier', 'hautes-alpes', 'alpes-de-haute-provence', 'alpes-maritimes', 'ardeche', 'ardennes', 'ariege', 'aube', 'aude', 'aveyron', 'bouches-du-rhone', 'calvados', 'cantal', 'charente', 'charente-maritime', 'cher', 'correze', 'corse-du-sud', 'haute-corse', 'cote-dor', 'cotes-darmor', 'creuse', 'dordogne', 'doubs', 'drome', 'eure', 'eure-et-loir', 'finistere', 'gard', 'haute-garonne', 'gers', 'gironde', 'herault', 'ile-et-vilaine', 'indre', 'indre-et-loire', 'isere', 'jura', 'landes', 'loir-et-cher', 'loire', 'haute-loire', 'loire-atlantique', 'loiret', 'lot', 'lot-et-garonne', 'lozere', 'maine-et-loire', 'manche', 'marne', 'haute-marne', 'mayenne', 'meurthe-et-moselle', 'meuse', 'morbihan', 'moselle', 'nievre', 'nord', 'oise', 'orne', 'pas-de-calais', 'puy-de-dome', 'pyrenees-atlantiques', 'hautes-pyrenees', 'pyrenees-orientales', 'bas-rhin', 'haut-rhin', 'rhone', 'haute-saone', 'saone-et-loire', 'sarthe', 'savoie', 'haute-savoie', 'paris', 'seine-maritime', 'seine-et-marne', 'yvelines', 'deux-sevres', 'somme', 'tarn', 'tarn-et-garonne', 'var', 'vaucluse', 'vendee', 'vienne', 'haute-vienne', 'vosges', 'yonne', 'territoire-de-belfort', 'essonne', 'hauts-de-seine', 'seine-saint-denis', 'val-de-marne', 'val-doise', 'mayotte', 'guadeloupe', 'guyane', 'martinique', 'reunion'
+    deps = ( 
+        #'ain', 'aisne', 'allier', 'hautes-alpes', 'alpes-de-haute-provence', 'alpes-maritimes', 'ardeche', 'ardennes', 'ariege', 'aube', 'aude', 'aveyron', 'bouches-du-rhone', 'calvados', 'cantal', 'charente', 'charente-maritime', 'cher', 'correze', 'corse-du-sud', 'haute-corse', 'cote-dor', 'cotes-darmor', 'creuse', 'dordogne', 'doubs', 'drome', 'eure', 'eure-et-loir', 'finistere', 'gard', 'haute-garonne', 'gers', 'gironde', 'herault', 'ile-et-vilaine', 'indre', 'indre-et-loire', 'isere', 'jura', 'landes', 'loir-et-cher', 'loire', 'haute-loire', 'loire-atlantique', 'loiret', 'lot', 'lot-et-garonne', 'lozere', 'maine-et-loire', 'manche', 'marne', 'haute-marne', 'mayenne', 'meurthe-et-moselle', 'meuse', 'morbihan', 'moselle', 'nievre', 'nord', 'oise', 'orne', 'pas-de-calais', 'puy-de-dome', 'pyrenees-atlantiques', 'hautes-pyrenees', 'pyrenees-orientales', 'bas-rhin', 'haut-rhin', 'rhone', 'haute-saone', 'saone-et-loire', 'sarthe', 'savoie', 'haute-savoie', 'paris', 'seine-maritime', 'seine-et-marne', 'yvelines', 'deux-sevres', 'somme', 'tarn', 'tarn-et-garonne', 'var', 'vaucluse', 'vendee', 'vienne', 'haute-vienne', 'vosges', 'yonne', 'territoire-de-belfort', 'essonne', 'hauts-de-seine', 'seine-saint-denis', 'val-de-marne', 'val-doise', 
+'mayotte', 'guadeloupe', 'guyane', 'martinique', 'reunion'
 )
     serv = '/navigation/'
     co = http.client.HTTPConnection(host)
@@ -2741,19 +2747,6 @@ def list_mairies():
                 d[commune] = '%s:%s:%s' % (email, typ, name)
     d.close()
 
-# 01
-# beard-geovreissiat -> geovreissiat
-# bereziat -> bereyziat
-# hostiaz -> hostias
-# saint-martin-du-frene -> saint-martin-du-fresne
-# 02     
-# bazoches-sur-vesles -> bazoches-sur-vesle
-# croix-fonsomme -> croix-fonsommes
-# fonsomme -> fonsommes
-# fresnes -> fresnes-sous-coucy
-# leschelle -> leschelles
-
-
 def normalize(s, x):
     import unicodedata
     s = s.replace('œ', 'oe')
@@ -2772,6 +2765,8 @@ def normalize(s, x):
             code = '972'
         elif x == 'reunion':
             code = '974'
+        elif x == 'mayotte':
+            code = '976'
         return '/%s/' % code + ''.join(c for c in unicodedata.normalize('NFD', reg.v.group(1)) if unicodedata.category(c) != 'Mn').lower().replace(' ','-').replace("'",'-')
 
 if __name__ == '__main__':

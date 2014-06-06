@@ -1,0 +1,380 @@
+01110 Hostiaz -> mairie.hostiaz@adeli.biz:ERREUR:/01/hostiaz
+01200 Éloise -> mairie@eloise.fr:ERREUR:/01/eloise
+01340 Béréziat -> mairie-bereyziat@wanadoo.fr:ERREUR:/01/bereziat
+01430 Saint-Martin-du-Frêne -> mairie@saintmartindufresne.com:ERREUR:/01/saint-martin-du-frene
+01460 Béard-Géovreissiat -> mairie.geovreissiat@cegetel.net:ERREUR:/01/beard-geovreissiat
+01590 Chancia -> mairie.chancia@wanadoo.fr:ERREUR:/01/chancia
+01590 Lavancia-Epercy -> mairie.lavancia39@wanadoo.fr:ERREUR:/01/lavancia-epercy
+02110 Croix-Fonsomme -> mairie.croix.fonsomme@wanadoo.fr:ERREUR:/02/croix-fonsomme
+02110 Fonsomme -> commune.fonsommes@orange.fr:ERREUR:/02/fonsomme
+02160 Viel-Arcy -> mairie.vieilarcy@orange.fr:ERREUR:/02/viel-arcy
+02170 Leschelle -> mairieleschelle@orange.fr:ERREUR:/02/leschelle
+02220 Bazoches-sur-Vesles -> mairiebazoches.v@orange.fr:ERREUR:/02/bazoches-sur-vesles
+02380 Fresnes -> mairie-fresnes-sous-coucy@orange.fr:ERREUR:/02/fresnes
+03140 Chantelle -> chantelle.mairie@wanadoo.fr:ERREUR:/03/chantelle
+03360 Lételon -> mairie.l-etelon@wanadoo.fr:ERREUR:/03/letelon
+04140 Seyne -> mairie@seynelessalpes.fr:ERREUR:/04/seyne
+04150 Redortiers -> mairie.redortiers@wanadoo.fr:ERREUR:/04/redortiers
+05110 Claret -> mairiedeclaret04@packsurfwifi.fr:ERREUR:/05/claret
+05110 Curbans -> mairiedecurbans@wanadoo.fr:ERREUR:/05/curbans
+05120 Saint-Martin-de-Queyrières -> mairie.stmartindequeyrieres@wanadoo.fr:ERREUR:/05/saint-martin-de-queyrieres
+05130 Piégut -> mairiedepiegut@orange.fr:ERREUR:/05/piegut
+05130 Venterol -> mairie.venterol@wanadoo.fr:ERREUR:/05/venterol
+05160 Pontis -> mairiedepontis@wanadoo.fr:ERREUR:/05/pontis
+05250 Dévoluy -> contact@mairiedevoluy.fr:ERREUR:/05/devoluy
+06260 La Rochette -> larochette.mairie@wanadoo.fr:ERREUR:/06/la-rochette
+06420 La Tour -> mairie.latoursurtinee@orange.fr:ERREUR:/06/la-tour
+06570 Saint-Paul-de-Vence -> mairie@saint-pauldevence.fr:ERREUR:/06/saint-paul-de-vence
+06606 Antibes -> mairie@ville-antibes.fr:ERREUR:/06/antibes
+07190 Saint-Étienne-de-Serre -> mairie.stetienne.deserre@wanadoo.fr:ERREUR:/07/saint-etienne-de-serre
+07580 Saint-Gineis-en-Coiron -> mairiedestgineys@orange.fr:ERREUR:/07/saint-gineis-en-coiron
+07700 Saint-Just-d'Ardèche -> mairie@saintjustdardeche.fr:ERREUR:/07/saint-just-d-ardeche
+08220 Sévigny-Waleppe -> mairie.sevignywaleppe@wanadoo.fr:ERREUR:/08/sevigny-waleppe
+08240 Belleville-et-Châtillon-sur-Bar -> commune.bellevilleetchatillon@orange.fr:ERREUR:/08/belleville-et-chatillon-sur-bar
+08250 Apremont -> mairie.apremont-sur-aire@wanadoo.fr:ERREUR:/08/apremont
+08300 Saint-Loup-en-Champagne -> martine.mairie-de-st-loup@wanadoo.fr:ERREUR:/08/saint-loup-en-champagne
+08310 Juniville -> mairie.juniville@wanadoo.fr:ERREUR:/08/juniville
+09300 Sautel -> mairie.sautel@wanadoo.fr:ERREUR:/09/sautel
+09330 Montgaillard -> mairie.montgailhard09@orange.fr:ERREUR:/09/montgaillard
+09700 Le Vernet -> mairie-le-vernet-dariege@wanadoo.fr:ERREUR:/09/le-vernet
+09800 Villeneuve -> mairie.villeneuve09@wanadoo.fr:ERREUR:/09/villeneuve
+10190 Neuville-sur-Vanne -> mairie-neuville-sur-vanne@wanadoo.fr:ERREUR:/10/neuville-sur-vanne
+11140 Puilaurens -> mairie.lapradelle.puilaurens@orange.fr:ERREUR:/11/puilaurens
+11160 Trausse -> mairie.trausse@wanadoo.fr:ERREUR:/11/trausse
+11200 Canet -> mairiedecanet@wanadoo.fr:ERREUR:/11/canet
+11560 Fleury -> minfo@communefleury.fr:ERREUR:/11/fleury
+12450 Luc-la-Primaube -> mairie@luc-la-primaube.fr:ERREUR:/12/luc-la-primaube
+12460 Saint-Symphorien-de-Thénières -> mairie.st-symphorien@luxinet.fr:ERREUR:/12/saint-symphorien-de-thenieres
+13015 Marseille 15e Arrondissement -> mairie-info15-16@mairie-marseille.fr:ERREUR:/13/marseille-15e-arrondissement
+13150 Saint-Pierre-de-Mézoargues -> mairie.spm@wanadoo.fr:ERREUR:/13/saint-pierre-de-mezoargues
+13260 Cassis -> accueil@cassis.fr:ERREUR:/13/cassis
+13680 Lançon-Provence -> mairie@lancon-provence.fr:ERREUR:/13/lancon-provence
+13780 Riboux -> mairieriboux@wanadoo.fr:ERREUR:/13/riboux
+14270 Cesny-aux-Vignes -> commune-de-cesny-aux-vignes@orange.fr:ERREUR:/14/cesny-aux-vignes
+14270 Ouézy -> mairieouezy@wanadoo.fr:ERREUR:/14/ouezy
+14290 Saint-Martin-de-Bienfaite-la-Cressonnière -> mairie.sm.bienfaite@wanadoo.fr:ERREUR:/14/saint-martin-de-bienfaite-la-cressonniere
+14500 Saint-Germain-de-Tallevende-la-Lande-Vaumont -> mairie-st-germain-de-tallevende@wanadoo.fr:ERREUR:/14/saint-germain-de-tallevende-la-lande-vaumont
+14570 Saint-Rémy -> mairie.stremysurorne@wanadoo.fr:ERREUR:/14/saint-remy
+14860 Bréville-les-Monts -> mairie.brevillelesmonts@wanadoo.fr:ERREUR:/14/breville-les-monts
+15100 Coren -> mairie.coren-les-eaux15@wanadoo.fr:ERREUR:/15/coren
+15170 Sainte-Anastasie -> mairie.steanastasie@orange.fr:ERREUR:/15/sainte-anastasie
+15230 Lacapelle-Barrès -> mairie.lacapelle.barrez@wanadoo.fr:ERREUR:/15/lacapelle-barres
+15400 Le Claux -> mairie.leclaux@wanadoo.fr:ERREUR:/15/le-claux
+15400 Riom-ès-Montagnes -> mairie-riom-es-montagnes@wanadoo.fr:ERREUR:/15/riom-es-montagnes
+15600 Maurs -> mairie@ville-maurs.fr:ERREUR:/15/maurs
+16190 Bors (Canton de Montmoreau-Saint-Cybard) -> mairie.borsdemontmoreau@wanadoo.fr:ERREUR:/16/bors-(canton-de-montmoreau-saint-cybard)
+16300 Saint-Médard -> mairie-st-medard-de-bzx@wanadoo.fr:ERREUR:/16/saint-medard
+16360 Bors (Canton de Baignes-Sainte-Radegonde) -> mairie-bors-de-b@wanadoo.fr:ERREUR:/16/bors-(canton-de-baignes-sainte-radegonde)
+17120 Arces -> arces.sur.gironde@mairie17.com:ERREUR:/17/arces
+17170 Cramchaban -> cram-chaban@mairie17.com:ERREUR:/17/cramchaban
+17250 Soulignonne -> mairie.soulignonnes@wanadoo.fr:ERREUR:/17/soulignonne
+17270 Neuvicq -> neuvicq@mairie17.com:ERREUR:/17/neuvicq
+17330 Saint-Martial -> saint-martial@mairie17.com:ERREUR:/17/saint-martial
+17380 Saint-Loup -> st-loup-de-saintonge@mairie17.com:ERREUR:/17/saint-loup
+17470 Aulnay -> aulnay.de.saintonge@mairie17.com:ERREUR:/17/aulnay
+17690 Angoulins -> communication.mairie@angoulins.fr:ERREUR:/17/angoulins
+19150 Ladignac-sur-Rondelles -> mairieladignac@wanadoo.fr:ERREUR:/19/ladignac-sur-rondelles
+19190 Aubazines -> mairie@ville-aubazine.fr:ERREUR:/19/aubazines
+19430 Saint-Bonnet-les-Tours-de-Merle -> stbonnettoursmerle@wanadoo.fr:ERREUR:/19/saint-bonnet-les-tours-de-merle
+20230 Chiatra -> chiatra.commune@wanadoo.fr:ERREUR:/2B/chiatra
+21340 Change -> mairiedechange@wanadoo.fr:ERREUR:/21/change
+23260 La Mazière-aux-Bons-Hommes -> mairie.lamaziere23260@laposte.net:ERREUR:/23/la-maziere-aux-bons-hommes
+24120 La Dornac -> mairie.ladornac@wanadoo.fr:ERREUR:/24/la-dornac
+24120 Terrasson-Lavilledieu -> contact@ville-terrasson.com:ERREUR:/24/terrasson-lavilledieu
+24130 Saint-Georges-Blancaneix -> mairie.stgeorgesdeblancaneix@orange.fr:ERREUR:/24/saint-georges-blancaneix
+24230 Bonneville-et-Saint-Avit-de-Fumadières -> mairie.de.bonneville@wanadoo.fr:ERREUR:/24/bonneville-et-saint-avit-de-fumadieres
+24260 Saint-Félix-de-Reillac-et-Mortemart -> mairie.24404@orange.fr:ERREUR:/24/saint-felix-de-reillac-et-mortemart
+24320 Gout-Rossignol -> gouts-rossignol.mairie@wanadoo.fr:ERREUR:/24/gout-rossignol
+24320 Nanteuil-Auriac-de-Bourzac -> mairie.nanteuilauriac@wanadoo.fr:ERREUR:/24/nanteuil-auriac-de-bourzac
+24330 Bassillac -> mairiebassillac@wanadoo.fr:ERREUR:/24/bassillac
+24340 Champeaux-et-la-Chapelle-Pommier -> mairie.champeaux-chapelle-pommier@wanadoo.fr:ERREUR:/24/champeaux-et-la-chapelle-pommier
+24410 Saint-Antoine-Cumond -> mairie.stantoine-cumond@wanadoo.fr:ERREUR:/24/saint-antoine-cumond
+24440 Sainte-Croix -> mairie.stecroix-de-bt@wanadoo.fr:ERREUR:/24/sainte-croix
+24450 Mialet -> mairie.de.miallet@wanadoo.fr:ERREUR:/24/mialet
+24580 Rouffignac-Saint-Cernin-de-Reilhac -> mairie@rouffignac-perigordnoir.fr:ERREUR:/24/rouffignac-saint-cernin-de-reilhac
+24590 Salignac-Eyvigues -> mairie.de.salignac@wanadoo.fr:ERREUR:/24/salignac-eyvigues
+24700 Saint-Rémy -> cne.st-remy-sur-lidoire@wanadoo.fr:ERREUR:/24/saint-remy
+24800 Chalais -> mairie.chalais@wanadoo.fr:ERREUR:/24/chalais
+24800 Nantheuil -> mairie.nantheuil@wanadoo.fr:ERREUR:/24/nantheuil
+25190 Montancy -> mairie.bremoncourt@packsurfwifi.com:ERREUR:/25/montancy
+25310 Dannemarie -> mairie.dannemarie@free.fr:ERREUR:/25/dannemarie
+25440 Courcelles -> commune-de-courcelles@orange.fr:ERREUR:/25/courcelles
+25750 Le Vernoy -> levernoy@orange.fr:ERREUR:/25/le-vernoy
+26400 Suze -> mairie.suze@orange.fr:ERREUR:/26/suze
+26770 Montbrison-sur-Lez -> mairie.montbrison.lez@wanadoo.fr:ERREUR:/26/montbrison-sur-lez
+27160 Breteuil -> mairie-breteuil@orange.fr:ERREUR:/27/breteuil
+27370 Saint-Amand-des-Hautes-Terres -> mairie.stamanddeshautesterres@wanadoo.fr:ERREUR:/27/saint-amand-des-hautes-terres
+27390 Saint-Agnan-de-Cernières -> mairiestagnan27@wanadoo.fr:ERREUR:/27/saint-agnan-de-cernieres
+27410 Granchain -> mairiegrandchain@orange.fr:ERREUR:/27/granchain
+27510 Fontenay -> fontenay-en-vexin@wanadoo.fr:ERREUR:/27/fontenay
+28150 Moutiers -> mairie.moutiers28@wanadoo.fr:ERREUR:/28/moutiers
+28700 Bleury-Saint-Symphorien -> mairie.saint.symphorien.le.chateau@wanadoo.fr:ERREUR:/28/bleury-saint-symphorien
+28700 Roinville -> commune.roinville@wanadoo.fr:ERREUR:/28/roinville
+29140 Saint-Yvi -> mairie.saint-yvi@fr.oleane.com:ERREUR:/29/saint-yvi
+29252 Plouezoc'h -> mairie.plouezoch@wanadoo.fr:ERREUR:/29/plouezoc-h
+29620 Plouégat-Guérand -> plouegatguerrand@wanadoo.fr:ERREUR:/29/plouegat-guerand
+29730 Guilvinec -> mairie@leguilvinec.com:ERREUR:/29/guilvinec
+30124 Peyrolles -> peyrolles.mairie@wanadoo.fr:ERREUR:/30/peyrolles
+30170 Durfort-et-Saint-Martin-de-Sossenac -> mairie.durfort@wanadoo.fr:ERREUR:/30/durfort-et-saint-martin-de-sossenac
+30430 Saint-Jean-de-Maruéjols-et-Avéjan -> mairie-st-jean-maruejols@wanadoo.fr:ERREUR:/30/saint-jean-de-maruejols-et-avejan
+30980 Saint-Dionisy -> mairie.saintdionisy@wanadoo.fr:ERREUR:/30/saint-dionisy
+31210 Les Tourreilles -> les-tourreilles@orange.fr:ERREUR:/31/les-tourreilles
+31220 Saint-Julien-sur-Garonne -> saint-julien.mairie@wanadoo.fr:ERREUR:/31/saint-julien-sur-garonne
+31310 Rieux-Volvestre -> mairie.rieux.31@wanadoo.fr:ERREUR:/31/rieux-volvestre
+31330 Grenade -> contact@mairie-grenade.fr:ERREUR:/31/grenade
+32150 Monclar -> mairie-de-monclar@wanadoo.fr:ERREUR:/32/monclar
+32300 Saint-Maur -> saint-maur-soules@wanadoo.fr:ERREUR:/32/saint-maur
+32450 Saint-Élix -> st.elix@wanadoo.fr:ERREUR:/32/saint-elix
+32700 Lagarde -> mairie-de-lagarde-fimarcon@alsatis.net:ERREUR:/32/lagarde
+33220 Fougueyrolles -> mairie.fougueyrolles@wanadoo.fr:ERREUR:/33/fougueyrolles
+33220 Les Lèves-et-Thoumeyragues -> mairie.leslevesthoumeyragues@wanadoo.fr:ERREUR:/33/les-leves-et-thoumeyragues
+33220 Port-Sainte-Foy-et-Ponchapt -> mairie@port-sainte-foy.info:ERREUR:/33/port-sainte-foy-et-ponchapt
+33240 Lugon-et-l'Île-du-Carnay -> mairiedelugon@wanadoo.fr:ERREUR:/33/lugon-et-l-ile-du-carnay
+33330 Bellenaves -> mairie-bellenaves@wanadoo.fr:ERREUR:/33/bellenaves
+34520 La Vacquerie-et-Saint-Martin-de-Castries -> mairie.lavacquerie@lodevoisetnarzac.fr:ERREUR:/34/la-vacquerie-et-saint-martin-de-castries
+37220 Parçay-sur-Vienne -> mairiedeparcaysurvienne@wanadoo.fr:ERREUR:/37/parcay-sur-vienne
+37220 Tavant -> communedetavant@wanadoo.fr:ERREUR:/37/tavant
+37240 La Chapelle-Blanche-Saint-Martin -> mairie37057@wanadoo.fr:ERREUR:/37/la-chapelle-blanche-saint-martin
+37370 Louestault -> mairie-de-louestault@wanadoo.fr:ERREUR:/37/louestault
+37390 Mettray -> administration@ville-mettray.fr:ERREUR:/37/mettray
+37500 Saint-Benoît-la-Forêt -> commune.stbenoitlaforet@orange.fr:ERREUR:/37/saint-benoit-la-foret
+37510 Saint-Genouph -> mairie-st-genouph2@wanadoo.fr:ERREUR:/37/saint-genouph
+37800 Ports -> mairie-de-ports-sur-vienne@wanadoo.fr:ERREUR:/37/ports
+38114 Oz -> mairie.oz@wanadoo.fr:ERREUR:/38/oz
+38122 Chalon -> mairie.chalon@territoire-de-beaurepaire.fr:ERREUR:/38/chalon
+38134 Saint-Julien-de-Raz -> mairie.saintjulienderatz@orange.fr:ERREUR:/38/saint-julien-de-raz
+38142 Auris -> mairie.auris@wanadoo.fr:ERREUR:/38/auris
+38142 Besse -> mairie.besse38@orange.fr:ERREUR:/38/besse
+38220 Saint-Barthélemy-de-Séchilienne -> mairiesbs@wanadoo.fr:ERREUR:/38/saint-barthelemy-de-sechilienne
+38260 Mottier -> mairie-lemottier@wanadoo.fr:ERREUR:/38/mottier
+38300 Ruy -> mairie@ruy-montceau.fr:ERREUR:/38/ruy
+38440 Meyssiez -> mairie.meyssiez@wanadoo.fr:ERREUR:/38/meyssiez
+38460 Siccieu-Saint-Julien-et-Carisieu -> siccieu.commune@wanadoo.fr:ERREUR:/38/siccieu-saint-julien-et-carisieu
+38520 La Garde -> mairiedelagarde@wanadoo.fr:ERREUR:/38/la-garde
+38580 Allevard -> contact@allevard.fr:ERREUR:/38/allevard
+38660 Saint-Bernard -> mairie-stbernarddutouvet@wanadoo.fr:ERREUR:/38/saint-bernard
+38660 Saint-Hilaire -> mairie@sainthilairedutouvet.fr:ERREUR:/38/saint-hilaire
+38730 Virieu -> mairie.virieu38@orange.fr:ERREUR:/38/virieu
+38930 Percy -> mairielepercy@wanadoo.fr:ERREUR:/38/percy
+38970 Sainte-Luce -> communedesainteluce@wanadoo.fr:ERREUR:/38/sainte-luce
+39120 Neublans-Abergement -> mairie-neublans-abergement@wanadoo.fr:ERREUR:/39/neublans-abergement
+39260 Coyron -> mairie.coyron@wanadoo.fr:ERREUR:/39/coyron
+39300 Moutoux -> mairie.le-moutoux@wanadoo.fr:ERREUR:/39/moutoux
+40110 Onesse-Laharie -> mairie-onesse-laharie@wanadoo.fr:ERREUR:/40/onesse-laharie
+40270 Larrivière-Saint-Savin -> mairie.larriviere@wanadoo.fr:ERREUR:/40/larriviere-saint-savin
+41000 Saint-Sulpice-de-Pommeray -> saint.sulpice.mairie@wanadoo.fr:ERREUR:/41/saint-sulpice-de-pommeray
+41500 La Chapelle-Saint-Martin-en-Plaine -> mairiechapellestmartin@wanadoo.fr:ERREUR:/41/la-chapelle-saint-martin-en-plaine
+42130 Boën-sur-Lignon -> accueil@boen.fr:ERREUR:/42/boen-sur-lignon
+42155 Saint-Jean-Saint-Maurice-sur-Loire -> mairie.st.jean.st.maurice.42@wanadoo.fr:ERREUR:/42/saint-jean-saint-maurice-sur-loire
+42380 Saint-Hilaire-Cusson-la-Valmitte -> saint.hilaire.cusson.la.valmitte.cne@wanadoo.fr:ERREUR:/42/saint-hilaire-cusson-la-valmitte
+42620 Saint-Pierre-Laval -> mairie-saint-pierre-laval@wanadoo.fr:ERREUR:/42/saint-pierre-laval
+43000 Ceyssac -> ceyssac.mairie@orange.fr:ERREUR:/43/ceyssac
+43350 Saint-Geneys-près-Saint-Paulien -> mairie.st.geneys@wanadoo.fr:ERREUR:/43/saint-geneys-pres-saint-paulien
+43450 Leyvaux -> leyvaux@wanadoo.fr:ERREUR:/43/leyvaux
+43500 Saint-Pal-de-Chalencon -> stpal-chalencon@wanadoo.fr:ERREUR:/43/saint-pal-de-chalencon
+43800 Vorey -> mairie@vorey.fr:ERREUR:/43/vorey
+44119 Grandchamps-des-Fontaines -> contact@grandchampdesfontaines.fr:ERREUR:/44/grandchamps-des-fontaines
+44310 Saint-Philbert-de-Grand-Lieu -> contact@stphilbert.fr:ERREUR:/44/saint-philbert-de-grand-lieu
+44670 Juigné-des-Moutiers -> mairie.juignelesmoutiers@wanadoo.fr:ERREUR:/44/juigne-des-moutiers
+44860 Saint-Aignan-Grandlieu -> contact@fagl.fr:ERREUR:/44/saint-aignan-grandlieu
+47400 Grateloup-Saint-Gayrand -> communedegrateloup.47@wanadoo.fr:ERREUR:/47/grateloup-saint-gayrand
+47400 Hautesvignes -> mairie.hautesvignes@wanadoo.fr:ERREUR:/47/hautesvignes
+48110 Sainte-Croix-Vallée-Française -> sainte-croix-vf.mairie@wanadoo.fr:ERREUR:/48/sainte-croix-vallee-francaise
+48250 Laveyrune -> mairie-de-laveyrune@orange.fr:ERREUR:/48/laveyrune
+48500 La Canourgue -> mairie.lacanourgue@wanadoo.fr:ERREUR:/48/la-canourgue
+49120 Chemillé-Melay -> k.beugnet.chemille@wanadoo.fr:ERREUR:/49/chemille-melay
+49123 Le Fresne-sur-Loire -> mairiedufresne@wanadoo.fr:ERREUR:/49/le-fresne-sur-loire
+49150 Baugé-en-Anjou -> mairie@baugeenanjou.fr:ERREUR:/49/bauge-en-anjou
+49150 Clefs-Val d'Anjou -> mairie.clefs@wanadoo.fr:ERREUR:/49/clefs-val-d-anjou
+49320 Charcé-Saint-Ellier-sur-Aubance -> mairie.charce@wanadoo.fr:ERREUR:/49/charce-saint-ellier-sur-aubance
+49390 Vernoil-le-Fourrier -> mairie.vernoil@orange.fr:ERREUR:/49/vernoil-le-fourrier
+49700 Brigné -> mairie.brigne@wanadoo.fr:ERREUR:/49/brigne
+49700 Meigné -> mairie.meigne49@wanadoo.fr:ERREUR:/49/meigne
+50110 Bretteville -> mairie.brettevilleensaire@orange.fr:ERREUR:/50/bretteville
+50310 Saint-Marcouf -> mairie-de-st-marcouf@wanadoo.fr:ERREUR:/50/saint-marcouf
+50700 Saussemesnil -> contact@sauxemesnil.fr:ERREUR:/50/saussemesnil
+51120 Fontaine-Denis-Nuisy -> commune.fontaine.denis@wanadoo.fr:ERREUR:/51/fontaine-denis-nuisy
+51290 Saint-Remy-en-Bouzemont-Saint-Genest-et-Isson -> mairie.de.st.remy.en.bouzemont@wanadoo.fr:ERREUR:/51/saint-remy-en-bouzemont-saint-genest-et-isson
+51380 Vaudemange -> mairievaudemange@wanadoo.fr:ERREUR:/51/vaudemange
+51390 Ville-Dommange -> mairie.de.villedommange@wanadoo.fr:ERREUR:/51/ville-dommange
+52100 Saint-Eulien -> mairie-sainteulien@live.fr:ERREUR:/52/saint-eulien
+52100 Sapignicourt -> mairiesapignicourt@wanadoo.fr:ERREUR:/52/sapignicourt
+52110 Trémilly -> commune-tremilly@orange.fr:ERREUR:/52/tremilly
+52140 Avrecourt -> mairie3@orange.fr:ERREUR:/52/avrecourt
+52140 Saulxures -> mairie-saulxures52@orange.fr:ERREUR:/52/saulxures
+52220 Laneuville-à-Rémy -> mairie.laneuvillearemy@gmail.com:ERREUR:/52/laneuville-a-remy
+52220 Robert-Magny -> mairie.de.robert.magny@orange.fr:ERREUR:/52/robert-magny
+52220 Sommevoire -> mairie.sommevoire@free.fr:ERREUR:/52/sommevoire
+52230 Pansey -> mairie.pansey@orange.fr:ERREUR:/52/pansey
+52240 Longchamp -> mairie.longchamp@nordnet.fr:ERREUR:/52/longchamp
+52290 Éclaron-Braucourt-Sainte-Livière -> commune.eclaron-braucourt@wanadoo.fr:ERREUR:/52/eclaron-braucourt-sainte-liviere
+52300 Pechbonnieu -> mairieosne-le-val@wanadoo.fr:ERREUR:/52/pechbonnieu
+52330 Lavilleneuve-au-Roi -> mairie.lavilleneuveauroi@orange.fr:ERREUR:/52/lavilleneuve-au-roi
+52360 Charmes -> charmesleslangres@nordnet.fr:ERREUR:/52/charmes
+52400 Varennes-sur-Amance -> mairie.varennes.52@orange.fr:ERREUR:/52/varennes-sur-amance
+53110 Le Housseau-Brétignolles -> mairie.lehousseau@orange.fr:ERREUR:/53/le-housseau-bretignolles
+53150 Livet -> mairie.livet@worldonline.fr:ERREUR:/53/livet
+53300 Ambrières-les-Vallées -> mairie@ambriereslesvallees.fr:ERREUR:/53/ambrieres-les-vallees
+53480 Saint-Léger -> mairie-st-leger-en-charnie@wanadoo.fr:ERREUR:/53/saint-leger
+54260 Colmey -> mairiecolmey@gmail.com:ERREUR:/54/colmey
+54370 Bathelémont -> bathelemont.mairie@orange.fr:ERREUR:/54/bathelemont
+54610 Abaucourt -> mairie.abaucourt@wanadoo.fr:ERREUR:/54/abaucourt
+55110 Cléry-le-Grand -> clerylegrand.mairie@sfr.fr:ERREUR:/55/clery-le-grand
+55110 Cléry-le-Petit -> clerylepetit@wanadoo.fr:ERREUR:/55/clery-le-petit
+56170 Hœdic -> mairie-dhoedic@wanadoo.fr:ERREUR:/56/hoedic
+56200 Saint-Martin-sur-Oust -> st-martin-oust@wanadoo.fr:ERREUR:/56/saint-martin-sur-oust
+56360 Locmaria -> locmaria-belle-ile@wanadoo.fr:ERREUR:/56/locmaria
+56400 Bono -> accueil@lebono.fr:ERREUR:/56/bono
+57320 Neunkirchen-lès-Bouzonville -> mairie.neunkirchenbouzonville@orange.fr:ERREUR:/57/neunkirchen-les-bouzonville
+57363 Amnéville -> mairie@amneville-les-thermes.com:ERREUR:/57/amneville
+57385 Tritteling-Redlach -> tritteling-redlach.maire@wanadoo.fr:ERREUR:/57/tritteling-redlach
+57480 Grindorff-Bizing -> commune-de-grindorff@wanadoo.fr:ERREUR:/57/grindorff-bizing
+57800 Betting -> mairie-betting@wanadoo.fr:ERREUR:/57/betting
+58120 Château-Chinon (Campagne) -> mairie-chateau-chinon-campagne@wanadoo.fr:ERREUR:/58/chateau-chinon-(campagne)
+58120 Château-Chinon (Ville) -> mairiechateauchinonville@wanadoo.fr:ERREUR:/58/chateau-chinon-(ville)
+59132 Wallers-en-Fagne -> mairie.wallers-en-fagne@nordnet.fr:ERREUR:/59/wallers-en-fagne
+59158 Flines-lès-Mortagne -> mairieflineslezmortagne@wanadoo.fr:ERREUR:/59/flines-les-mortagne
+60113 Braisnes-sur-Aronde -> mairie.braisnes@orange.fr:ERREUR:/60/braisnes-sur-aronde
+60138 Chiry-Ourscamp -> mairie-chiry-ourscamp@wanadoo.fr:ERREUR:/60/chiry-ourscamp
+60190 La Neuville-Roy -> mairie-la-neuville-roy@wanadoo.fr:ERREUR:/60/la-neuville-roy
+60480 Oursel-Maison -> secretaire-mairie@oursel-maison.fr:ERREUR:/60/oursel-maison
+60890 La Villeneuve-sous-Thury -> mairievilleneuvesousthury@orange.fr:ERREUR:/60/la-villeneuve-sous-thury
+61270 Saint-Hilaire-sur-Risle -> mairie.sthilairesurrille@orange.fr:ERREUR:/61/saint-hilaire-sur-risle
+61350 Passais -> mairiedepassais@wanadoo.fr:ERREUR:/61/passais
+61390 Ferrières-la-Verrerie -> mairie.ferrierelaverrerie@orange.fr:ERREUR:/61/ferrieres-la-verrerie
+61420 Ravigny -> mairie.ravigny@wanadoo.fr:ERREUR:/61/ravigny
+61570 Le Château-d'Almenêches -> mairie.chateau.almeneches@wanadoo.fr:ERREUR:/61/le-chateau-d-almeneches
+62113 Verquigneul -> mairie.de.verquigneul@wanadoo.fr:ERREUR:/62/verquigneul
+62138 Haisnes -> communehaisnes@fr.oleane.com:ERREUR:/62/haisnes
+62147 Boursies -> mairie.boursies@orange.fr:ERREUR:/62/boursies
+62147 Doignies -> mairie.doignies@orange.fr:ERREUR:/62/doignies
+62147 Mœuvres -> moeuvres@wanadoo.fr:ERREUR:/62/moeuvres
+62217 Wailly -> mairiewailly@hotmail.fr:ERREUR:/62/wailly
+62223 Saint-Nicolas -> contact@ville-saintnicolas.fr:ERREUR:/62/saint-nicolas
+62390 Quœux-Haut-Maînil -> mairie-quoeux-haut-maisnil@wanadoo.fr:ERREUR:/62/quoeux-haut-mainil
+62550 Pernes -> mpernes@wanadoo.fr:ERREUR:/62/pernes
+62580 Bailleul-Sir-Berthoult -> mairie@bailleulsireberthoult.fr:ERREUR:/62/bailleul-sir-berthoult
+62610 Brêmes -> mairie-de-bremes@wanadoo.fr:ERREUR:/62/bremes
+62630 Étaples -> accueil@etaples-sur-mer.net:ERREUR:/62/etaples
+62690 Izel-lès-Hameau -> izel-les-hameau@wanadoo.fr:ERREUR:/62/izel-les-hameau
+62740 Fouquières-lès-Lens -> mairefouquieres@numericable.fr:ERREUR:/62/fouquieres-les-lens
+62880 Annay -> mairie@annaysouslens.fr:ERREUR:/62/annay
+63140 Châtel-Guyon -> mairie@chatel-guyon.fr:ERREUR:/63/chatel-guyon
+63230 Saint-Ours -> mairie@saintourslesroches.fr:ERREUR:/63/saint-ours
+63240 Mont-Dore -> mont-dore@sancy.com:ERREUR:/63/mont-dore
+63270 Saint-Maurice -> mairie-de-st-maurice-es-allier@wanadoo.fr:ERREUR:/63/saint-maurice
+63330 Bussières -> mairiebussiÃ¨res@orange.fr:ERREUR:/63/bussieres
+63330 Saint-Hilaire -> mairie.st.hilaire.de.pionsat@wanadoo.fr:ERREUR:/63/saint-hilaire
+63420 Ardes -> ardes.mairie@wanadoo.fr:ERREUR:/63/ardes
+63490 Saint-Quentin-sur-Sauxillanges -> maire.st-quentin-saux@wanadoo.fr:ERREUR:/63/saint-quentin-sur-sauxillanges
+63580 Vernet-la-Varenne -> mairie.vernetlaverenne@wanadoo.fr:ERREUR:/63/vernet-la-varenne
+63600 Saint-Just -> mairie.stjust@gmail.com:ERREUR:/63/saint-just
+63720 Martres-sur-Morge -> lesmartressurmorge@wanadoo.fr:ERREUR:/63/martres-sur-morge
+64130 Mauléon-Licharre -> accueil@mauleon-soule.fr:ERREUR:/64/mauleon-licharre
+64130 Moncayolle-Larrory-Mendibieu -> mairie.moncayolle@wanadoo.fr:ERREUR:/64/moncayolle-larrory-mendibieu
+64160 Daubèze -> mairie@manassut-audiracq.fr:ERREUR:/64/daubeze
+64300 Saint-Girons-en-Béarn -> st.girons.en.bearn@wanadoo.fr:ERREUR:/64/saint-girons-en-bearn
+64320 Idron -> ericmassias@mairie-idron.com:ERREUR:/64/idron
+64350 Castillon (Canton de Lembeye) -> communedecastillondelembeye@orange.fr:ERREUR:/64/castillon-(canton-de-lembeye)
+64370 Castillon (Canton d'Arthez-de-Béarn) -> commune-castillonarthez@wanadoo.fr:ERREUR:/64/castillon-(canton-d-arthez-de-bearn)
+64470 Lacarry-Arhan-Charritte-de-Haut -> mairie.lacarry@orange.fr:ERREUR:/64/lacarry-arhan-charritte-de-haut
+64800 Nay -> accueil@mairienay.fr:ERREUR:/64/nay
+65200 Argelès-Bagnères -> mairie.argeles.bagneres@wanadoo.fr:ERREUR:/65/argeles-bagneres
+65400 Salles -> mairie.salles-argeles@wanadoo.fr:ERREUR:/65/salles
+66470 Sainte-Marie -> accueil@saintemarielamer.com:ERREUR:/66/sainte-marie
+66500 Clara -> commune-de-clara@orange.fr:ERREUR:/66/clara
+66760 Angoustrine-Villeneuve-des-Escaldes -> mairie.angoustrine@wanadoo.fr:ERREUR:/66/angoustrine-villeneuve-des-escaldes
+67130 Neuviller-la-Roche -> mairie.neuviller@wanadoo.fr:ERREUR:/67/neuviller-la-roche
+67190 Dinsheim-sur-Bruche -> contact@dinsheim-sur-bruche.fr:ERREUR:/67/dinsheim-sur-bruche
+67310 Scharrachbergheim-Irmstett -> mairie.scharrach@wanadoo.fr:ERREUR:/67/scharrachbergheim-irmstett
+67330 Obermodern-Zutzendorf -> mairie.obermodern-zutzendorf@wanadoo.fr:ERREUR:/67/obermodern-zutzendorf
+67480 Rountzenheim -> rountzenheim.mairie@wanadoo.fr:ERREUR:/67/rountzenheim
+67510 Climbach -> mairie-climbach@orange.fr:ERREUR:/67/climbach
+68210 Ammerzwiller -> commune.ammerzwiller@wanadoo.fr:ERREUR:/68/ammerzwiller
+68360 Soultz-Haut-Rhin -> mairie@soultz68.fr:ERREUR:/68/soultz-haut-rhin
+68380 Breitenbach-Haut-Rhin -> commune.breitenbach@orange.fr:ERREUR:/68/breitenbach-haut-rhin
+68500 Bergholtzzell -> mairie.bergholtzzell@wanadoo.fr:ERREUR:/68/bergholtzzell
+68500 Rimbachzell -> mairie.rimbach.zell@wanadoo.fr:ERREUR:/68/rimbachzell
+68610 Lautenbachzell -> mairie.lautenbachzell@wanadoo.fr:ERREUR:/68/lautenbachzell
+69001 Lyon 1er Arrondissement -> mairie1@mairie-lyon.fr:ERREUR:/69/lyon-1er-arrondissement
+69002 Lyon 2e Arrondissement -> mairie2@mairie-lyon.fr:ERREUR:/69/lyon-2e-arrondissement
+69003 Lyon 3e Arrondissement -> mairie3@mairie-lyon.fr:ERREUR:/69/lyon-3e-arrondissement
+69005 Lyon 5e Arrondissement -> mairie5@mairie-lyon.fr:ERREUR:/69/lyon-5e-arrondissement
+69006 Lyon 6e Arrondissement -> mairie6@mairie-lyon.fr:ERREUR:/69/lyon-6e-arrondissement
+69210 Saint-Germain-Nuelles -> mairie@saintgermainsurlarbresle.org:ERREUR:/69/saint-germain-nuelles
+69240 Thizy-les-Bourgs -> info@thizy.mairies69.net:ERREUR:/69/thizy-les-bourgs
+69264 Lyon 9e Arrondissement -> mairie9@mairie-lyon.fr:ERREUR:/69/lyon-9e-arrondissement
+69361 Lyon 7e Arrondissement -> mairie7@mairie-lyon.fr:ERREUR:/69/lyon-7e-arrondissement
+70100 Beaujeu-Saint-Vallier-Pierrejux-et-Quitteur -> mairie.beaujeu@wanadoo.fr:ERREUR:/70/beaujeu-saint-vallier-pierrejux-et-quitteur
+70210 Polaincourt-et-Clairefontaine -> mairie.polaincourt@wanadoo.fr:ERREUR:/70/polaincourt-et-clairefontaine
+70230 Roche-sur-Linotte-et-Sorans-les-Cordiers -> rochesurlinotte@orange.fr:ERREUR:/70/roche-sur-linotte-et-sorans-les-cordiers
+70240 La Villeneuve-Bellenoye-et-la-Maize -> lavilleneuve.mairie@wanadoo.fr:ERREUR:/70/la-villeneuve-bellenoye-et-la-maize
+70400 Crevans-et-la-Chapelle-lès-Granges -> mairie.crevans@wanadoo.fr:ERREUR:/70/crevans-et-la-chapelle-les-granges
+70400 Échenans-sous-Mont-Vaudois -> mairieechenans@orange.fr:ERREUR:/70/echenans-sous-mont-vaudois
+70700 Villers-Chemin-et-Mont-lès-Étrelles -> villerscheminmont@orange.fr:ERREUR:/70/villers-chemin-et-mont-les-etrelles
+71800 Ouroux-sous-le-Bois-Sainte-Marie -> mairie.ourouxsousbois@wanadoo.fr:ERREUR:/71/ouroux-sous-le-bois-sainte-marie
+71990 Saint-Prix -> saint-prix-en-morvan@wanadoo.fr:ERREUR:/71/saint-prix
+72240 Bernay-en-Champagne -> mairie-bernay-en-champagne@wanadoo.fr:ERREUR:/72/bernay-en-champagne
+73220 Saint-Alban-d'Hurtières -> mairie.stalbanhurt@wanadoo.fr:ERREUR:/73/saint-alban-d-hurtieres
+73220 Saint-Georges-d'Hurtières -> hurtieres.mairie.stgeorges@wanadoo.fr:ERREUR:/73/saint-georges-d-hurtieres
+73270 Aresches -> mairiearesches@wanadoo.fr:ERREUR:/73/aresches
+73340 La Motte-en-Bauges -> mairie.lamotteenbauges@wanadoo.fr:ERREUR:/73/la-motte-en-bauges
+73390 Champ-Laurent -> mairiedechamplaurent@wanadoo.fr:ERREUR:/73/champ-laurent
+73870 Saint-Julien-Mont-Denis -> accueil@saint-julien-montdenis.com:ERREUR:/73/saint-julien-mont-denis
+74110 Morzine -> mairie@morzine.fr:ERREUR:/74/morzine
+74230 Le Bouchet-Mont-Charvin -> accueil@bouchet-mont-charvin.fr:ERREUR:/74/le-bouchet-mont-charvin
+74270 Clarafond-Arcine -> mairie@clarafond.fr:ERREUR:/74/clarafond-arcine
+76170 Grand-Camp -> mairiegrandcamp@wanadoo.fr:ERREUR:/76/grand-camp
+76230 Bois-Guillaume-Bihorel -> contact@boisguillaumebihorel.fr:ERREUR:/76/bois-guillaume-bihorel
+76260 Saint-Rémy-Boscrocourt -> mairiesaintremy.76@wanadoo.fr:ERREUR:/76/saint-remy-boscrocourt
+76280 Cuverville -> cuvervilleencaux@wanadoo.fr:ERREUR:/76/cuverville
+76310 Sainte-Adresse -> courrier@ville-sainte-adresse.fr:ERREUR:/76/sainte-adresse
+76390 Landes-Vieilles-et-Neuves -> mairie.sg.leslandes@wanadoo.fr:ERREUR:/76/landes-vieilles-et-neuves
+76430 Sainneville -> mairie-sainneville-sur-seine@wanadoo.fr:ERREUR:/76/sainneville
+76440 Sainte-Geneviève -> ste-genevieve.commune@orange.fr:ERREUR:/76/sainte-genevieve
+76440 Vaudricourt -> mairie.de.beaubec.la.rosiere@wanadoo.fr:ERREUR:/76/vaudricourt
+76500 Elbeuf -> communication@mairie-elbeuf.fr:ERREUR:/76/elbeuf
+76520 Les Authieux-sur-le-Port-Saint-Ouen -> mairielesauthieux@wanadoo.fr:ERREUR:/76/les-authieux-sur-le-port-saint-ouen
+76560 Berville -> mairie-sg.bervilleencaux@wanadoo.fr:ERREUR:/76/berville
+76890 Butot -> mairiedebutot@wanadoo.fr:ERREUR:/76/butot
+76920 Amfreville-la-Mi-Voie -> mairie.amfrevillelamivoie@wanadoo.fr:ERREUR:/76/amfreville-la-mi-voie
+77166 Évry-Grégy-sur-Yerre -> evry-gregy@wanadoo.fr:ERREUR:/77/evry-gregy-sur-yerre
+77320 Frétoy -> mairiefretoy@orange.fr:ERREUR:/77/fretoy
+78770 Auteuil -> mairie.auteuil-le-roi@mairie-auteuil-le-roi.fr:ERREUR:/78/auteuil
+78940 La Queue-les-Yvelines -> mairie.la-queue.78@wanadoo.fr:ERREUR:/78/la-queue-les-yvelines
+79100 Sainte-Radegonde -> mairie.ste-radegonde@wanadoo.fr:ERREUR:/79/sainte-radegonde
+79150 Voulmentin -> mairievoulmentin@orange.fr:ERREUR:/79/voulmentin
+79190 Pliboux -> mairie-plibou@paysmellois.org:ERREUR:/79/pliboux
+79370 Beaussais-Vitré -> mairie-beaussais-vitre@paysmellois.org:ERREUR:/79/beaussais-vitre
+79500 Maisonnay -> mairie-maisonnais@paysmellois.org:ERREUR:/79/maisonnay
+80290 Lachapelle -> dewalle.famille@wanadoo.fr:ERREUR:/80/lachapelle
+80290 Namps-Maisnil -> mairie.nampsmaisnil@cegetel.net:ERREUR:/80/namps-maisnil
+80310 Saint-Vaast-en-Chaussée -> mairie.stvaastenchaussee@wanadoo.fr:ERREUR:/80/saint-vaast-en-chaussee
+80480 Vers-sur-Selles -> t.demoury@amiens-metropole.com:ERREUR:/80/vers-sur-selles
+80490 Citerne -> mairie.citernes@wanadoo.fr:ERREUR:/80/citerne
+80880 Saint-Quentin-la-Motte-Croix-au-Bailly -> mairie.st-quentin-la-motte@orange.fr:ERREUR:/80/saint-quentin-la-motte-croix-au-bailly
+81220 Guitalens-L'Albarède -> mairie.guitalens-lalbarede@orange.fr:ERREUR:/81/guitalens-l-albarede
+81370 Saint-Sulpice-la-Pointe -> mairie@ville-saint-sulpice-81.fr:ERREUR:/81/saint-sulpice-la-pointe
+81660 Bout-du-Pont-de-Larn -> commune-de-bout-du-pont@wanadoo.fr:ERREUR:/81/bout-du-pont-de-larn
+81660 Pont-de-Larn -> mairie.pontdelarn@wanadoo.fr:ERREUR:/81/pont-de-larn
+82400 Valence -> mairie@valencedagen.fr:ERREUR:/82/valence
+83120 Le Plan-de-la-Tour -> mairie@plandelatour.net:ERREUR:/83/le-plan-de-la-tour
+83560 Saint-Julien -> mairie.stjulien@orange.fr:ERREUR:/83/saint-julien
+85210 Saint-Martin-Lars-en-Sainte-Hermine -> mairie.stmartinlars85@wanadoo.fr:ERREUR:/85/saint-martin-lars-en-sainte-hermine
+85320 La Bretonnière-la-Claye -> mairie-de-la-bretonniere-la-claye@wanadoo.fr:ERREUR:/85/la-bretonniere-la-claye
+86230 Saint-Gervais-les-Trois-Clochers -> saint-gervais-les-trois-clochers@cg86.fr:ERREUR:/86/saint-gervais-les-trois-clochers
+86700 Vaux -> vaux-en-couhe@cg86.fr:ERREUR:/86/vaux
+88210 Grandrupt -> communedegrandrupt@orange.fr:ERREUR:/88/grandrupt
+88210 Ménil-de-Senones -> menil-de-senones@orange.fr:ERREUR:/88/menil-de-senones
+88460 Le Roulier -> mairie.leroulier@wanadoo.fr:ERREUR:/88/le-roulier
+88500 Rozerotte -> mairierozerotte@wanadoo.fr:ERREUR:/88/rozerotte
+88800 Haréville -> hareville.mairie@wanadoo.fr:ERREUR:/88/hareville
+88800 Norroy -> mairie-norroy@wanadoo.fr:ERREUR:/88/norroy
+89190 Saint-Maurice-aux-Riches-Hommes -> mairie-st-maurice-aux-rh@wanadoo.fr:ERREUR:/89/saint-maurice-aux-riches-hommes
+89310 Noyers -> mairie-de-noyers@wanadoo.fr:ERREUR:/89/noyers
+89420 Bierry-les-Belles-Fontaines -> mairie-bierry-les-belles-fontaines@orange.fr:ERREUR:/89/bierry-les-belles-fontaines
+90200 Lepuix -> mairielepuix-gy@wanadoo.fr:ERREUR:/90/lepuix
+91410 Roinville -> mairie-de-roinville@wanadoo.fr:ERREUR:/91/roinville
+91470 Limours -> info@mairie-limours.fr:ERREUR:/91/limours
+94520 Périgny -> mairie@perigny-sur-yerres.org:ERREUR:/94/perigny
+97650 M'Tsangamouji -> mairiedemtsangamouji@orange.fr:ERREUR:/976/m-tsangamouji
