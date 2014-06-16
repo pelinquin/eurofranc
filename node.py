@@ -31,6 +31,13 @@
 #    * Encryption with ECC use an idea of jackjack-jj on github
 #-----------------------------------------------------------------------------
 
+# Short todo list
+# - shift sha1 to sha256 in for signing
+# - Frontend for 'Maires' (add change password, user reset)
+# - Fix mairies list (380 errors)
+# - Finish eurofranc/2015 pages
+# - Prepare letter (both text and PDF) for Maires
+
 import re, os, sys, urllib.parse, hashlib, http.client, base64, dbm.ndbm, datetime, functools, subprocess, time, smtplib, operator, random, getpass
 import PyQt4.QtGui # only for GUI
 

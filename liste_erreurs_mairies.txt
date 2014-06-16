@@ -1,380 +1,3400 @@
-01110 Hostiaz -> mairie.hostiaz@adeli.biz:ERREUR:/01/hostiaz
-01200 Éloise -> mairie@eloise.fr:ERREUR:/01/eloise
-01340 Béréziat -> mairie-bereyziat@wanadoo.fr:ERREUR:/01/bereziat
-01430 Saint-Martin-du-Frêne -> mairie@saintmartindufresne.com:ERREUR:/01/saint-martin-du-frene
-01460 Béard-Géovreissiat -> mairie.geovreissiat@cegetel.net:ERREUR:/01/beard-geovreissiat
-01590 Chancia -> mairie.chancia@wanadoo.fr:ERREUR:/01/chancia
-01590 Lavancia-Epercy -> mairie.lavancia39@wanadoo.fr:ERREUR:/01/lavancia-epercy
-02110 Croix-Fonsomme -> mairie.croix.fonsomme@wanadoo.fr:ERREUR:/02/croix-fonsomme
-02110 Fonsomme -> commune.fonsommes@orange.fr:ERREUR:/02/fonsomme
-02160 Viel-Arcy -> mairie.vieilarcy@orange.fr:ERREUR:/02/viel-arcy
-02170 Leschelle -> mairieleschelle@orange.fr:ERREUR:/02/leschelle
-02220 Bazoches-sur-Vesles -> mairiebazoches.v@orange.fr:ERREUR:/02/bazoches-sur-vesles
-02380 Fresnes -> mairie-fresnes-sous-coucy@orange.fr:ERREUR:/02/fresnes
-03140 Chantelle -> chantelle.mairie@wanadoo.fr:ERREUR:/03/chantelle
-03360 Lételon -> mairie.l-etelon@wanadoo.fr:ERREUR:/03/letelon
-04140 Seyne -> mairie@seynelessalpes.fr:ERREUR:/04/seyne
-04150 Redortiers -> mairie.redortiers@wanadoo.fr:ERREUR:/04/redortiers
-05110 Claret -> mairiedeclaret04@packsurfwifi.fr:ERREUR:/05/claret
-05110 Curbans -> mairiedecurbans@wanadoo.fr:ERREUR:/05/curbans
-05120 Saint-Martin-de-Queyrières -> mairie.stmartindequeyrieres@wanadoo.fr:ERREUR:/05/saint-martin-de-queyrieres
-05130 Piégut -> mairiedepiegut@orange.fr:ERREUR:/05/piegut
-05130 Venterol -> mairie.venterol@wanadoo.fr:ERREUR:/05/venterol
-05160 Pontis -> mairiedepontis@wanadoo.fr:ERREUR:/05/pontis
-05250 Dévoluy -> contact@mairiedevoluy.fr:ERREUR:/05/devoluy
-06260 La Rochette -> larochette.mairie@wanadoo.fr:ERREUR:/06/la-rochette
-06420 La Tour -> mairie.latoursurtinee@orange.fr:ERREUR:/06/la-tour
-06570 Saint-Paul-de-Vence -> mairie@saint-pauldevence.fr:ERREUR:/06/saint-paul-de-vence
-06606 Antibes -> mairie@ville-antibes.fr:ERREUR:/06/antibes
-07190 Saint-Étienne-de-Serre -> mairie.stetienne.deserre@wanadoo.fr:ERREUR:/07/saint-etienne-de-serre
-07580 Saint-Gineis-en-Coiron -> mairiedestgineys@orange.fr:ERREUR:/07/saint-gineis-en-coiron
-07700 Saint-Just-d'Ardèche -> mairie@saintjustdardeche.fr:ERREUR:/07/saint-just-d-ardeche
-08220 Sévigny-Waleppe -> mairie.sevignywaleppe@wanadoo.fr:ERREUR:/08/sevigny-waleppe
-08240 Belleville-et-Châtillon-sur-Bar -> commune.bellevilleetchatillon@orange.fr:ERREUR:/08/belleville-et-chatillon-sur-bar
-08250 Apremont -> mairie.apremont-sur-aire@wanadoo.fr:ERREUR:/08/apremont
-08300 Saint-Loup-en-Champagne -> martine.mairie-de-st-loup@wanadoo.fr:ERREUR:/08/saint-loup-en-champagne
-08310 Juniville -> mairie.juniville@wanadoo.fr:ERREUR:/08/juniville
-09300 Sautel -> mairie.sautel@wanadoo.fr:ERREUR:/09/sautel
-09330 Montgaillard -> mairie.montgailhard09@orange.fr:ERREUR:/09/montgaillard
-09700 Le Vernet -> mairie-le-vernet-dariege@wanadoo.fr:ERREUR:/09/le-vernet
-09800 Villeneuve -> mairie.villeneuve09@wanadoo.fr:ERREUR:/09/villeneuve
-10190 Neuville-sur-Vanne -> mairie-neuville-sur-vanne@wanadoo.fr:ERREUR:/10/neuville-sur-vanne
-11140 Puilaurens -> mairie.lapradelle.puilaurens@orange.fr:ERREUR:/11/puilaurens
-11160 Trausse -> mairie.trausse@wanadoo.fr:ERREUR:/11/trausse
-11200 Canet -> mairiedecanet@wanadoo.fr:ERREUR:/11/canet
-11560 Fleury -> minfo@communefleury.fr:ERREUR:/11/fleury
-12450 Luc-la-Primaube -> mairie@luc-la-primaube.fr:ERREUR:/12/luc-la-primaube
-12460 Saint-Symphorien-de-Thénières -> mairie.st-symphorien@luxinet.fr:ERREUR:/12/saint-symphorien-de-thenieres
-13015 Marseille 15e Arrondissement -> mairie-info15-16@mairie-marseille.fr:ERREUR:/13/marseille-15e-arrondissement
-13150 Saint-Pierre-de-Mézoargues -> mairie.spm@wanadoo.fr:ERREUR:/13/saint-pierre-de-mezoargues
-13260 Cassis -> accueil@cassis.fr:ERREUR:/13/cassis
-13680 Lançon-Provence -> mairie@lancon-provence.fr:ERREUR:/13/lancon-provence
-13780 Riboux -> mairieriboux@wanadoo.fr:ERREUR:/13/riboux
-14270 Cesny-aux-Vignes -> commune-de-cesny-aux-vignes@orange.fr:ERREUR:/14/cesny-aux-vignes
-14270 Ouézy -> mairieouezy@wanadoo.fr:ERREUR:/14/ouezy
-14290 Saint-Martin-de-Bienfaite-la-Cressonnière -> mairie.sm.bienfaite@wanadoo.fr:ERREUR:/14/saint-martin-de-bienfaite-la-cressonniere
-14500 Saint-Germain-de-Tallevende-la-Lande-Vaumont -> mairie-st-germain-de-tallevende@wanadoo.fr:ERREUR:/14/saint-germain-de-tallevende-la-lande-vaumont
-14570 Saint-Rémy -> mairie.stremysurorne@wanadoo.fr:ERREUR:/14/saint-remy
-14860 Bréville-les-Monts -> mairie.brevillelesmonts@wanadoo.fr:ERREUR:/14/breville-les-monts
-15100 Coren -> mairie.coren-les-eaux15@wanadoo.fr:ERREUR:/15/coren
-15170 Sainte-Anastasie -> mairie.steanastasie@orange.fr:ERREUR:/15/sainte-anastasie
-15230 Lacapelle-Barrès -> mairie.lacapelle.barrez@wanadoo.fr:ERREUR:/15/lacapelle-barres
-15400 Le Claux -> mairie.leclaux@wanadoo.fr:ERREUR:/15/le-claux
-15400 Riom-ès-Montagnes -> mairie-riom-es-montagnes@wanadoo.fr:ERREUR:/15/riom-es-montagnes
-15600 Maurs -> mairie@ville-maurs.fr:ERREUR:/15/maurs
-16190 Bors (Canton de Montmoreau-Saint-Cybard) -> mairie.borsdemontmoreau@wanadoo.fr:ERREUR:/16/bors-(canton-de-montmoreau-saint-cybard)
-16300 Saint-Médard -> mairie-st-medard-de-bzx@wanadoo.fr:ERREUR:/16/saint-medard
-16360 Bors (Canton de Baignes-Sainte-Radegonde) -> mairie-bors-de-b@wanadoo.fr:ERREUR:/16/bors-(canton-de-baignes-sainte-radegonde)
-17120 Arces -> arces.sur.gironde@mairie17.com:ERREUR:/17/arces
-17170 Cramchaban -> cram-chaban@mairie17.com:ERREUR:/17/cramchaban
-17250 Soulignonne -> mairie.soulignonnes@wanadoo.fr:ERREUR:/17/soulignonne
-17270 Neuvicq -> neuvicq@mairie17.com:ERREUR:/17/neuvicq
-17330 Saint-Martial -> saint-martial@mairie17.com:ERREUR:/17/saint-martial
-17380 Saint-Loup -> st-loup-de-saintonge@mairie17.com:ERREUR:/17/saint-loup
-17470 Aulnay -> aulnay.de.saintonge@mairie17.com:ERREUR:/17/aulnay
-17690 Angoulins -> communication.mairie@angoulins.fr:ERREUR:/17/angoulins
-19150 Ladignac-sur-Rondelles -> mairieladignac@wanadoo.fr:ERREUR:/19/ladignac-sur-rondelles
-19190 Aubazines -> mairie@ville-aubazine.fr:ERREUR:/19/aubazines
-19430 Saint-Bonnet-les-Tours-de-Merle -> stbonnettoursmerle@wanadoo.fr:ERREUR:/19/saint-bonnet-les-tours-de-merle
-20230 Chiatra -> chiatra.commune@wanadoo.fr:ERREUR:/2B/chiatra
-21340 Change -> mairiedechange@wanadoo.fr:ERREUR:/21/change
-23260 La Mazière-aux-Bons-Hommes -> mairie.lamaziere23260@laposte.net:ERREUR:/23/la-maziere-aux-bons-hommes
-24120 La Dornac -> mairie.ladornac@wanadoo.fr:ERREUR:/24/la-dornac
-24120 Terrasson-Lavilledieu -> contact@ville-terrasson.com:ERREUR:/24/terrasson-lavilledieu
-24130 Saint-Georges-Blancaneix -> mairie.stgeorgesdeblancaneix@orange.fr:ERREUR:/24/saint-georges-blancaneix
-24230 Bonneville-et-Saint-Avit-de-Fumadières -> mairie.de.bonneville@wanadoo.fr:ERREUR:/24/bonneville-et-saint-avit-de-fumadieres
-24260 Saint-Félix-de-Reillac-et-Mortemart -> mairie.24404@orange.fr:ERREUR:/24/saint-felix-de-reillac-et-mortemart
-24320 Gout-Rossignol -> gouts-rossignol.mairie@wanadoo.fr:ERREUR:/24/gout-rossignol
-24320 Nanteuil-Auriac-de-Bourzac -> mairie.nanteuilauriac@wanadoo.fr:ERREUR:/24/nanteuil-auriac-de-bourzac
-24330 Bassillac -> mairiebassillac@wanadoo.fr:ERREUR:/24/bassillac
-24340 Champeaux-et-la-Chapelle-Pommier -> mairie.champeaux-chapelle-pommier@wanadoo.fr:ERREUR:/24/champeaux-et-la-chapelle-pommier
-24410 Saint-Antoine-Cumond -> mairie.stantoine-cumond@wanadoo.fr:ERREUR:/24/saint-antoine-cumond
-24440 Sainte-Croix -> mairie.stecroix-de-bt@wanadoo.fr:ERREUR:/24/sainte-croix
-24450 Mialet -> mairie.de.miallet@wanadoo.fr:ERREUR:/24/mialet
-24580 Rouffignac-Saint-Cernin-de-Reilhac -> mairie@rouffignac-perigordnoir.fr:ERREUR:/24/rouffignac-saint-cernin-de-reilhac
-24590 Salignac-Eyvigues -> mairie.de.salignac@wanadoo.fr:ERREUR:/24/salignac-eyvigues
-24700 Saint-Rémy -> cne.st-remy-sur-lidoire@wanadoo.fr:ERREUR:/24/saint-remy
-24800 Chalais -> mairie.chalais@wanadoo.fr:ERREUR:/24/chalais
-24800 Nantheuil -> mairie.nantheuil@wanadoo.fr:ERREUR:/24/nantheuil
-25190 Montancy -> mairie.bremoncourt@packsurfwifi.com:ERREUR:/25/montancy
-25310 Dannemarie -> mairie.dannemarie@free.fr:ERREUR:/25/dannemarie
-25440 Courcelles -> commune-de-courcelles@orange.fr:ERREUR:/25/courcelles
-25750 Le Vernoy -> levernoy@orange.fr:ERREUR:/25/le-vernoy
-26400 Suze -> mairie.suze@orange.fr:ERREUR:/26/suze
-26770 Montbrison-sur-Lez -> mairie.montbrison.lez@wanadoo.fr:ERREUR:/26/montbrison-sur-lez
-27160 Breteuil -> mairie-breteuil@orange.fr:ERREUR:/27/breteuil
-27370 Saint-Amand-des-Hautes-Terres -> mairie.stamanddeshautesterres@wanadoo.fr:ERREUR:/27/saint-amand-des-hautes-terres
-27390 Saint-Agnan-de-Cernières -> mairiestagnan27@wanadoo.fr:ERREUR:/27/saint-agnan-de-cernieres
-27410 Granchain -> mairiegrandchain@orange.fr:ERREUR:/27/granchain
-27510 Fontenay -> fontenay-en-vexin@wanadoo.fr:ERREUR:/27/fontenay
-28150 Moutiers -> mairie.moutiers28@wanadoo.fr:ERREUR:/28/moutiers
-28700 Bleury-Saint-Symphorien -> mairie.saint.symphorien.le.chateau@wanadoo.fr:ERREUR:/28/bleury-saint-symphorien
-28700 Roinville -> commune.roinville@wanadoo.fr:ERREUR:/28/roinville
-29140 Saint-Yvi -> mairie.saint-yvi@fr.oleane.com:ERREUR:/29/saint-yvi
-29252 Plouezoc'h -> mairie.plouezoch@wanadoo.fr:ERREUR:/29/plouezoc-h
-29620 Plouégat-Guérand -> plouegatguerrand@wanadoo.fr:ERREUR:/29/plouegat-guerand
-29730 Guilvinec -> mairie@leguilvinec.com:ERREUR:/29/guilvinec
-30124 Peyrolles -> peyrolles.mairie@wanadoo.fr:ERREUR:/30/peyrolles
-30170 Durfort-et-Saint-Martin-de-Sossenac -> mairie.durfort@wanadoo.fr:ERREUR:/30/durfort-et-saint-martin-de-sossenac
-30430 Saint-Jean-de-Maruéjols-et-Avéjan -> mairie-st-jean-maruejols@wanadoo.fr:ERREUR:/30/saint-jean-de-maruejols-et-avejan
-30980 Saint-Dionisy -> mairie.saintdionisy@wanadoo.fr:ERREUR:/30/saint-dionisy
-31210 Les Tourreilles -> les-tourreilles@orange.fr:ERREUR:/31/les-tourreilles
-31220 Saint-Julien-sur-Garonne -> saint-julien.mairie@wanadoo.fr:ERREUR:/31/saint-julien-sur-garonne
-31310 Rieux-Volvestre -> mairie.rieux.31@wanadoo.fr:ERREUR:/31/rieux-volvestre
-31330 Grenade -> contact@mairie-grenade.fr:ERREUR:/31/grenade
-32150 Monclar -> mairie-de-monclar@wanadoo.fr:ERREUR:/32/monclar
-32300 Saint-Maur -> saint-maur-soules@wanadoo.fr:ERREUR:/32/saint-maur
-32450 Saint-Élix -> st.elix@wanadoo.fr:ERREUR:/32/saint-elix
-32700 Lagarde -> mairie-de-lagarde-fimarcon@alsatis.net:ERREUR:/32/lagarde
-33220 Fougueyrolles -> mairie.fougueyrolles@wanadoo.fr:ERREUR:/33/fougueyrolles
-33220 Les Lèves-et-Thoumeyragues -> mairie.leslevesthoumeyragues@wanadoo.fr:ERREUR:/33/les-leves-et-thoumeyragues
-33220 Port-Sainte-Foy-et-Ponchapt -> mairie@port-sainte-foy.info:ERREUR:/33/port-sainte-foy-et-ponchapt
-33240 Lugon-et-l'Île-du-Carnay -> mairiedelugon@wanadoo.fr:ERREUR:/33/lugon-et-l-ile-du-carnay
-33330 Bellenaves -> mairie-bellenaves@wanadoo.fr:ERREUR:/33/bellenaves
-34520 La Vacquerie-et-Saint-Martin-de-Castries -> mairie.lavacquerie@lodevoisetnarzac.fr:ERREUR:/34/la-vacquerie-et-saint-martin-de-castries
-37220 Parçay-sur-Vienne -> mairiedeparcaysurvienne@wanadoo.fr:ERREUR:/37/parcay-sur-vienne
-37220 Tavant -> communedetavant@wanadoo.fr:ERREUR:/37/tavant
-37240 La Chapelle-Blanche-Saint-Martin -> mairie37057@wanadoo.fr:ERREUR:/37/la-chapelle-blanche-saint-martin
-37370 Louestault -> mairie-de-louestault@wanadoo.fr:ERREUR:/37/louestault
-37390 Mettray -> administration@ville-mettray.fr:ERREUR:/37/mettray
-37500 Saint-Benoît-la-Forêt -> commune.stbenoitlaforet@orange.fr:ERREUR:/37/saint-benoit-la-foret
-37510 Saint-Genouph -> mairie-st-genouph2@wanadoo.fr:ERREUR:/37/saint-genouph
-37800 Ports -> mairie-de-ports-sur-vienne@wanadoo.fr:ERREUR:/37/ports
-38114 Oz -> mairie.oz@wanadoo.fr:ERREUR:/38/oz
-38122 Chalon -> mairie.chalon@territoire-de-beaurepaire.fr:ERREUR:/38/chalon
-38134 Saint-Julien-de-Raz -> mairie.saintjulienderatz@orange.fr:ERREUR:/38/saint-julien-de-raz
-38142 Auris -> mairie.auris@wanadoo.fr:ERREUR:/38/auris
-38142 Besse -> mairie.besse38@orange.fr:ERREUR:/38/besse
-38220 Saint-Barthélemy-de-Séchilienne -> mairiesbs@wanadoo.fr:ERREUR:/38/saint-barthelemy-de-sechilienne
-38260 Mottier -> mairie-lemottier@wanadoo.fr:ERREUR:/38/mottier
-38300 Ruy -> mairie@ruy-montceau.fr:ERREUR:/38/ruy
-38440 Meyssiez -> mairie.meyssiez@wanadoo.fr:ERREUR:/38/meyssiez
-38460 Siccieu-Saint-Julien-et-Carisieu -> siccieu.commune@wanadoo.fr:ERREUR:/38/siccieu-saint-julien-et-carisieu
-38520 La Garde -> mairiedelagarde@wanadoo.fr:ERREUR:/38/la-garde
-38580 Allevard -> contact@allevard.fr:ERREUR:/38/allevard
-38660 Saint-Bernard -> mairie-stbernarddutouvet@wanadoo.fr:ERREUR:/38/saint-bernard
-38660 Saint-Hilaire -> mairie@sainthilairedutouvet.fr:ERREUR:/38/saint-hilaire
-38730 Virieu -> mairie.virieu38@orange.fr:ERREUR:/38/virieu
-38930 Percy -> mairielepercy@wanadoo.fr:ERREUR:/38/percy
-38970 Sainte-Luce -> communedesainteluce@wanadoo.fr:ERREUR:/38/sainte-luce
-39120 Neublans-Abergement -> mairie-neublans-abergement@wanadoo.fr:ERREUR:/39/neublans-abergement
-39260 Coyron -> mairie.coyron@wanadoo.fr:ERREUR:/39/coyron
-39300 Moutoux -> mairie.le-moutoux@wanadoo.fr:ERREUR:/39/moutoux
-40110 Onesse-Laharie -> mairie-onesse-laharie@wanadoo.fr:ERREUR:/40/onesse-laharie
-40270 Larrivière-Saint-Savin -> mairie.larriviere@wanadoo.fr:ERREUR:/40/larriviere-saint-savin
-41000 Saint-Sulpice-de-Pommeray -> saint.sulpice.mairie@wanadoo.fr:ERREUR:/41/saint-sulpice-de-pommeray
-41500 La Chapelle-Saint-Martin-en-Plaine -> mairiechapellestmartin@wanadoo.fr:ERREUR:/41/la-chapelle-saint-martin-en-plaine
-42130 Boën-sur-Lignon -> accueil@boen.fr:ERREUR:/42/boen-sur-lignon
-42155 Saint-Jean-Saint-Maurice-sur-Loire -> mairie.st.jean.st.maurice.42@wanadoo.fr:ERREUR:/42/saint-jean-saint-maurice-sur-loire
-42380 Saint-Hilaire-Cusson-la-Valmitte -> saint.hilaire.cusson.la.valmitte.cne@wanadoo.fr:ERREUR:/42/saint-hilaire-cusson-la-valmitte
-42620 Saint-Pierre-Laval -> mairie-saint-pierre-laval@wanadoo.fr:ERREUR:/42/saint-pierre-laval
-43000 Ceyssac -> ceyssac.mairie@orange.fr:ERREUR:/43/ceyssac
-43350 Saint-Geneys-près-Saint-Paulien -> mairie.st.geneys@wanadoo.fr:ERREUR:/43/saint-geneys-pres-saint-paulien
-43450 Leyvaux -> leyvaux@wanadoo.fr:ERREUR:/43/leyvaux
-43500 Saint-Pal-de-Chalencon -> stpal-chalencon@wanadoo.fr:ERREUR:/43/saint-pal-de-chalencon
-43800 Vorey -> mairie@vorey.fr:ERREUR:/43/vorey
-44119 Grandchamps-des-Fontaines -> contact@grandchampdesfontaines.fr:ERREUR:/44/grandchamps-des-fontaines
-44310 Saint-Philbert-de-Grand-Lieu -> contact@stphilbert.fr:ERREUR:/44/saint-philbert-de-grand-lieu
-44670 Juigné-des-Moutiers -> mairie.juignelesmoutiers@wanadoo.fr:ERREUR:/44/juigne-des-moutiers
-44860 Saint-Aignan-Grandlieu -> contact@fagl.fr:ERREUR:/44/saint-aignan-grandlieu
-47400 Grateloup-Saint-Gayrand -> communedegrateloup.47@wanadoo.fr:ERREUR:/47/grateloup-saint-gayrand
-47400 Hautesvignes -> mairie.hautesvignes@wanadoo.fr:ERREUR:/47/hautesvignes
-48110 Sainte-Croix-Vallée-Française -> sainte-croix-vf.mairie@wanadoo.fr:ERREUR:/48/sainte-croix-vallee-francaise
-48250 Laveyrune -> mairie-de-laveyrune@orange.fr:ERREUR:/48/laveyrune
-48500 La Canourgue -> mairie.lacanourgue@wanadoo.fr:ERREUR:/48/la-canourgue
-49120 Chemillé-Melay -> k.beugnet.chemille@wanadoo.fr:ERREUR:/49/chemille-melay
-49123 Le Fresne-sur-Loire -> mairiedufresne@wanadoo.fr:ERREUR:/49/le-fresne-sur-loire
-49150 Baugé-en-Anjou -> mairie@baugeenanjou.fr:ERREUR:/49/bauge-en-anjou
-49150 Clefs-Val d'Anjou -> mairie.clefs@wanadoo.fr:ERREUR:/49/clefs-val-d-anjou
-49320 Charcé-Saint-Ellier-sur-Aubance -> mairie.charce@wanadoo.fr:ERREUR:/49/charce-saint-ellier-sur-aubance
-49390 Vernoil-le-Fourrier -> mairie.vernoil@orange.fr:ERREUR:/49/vernoil-le-fourrier
-49700 Brigné -> mairie.brigne@wanadoo.fr:ERREUR:/49/brigne
-49700 Meigné -> mairie.meigne49@wanadoo.fr:ERREUR:/49/meigne
-50110 Bretteville -> mairie.brettevilleensaire@orange.fr:ERREUR:/50/bretteville
-50310 Saint-Marcouf -> mairie-de-st-marcouf@wanadoo.fr:ERREUR:/50/saint-marcouf
-50700 Saussemesnil -> contact@sauxemesnil.fr:ERREUR:/50/saussemesnil
-51120 Fontaine-Denis-Nuisy -> commune.fontaine.denis@wanadoo.fr:ERREUR:/51/fontaine-denis-nuisy
-51290 Saint-Remy-en-Bouzemont-Saint-Genest-et-Isson -> mairie.de.st.remy.en.bouzemont@wanadoo.fr:ERREUR:/51/saint-remy-en-bouzemont-saint-genest-et-isson
-51380 Vaudemange -> mairievaudemange@wanadoo.fr:ERREUR:/51/vaudemange
-51390 Ville-Dommange -> mairie.de.villedommange@wanadoo.fr:ERREUR:/51/ville-dommange
-52100 Saint-Eulien -> mairie-sainteulien@live.fr:ERREUR:/52/saint-eulien
-52100 Sapignicourt -> mairiesapignicourt@wanadoo.fr:ERREUR:/52/sapignicourt
-52110 Trémilly -> commune-tremilly@orange.fr:ERREUR:/52/tremilly
-52140 Avrecourt -> mairie3@orange.fr:ERREUR:/52/avrecourt
-52140 Saulxures -> mairie-saulxures52@orange.fr:ERREUR:/52/saulxures
-52220 Laneuville-à-Rémy -> mairie.laneuvillearemy@gmail.com:ERREUR:/52/laneuville-a-remy
-52220 Robert-Magny -> mairie.de.robert.magny@orange.fr:ERREUR:/52/robert-magny
-52220 Sommevoire -> mairie.sommevoire@free.fr:ERREUR:/52/sommevoire
-52230 Pansey -> mairie.pansey@orange.fr:ERREUR:/52/pansey
-52240 Longchamp -> mairie.longchamp@nordnet.fr:ERREUR:/52/longchamp
-52290 Éclaron-Braucourt-Sainte-Livière -> commune.eclaron-braucourt@wanadoo.fr:ERREUR:/52/eclaron-braucourt-sainte-liviere
-52300 Pechbonnieu -> mairieosne-le-val@wanadoo.fr:ERREUR:/52/pechbonnieu
-52330 Lavilleneuve-au-Roi -> mairie.lavilleneuveauroi@orange.fr:ERREUR:/52/lavilleneuve-au-roi
-52360 Charmes -> charmesleslangres@nordnet.fr:ERREUR:/52/charmes
-52400 Varennes-sur-Amance -> mairie.varennes.52@orange.fr:ERREUR:/52/varennes-sur-amance
-53110 Le Housseau-Brétignolles -> mairie.lehousseau@orange.fr:ERREUR:/53/le-housseau-bretignolles
-53150 Livet -> mairie.livet@worldonline.fr:ERREUR:/53/livet
-53300 Ambrières-les-Vallées -> mairie@ambriereslesvallees.fr:ERREUR:/53/ambrieres-les-vallees
-53480 Saint-Léger -> mairie-st-leger-en-charnie@wanadoo.fr:ERREUR:/53/saint-leger
-54260 Colmey -> mairiecolmey@gmail.com:ERREUR:/54/colmey
-54370 Bathelémont -> bathelemont.mairie@orange.fr:ERREUR:/54/bathelemont
-54610 Abaucourt -> mairie.abaucourt@wanadoo.fr:ERREUR:/54/abaucourt
-55110 Cléry-le-Grand -> clerylegrand.mairie@sfr.fr:ERREUR:/55/clery-le-grand
-55110 Cléry-le-Petit -> clerylepetit@wanadoo.fr:ERREUR:/55/clery-le-petit
-56170 Hœdic -> mairie-dhoedic@wanadoo.fr:ERREUR:/56/hoedic
-56200 Saint-Martin-sur-Oust -> st-martin-oust@wanadoo.fr:ERREUR:/56/saint-martin-sur-oust
-56360 Locmaria -> locmaria-belle-ile@wanadoo.fr:ERREUR:/56/locmaria
-56400 Bono -> accueil@lebono.fr:ERREUR:/56/bono
-57320 Neunkirchen-lès-Bouzonville -> mairie.neunkirchenbouzonville@orange.fr:ERREUR:/57/neunkirchen-les-bouzonville
-57363 Amnéville -> mairie@amneville-les-thermes.com:ERREUR:/57/amneville
-57385 Tritteling-Redlach -> tritteling-redlach.maire@wanadoo.fr:ERREUR:/57/tritteling-redlach
-57480 Grindorff-Bizing -> commune-de-grindorff@wanadoo.fr:ERREUR:/57/grindorff-bizing
-57800 Betting -> mairie-betting@wanadoo.fr:ERREUR:/57/betting
-58120 Château-Chinon (Campagne) -> mairie-chateau-chinon-campagne@wanadoo.fr:ERREUR:/58/chateau-chinon-(campagne)
-58120 Château-Chinon (Ville) -> mairiechateauchinonville@wanadoo.fr:ERREUR:/58/chateau-chinon-(ville)
-59132 Wallers-en-Fagne -> mairie.wallers-en-fagne@nordnet.fr:ERREUR:/59/wallers-en-fagne
-59158 Flines-lès-Mortagne -> mairieflineslezmortagne@wanadoo.fr:ERREUR:/59/flines-les-mortagne
-60113 Braisnes-sur-Aronde -> mairie.braisnes@orange.fr:ERREUR:/60/braisnes-sur-aronde
-60138 Chiry-Ourscamp -> mairie-chiry-ourscamp@wanadoo.fr:ERREUR:/60/chiry-ourscamp
-60190 La Neuville-Roy -> mairie-la-neuville-roy@wanadoo.fr:ERREUR:/60/la-neuville-roy
-60480 Oursel-Maison -> secretaire-mairie@oursel-maison.fr:ERREUR:/60/oursel-maison
-60890 La Villeneuve-sous-Thury -> mairievilleneuvesousthury@orange.fr:ERREUR:/60/la-villeneuve-sous-thury
-61270 Saint-Hilaire-sur-Risle -> mairie.sthilairesurrille@orange.fr:ERREUR:/61/saint-hilaire-sur-risle
-61350 Passais -> mairiedepassais@wanadoo.fr:ERREUR:/61/passais
-61390 Ferrières-la-Verrerie -> mairie.ferrierelaverrerie@orange.fr:ERREUR:/61/ferrieres-la-verrerie
-61420 Ravigny -> mairie.ravigny@wanadoo.fr:ERREUR:/61/ravigny
-61570 Le Château-d'Almenêches -> mairie.chateau.almeneches@wanadoo.fr:ERREUR:/61/le-chateau-d-almeneches
-62113 Verquigneul -> mairie.de.verquigneul@wanadoo.fr:ERREUR:/62/verquigneul
-62138 Haisnes -> communehaisnes@fr.oleane.com:ERREUR:/62/haisnes
-62147 Boursies -> mairie.boursies@orange.fr:ERREUR:/62/boursies
-62147 Doignies -> mairie.doignies@orange.fr:ERREUR:/62/doignies
-62147 Mœuvres -> moeuvres@wanadoo.fr:ERREUR:/62/moeuvres
-62217 Wailly -> mairiewailly@hotmail.fr:ERREUR:/62/wailly
-62223 Saint-Nicolas -> contact@ville-saintnicolas.fr:ERREUR:/62/saint-nicolas
-62390 Quœux-Haut-Maînil -> mairie-quoeux-haut-maisnil@wanadoo.fr:ERREUR:/62/quoeux-haut-mainil
-62550 Pernes -> mpernes@wanadoo.fr:ERREUR:/62/pernes
-62580 Bailleul-Sir-Berthoult -> mairie@bailleulsireberthoult.fr:ERREUR:/62/bailleul-sir-berthoult
-62610 Brêmes -> mairie-de-bremes@wanadoo.fr:ERREUR:/62/bremes
-62630 Étaples -> accueil@etaples-sur-mer.net:ERREUR:/62/etaples
-62690 Izel-lès-Hameau -> izel-les-hameau@wanadoo.fr:ERREUR:/62/izel-les-hameau
-62740 Fouquières-lès-Lens -> mairefouquieres@numericable.fr:ERREUR:/62/fouquieres-les-lens
-62880 Annay -> mairie@annaysouslens.fr:ERREUR:/62/annay
-63140 Châtel-Guyon -> mairie@chatel-guyon.fr:ERREUR:/63/chatel-guyon
-63230 Saint-Ours -> mairie@saintourslesroches.fr:ERREUR:/63/saint-ours
-63240 Mont-Dore -> mont-dore@sancy.com:ERREUR:/63/mont-dore
-63270 Saint-Maurice -> mairie-de-st-maurice-es-allier@wanadoo.fr:ERREUR:/63/saint-maurice
-63330 Bussières -> mairiebussiÃ¨res@orange.fr:ERREUR:/63/bussieres
-63330 Saint-Hilaire -> mairie.st.hilaire.de.pionsat@wanadoo.fr:ERREUR:/63/saint-hilaire
-63420 Ardes -> ardes.mairie@wanadoo.fr:ERREUR:/63/ardes
-63490 Saint-Quentin-sur-Sauxillanges -> maire.st-quentin-saux@wanadoo.fr:ERREUR:/63/saint-quentin-sur-sauxillanges
-63580 Vernet-la-Varenne -> mairie.vernetlaverenne@wanadoo.fr:ERREUR:/63/vernet-la-varenne
-63600 Saint-Just -> mairie.stjust@gmail.com:ERREUR:/63/saint-just
-63720 Martres-sur-Morge -> lesmartressurmorge@wanadoo.fr:ERREUR:/63/martres-sur-morge
-64130 Mauléon-Licharre -> accueil@mauleon-soule.fr:ERREUR:/64/mauleon-licharre
-64130 Moncayolle-Larrory-Mendibieu -> mairie.moncayolle@wanadoo.fr:ERREUR:/64/moncayolle-larrory-mendibieu
-64160 Daubèze -> mairie@manassut-audiracq.fr:ERREUR:/64/daubeze
-64300 Saint-Girons-en-Béarn -> st.girons.en.bearn@wanadoo.fr:ERREUR:/64/saint-girons-en-bearn
-64320 Idron -> ericmassias@mairie-idron.com:ERREUR:/64/idron
-64350 Castillon (Canton de Lembeye) -> communedecastillondelembeye@orange.fr:ERREUR:/64/castillon-(canton-de-lembeye)
-64370 Castillon (Canton d'Arthez-de-Béarn) -> commune-castillonarthez@wanadoo.fr:ERREUR:/64/castillon-(canton-d-arthez-de-bearn)
-64470 Lacarry-Arhan-Charritte-de-Haut -> mairie.lacarry@orange.fr:ERREUR:/64/lacarry-arhan-charritte-de-haut
-64800 Nay -> accueil@mairienay.fr:ERREUR:/64/nay
-65200 Argelès-Bagnères -> mairie.argeles.bagneres@wanadoo.fr:ERREUR:/65/argeles-bagneres
-65400 Salles -> mairie.salles-argeles@wanadoo.fr:ERREUR:/65/salles
-66470 Sainte-Marie -> accueil@saintemarielamer.com:ERREUR:/66/sainte-marie
-66500 Clara -> commune-de-clara@orange.fr:ERREUR:/66/clara
-66760 Angoustrine-Villeneuve-des-Escaldes -> mairie.angoustrine@wanadoo.fr:ERREUR:/66/angoustrine-villeneuve-des-escaldes
-67130 Neuviller-la-Roche -> mairie.neuviller@wanadoo.fr:ERREUR:/67/neuviller-la-roche
-67190 Dinsheim-sur-Bruche -> contact@dinsheim-sur-bruche.fr:ERREUR:/67/dinsheim-sur-bruche
-67310 Scharrachbergheim-Irmstett -> mairie.scharrach@wanadoo.fr:ERREUR:/67/scharrachbergheim-irmstett
-67330 Obermodern-Zutzendorf -> mairie.obermodern-zutzendorf@wanadoo.fr:ERREUR:/67/obermodern-zutzendorf
-67480 Rountzenheim -> rountzenheim.mairie@wanadoo.fr:ERREUR:/67/rountzenheim
-67510 Climbach -> mairie-climbach@orange.fr:ERREUR:/67/climbach
-68210 Ammerzwiller -> commune.ammerzwiller@wanadoo.fr:ERREUR:/68/ammerzwiller
-68360 Soultz-Haut-Rhin -> mairie@soultz68.fr:ERREUR:/68/soultz-haut-rhin
-68380 Breitenbach-Haut-Rhin -> commune.breitenbach@orange.fr:ERREUR:/68/breitenbach-haut-rhin
-68500 Bergholtzzell -> mairie.bergholtzzell@wanadoo.fr:ERREUR:/68/bergholtzzell
-68500 Rimbachzell -> mairie.rimbach.zell@wanadoo.fr:ERREUR:/68/rimbachzell
-68610 Lautenbachzell -> mairie.lautenbachzell@wanadoo.fr:ERREUR:/68/lautenbachzell
-69001 Lyon 1er Arrondissement -> mairie1@mairie-lyon.fr:ERREUR:/69/lyon-1er-arrondissement
-69002 Lyon 2e Arrondissement -> mairie2@mairie-lyon.fr:ERREUR:/69/lyon-2e-arrondissement
-69003 Lyon 3e Arrondissement -> mairie3@mairie-lyon.fr:ERREUR:/69/lyon-3e-arrondissement
-69005 Lyon 5e Arrondissement -> mairie5@mairie-lyon.fr:ERREUR:/69/lyon-5e-arrondissement
-69006 Lyon 6e Arrondissement -> mairie6@mairie-lyon.fr:ERREUR:/69/lyon-6e-arrondissement
-69210 Saint-Germain-Nuelles -> mairie@saintgermainsurlarbresle.org:ERREUR:/69/saint-germain-nuelles
-69240 Thizy-les-Bourgs -> info@thizy.mairies69.net:ERREUR:/69/thizy-les-bourgs
-69264 Lyon 9e Arrondissement -> mairie9@mairie-lyon.fr:ERREUR:/69/lyon-9e-arrondissement
-69361 Lyon 7e Arrondissement -> mairie7@mairie-lyon.fr:ERREUR:/69/lyon-7e-arrondissement
-70100 Beaujeu-Saint-Vallier-Pierrejux-et-Quitteur -> mairie.beaujeu@wanadoo.fr:ERREUR:/70/beaujeu-saint-vallier-pierrejux-et-quitteur
-70210 Polaincourt-et-Clairefontaine -> mairie.polaincourt@wanadoo.fr:ERREUR:/70/polaincourt-et-clairefontaine
-70230 Roche-sur-Linotte-et-Sorans-les-Cordiers -> rochesurlinotte@orange.fr:ERREUR:/70/roche-sur-linotte-et-sorans-les-cordiers
-70240 La Villeneuve-Bellenoye-et-la-Maize -> lavilleneuve.mairie@wanadoo.fr:ERREUR:/70/la-villeneuve-bellenoye-et-la-maize
-70400 Crevans-et-la-Chapelle-lès-Granges -> mairie.crevans@wanadoo.fr:ERREUR:/70/crevans-et-la-chapelle-les-granges
-70400 Échenans-sous-Mont-Vaudois -> mairieechenans@orange.fr:ERREUR:/70/echenans-sous-mont-vaudois
-70700 Villers-Chemin-et-Mont-lès-Étrelles -> villerscheminmont@orange.fr:ERREUR:/70/villers-chemin-et-mont-les-etrelles
-71800 Ouroux-sous-le-Bois-Sainte-Marie -> mairie.ourouxsousbois@wanadoo.fr:ERREUR:/71/ouroux-sous-le-bois-sainte-marie
-71990 Saint-Prix -> saint-prix-en-morvan@wanadoo.fr:ERREUR:/71/saint-prix
-72240 Bernay-en-Champagne -> mairie-bernay-en-champagne@wanadoo.fr:ERREUR:/72/bernay-en-champagne
-73220 Saint-Alban-d'Hurtières -> mairie.stalbanhurt@wanadoo.fr:ERREUR:/73/saint-alban-d-hurtieres
-73220 Saint-Georges-d'Hurtières -> hurtieres.mairie.stgeorges@wanadoo.fr:ERREUR:/73/saint-georges-d-hurtieres
-73270 Aresches -> mairiearesches@wanadoo.fr:ERREUR:/73/aresches
-73340 La Motte-en-Bauges -> mairie.lamotteenbauges@wanadoo.fr:ERREUR:/73/la-motte-en-bauges
-73390 Champ-Laurent -> mairiedechamplaurent@wanadoo.fr:ERREUR:/73/champ-laurent
-73870 Saint-Julien-Mont-Denis -> accueil@saint-julien-montdenis.com:ERREUR:/73/saint-julien-mont-denis
-74110 Morzine -> mairie@morzine.fr:ERREUR:/74/morzine
-74230 Le Bouchet-Mont-Charvin -> accueil@bouchet-mont-charvin.fr:ERREUR:/74/le-bouchet-mont-charvin
-74270 Clarafond-Arcine -> mairie@clarafond.fr:ERREUR:/74/clarafond-arcine
-76170 Grand-Camp -> mairiegrandcamp@wanadoo.fr:ERREUR:/76/grand-camp
-76230 Bois-Guillaume-Bihorel -> contact@boisguillaumebihorel.fr:ERREUR:/76/bois-guillaume-bihorel
-76260 Saint-Rémy-Boscrocourt -> mairiesaintremy.76@wanadoo.fr:ERREUR:/76/saint-remy-boscrocourt
-76280 Cuverville -> cuvervilleencaux@wanadoo.fr:ERREUR:/76/cuverville
-76310 Sainte-Adresse -> courrier@ville-sainte-adresse.fr:ERREUR:/76/sainte-adresse
-76390 Landes-Vieilles-et-Neuves -> mairie.sg.leslandes@wanadoo.fr:ERREUR:/76/landes-vieilles-et-neuves
-76430 Sainneville -> mairie-sainneville-sur-seine@wanadoo.fr:ERREUR:/76/sainneville
-76440 Sainte-Geneviève -> ste-genevieve.commune@orange.fr:ERREUR:/76/sainte-genevieve
-76440 Vaudricourt -> mairie.de.beaubec.la.rosiere@wanadoo.fr:ERREUR:/76/vaudricourt
-76500 Elbeuf -> communication@mairie-elbeuf.fr:ERREUR:/76/elbeuf
-76520 Les Authieux-sur-le-Port-Saint-Ouen -> mairielesauthieux@wanadoo.fr:ERREUR:/76/les-authieux-sur-le-port-saint-ouen
-76560 Berville -> mairie-sg.bervilleencaux@wanadoo.fr:ERREUR:/76/berville
-76890 Butot -> mairiedebutot@wanadoo.fr:ERREUR:/76/butot
-76920 Amfreville-la-Mi-Voie -> mairie.amfrevillelamivoie@wanadoo.fr:ERREUR:/76/amfreville-la-mi-voie
-77166 Évry-Grégy-sur-Yerre -> evry-gregy@wanadoo.fr:ERREUR:/77/evry-gregy-sur-yerre
-77320 Frétoy -> mairiefretoy@orange.fr:ERREUR:/77/fretoy
-78770 Auteuil -> mairie.auteuil-le-roi@mairie-auteuil-le-roi.fr:ERREUR:/78/auteuil
-78940 La Queue-les-Yvelines -> mairie.la-queue.78@wanadoo.fr:ERREUR:/78/la-queue-les-yvelines
-79100 Sainte-Radegonde -> mairie.ste-radegonde@wanadoo.fr:ERREUR:/79/sainte-radegonde
-79150 Voulmentin -> mairievoulmentin@orange.fr:ERREUR:/79/voulmentin
-79190 Pliboux -> mairie-plibou@paysmellois.org:ERREUR:/79/pliboux
-79370 Beaussais-Vitré -> mairie-beaussais-vitre@paysmellois.org:ERREUR:/79/beaussais-vitre
-79500 Maisonnay -> mairie-maisonnais@paysmellois.org:ERREUR:/79/maisonnay
-80290 Lachapelle -> dewalle.famille@wanadoo.fr:ERREUR:/80/lachapelle
-80290 Namps-Maisnil -> mairie.nampsmaisnil@cegetel.net:ERREUR:/80/namps-maisnil
-80310 Saint-Vaast-en-Chaussée -> mairie.stvaastenchaussee@wanadoo.fr:ERREUR:/80/saint-vaast-en-chaussee
-80480 Vers-sur-Selles -> t.demoury@amiens-metropole.com:ERREUR:/80/vers-sur-selles
-80490 Citerne -> mairie.citernes@wanadoo.fr:ERREUR:/80/citerne
-80880 Saint-Quentin-la-Motte-Croix-au-Bailly -> mairie.st-quentin-la-motte@orange.fr:ERREUR:/80/saint-quentin-la-motte-croix-au-bailly
-81220 Guitalens-L'Albarède -> mairie.guitalens-lalbarede@orange.fr:ERREUR:/81/guitalens-l-albarede
-81370 Saint-Sulpice-la-Pointe -> mairie@ville-saint-sulpice-81.fr:ERREUR:/81/saint-sulpice-la-pointe
-81660 Bout-du-Pont-de-Larn -> commune-de-bout-du-pont@wanadoo.fr:ERREUR:/81/bout-du-pont-de-larn
-81660 Pont-de-Larn -> mairie.pontdelarn@wanadoo.fr:ERREUR:/81/pont-de-larn
-82400 Valence -> mairie@valencedagen.fr:ERREUR:/82/valence
-83120 Le Plan-de-la-Tour -> mairie@plandelatour.net:ERREUR:/83/le-plan-de-la-tour
-83560 Saint-Julien -> mairie.stjulien@orange.fr:ERREUR:/83/saint-julien
-85210 Saint-Martin-Lars-en-Sainte-Hermine -> mairie.stmartinlars85@wanadoo.fr:ERREUR:/85/saint-martin-lars-en-sainte-hermine
-85320 La Bretonnière-la-Claye -> mairie-de-la-bretonniere-la-claye@wanadoo.fr:ERREUR:/85/la-bretonniere-la-claye
-86230 Saint-Gervais-les-Trois-Clochers -> saint-gervais-les-trois-clochers@cg86.fr:ERREUR:/86/saint-gervais-les-trois-clochers
-86700 Vaux -> vaux-en-couhe@cg86.fr:ERREUR:/86/vaux
-88210 Grandrupt -> communedegrandrupt@orange.fr:ERREUR:/88/grandrupt
-88210 Ménil-de-Senones -> menil-de-senones@orange.fr:ERREUR:/88/menil-de-senones
-88460 Le Roulier -> mairie.leroulier@wanadoo.fr:ERREUR:/88/le-roulier
-88500 Rozerotte -> mairierozerotte@wanadoo.fr:ERREUR:/88/rozerotte
-88800 Haréville -> hareville.mairie@wanadoo.fr:ERREUR:/88/hareville
-88800 Norroy -> mairie-norroy@wanadoo.fr:ERREUR:/88/norroy
-89190 Saint-Maurice-aux-Riches-Hommes -> mairie-st-maurice-aux-rh@wanadoo.fr:ERREUR:/89/saint-maurice-aux-riches-hommes
-89310 Noyers -> mairie-de-noyers@wanadoo.fr:ERREUR:/89/noyers
-89420 Bierry-les-Belles-Fontaines -> mairie-bierry-les-belles-fontaines@orange.fr:ERREUR:/89/bierry-les-belles-fontaines
-90200 Lepuix -> mairielepuix-gy@wanadoo.fr:ERREUR:/90/lepuix
-91410 Roinville -> mairie-de-roinville@wanadoo.fr:ERREUR:/91/roinville
-91470 Limours -> info@mairie-limours.fr:ERREUR:/91/limours
-94520 Périgny -> mairie@perigny-sur-yerres.org:ERREUR:/94/perigny
-97650 M'Tsangamouji -> mairiedemtsangamouji@orange.fr:ERREUR:/976/m-tsangamouji
+001 Ambléon -> None:Mme Maryse PEZANT 
+001 Beard-Géovreissiat -> None:M. Agostinho VIEIRA DA SILVA 
+001 Birieux -> None:M. Jean-Jacques BUFFERNE 
+001 Bourg-en-Bresse -> None:M. Jean François DEBAT
+001 Châtillon-sur-Chalaronne -> None:M. Yves CLAYETTE
+001 Corlier -> None:M. Philippe BOLLACHE 
+001 Echallon -> None:Mme Monique JACQUIER 
+001 Echenevex -> None:M. Pierre REBEIX
+001 Etrez -> None:Mme Pascale ROUX 
+001 Evosges -> None:M. Claude JACQUEMET 
+001 Lhôpital -> None:M. Frédéric MALFAIT 
+001 Oyonnax -> administration.generale@oyonnax.fr:None
+001 Saint-Eloi -> None:M. Robert DAMIANS 
+001 Saint-Etienne-du-Bois -> None:M. Alain CHAPUIS
+001 Saint-Etienne-sur-Chalaronne -> None:M. Serge VARVIER
+001 Saint-Etienne-sur-Reyssouze -> None:M. Daniel JACQUET 
+002 Ambleny -> None:M. Jean-Claude STOLARIC
+002 Annois -> None:Mme Malorie RIOBE 
+002 Archon -> None:Mme Stéphanie LEFEVRE 
+002 Armentières-sur-Ourcq -> None:M. Stéphane PERROTTE 
+002 Arrancy -> None:Mme Florence DAULLE 
+002 Artonges -> None:M. Ghislain DADOU 
+002 Aubigny-en-Laonnois -> None:M. Bernard LEDOUX 
+002 Bagneux -> None:M. Jean-Claude DUBOIS 
+002 Bancigny -> None:M. Michel WOIMANT 
+002 Benay -> None:Mme Patricia GUINET-BARON 
+002 Berthenicourt -> None:M. Laurent DELAPLACE 
+002 Bertricourt -> None:M. Eric NIEF 
+002 Besmont -> None:M. Michel DRU 
+002 Beugneux -> None:M. Denis TOUPET 
+002 Bièvres -> None:M. Carlos JEUDY 
+002 Blanzy-lès-Fismes -> None:Mme Brigitte FERTE 
+002 Bourg-et-Comin -> None:M. Hervé BROCARD 
+002 Bourguignon-sous-Montbavin -> None:M. Daniel LABREVOIR 
+002 Bray-Saint-Christophe -> None:Mme Sylvie LEGRAND 
+002 Brie -> None:M. Yvan REY 
+002 Bruyères-sur-Fère -> None:M. Arnaud DESONNOIS 
+002 Bruys -> None:M. Laurent BECARD 
+002 Bucy-lès-Cerny -> None:M. Michel MOQUET 
+002 Buzancy -> None:M. Stève BAROCHE 
+002 Cerizy -> None:Mme Nadine BESNIER 
+002 Cerny-lès-Bucy -> None:Mme Laurence BELOT 
+002 Cerseuil -> None:M. Robert MEZZAROBBA 
+002 Chalandry -> None:M. Jean DELVILLE 
+002 Châtillon-sur-Oise -> None:M. Francis ANSEL 
+002 Chaudardes -> None:Mme Angélique RINCHEVAL VERMEULEN 
+002 Chavigny -> None:M. Xavier BRASSET 
+002 Chérêt -> None:M. Dominique BUVRY 
+002 Chéry-lès-Rozoy -> None:Mme Patricia JENNEPIN 
+002 Chevennes -> None:M. Laurent COLLARD 
+002 Chivy-lès-Etouvelles -> None:M. Gilles KIRNIAK 
+002 Chouy -> None:M. Guy VIET 
+002 Cierges -> None:M. André DUCHE 
+002 Cilly -> None:Mme Florence LOMBART 
+002 Coeuvres-et-Valsery -> None:Mme Monique BRUYANT 
+002 Coincy -> None:M. Jean-Luc VENANT
+002 Corcy -> None:M. Marc ROBILLARD 
+002 Courbes -> None:M. Hervé DIEPENDAELE 
+002 Courcelles-sur-Vesles -> None:M. Didier CONSEIL 
+002 Courchamps -> None:M. Frédéric BARNLEY 
+002 Couvrelles -> None:Mme Martine ROCHE 
+002 Croix-Fonsommes -> None:M. Fernand DELCAMBRE 
+002 Cuiry-lès-Iviers -> None:Mme Bernadette BERTAUX 
+002 Cuissy-et-Geny -> None:M. Cyrille DENIVET 
+002 Dammard -> None:M. Michel LECLERCQ 
+002 Dhuizel -> None:M. Olivier AUZANNE 
+002 Dorengt -> None:Mme Désanges PARMENTIER 
+002 Ebouleau -> None:M. Jean-Marc BELLEMENT 
+002 Epagny -> None:Mme Angélique PARMENT 
+002 Eparcy -> None:M. Pascal BAILLY 
+002 Epaux-Bézu -> None:M. Mikaël PHILIPPOT 
+002 Epieds -> None:Mme Brigitte FAYARD 
+002 Erlon -> None:Mme Louise DUPONT 
+002 Etampes-sur-Marne -> None:M. Jean-Luc MAGNIER
+002 Etaves-et-Bocquiaux -> None:M. Claude MARAT 
+002 Etouvelles -> None:M. Julien DAUSSY 
+002 Etréaupont -> None:M. Olivier HAZARD 
+002 Etreillers -> None:M. Jean-Marie REMY
+002 Etrépilly -> None:M. Jean-Pierre FOUCART 
+002 Etreux -> None:M. Joël NOISETTE
+002 Evergnicourt -> None:M. Daniel OUDIN 
+002 Fonsommes -> None:M. Thierry MAZZINI 
+002 Fontaine-lès-Clercs -> None:M. Frédéric MAUDENS 
+002 Fresnes-en-Tardenois -> None:Mme Sandrine BOUDOUX 
+002 Gernicourt -> None:M. Philippe DAIGRIER 
+002 Gibercourt -> None:M. Michel NUTTENS 
+002 Glennes -> None:Mme Elodie VALICI 
+002 Grand-Verly -> None:M. Patrick DUQUENNE 
+002 Gronard -> None:Mme Fabienne DEMARCQ 
+002 Hartennes-et-Taux -> None:M. Philippe GRUAU 
+002 Hary -> None:M. Jean-Charles MOREAUX 
+002 Hinacourt -> None:M. Olivier LEGRAND 
+002 Houry -> None:M. Pascal DURUISSEAU 
+002 Jeancourt -> None:M. Samuel BLERIOT 
+002 Jeantes -> None:M. Bruno BANTIGNIES 
+002 Lappion -> None:Mme Emeline GILLET 
+002 L'Epine-aux-Bois -> None:M. Roger BERNON 
+002 Leschelles -> None:M. Philippe MOREAU 
+002 Lesges -> None:M. Jérôme CHAUVIN 
+002 Lhuys -> None:Mme Joëlle VASSEUR 
+002 Logny-lès-Aubenton -> None:Mme Marina GRAVET 
+002 Louâtre -> None:M. Frédéric CHAMPEAU 
+002 Loupeigne -> None:M. André BRASILIER 
+002 Lugny -> None:M. Yann PAINVIN 
+002 Ly-Fontaine -> None:Mme Lydie ABRASSART 
+002 Magny-la-Fosse -> None:M. Bernard MEURÉE 
+002 Marizy-Sainte-Geneviève -> None:M. Olivier RENARD 
+002 Marizy-Saint-Mard -> None:Mme Sandrine BRABANT 
+002 Mayot -> None:M. Bruno NIAY 
+002 Merval -> None:Mme Sabine CHOLET 
+002 Missy-aux-Bois -> None:Mme Paulette PASTE 
+002 Missy-lès-Pierrepont -> None:M. Samuel SOYEUX 
+002 Molinchart -> None:Mme Christine GATTEFOSSÉ 
+002 Monnes -> None:M. Richard AUBERT 
+002 Montchâlons -> None:M. Jean-Marc NOMINE 
+002 Montgru-Saint-Hilaire -> None:M. Philippe LEVEQUE 
+002 Mont-Saint-Martin -> None:M. Grégory BESONHE 
+002 Morgny-en-Thiérache -> None:Mme Sylvie MARLOT 
+002 Moy-de-l'Aisne -> None:Mme Sylviane GODEFROY 
+002 Nampcelles-la-Cour -> None:M. Romain GUILLOUART 
+002 Neuflieux -> None:Mme Marielle LEPAGE 
+002 Neuve-Maison -> None:M. Yves DUPONT 
+002 Neuville-sur-Margival -> None:M. Guillaume VOGEL 
+002 Nouvion-le-Comte -> None:M. Marc ALLIAUME 
+002 Nouvion-le-Vineux -> None:M. Dominique LOUTSCH 
+002 Nouvron-Vingré -> None:Mme Catherine WARGNIER 
+002 OEuilly -> None:Mme Arlette LEFEVRE 
+002 Ollezy -> None:M. Sébastien VAN HYFTE 
+002 Orgeval -> None:M. Benoît TRONEL 
+002 Oulches-la-Vallée-Foulon -> None:Mme Séverine DUCHENE 
+002 Perles -> None:Mme Angèle GUILLEMART 
+002 Petit-Verly -> None:M. Albert VANDEVOORDE 
+002 Pithon -> None:M. Marc POETTE 
+002 Ploisy -> None:M. Patrick COLOMBO 
+002 Ployart-et-Vaurseine -> None:Mme Colette BLOTTIERE 
+002 Pont-Saint-Mard -> None:M. Fabien HERNANDEZ 
+002 Quincy-Basse -> None:Mme Laëtitia ALONSO 
+002 Quincy-sous-le-Mont -> None:M. Patrick BOCHET 
+002 Raillimont -> None:M. Rémi GILLET 
+002 Renneval -> None:M. Pascal MAILLARD 
+002 Révillon -> None:Mme Delphine DETRUISEUX 
+002 Ribeauville -> None:Mme Cathy VANMOORLEGHEM 
+002 Rogécourt -> None:M. Gilbert DENEUVILLE 
+002 Saint-Algis -> None:M. Jean-Paul BASSAHON 
+002 Saint-Clément -> None:M. Jean-Paul HARDY 
+002 Sainte-Croix -> None:M. Marc AUDIERNE 
+002 Saint-Nicolas-aux-Bois -> None:M. Claude DENIS 
+002 Saint-Quentin -> None:M. Xavier BERTRAND
+002 Saponay -> None:M. Michel DA GRACA 
+002 Sequehart -> None:Mme Jacqueline EUSTACHE 
+002 Serval -> None:M. Patrice GERMAIN 
+002 Terny-Sorny -> None:M. Bruno SAUVAGE 
+002 Toulis-et-Attencourt -> None:Mme Denise CHARPENTIER 
+002 Troësnes -> None:M. Alain TOURNEVILLE 
+002 Urcel -> None:Mme Karine LACROIX 
+002 Vasseny -> None:Mme Joséphine LEVEQUE 
+002 Vauxcéré -> None:M. Christophe PREVOST 
+002 Vauxtin -> None:M. Marc COUTEAU 
+002 Vézaponin -> None:Mme Linda MONCOURTOIS 
+002 Villers-en-Prayères -> None:Mme Blandine GRUNDELER 
+002 Ville-Savoye -> None:M. Pascal PRUD'HOMME 
+002 Vincy-Reuil-et-Magny -> None:M. David SCHUMERS 
+003 Chirat-l'Eglise -> None:M. Frédéric VERNADEL 
+003 Ebreuil -> None:M. Pierre A.TERIITEHAU
+003 Echassières -> None:M. Stéphane BLIN 
+003 Etroussat -> None:M. Michel EYRAUD 
+003 Saint-Eloy-d'Allier -> None:M. Bertrand DUMONTET 
+003 Saint-Etienne-de-Vicq -> None:M. Pascal HAMON 
+004 Aiglun -> None:M. Daniel JUGY
+004 Allemagne-en-Provence -> None:Mme Arlette ARNOUX RAVEL 
+004 Allons -> None:M. Bernard AUDIER 
+004 Allos -> None:M. Victor DE SA MONTEIRO 
+004 Angles -> None:M. Gérard PALOMERA 
+004 Annot -> None:M. Jean BALLESTER
+004 Archail -> None:Mme Juliette BONNET NEE LYONS 
+004 Aubenas-les-Alpes -> None:M. Olivier TURPAULT 
+004 Aubignosc -> None:M. Serge LERDA 
+004 Authon -> None:M. Mikaël GANDON 
+004 Auzet -> None:Mme Patricia HUMBERT-ISOARD 
+004 Banon -> None:M. Philippe WAGNER
+004 Barcelonnette -> None:M. Pierre MARTIN-CHARPENEL
+004 Barles -> None:Mme Florence NURY 
+004 Barras -> None:M. Daniel GIRAUD 
+004 Barrême -> None:M. Sébastien BEE 
+004 Bayons -> None:M. Alain PUSTEL 
+004 Beaujeu -> None:Mme Dominique MARTEAU 
+004 Beauvezer -> None:M. Claude CARAMELLO 
+004 Bellaffaire -> None:M. Jean-Luc TURCAN 
+004 Bevons -> None:M. Vincent PIZOIRD 
+004 Beynes -> None:Mme Corinne CASTE 
+004 Blieux -> None:Mme Johanna LOCATELLI 
+004 Bras-d'Asse -> None:M. Christian MAHUT 
+004 Braux -> None:M. Stephane GRAC 
+004 Brunet -> None:Mme Fabienne STAMMEGNA 
+004 Castellane -> None:M. Jean-Pierre TERRIEN
+004 Castellet-lès-Sausses -> None:M. Serge GUBERT 
+004 Céreste -> None:M. Gérard BAUMEL
+004 Champtercier -> None:Mme Christine HAMOT 
+004 Château-Arnoux-Saint-Auban -> None:M. Patrick MARTELLINI
+004 Châteaufort -> None:M. Jean-Pierre BERAUD 
+004 Châteauneuf-Miravail -> None:M. Jean-Claude CHABAUD 
+004 Châteauneuf-Val-Saint-Donat -> None:Mme Jeannick ZUNINO 
+004 Châteauredon -> None:M. Guillaume DELERUE 
+004 Chaudon-Norante -> None:Mme Véronique BERNARD 
+004 Clamensane -> None:M. Sylvain GOSIOSO 
+004 Claret -> None:Mme Valérie BENISTANT 
+004 Clumanc -> None:M. Christian PAUL 
+004 Colmars -> None:M. Christophe BARBAROUX 
+004 Corbières -> None:M. Jean-Claude CASTEL
+004 Cruis -> None:M. Patrick BENSA 
+004 Curbans -> None:M. Francesco ALLEGRA 
+004 Curel -> None:Mme Marie-Jeanne BESSE 
+004 Dauphin -> None:Mme Michèle BERTIN 
+004 Demandolx -> None:M. Baptiste GAGLIO 
+004 Digne-les-Bains -> None:Mme Patricia GRANET
+004 Draix -> None:M. Nicolas MAGLIONE 
+004 Enchastrayes -> None:M. Xavier MARCHETTI 
+004 Entrages -> None:M. Jean-Paul BRIANCON 
+004 Entrepierres -> None:M. Philippe REYNIER 
+004 Entrevaux -> None:M. Pascal MAGNAN 
+004 Entrevennes -> None:M. Jacques ROBRESCO 
+004 Esparron-de-Verdon -> None:M. Patrice DUVERNOY 
+004 Estoublon -> None:Mme Emmanuelle CARDOSO SOARES 
+004 Faucon-de-Barcelonnette -> None:M. Daniel JEAN 
+004 Faucon-du-Caire -> None:M. Edmond PLACIDE 
+004 Fontienne -> None:M. Michel AFONSO 
+004 Forcalquier -> None:M. Christophe CASTANER
+004 Ganagobie -> None:M. Julien MUNOZ MALDONADO 
+004 Gigors -> None:M. Gérard MAGAUD 
+004 Gréoux-les-Bains -> None:M. Paul AUDAN
+004 Hautes-Duyes -> None:M. Christian MARTEL 
+004 Jausiers -> None:M. Jacques PELLOUX
+004 Lambruisse -> None:Mme Danielle PAUL 
+004 Larche -> None:Mme Corinne LOMBARD 
+004 Lardiers -> None:Mme Stephanie ROMAN 
+004 L'Escale -> None:M. Claude FIAERT
+004 L'Hospitalet -> None:M. Marcel ISTRIA 
+004 Limans -> None:Mme Stéphanie CANZANO 
+004 Lurs -> None:Mme Dominique JAUBERT 
+004 Majastres -> None:M. Francis GUICHARD 
+004 Malijai -> None:Mme Eliane BARREILLE
+004 Mallefougasse-Augès -> None:M. Jean-Paul DEORSOLA 
+004 Mallemoisson -> None:Mme Emmauelle MARTIN
+004 Mane -> None:M. Jacques DEPIEDS
+004 Manosque -> None:M. Bernard JEANMET-PERALTA
+004 Marcoux -> None:Mme Nadine ALLIAUD 
+004 Méailles -> None:Mme Viviane PONS-BERTAINA 
+004 Melve -> None:M. Jean-Louis DAVID 
+004 Méolans-Revel -> None:M. Daniel MILLION ROUSSEAU 
+004 Meyronnes -> None:M. Jan VAN DE ZANDE 
+004 Mézel -> None:Mme Fabienne FERAUD 
+004 Mirabeau -> None:M. Sébastien BOUGEROL 
+004 Mison -> None:M. Robert GAY
+004 Montagnac-Montpezat -> None:M. René CAUSSIGNAC 
+004 Montclar -> None:Mme Nathalie ZAMBILLA 
+004 Montfort -> None:M. Gérard PLANCHE 
+004 Montfuron -> None:M. Frederic DISDIER 
+004 Montjustin -> None:M. Jérome PELLEGRIN 
+004 Montlaux -> None:M. Nicolas MEZZASALMA 
+004 Montsalier -> None:M. Serge MARTIN 
+004 Moriez -> None:M. André CHAILLAN 
+004 Moustiers-Sainte-Marie -> None:M. Robert DEJEAN 
+004 Nibles -> None:M. Michel DESRUMAUX 
+004 Niozelles -> None:M. Christophe LOPEZ 
+004 Noyers-sur-Jabron -> None:M. Yaneck ROUSSELET 
+004 Ongles -> None:Mme Aline GRIMAULT ROUSSIN 
+004 Oppedette -> None:M. Jean-Luc DESSAUD 
+004 Oraison -> None:M. Michel VITTENET
+004 Peipin -> None:Mme Corinne FLACHER
+004 Peyroules -> None:M. Frédéric CLUET 
+004 Peyruis -> None:M. Patrick VIVOS
+004 Piégut -> None:Mme Monique FREGONA OUVRIER-BUFFET 
+004 Pierrerue -> None:M. Benoît FAURE 
+004 Pierrevert -> None:M. André MILLE
+004 Pontis -> None:Mme Muriel BAZIRE 
+004 Prads-Haute-Bléone -> None:M. Bernard BARTOLINI 
+004 Puimichel -> None:M. Max BRUNEL 
+004 Puimoisson -> None:M. Philippe COSTE 
+004 Quinson -> None:M. René GARCIN 
+004 Redortiers -> None:M. André BONNEFOY 
+004 Reillanne -> None:Mme Christine BAPTISTE
+004 Revest-des-Brousses -> None:M. Laurent BOSSUT 
+004 Revest-du-Bion -> None:Mme Claudie DAUPHIN-RIVIERE 
+004 Revest-Saint-Martin -> None:Mme Carine RASPAIL 
+004 Riez -> None:M. Christophe BIANCHI
+004 Rougon -> None:M. Jean-Marie AUDIBERT 
+004 Roumoules -> None:M. Serge CHUDZIK 
+004 Saint-André-les-Alpes -> None:M. David CERATO 
+004 Saint-Benoît -> None:M. Bernard MALAVARD 
+004 Sainte-Croix-à-Lauze -> None:Mme Marie-Christine ALMERAS 
+004 Sainte-Croix-du-Verdon -> None:Mme Jacqueline RIMBAUD 
+004 Saint-Etienne-les-Orgues -> None:M. Khaled BENFERHAT
+004 Sainte-Tulle -> None:M. Jean-Luc QUEIRAS
+004 Saint-Geniez -> None:M. Patrick BOUQUET 
+004 Saint-Jacques -> None:M. Serge ANDRAU 
+004 Saint-Jeannet -> None:M. Patrick MANENT 
+004 Saint-Julien-d'Asse -> None:M. Jean-Pierre AILLAUD 
+004 Saint-Julien-du-Verdon -> None:Mme Arlette DIDIER 
+004 Saint-Jurs -> None:Mme Natacha VINATIER 
+004 Saint-Laurent-du-Verdon -> None:Mme Marlène PORRE 
+004 Saint-Lions -> None:M. Jean-Pierre BIANCHI 
+004 Saint-Maime -> None:M. Yves PHILIBERT 
+004 Saint-Martin-de-Brômes -> None:M. Norbert JOURDAIN 
+004 Saint-Martin-les-Eaux -> None:M. Frédéric GOMEZ 
+004 Saint-Martin-lès-Seyne -> None:M. Childéric REBOUL 
+004 Saint-Michel-l'Observatoire -> None:M. Denis GILLET
+004 Saint-Paul-sur-Ubaye -> None:Mme Marielle BRET 
+004 Saint-Pierre -> None:M. Marc MARCHAL 
+004 Saint-Pons -> None:Mme Martine ESPANET 
+004 Saint-Vincent-les-Forts -> None:M. Stéphane CLERJON 
+004 Saint-Vincent-sur-Jabron -> None:M. Michel WATT 
+004 Salignac -> None:M. Patrick RONIN 
+004 Saumane -> None:M. Laurent MORELLO 
+004 Sausses -> None:Mme Monique CHAMPION 
+004 Selonnet -> None:M. Romain ISOARD 
+004 Senez -> None:M. Daniel MEGY 
+004 Seyne -> None:M. Francis HERMITTE
+004 Sigonce -> None:M. Jacques FERAUD 
+004 Simiane-la-Rotonde -> None:Mme Pamela BARATELLA 
+004 Sisteron -> None:M. Daniel SPAGNOU
+004 Soleilhas -> None:Mme Michèle BERTON 
+004 Sourribes -> None:M. Yvon DE MARCHI 
+004 Tartonne -> None:M. François SERRA 
+004 Thèze -> None:M. Arnaud LISMONDE 
+004 Thoard -> None:Mme Anaïs DELAYE 
+004 Thorame-Basse -> None:M. Willy BOUCHER 
+004 Thorame-Haute -> None:M. Michel GRAC 
+004 Turriers -> None:M. Vicente GASPAR DOS SANTOS 
+004 Ubraye -> None:M. Gérard OCCELLI 
+004 Uvernet-Fours -> None:M. Patrick BOUVET 
+004 Vachères -> None:Mme Marie-Jeanne GROS 
+004 Valavoire -> None:Mme Monique SEVIKIAN 
+004 Valbelle -> None:M. Paul RAPHAELIAN 
+004 Val-de-Chalvagne -> None:Mme Marie-Laurence BOUSSELET 
+004 Valensole -> None:M. Gérard AURRIC
+004 Valernes -> None:M. Daniel LATIL 
+004 Vaumeilh -> None:Mme Elisabeth TEXEIRE EPOUSE COLLOMBON 
+004 Venterol -> None:M. Jean-Paul BOUFFIER 
+004 Verdaches -> None:M. Bruno LOMBARD 
+004 Vergons -> None:M. Alain COLLOMP 
+004 Villars-Colmars -> None:M. André GUIRAND 
+004 Villemus -> None:M. Gilles CRETIN 
+004 Villeneuve -> None:M. Jacques ECHALON
+004 Volonne -> None:Mme Sandrine COSSERAT
+004 Volx -> None:M. Jérôme DUBOIS
+005 Abriès -> None:M. Cristel FRANCESCHI 
+005 Aiguilles -> None:Mme Thérèse COMTE 
+005 Ancelle -> None:Mme Valérie BATON 
+005 Antonaves -> None:M. Patrick GABERT 
+005 Arvieux -> None:Mme Julie GILLET 
+005 Aspremont -> None:M. Frédéric PHILIP 
+005 Aspres-lès-Corps -> None:M. Gérard MARY 
+005 Aspres-sur-Buëch -> None:Mme Jacqueline HARDON 
+005 Avançon -> None:Mme Nicole QUEYREL 
+005 Baratier -> None:M. Jean BERNARD 
+005 Barcillonnette -> None:M. Christian EVEQUE 
+005 Barret-sur-Méouge -> None:M. Lionel BOUMIER 
+005 Bréziers -> None:M. Jean-Bernard BONNENFANT 
+005 Briançon -> None:M. Gérard FROMM
+005 Bruis -> None:M. Gérard TENOUX 
+005 Buissard -> None:M. Jacques PELLEGRIN 
+005 Ceillac -> None:M. Alexandre MARCHIS 
+005 Cervières -> None:M. Gérard CLEMENT 
+005 Chabestan -> None:M. Michel LONNI 
+005 Chabottes -> None:Mme Magali LAUZIER 
+005 Champcella -> None:Mme Christine BLOT 
+005 Champoléon -> None:Mme Mireille MARTIN 
+005 Chanousse -> None:M. Luc BLANCHARD 
+005 Châteauneuf-de-Chabre -> None:M. Lionel CORNAND 
+005 Châteauneuf-d'Oze -> None:M. Cédric METAILLER 
+005 Châteauroux-les-Alpes -> None:M. Éric LIONS
+005 Châteauvieux -> None:M. Michel TEXIER 
+005 Château-Ville-Vieille -> None:M. Alain PETINARAKIS 
+005 Chauffayer -> None:M. Yannick SARRAZIN 
+005 Chorges -> None:M. Christian DURAND
+005 Crévoux -> None:M. Laurent PASCAL 
+005 Crots -> None:M. Jean-Daniel GUIEU 
+005 Embrun -> None:Mme Chantal EYMEOUD
+005 Eourres -> None:M. Manuel PRAT 
+005 Esparron -> None:Mme Mireille OCRONTE 
+005 Espinasses -> None:Mme Francine MICHEL 
+005 Etoile-Saint-Cyrice -> None:M. Paul JOUVE 
+005 Eygliers -> None:M. Yves HODOUL 
+005 Eyguians -> None:M. Daniel GORDE 
+005 Forest-Saint-Julien -> None:M. Jean-Pierre DAVIN 
+005 Fouillouse -> None:M. Hugues SERRES 
+005 Freissinières -> None:M. Etienne BOISSET 
+005 Furmeyer -> None:Mme Chantal GAILLARD 
+005 Gap -> None:M. Roger DIDIER
+005 Guillestre -> None:M. Bernard LETERRIER
+005 Jarjayes -> None:M. Christophe COEUR 
+005 Lagrand -> None:M. Laurent TABUTEAU 
+005 Laragne-Montéglin -> None:Mme Henriette MARTINEZ
+005 Lardier-et-Valença -> None:M. Rémi COSTORIER 
+005 L'Argentière-la-Bessée -> None:M. Joël GIRAUD
+005 Laye -> None:M. Nicolas BLANC 
+005 Lazer -> None:M. Jean-Paul COUDOURET 
+005 L'Epine -> None:Mme Violette VIAL 
+005 Lettret -> None:Mme Vanessa AYE-COGNO 
+005 Manteyer -> None:M. Guy JULLIEN 
+005 Méreuil -> None:Mme Odile REYNAUD 
+005 Molines-en-Queyras -> None:Mme Catherine BLANC-DEBRUNE 
+005 Monêtier-Allemont -> None:M. Frederic ROBERT 
+005 Montbrand -> None:M. Alain BRUNISHOLZ 
+005 Montclus -> None:M. Serge ARLAUD 
+005 Mont-Dauphin -> None:M. Marc FERRARIS 
+005 Montgardin -> None:Mme Lorraine BUISSON 
+005 Montgenèvre -> None:M. Steven HEUZE 
+005 Montjay -> None:M. Jean-Charles SAUVAYRE 
+005 Montmaur -> None:Mme Régine PELLOUX 
+005 Montmorin -> None:M. Gabriel REYMOND 
+005 Montrond -> None:M. Christian GODART 
+005 Moydans -> None:Mme Pascaline GIRARDOT 
+005 Neffes -> None:M. Michel GAY-PARA 
+005 Névache -> None:Mme Adeline LEGER 
+005 Nossage-et-Bénévent -> None:M. Francis ANDREYS 
+005 Orcières -> None:M. Sébastien ROUIT 
+005 Orpierre -> None:M. Jacques CHASTEL 
+005 Oze -> None:Mme Marie-Françoise ALLOUIS 
+005 Pelleautier -> None:M. Michel CLARY 
+005 Pelvoux -> None:M. Philippe SEMIOND 
+005 Poligny -> None:M. Bruno CATELAN 
+005 Prunières -> None:M. Jerome FARNAUD 
+005 Puy-Saint-André -> None:Mme Magali MEYZENC 
+005 Puy-Saint-Eusèbe -> None:M. Gustave BOSQ 
+005 Puy-Saint-Pierre -> None:M. Alain DOMMANGE 
+005 Puy-Saint-Vincent -> None:M. Michel DECORY 
+005 Puy-Sanières -> None:M. Patrick GANDELLI 
+005 Rabou -> None:M. Marc MARCELLIN 
+005 Rambaud -> None:M. Lionel ROUX 
+005 Réallon -> None:Mme Catherine OLLIEU 
+005 Remollon -> None:M. Jean-Christian ALLARD-LATOUR 
+005 Réotier -> None:M. Roland MARSEILLE 
+005 Ribeyret -> None:M. André BONTOUX 
+005 Ribiers -> None:Mme Nathalie PLAT 
+005 Risoul -> None:M. Max BREMOND 
+005 Ristolas -> None:M. Florent BUES 
+005 Rochebrune -> None:M. Serge SARLIN 
+005 Rosans -> None:Mme Chantal BOGET 
+005 Rousset -> None:M. Jean-Marie ROLLAND 
+005 Saint-André-d'Embrun -> None:M. Claude BACHENET 
+005 Saint-André-de-Rosans -> None:Mme Muriel BRUNET 
+005 Saint-Apollinaire -> None:M. François STEL 
+005 Saint-Auban-d'Oze -> None:M. Jean-Pierre BERMOND 
+005 Saint-Bonnet-en-Champsaur -> None:M. Laurent DAUMARK
+005 Saint-Chaffrey -> None:M. Patrick GELATO
+005 Saint-Clément-sur-Durance -> None:Mme Nadège SINET-GRUIT 
+005 Saint-Crépin -> None:M. Jean-Marc BERNAUDON 
+005 Sainte-Colombe -> None:Mme Évelyne CREMILLIEUX 
+005 Sainte-Marie -> None:M. Hervé JOUBERT 
+005 Saint-Etienne-le-Laus -> None:Mme Marie-Josèphe GARNIER 
+005 Saint-Eusèbe-en-Champsaur -> None:M. Bruno ROCHAS 
+005 Saint-Firmin -> None:M. Alain FREYNET 
+005 Saint-Genis -> None:M. Jean-Pierre BOREL 
+005 Saint-Jacques-en-Valgodemard -> None:M. Louis AUBERT 
+005 Saint-Jean-Saint-Nicolas -> None:Mme Josiane ARNOUX
+005 Saint-Julien-en-Beauchêne -> None:M. Jean SERRI 
+005 Saint-Julien-en-Champsaur -> None:M. Fabien DISDIER 
+005 Saint-Laurent-du-Cros -> None:M. Vincent LAGIER 
+005 Saint-Léger-les-Mélèzes -> None:M. Emmanuel BLONDEAU 
+005 Saint-Martin-de-Queyrières -> None:M. Serge GIORDANO
+005 Saint-Maurice-en-Valgodemard -> None:M. Christian DUMAS 
+005 Saint-Michel-de-Chaillol -> None:M. Jean-Pierre CHABRE 
+005 Saint-Pierre-Avez -> None:Mme Sylvie IMBERT 
+005 Saint-Pierre-d'Argençon -> None:M. Mathieu GRECHEZ 
+005 Saint-Sauveur -> None:M. Pierre-Emmanuel PASCAL 
+005 Saint-Véran -> None:M. Mathieu ANTOINE 
+005 Saléon -> None:Mme Sandrine PEYRON 
+005 Salérans -> None:M. Pierre PAYAN 
+005 Savines-le-Lac -> None:M. Victor BERENGUEL
+005 Savournon -> None:M. Jean-Marc ARCHAMBAULT 
+005 Serres -> None:M. Bernard MATHIEU
+005 Sigottier -> None:M. Julien BESOMBES 
+005 Sorbiers -> None:M. Christian FIORAVASTI 
+005 Tallard -> None:M. Jean-Michel ARNAUD
+005 Théus -> None:M. Franck PIFFETEAU 
+005 Trescléoux -> None:M. Jérôme SAMUEL 
+005 Upaix -> None:M. Abel JOUVE 
+005 Val-des-Prés -> None:M. Thierry AIMARD 
+005 Vallouise -> None:Mme Alice GRANET 
+005 Valserres -> None:M. Cédric ARNAUD 
+005 Vars -> None:Mme Françoise HAYE 
+005 Ventavon -> None:M. Juan MORENO 
+005 Veynes -> None:M. René MOREAU
+005 Villar-d'Arêne -> None:M. Alain AMIEUX 
+005 Villar-Loubière -> None:M. Georges BELLON 
+005 Villar-Saint-Pancrace -> None:M. François BOULANGER
+005 Vitrolles -> None:M. Michel PHISEL 
+006 Beaulieu-sur-Mer -> None:M. Roger ROUX
+006 Blausasc -> None:M. Michel LOTTIER
+006 Daluis -> None:M. Laurent BLANC 
+006 Eze -> None:M. Stéphane CHERKI
+006 Nice -> None:M. Christian ESTROSI
+006 Saint-Auban -> None:M. Georges TRASTOUR 
+006 Saint-Etienne-de-Tinée -> None:Mme Colette FABRON
+006 Saint-Paul -> None:M. Joseph LE CHAPELAIN
+006 Sallagriffon -> None:M. Jean-Jacques BAYONNE 
+006 Utelle -> None:Mme Yvette MARTIN 
+007 Etables -> None:Mme Stéphanie MINODIER 
+007 Freyssenet -> None:M. Dominique CLAIR 
+007 Monestier -> None:M. Claude CROS 
+007 Saint-Etienne-de-Boulogne -> None:M. Jérôme LE BELLEGO 
+007 Saint-Etienne-de-Fontbellon -> None:M. Paul ABEILLON
+007 Saint-Etienne-de-Lugdarès -> None:M. Jean-Marie BOUSSEROLES 
+007 Saint-Etienne-de-Serres -> None:M. Mathieu ARNAUD 
+007 Saint-Etienne-de-Valoux -> None:M. Flavien MARGNAT 
+007 Saint-Gineys-en-Coiron -> None:M. Thierry GUERIN 
+007 Saint-Laurent-les-Bains -> None:M. Emile LOUCHE 
+007 Viviers -> None:Mme Stéphanie AUTARD
+008 Amblimont -> None:M. Michael LEROY 
+008 Antheny -> None:Mme Corinne DUCAT 
+008 Arnicourt -> None:M. Alain SAMYN 
+008 Artaise-le-Vivier -> None:M. Serge BRIOUX 
+008 Autry -> None:M. Dany HAULIN 
+008 Bourcq -> None:M. Jean-Noël GARREZ 
+008 Chappes -> None:M. Thierry ULSAS 
+008 Chardeny -> None:M. Ghislain BONOMME 
+008 Chilly -> None:M. Eric TILQUIN 
+008 Cornay -> None:Mme Bénédicte NIZET 
+008 Doux -> None:M. Lionel MUSART 
+008 Ecly -> None:M. Jean-Jacques PIGEOT 
+008 Ecordal -> None:M. Marcel LETISSIER 
+008 Elan -> None:Mme Joëlle RICHARD 
+008 Etalle -> None:M. Sébastien FERY 
+008 Eteignières -> None:M. Jean-Pierre JARLOT 
+008 Etrépigny -> None:Mme Carole GERBAULT 
+008 Evigny -> None:M. Jean-Marc CAPITAINE 
+008 Exermont -> None:Mme Nathalie ANGLES-GUERLET 
+008 Gruyères -> None:M. Julien GARDEUX 
+008 Haulmé -> None:M. Alain MOUS 
+008 Inaumont -> None:M. Gérard MARCOTTE 
+008 Lançon -> None:M. Pierre DEFORGES 
+008 Landres-et-Saint-Georges -> None:M. Régis BOILEAU 
+008 Landrichamps -> None:M. Jean-Marc BERTONNIÈRE 
+008 L'Ecaille -> None:M. André MICHE 
+008 L'Echelle -> None:M. Michel TATON 
+008 Lépron-les-Vallées -> None:M. Damien COLOT 
+008 Liry -> None:M. Bruno SOUDANT 
+008 Maranwez -> None:M. Frédéric CARISTAN 
+008 Marcq -> None:M. Alain LEONI 
+008 Mazerny -> None:Mme Sylvie VINCENT 
+008 Ménil-Annelles -> None:M. François BECHECLOUX 
+008 Messincourt -> None:M. Christophe LAMBERT 
+008 Mont-Saint-Remy -> None:M. Damien RENARD 
+008 Murtin-et-Bogny -> None:Mme Régine DELAHAUT 
+008 Noirval -> None:M. Thierry BAUSSART 
+008 Noyers-Pont-Maugis -> None:Mme Julie ANDRY 
+008 Omicourt -> None:Mme Valérie CLOUET 
+008 Omont -> None:M. Jorge MONTEIRO 
+008 Puiseux -> None:M. Mathieu JAMES 
+008 Sainte-Marie -> None:M. Alain LAUDE 
+008 Saint-Etienne-à-Arnes -> None:M. Pascal PERARD 
+008 Sainte-Vaubourg -> None:M. Grégory LECLERE 
+008 Saint-Loup-Champagne -> None:M. Thierry VILAIN 
+008 Saint-Loup-Terrier -> None:M. Fabrice BURNE 
+008 Saint-Marcel -> None:Mme Sophie LAGNY 
+008 Saint-Remy-le-Petit -> None:Mme Maryvonne DAPREMONT 
+008 Sauville -> None:Mme Virginie GOGLINS 
+008 Séchault -> None:Mme Valérie GUILLEMARD 
+008 Sedan -> None:M. Didier HERBILLON
+008 Singly -> None:M. Guy HUET 
+008 Sury -> None:M. Vincent CHENOT 
+008 Terron-sur-Aisne -> None:M. Gilles BAUDIER 
+008 Thénorgues -> None:Mme Nelly BALTAZART 
+008 Toges -> None:M. Régis DARCQ 
+008 Touligny -> None:M. Jean-Pierre DEYMAS 
+008 Tourcelles-Chaumont -> None:M. Jacques GROSSELIN 
+008 Vaux-en-Dieulet -> None:M. Bernard BESTEL 
+008 Viel-Saint-Remy -> None:M. Philippe DAUBANGE 
+008 Villers-sur-le-Mont -> None:Mme Claudine TRICLIN 
+008 Ville-sur-Retourne -> None:Mme Marie-Ange PASTE 
+008 Villy -> None:M. Jérémy SURBICKY 
+008 Wignicourt -> None:M. Vincent DEMANTIN 
+009 Allières -> None:M. Nicolas DELMAS 
+009 Antras -> None:Mme Nadia RIBOULET 
+009 Appy -> None:M. Fabien BONCOUR 
+009 Barjac -> None:Mme Nathalie REINARD 
+009 Bonac-Irazein -> None:Mme Joelle ZEDE 
+009 Buzan -> None:M. Jean-Louis COLOMBIES 
+009 Castéras -> None:Mme Rosine MOREAUD 
+009 Cazaux -> None:M. Marc MARTY 
+009 Coutens -> None:M. Henri COSTES 
+009 Foix -> None:M. Norbert MELER
+009 Freychenet -> None:M. Jacques MARQUENET-VOLLE 
+009 Gestiès -> None:M. Patrick CAUSSANEL 
+009 Montgauch -> None:M. André CRONE 
+009 Senconac -> None:Mme Gaëlle CROSON 
+009 Sentenac-d'Oust -> None:M. Jean-Yves GOURMELON 
+009 Sor -> None:Mme Elodie BARBE 
+009 Suzan -> None:M. Gabriel FAURÉ 
+009 Vernaux -> None:M. Laurent BASAIA 
+010 Arrembécourt -> None:Mme Bernadette HERBIN 
+010 Arsonval -> None:M. Jean-Pierre MOEURS 
+010 Bétignicourt -> None:M. Sébastien AUVY 
+010 Blaincourt-sur-Aube -> None:M. Frédéric BERTHELIN 
+010 Champigny-sur-Aube -> None:M. Jean-Paul GRIMARD 
+010 Charmoy -> None:M. Eddy BOLLAERT 
+010 Coclois -> None:M. Jean ROUGANE DE CHANTELOUP 
+010 Courtaoult -> None:M. Franck MAUDUIT 
+010 Crancey -> None:M. Patrice DUPONT 
+010 Cunfin -> None:M. Christophe GERMAIN 
+010 Dolancourt -> None:M. Patrice GELIS 
+010 Echemines -> None:Mme Denise BOUCHER 
+010 Eclance -> None:M. Jean-Pierre BLASSON 
+010 Eguilly-sous-Bois -> None:M. Mario GÉLU 
+010 Engente -> None:M. Frédéric DURAND 
+010 Epagne -> None:M. François ZIESAIRE 
+010 Epothémont -> None:Mme Aurore PETIT 
+010 Etourvy -> None:M. Christian PORTIER 
+010 Etrelles-sur-Aube -> None:M. Jean-Marie BERTHELAY 
+010 Faux-Villecerf -> None:M. Gérard DHULST 
+010 Fay-lès-Marcilly -> None:M. Gérard FLOGNY 
+010 Fontaine-les-Grès -> None:M. Ludovic VALLARCHER 
+010 Fontaine-Mâcon -> None:M. Pierre RICHARD 
+010 Herbisse -> None:M. Bernard AVIAT 
+010 Joncreuil -> None:M. Jean-Claude DORMONT 
+010 Lévigny -> None:M. Guillaume BABOUILLARD 
+010 Marolles-sous-Lignières -> None:M. Bernard DEFAIX 
+010 Neuville-sur-Vannes -> None:M. Olivier GANIER 
+010 Noë-les-Mallets -> None:M. Thierry BÉLORGEOT 
+010 Nogent-en-Othe -> None:M. Philippe LAZARE 
+010 Ortillon -> None:M. Christian DELY 
+010 Plessis-Barbuise -> None:Mme Catherine SIMONNET 
+010 Précy-Notre-Dame -> None:Mme Raphaëlle BONNEVIE 
+010 Prunay-Belleville -> None:M. Jean-Luc MARTIN 
+010 Saint-Christophe-Dodinicourt -> None:Mme Claudine BADOIS 
+010 Saint-Etienne-sous-Barbuise -> None:M. Xavier LEBEGUE 
+010 Saint-Loup-de-Buffigny -> None:M. Jacky ROY 
+010 Semoine -> None:M. André SALOMEZ 
+010 Soligny-les-Etangs -> None:M. Arnaud JUMIN 
+010 Troyes -> None:M. François BAROIN
+010 Verricourt -> None:Mme Céline PRÉVOT 
+010 Viâpres-le-Petit -> None:M. Sylvain BLÉMON 
+010 Villadin -> None:M. Didier DURAND 
+010 Villemaur-sur-Vanne -> None:M. Florent GAUROIS 
+010 Villiers-Herbisse -> None:M. René LEPAGE 
+011 Brenac -> None:M. Jean POLY 
+011 Cailla -> None:M. Philippe GUITARD 
+011 Caunette-sur-Lauquet -> None:Mme Andrée BARBAZA 
+011 Clermont-sur-Lauquet -> None:M. Jorg ROSE 
+011 Cumiès -> None:M. Thierry MALLEVILLE 
+011 Davejean -> None:Mme Vivian HEFFERNAN 
+011 Fourtou -> None:M. Daniel MAURY 
+011 Gourvieille -> None:M. Jackie VILLENEUVE 
+011 Gramazie -> None:Mme Marie BASTO 
+011 Mayreville -> None:M. Thierry DE KERIMEL 
+011 Peyrolles -> None:M. Thierry BIFANTE 
+011 Pomy -> None:Mme Sylvie BOICHÉ 
+011 Saint-Amans -> None:Mme Martine NAUDINAT 
+011 Sainte-Colombe-sur-Guette -> None:M. Anthony SANCHEZ 
+011 Saint-Polycarpe -> None:M. Bernard FABRE 
+011 Salza -> None:Mme Isabelle BIARD-CAZANAVE 
+011 Sonnac-sur-l'Hers -> None:M. Philippe RAQUIDEL 
+011 Terroles -> None:Mme Nadine TRONCHE 
+012 Lapanouse-de-severac -> None:Mme Solange AUGUY 
+012 Luc -> None:M. Jean-Philippe SADOUL
+012 Saint-Félix-de-Sorgues -> None:M. Philippe FABRE 
+012 Saujac -> None:M. Robert AYRAL 
+012 Sévérac-l'Eglise -> None:Mme Brigitte DUR 
+013 Aix-en-Provence -> None:Mme Maryse JOISSAINS MASINI
+013 Arles -> None:M. Hervé SCHIAVETTI
+013 Aubagne -> None:M. Gérard GAZAY
+013 Auriol -> None:Mme Danièle GARCIA NÉE JACQUET
+013 Berre-l'Etang -> None:M. Serge ANDREONI
+013 Eguilles -> None:M. Robert DAGORNE
+013 Istres -> None:M. François BERNARDINI
+013 Marseille -> None:None
+013 Martigues -> None:M. Gaby CHARROUX
+013 Noves -> None:M. Georges JULLIEN
+013 Saint-Etienne-du-Grès -> None:M. Jean MANGION
+013 Saint-Victoret -> None:M. Claude PICCIRILLO
+013 Velaux -> None:M. Jean-Pierre MAGGI
+013 Vitrolles -> None:M. Loïc GACHON
+014 Barbeville -> None:M. Christian VIEL 
+014 Barou-en-Auge -> None:Mme Martine PIGEON 
+014 Bayeux -> None:M. Patrick GOMONT
+014 Beaulieu -> None:Mme Nicole BEHUE 
+014 Bernesq -> None:Mme Thérèse JEAN VEREL 
+014 Bonnoeil -> None:M. Gaylord THUAUDAIT 
+014 Cabourg -> None:M. Tristan DUVAL
+014 Campandré-Valcongrain -> None:M. Patrice DEPERIERS 
+014 Cartigny-l'Epinay -> None:Mme Nelly SURET-CARDINE 
+014 Castillon-en-Auge -> None:M. Christian JUCHORS 
+014 Caumont-l'Eventé -> None:M. Christian GABRIEL
+014 Caumont-sur-Orne -> None:M. Roger BAILLIEUL 
+014 Combray -> None:M. Gérard LECOMTE 
+014 Condé-sur-Ifs -> None:Mme Aurélie FOUQUES 
+014 Corbon -> None:Mme Françoise DUCLOS 
+014 Cossesseville -> None:M. Marc HANNAUX 
+014 Courtonne-les-Deux-Eglises -> None:Mme Nathalie BERMOND 
+014 Courvaudon -> None:Mme Sylvie HARIVEL 
+014 Crèvecoeur-en-Auge -> None:Mme Blandine MONTCEL 
+014 Cricqueboeuf -> None:M. Alain SEMAL 
+014 Cricqueville-en-Bessin -> None:M. Frédéric PAIN 
+014 Deux-Jumeaux -> None:M. Bruno GUARDINI 
+014 Douville-en-Auge -> None:Mme Béatrice CHAUVIN 
+014 Ecrammeville -> None:Mme Odile MARIE 
+014 Emiéville -> None:M. Vincent JOYEUX 
+014 Epaney -> None:M. Dominique BISSON 
+014 Epinay-sur-Odon -> None:M. Michel MAUDUIT 
+014 Epron -> None:M. Franck GUEGUENIAT
+014 Equemauville -> None:M. Michel BAILLEUL
+014 Eterville -> None:M. Stéphan LEBREUILLY
+014 Etouvy -> None:Mme Sylvie LEBASSARD 
+014 Etréham -> None:Mme Yvonne FILMONT 
+014 Evrecy -> None:M. Henri GIRARD
+014 Familly -> None:M. Emmanuel HERBINIERE 
+014 Fontaine-Etoupefour -> None:M. Bernard ENAULT
+014 Fontenermont -> None:M. Hervé BAZIN 
+014 Friardel -> None:M. Denis CHERON 
+014 Grandchamp-le-Château -> None:Mme Carole PHILBERT 
+014 Hiéville -> None:Mme Monique VINANDY 
+014 Juvigny-sur-Seulles -> None:M. Dominique ANGOT 
+014 Landes-sur-Ajon -> None:Mme Mylène LAGOUTTE 
+014 Léaupartie -> None:M. Jean-François MARIN 
+014 Lécaude -> None:M. Joël DELOZIER 
+014 Litteau -> None:M. Sylvain VIVIER 
+014 Louvagny -> None:Mme Odile HAMON-GABRIEL 
+014 Louvières -> None:M. Jacques BERNARD 
+014 Malloué -> None:Mme Jean JORDAN 
+014 Montreuil-en-Auge -> None:M. Jean-Louis GUERIN 
+014 Montviette -> None:M. Paul KEALL 
+014 Morteaux-Couliboeuf -> None:M. Jean-François MARTINE 
+014 Notre-Dame-de-Livaye -> None:Mme Aurore ARMAND 
+014 Périgny -> None:Mme Sabrina CHENEVREL 
+014 Perrières -> None:Mme Stéphanie BAUDIER-SCHWARTZ 
+014 Planquery -> None:M. Jean MARTIN 
+014 Pont-l'Evêque -> None:M. Yves DESHAYES
+014 Repentigny -> None:M. Claude LEMONNIER 
+014 Rocquancourt -> None:M. Denis VIEL 
+014 Rumesnil -> None:Mme Josette LURIENNE 
+014 Saint-Agnan-le-Malherbe -> None:M. Yves MAIZERAY 
+014 Saint-Etienne-la-Thillaye -> None:M. Marcel FILOCHE 
+014 Saint-Gabriel-Brécy -> None:Mme Katia OMONT 
+014 Saint-Julien-de-Mailloc -> None:M. Emmanuel LAMBERT 
+014 Saint-Julien-sur-Calonne -> None:M. Nicolas GRODY 
+014 Saint-Laurent-du-Mont -> None:M. Philippe HUET 
+014 Saint-Loup-de-Fribois -> None:Mme Sylvie LEMERCIER 
+014 Saint-Manvieu-Bocage -> None:M. Denis PRIME 
+014 Saint-Martin-Don -> None:Mme Martine BOISSAIS 
+014 Saint-Martin-du-Mesnil-Oury -> None:M. Pascal ANDRE 
+014 Saint-Michel-de-Livet -> None:M. Eric DELACOUR 
+014 Saint-Ouen-le-Houx -> None:Mme Nelly BINET 
+014 Tournebu -> None:Mme Lydie LEROUXEL 
+014 Tracy-sur-Mer -> None:M. Jean BEDEZ 
+014 Valsemé -> None:Mme Marie-Laure FORCINAL 
+014 Vaudeloges -> None:M. Jean-François MASSON 
+014 Vicques -> None:Mme Hélène ANCEL 
+014 Victot-Pontfol -> None:Mme Michèle BERTRAND DURTIS 
+014 Vierville-sur-Mer -> None:Mme Coralie THIEBOT 
+014 Vieux-Pont-en-Auge -> None:Mme Lisa DIAZ 
+014 Vire -> None:M. Marc ANDREU SABATER
+015 Auriac-l'Eglise -> None:M. Serge PAPA 
+015 Beaulieu -> None:M. David PRADEL-FRAYSSE 
+015 Montvert -> None:M. Xavier LAJOINIE 
+015 Saint-Etienne-Cantalès -> None:M. Olivier CLAVEIROLE 
+015 Saint-Etienne-de-Carlat -> None:Mme Laure JULIEN 
+015 Saint-Etienne-de-Chomeil -> None:M. Sébastien VEYSSIERE 
+015 Saint-Etienne-de-Maurs -> None:M. François LABRUNIE 
+016 Chazelles -> None:M. Jean-Louis BESSE
+016 Ebréon -> None:M. Jean-Pierre BRUN 
+016 Echallat -> None:M. Alain LAIDET 
+016 Ecuras -> None:M. Denis DONNARY 
+016 Edon -> None:Mme Bénédicte MARQUET 
+016 Epenède -> None:Mme Nathalie FOMBERTASSE 
+016 Eraville -> None:M. Christian BROIS 
+016 Etagnac -> None:M. Jean-Marie BOUYAT 
+016 Etriac -> None:Mme Béatrice DUBREUIL 
+016 Montemboeuf -> None:M. Jean-Marie TRAPATEAU 
+016 Montignac-Charente -> None:M. Mickaël MELIN 
+016 Saint-Simon -> None:Mme Brigitte MARCINIAK 
+016 Voeuil-et-Giget -> None:Mme Monique CHIRON
+017 Authon-Ebéon -> None:M. Frédéric BARILLET 
+017 Corme-Ecluse -> None:M. Olivier MARTIN
+017 Doeuil-sur-le-Mignon -> None:M. Francis LAROCHE 
+017 Echebrune -> None:M. Dany MAZEAU 
+017 Echillais -> None:M. Roland LOPEZ
+017 Ecoyeux -> None:M. Didier LORIT
+017 Ecurat -> None:M. Antonio DE DIOS MIGUEL 
+017 Epargnes -> None:M. Mathieu SEGUIN 
+017 Etaules -> None:M. Vincent BARRAUD
+017 Ile-d'Aix -> None:Mme Anne-Marie PETIT 
+017 L'Eguille -> None:M. Roger GUILLAUD 
+017 Lussac -> None:M. Jean-Bernard MERLET 
+017 Puyravault -> None:M. Raymond DESILLE 
+017 Saint-Ciers-du-Taillon -> None:M. Patrick CHERAT 
+017 Saint-Ouen -> None:M. Richard PHIPPEN 
+017 Saint-Pardoult -> None:Mme Gaëlle SONNARD 
+017 Saint-Quantin-de-Rançannes -> None:M. Jean-Michel BAUDRY 
+017 Saint-Trojan-les-Bains -> None:Mme Line SOURBIER
+017 Siecq -> None:M. Pascal PARCA 
+017 Soubran -> None:M. Francois RIPPE 
+017 Vinax -> None:M. Frédéric GUILLET 
+018 Epineuil-le-Fleuriel -> None:M. David DEPARDIEU-BERGER 
+018 Etréchy -> None:M. Sebastien LOURET 
+018 Précy -> None:Mme Anne-Sophie FOURNIER 
+018 Saint-Céols -> None:M. Laurent-Marc FISCHER 
+018 Saint-Eloy-de-Gy -> None:Mme Annie LAUVERJAT
+018 Saint-Pierre-les-Etieux -> None:Mme Bernadette BOIRON 
+018 Saint-Vitte -> None:M. Jean Marc PÈGUES 
+019 Aubazine -> None:M. Bernard LARBRE 
+019 Brive-la-Gaillarde -> None:M. Frédéric SOULIER
+019 Chapelle-Spinasse -> None:M. Dominique CARAMINOT 
+019 Egletons -> None:M. Michel PAILLASSOU
+019 Gumont -> None:M. Serge ROCHE 
+019 L'Eglise-aux-Bois -> None:Mme Muriel DELETREZ 
+019 Mercoeur -> None:M. Jérôme VERDAL 
+019 Meyrignac-l'Eglise -> None:Mme Christelle RANTIER 
+019 Pandrignes -> None:M. Alain BARBAZANGES 
+019 Reygades -> None:M. Bernard VAYRAC 
+019 Rosiers-d'Egletons -> None:M. Jacques GUILLAUMIE-BILLET
+019 Rosiers-de-Juilac -> None:M. Denis HERVE 
+019 Saint-Eloy-les-Tuileries -> None:Mme Maryline VERGNE 
+019 Saint-Etienne-aux-Clos -> None:M. Robert MICHOUX 
+019 Saint-Etienne-la-Geneste -> None:Mme Nathalie BOUYON 
+019 Saint-Hilaire-Luc -> None:M. Michel ALLARY 
+021 Allerey -> None:M. Sébastien BILLARD 
+021 Antigny-la-Ville -> None:M. Erick MOUGENOT 
+021 Arnay-sous-Vitteaux -> None:M. Christian DELILLE 
+021 Auxant -> None:Mme Elodie CAUTAIN 
+021 Bard-lès-Epoisses -> None:M. Wilfrid JACOTOT 
+021 Beire-le-Fort -> None:M. Nicolas BOULEGUE 
+021 Bellenod-sur-Seine -> None:M. Jérôme MESTANIER 
+021 Benoisey -> None:M. Baptiste GALOSEAU 
+021 Blancey -> None:Mme Marie-Claire BOBILLOT 
+021 Brianny -> None:M. Alain DELAYE 
+021 Censerey -> None:Mme Geneviève MORTIER 
+021 Chamboeuf -> None:Mme Lucie PERROT 
+021 Champagny -> None:M. Olivier MALGRAS 
+021 Champignolles -> None:Mme Alexandra LEBAULT 
+021 Charigny -> None:M. Jean-Paul COGNARD 
+021 Chaudenay-la-Ville -> None:M. Vincent CHASSON 
+021 Chenôve -> None:M. Jean ESMONIN
+021 Civry-en-Montagne -> None:Mme Christine DESCOMBES 
+021 Corpoyer-la-Chapelle -> None:M. Samuel ROBINET 
+021 Cussy-la-Colonne -> None:M. Samuel TOURGIS 
+021 Dampierre-en-Montagne -> None:M. Jean-Pierre PAUT 
+021 Ebaty -> None:M. Daniel PROST 
+021 Echalot -> None:M. Thierry DESCHAMPS 
+021 Echannay -> None:M. Jean-François MURET 
+021 Echenon -> None:M. Louis-Marie ALLARD 
+021 Echevannes -> None:M. Christophe CALMELET 
+021 Echevronne -> None:M. Bertrand CHAMBREY 
+021 Echigey -> None:M. Daniel SAUVAIN 
+021 Ecutigny -> None:M. Philippe LEFEVRE 
+021 Eguilly -> None:M. Jean-Marie FAIVRET 
+021 Epagny -> None:Mme Véronique BRESSON 
+021 Epernay-sous-Gevrey -> None:Mme Stéphanie ROUX 
+021 Epoisses -> None:M. David DELLA-POLLA 
+021 Eringes -> None:M. Gilbert CHOPARD 
+021 Etais -> None:M. Laurent JOURDAN 
+021 Etalante -> None:M. Éric DUDOUET 
+021 Etaules -> None:M. Jean René ESTIVALET 
+021 Etevaux -> None:M. Sylvain GUERET 
+021 Etormay -> None:M. Jean-Claude PHILISOT 
+021 Etrochey -> None:Mme Liliane PARISOT 
+021 Flée -> None:M. Lionel BLANDIN 
+021 Forléans -> None:M. Arnaud GAGNARD 
+021 Gergueil -> None:M. Jean JUSTICE 
+021 Gevrey-Chambertin -> None:M. Bernard MOYNE
+021 Juilly -> None:M. Patrick GUERIN 
+021 Léry -> None:M. Ludovic ROSSI 
+021 L'Etang-Vergy -> None:M. Arnaud VERPEAU 
+021 Magnien -> None:M. Lucien COLLARD 
+021 Marcilly-Ogny -> None:M. Michel GUENOUX 
+021 Martrois -> None:M. Guy NESLE 
+021 Mauvilly -> None:M. Didier BURTEY 
+021 Moloy -> None:Mme Odile POBELLE 
+021 Montceau-et-Echarnant -> None:M. Pascal JANISZEWSKI 
+021 Musigny -> None:M. Eric ROUHETTE 
+021 Orret -> None:M. Michel BEUGNOT 
+021 Poiseul-la-Grange -> None:Mme Catherine VAN DAELE 
+021 Quincerot -> None:M. Guy BEAUFILS 
+021 Rochefort-sur-Brévon -> None:M. André MALGRAS 
+021 Saint-Jean-de-Boeuf -> None:Mme Jacqueline MERCIER 
+021 Saussy -> None:M. Nicolas SIMONET 
+021 Semezanges -> None:M. Nicolas BARON 
+021 Sussey -> None:M. Gérard SAGETAT 
+021 Thorey-sur-Ouche -> None:Mme Sophie GATHELIER 
+021 Vauchignon -> None:Mme Evelyne TOLLHUPP 
+021 Vernois-lès-Vesvres -> None:M. Jean-Paul TAILLANDIER 
+021 Vesvres -> None:M. Gilles LUCAS 
+021 Vianges -> None:Mme Caroline CREUSEVAUT 
+021 Villars-et-Villenotte -> None:Mme Géraldine DELESCLUSE 
+022 Eréac -> None:Mme Nicole DROBECQ 
+022 Etables-sur-Mer -> None:M. Gérard LOSQ
+022 Evran -> None:M. Patrice GAUTIER
+022 Ile-de-Bréhat -> None:Mme Danouchka PRIGENT 
+022 Léhon -> None:M. René DEGRENNE
+022 Matignon -> None:M. Jean-René CARFANTAN
+022 Ploeuc-sur-Lié -> None:M. Thibaut GUIGNARD
+022 Saint-Etienne-du-Gué-de-l'Isle -> None:Mme Patricia LE BRETON 
+022 Saint-Jacut-de-la-Mer -> None:Mme Danielle DELAGE 
+022 Saint-Nicodème -> None:Mme Patricia DONNIOU 
+023 Beissat -> None:M. Claude DETOUR 
+023 Bourganeuf -> None:Mme Michelle SUCHAUD
+023 Chavanat -> None:Mme Frédérique FAYADAS 
+023 Evaux-les-Bains -> None:M. Bruno PAPINEAU
+023 Magnat-l'Etrange -> None:M. Jérémy BRUGERE 
+023 Pionnat -> None:M. Philippe GAUDIER 
+023 Saint-Eloi -> None:M. Bernard HURBE 
+023 Saint-Etienne-de-Fursac -> None:M. Jean-Marie VITTE 
+023 Saint-Hilaire-le-Château -> None:M. Jean-Pierre AUVITY 
+023 Saint-Martin-le-Château -> None:Mme Corine BREDIER 
+023 Saint-Maurice-près-Crocq -> None:M. Jacques LEGRAND 
+023 Saint-Yrieix-les-Bois -> None:Mme Dominique MAZEAUD 
+024 Ajat -> None:M. Bruno MANDRAL 
+024 Bars -> None:Mme Fabienne SAULIERE 
+024 Beaumont -> None:M. Dominique MORTEMOUSQUE
+024 Château-l'Evêque -> None:Mme Marie-Hélène BELOMBO
+024 Comberanche-et-Epeluche -> None:Mme Murielle CASSIER 
+024 Cubjac -> None:Mme Flore JOUSSEIN 
+024 Echourgnac -> None:M. GUY GARLOPEAU 
+024 Eglise-Neuve-de-Vergt -> None:M. Thierry NARDOU 
+024 Eglise-Neuve-d'Issac -> None:M. Bruno LESFARGUES 
+024 Etouars -> None:Mme Sandrine FAUCONNET 
+024 Saint-Amand-de-Coly -> None:M. Vincent GEOFFROID 
+024 Saint-Etienne-de-Puycorbier -> None:M. Olivier GIANNONI 
+024 Saint-Jory-Lasbloux -> None:Mme Aurélie THOMASSON BERNIER 
+024 Saint-Julien-de-Bourdeilles -> None:M. Alain BEAU 
+024 Saint-Pierre-de-Côle -> None:Mme Veronique JOBERT 
+024 Savignac-les-Eglises -> None:M. Xavier FAURE 
+024 Temple-Laguyon -> None:M. Philippe TEISSIER 
+025 Abbenans -> None:M. Ludovic LAMOTTE 
+025 Accolans -> None:Mme Joëlle SAUTEBIN 
+025 Avilley -> None:M. Philippe DORNIER 
+025 Battenans-les-Mines -> None:M. Jean-Baptiste TRAMUT 
+025 Belmont -> None:M. Jean OUDRY 
+025 Belvoir -> None:M. Jean-Baptiste HUGONNOT 
+025 Breconchaux -> None:M. Alain JACQUEMAIN 
+025 Bretigney -> None:M. David GENIN 
+025 Bretigney-Notre-Dame -> None:Mme Peggy ROUSSEL 
+025 By -> None:M. Daniel MONNIER 
+025 Cademène -> None:Mme Fabienne ARNOUX 
+025 Cernay-l'Eglise -> None:M. Ghislain HOUSER 
+025 Champoux -> None:M. Alain ALONET 
+025 Charbonnières-les-Sapins -> None:M. Didier LANGLOIS 
+025 Chassagne-Saint-Denis -> None:M. Christian OUDOT 
+025 Châtillon-sur-Lison -> None:M. Régis CLEMENT 
+025 Chaux-lès-Clerval -> None:M. Jean-Pierre LENOIR 
+025 Chaux-lès-Passavant -> None:M. Jean-Marie LÉMENT 
+025 Côtebrune -> None:M. Donat BARRAND 
+025 Cubrial -> None:M. Claude DUPREY 
+025 Cubry -> None:M. Arnaud LAVILLE 
+025 Cusance -> None:M. Frédéric GIRARD 
+025 Cuse-et-Adrisans -> None:Mme Sandrine PETEGNIEF 
+025 Echay -> None:M. Maurice BRAEMS 
+025 Echenans -> None:M. Christophe DIETRICH 
+025 Echevannes -> None:M. Arnaud VIVIEN 
+025 Ecole-Valentin -> None:M. Yves GUYEN
+025 Ecot -> None:M. Mathieu CRISINEL 
+025 Ecurcey -> None:Mme Viviane CLAUZEL 
+025 Emagny -> None:M. Gérard PERRIN 
+025 Epenouse -> None:Mme Sandra LEDRON 
+025 Epenoy -> None:M. Samuel JAY 
+025 Epeugney -> None:M. Frédéric TRAPP 
+025 Etalans -> None:M. Jean-Marie ROUSSEL
+025 Eternoz -> None:M. Christophe GARNIER 
+025 Etouvans -> None:M. Olivier GAZEAUX 
+025 Etrabonne -> None:M. Sébastien AMIET 
+025 Etrappe -> None:M. Alain HACQUEMAND 
+025 Etray -> None:M. Claude HENRIET 
+025 Etupes -> None:M. Philippe CLAUDEL
+025 Evillers -> None:M. Yves VERGUET 
+025 Flagey -> None:M. Benoit DUCHESNE 
+025 Flagey-Rigney -> None:M. Christian PAGNIER 
+025 Fleurey -> None:M. Pascal JEAMBRUN 
+025 Fontenelle-Montby -> None:M. Franck LAVILLE 
+025 Fontenotte -> None:M. Laurent BESSON 
+025 Froidevaux -> None:M. Vincent COURGEY 
+025 Gémonval -> None:Mme Marie-Odile BROUDIC 
+025 Germéfontaine -> None:Mme Mylène ROY 
+025 Gondenans-Montby -> None:Mme Maryline BRYDON 
+025 Goux-sous-Landet -> None:M. Philippe SAGE 
+025 Guillon-les-Bains -> None:Mme Sylviane ROY 
+025 Huanne-Montmartin -> None:Mme Eliane CRETIN 
+025 Hyèvre-Magny -> None:M. Frédéric NARBEY 
+025 Hyèvre-Paroisse -> None:Mme Angélique MONNOT 
+025 Lantenne-Vertière -> None:M. Jean-Jacques VITTOT 
+025 L'Ecouvotte -> None:M. Sébastien EUVRARD 
+025 L'Hôpital-Saint-Lieffroy -> None:M. Yves BOILLOT 
+025 Liebvillers -> None:M. Jean-François JOBERT 
+025 Lomont-sur-Crête -> None:M. Olivier TOUSSEUL 
+025 Longechaux -> None:Mme Véronique LANGLUMÉ 
+025 Longemaison -> None:M. Laurent FIGARD 
+025 Luxiol -> None:M. Pierre CUENOT 
+025 Magny-Châtelard -> None:M. Philippe KOLLY 
+025 Malans -> None:Mme Marie-Rose PETITPAS 
+025 Mesmay -> None:M. Jean-Sébastien GAY 
+025 Mondon -> None:M. Charles-Henri CORNET 
+025 Montagney-Servigney -> None:M. Benoît VIRCONDELET 
+025 Montbéliardot -> None:M. Mickaël GLORIOD 
+025 Montfort -> None:M. Jean-Luc SAGE 
+025 Montjoie-le-Château -> None:M. Claude MARTELET 
+025 Montussaint -> None:Mme Marlène HECK 
+025 Novillars -> None:M. Philippe BELUCHE
+025 Orsans -> None:Mme Vanessa PAROLA 
+025 Orve -> None:M. Daniel LAGAISSE 
+025 Palantine -> None:M. Dominique ROLLET 
+025 Passonfontaine -> None:Mme Emilie ROY 
+025 Pessans -> None:M. Daniel HUGUES 
+025 Plaimbois-du-Miroir -> None:M. Samuel SANDOZ 
+025 Pont-les-Moulins -> None:M. Mickaël ROLAND 
+025 Puessans -> None:M. Christophe MOLLE 
+025 Reugney -> None:M. Sébastien CANAULT 
+025 Rignosot -> None:Mme Sylvie CLOUTOT 
+025 Rillans -> None:M. Bertrand HOUSER 
+025 Rognon -> None:M. Joël CARISEY 
+025 Romain -> None:M. Frédéric CHAVY 
+025 Roulans -> None:M. Alain JACQUOT
+025 Saint-Juan -> None:M. Jérôme FAIVRE 
+025 Samson -> None:M. Rémy PAUL 
+025 Santoche -> None:M. Daniel HENRIET 
+025 Saraz -> None:M. Pierre RIFFIOD 
+025 Silley-Amancey -> None:M. Corentin MOUROT 
+025 Silley-Bléfond -> None:M. Gérald COULON 
+025 Sourans -> None:M. Nicolas BENALIOUA 
+025 Surmont -> None:M. Dominique MARTIN 
+025 Thoraise -> None:M. Carlos MIGUEL 
+025 Tournans -> None:Mme Chantal BERGEROT 
+025 Tressandans -> None:Mme Jeannine BOSSI 
+025 Urtière -> None:M. Arnaud DELAUTRE 
+025 Uzelle -> None:M. Sébastien MACKOW 
+025 Vaire-Arcier -> None:M. Stéphane CLERGET 
+025 Valoreille -> None:M. Jean-Paul CLEMENT 
+025 Vellerot-lès-Belvoir -> None:M. Jean-Michel EME 
+025 Vellerot-lès-Vercel -> None:Mme Julie HUGUENOTTE 
+025 Verrières-du-Grosbois -> None:Mme Christine PUGIN 
+025 Villars-sous-Ecot -> None:M. Luc PELLIER 
+025 Villers-Chief -> None:M. Christian BERTIN 
+026 Arnayon -> None:M. Michel BOIS 
+026 Bellegarde-en-Diois -> None:M. Sébastien FARIA 
+026 Chavannes -> None:Mme Eliane DE LAZZER 
+026 Echevis -> None:M. Jean-François MURGAT 
+026 Epinouze -> None:M. Freddy MARTIN-ROSSET
+026 Erôme -> None:Mme Véronique BANCEL 
+026 Etoile-sur-Rhône -> None:Mme Françoise CHAZAL
+026 Eyzahut -> None:Mme Fabienne SIMIAN 
+026 Lemps -> None:M. Thierry TOURTET 
+026 Montélimar -> None:M. Franck REYNIER
+026 Montfroc -> None:M. Patrick PELLAE 
+026 Omblèze -> None:M. Bruno DIDIER 
+026 Pelonne -> None:M. Guy Pierre DELAGE 
+026 Pommerol -> None:M. Aimé BERNARD 
+026 Portes-lès-Valence -> None:Mme Geneviève GIRARD
+026 Pradelle -> None:M. Jean-Claude BONNARD 
+026 Rochefourchat -> None:M. Jan DECOENE 
+026 Rottier -> None:M. Jean-Pierre BRACHET 
+026 Saint-Benoit-en-Diois -> None:Mme Yolande SERVANT 
+026 Saint-Sauveur-en-Diois -> None:M. Bernard PUC 
+026 Saint-Vallier -> None:M. Jacques CHEVAL
+026 Truinas -> None:M. Pascal GIRY 
+026 Valence -> None:M. Nicolas DARAGON
+026 Véronne -> None:Mme Stéphanie RETOURNAY 
+026 Villebois-les-Pins -> None:Mme Marguerite CHEVALIER 
+027 Aigleville -> None:M. Patrick MENARD 
+027 Amfreville-sous-les-Monts -> None:M. François VIGOR 
+027 Asnières -> None:M. Patrick FOUET 
+027 Bézu-Saint-Eloi -> None:M. Frédéric LEPAGNOT
+027 Bouchevilliers -> None:Mme Véronique DOVIN 
+027 Chanteloup -> None:Mme Laëtitia JACQUES 
+027 Dardez -> None:Mme Ludivine REBOURSIERE 
+027 Duranville -> None:M. Pascal FURET 
+027 Ecaquelon -> None:M. Jacques AGASSE 
+027 Ecardenville-la-Campagne -> None:M. Cyrille JOSSÉ 
+027 Ecardenville-sur-Eure -> None:M. Jean-Louis LE MÉHAUTÉ 
+027 Ecauville -> None:Mme Françoise MAILLARD 
+027 Ecos -> None:M. Michel JOUYET
+027 Ecouis -> None:Mme Caroline SAINT DENIS 
+027 Emalleville -> None:M. Daniel MERIGOUT 
+027 Emanville -> None:Mme Katia PASQUET 
+027 Epaignes -> None:M. Roger PROVOST
+027 Epégard -> None:M. David BESSIN 
+027 Epieds -> None:M. Philippe GIMONET 
+027 Epinay -> None:Mme Laëtitia BEAUDOIN 
+027 Epreville-en-Lieuvin -> None:M. Jean Luc TAURY 
+027 Epreville-en-Roumois -> None:M. Michel MASSON 
+027 Epreville-près-le-Neubourg -> None:Mme Agnés PLESSIS 
+027 Etrépagny -> None:M. Pierre BEAUFILS
+027 Etréville -> None:M. Michel COMMARE 
+027 Eturqueraye -> None:M. Patrick PERDRIX 
+027 Evreux -> None:M. Guy LEFRAND
+027 Ezy-sur-Eure -> None:M. Pierre LEPORTIER
+027 Ferrières-Saint-Hilaire -> None:Mme Marie-Françoise WYN 
+027 Feuguerolles -> None:Mme Julie ROGER 
+027 Fiquefleur-Equainville -> None:M. Michel PRENTOUT 
+027 Folleville -> None:M. Dominique GOMOND 
+027 Fontaine-la-Louvet -> None:Mme Dominique SEGHETTI 
+027 Fourmetot -> None:Mme Régine IMBISCUSO 
+027 Fours-en-Vexin -> None:M. André DUFOUR 
+027 Fresne-Cauverville -> None:M. Laurent TOUFLET 
+027 Gisay-la-Coudre -> None:M. Jean-Pierre BORDEAU 
+027 Gisors -> None:M. Alexandre RASSAËRT
+027 Giverville -> None:Mme Christine LINAND 
+027 Grandchain -> None:M. Michel CHINCHOLE 
+027 Grandvilliers -> None:M. Laurent VANDEWALLE 
+027 Grossoeuvre -> None:Mme Christine LE BONTE
+027 Guerny -> None:Mme Catherine LEPILLER 
+027 Heudreville-sur-Eure -> None:M. Dominique SIMON
+027 Houville-en-Vexin -> None:M. Bernard JOBIN 
+027 Illiers-l'Evêque -> None:M. Jean-Michel HIDOUVILLE 
+027 Lilly -> None:Mme Dominique WALLECAN 
+027 Lorleau -> None:Mme Chantal GROUCHY 
+027 Louversey -> None:M. Jérôme RENAULT 
+027 Louviers -> None:M. François-Xavier PRIOLLAUD
+027 Malleville-sur-le-Bec -> None:Mme Laure DROUET 
+027 Martagny -> None:M. Laurent LUCAS 
+027 Mélicourt -> None:Mme Fanny MILCENT 
+027 Mercey -> None:M. Jean PREIRA 
+027 Morsan -> None:M. François TRAVERS 
+027 Neuilly -> None:M. Philippe BUISSON 
+027 Neuville-sur-Authou -> None:Mme Patricia TOURIN 
+027 Noards -> None:M. Michel LAUNAY 
+027 Notre-Dame-d'Epine -> None:M. Eric HODAN 
+027 Notre-Dame-du-Hamel -> None:Mme Florence DEREUME 
+027 Plainville -> None:M. Denis CHAUVEL 
+027 Porte-Joie -> None:M. Abou KANE 
+027 Quessigny -> None:Mme Séverine GUESNET 
+027 Rouvray -> None:M. Gilbert GÉNÉRÉ 
+027 Saint-Aubin-d'Ecrosville -> None:M. François DONVAL 
+027 Saint-Aubin-de-Scellon -> None:Mme Annick PERRIER 
+027 Saint-Denis-du-Béhélan -> None:M. Jean-Pierre LAUBIN 
+027 Saint-Elier -> None:Mme Valérie GUY 
+027 Saint-Eloi-de-Fourques -> None:M. Yvon TARDIF 
+027 Sainte-Marguerite-en-Ouche -> None:M. Claude BERTHE 
+027 Sainte-Marie-de-Vatimesnil -> None:Mme Karine KERHARO 
+027 Saint-Etienne-du-Vauvray -> None:Mme Séverine LEBLANC 
+027 Saint-Etienne-l'Allier -> None:M. Philippe YVON 
+027 Saint-Etienne-sous-Bailleul -> None:M. Philippe BODINEAU 
+027 Saint-Georges-du-Mesnil -> None:Mme Françoise AUBER 
+027 Saint-Jean-de-la-Léqueraye -> None:M. Alain VOCHELET 
+027 Saint-Laurent-du-Tencement -> None:M. Martial DAGIEU 
+027 Saint-Léger-de-Rôtes -> None:M. Olivier PIQUENOT 
+027 Saint-Luc -> None:M. David MOUGE 
+027 Saint-Mards-de-Blacarville -> None:M. Patrice LEGIGAND 
+027 Saint-Martin-la-Campagne -> None:M. Jean JACOB 
+027 Saint-Nicolas-d'Attez -> None:M. Damien AMIGON 
+027 Saint-Ouen-d'Attez -> None:M. Stéphane JACQUES 
+027 Saint-Sébastien-de-Morsent -> None:M. Bruno GROIZELEAU
+027 Saint-Victor-d'Epine -> None:M. Gilbert DERIOT 
+027 Saint-Victor-sur-Avre -> None:M. Michel CHERON 
+027 Serez -> None:M. Jean-Michel CAILLEUX 
+027 Touville -> None:M. Patrick SARRADE 
+027 Valletot -> None:Mme Nicole QUATROMME 
+027 Vascoeuil -> None:M. Jean-Luc MOENS 
+027 Venables -> None:M. Laurent BIAGETTI 
+027 Villettes -> None:Mme Dorothée MAUFRAS 
+027 Villez-sous-Bailleul -> None:Mme Marie-Line GARABEDIAN 
+027 Villez-sur-le-Neubourg -> None:M. Eric VINCENT 
+027 Villiers-en-Désoeuvre -> None:M. Didier LANDAIS 
+028 Bailleau-l'Evêque -> None:M. Thierry AVELINE
+028 Berchères-sur-Vesgre -> None:Mme Anne JUBAULT-BREGLER 
+028 Blandainville -> None:Mme Maire-Claude SIMON 
+028 Bullainville -> None:M. Ludovic BOULLAY 
+028 Champhol -> None:M. Christian GIGON
+028 Chapelle-Guillaume -> None:Mme Catherine DESCHAMP 
+028 Châtenay -> None:M. Guy RIPOCHE 
+028 Dreux -> None:M. Gérard HAMEL
+028 Ecluzelles -> None:M. Claude MARTIN 
+028 Ecrosnes -> None:M. Luc ROUSSEAU 
+028 Epeautrolles -> None:Mme Marie-Claude CATALANO 
+028 Epernon -> None:Mme Françoise RAMOND
+028 Fessanvilliers-Mattanvilliers -> None:Mme Brigitte GOSNET 
+028 Fresnay-l'Evêque -> None:M. Elie CHIMIER 
+028 Montigny-sur-Avre -> None:M. Richard BOUCHERIE 
+028 Morainville -> None:M. Lionel COUTURIER 
+028 Orlu -> None:M. Germain BOYER 
+028 Oysonville -> None:M. Michel MIEUSSET 
+028 Pré-Saint-Evroult -> None:M. Christophe NEVEU 
+028 Revercourt -> None:M. Richard BARAOU 
+028 Saint-Arnoult-des-Bois -> None:Mme Nadine LOCHON 
+028 Saint-Eliph -> None:Mme Bernadette COUDRAY 
+028 Saint-Eman -> None:M. Didier ALBERT 
+028 Tillay-le-Péneux -> None:M. Benoit POMMIER 
+028 Villebon -> None:M. Jean DE LA RAUDIERE 
+029 Brignogan-Plages -> None:M. Dominique RANCE 
+029 Ile-de-Batz -> None:M. Erwan CABIOCH 
+029 Ile-de-Sein -> None:M. Henri LE BARS 
+029 Ile-Molène -> None:M. Bruno CALLAC 
+029 Ile-Tudy -> None:M. Eric JOUSSEAUME 
+029 Locquénolé -> None:M. Philippe JAOUEN 
+029 Peumérit -> None:Mme Isabelle TANGUY 
+029 Plouégat-Guerrand -> None:M. Yves MANACH
+029 Plouézoc'h -> None:M. Yves MOISAN
+029 Saint-Evarzec -> None:M. André GUILLOU
+029 Scrignac -> None:M. Daniel LE GUILLOUX 
+02A Altagène -> None:M. Etienne CARLOTTI 
+02A Evisa -> None:M. Jean-Jacques GIANNI 
+02A Forciolo -> None:M. Alain PIAZZOLA 
+02A Granace -> None:M. Ange-Pasquin LEANDRI 
+02A Guargualé -> None:M. Charles-Antoine CASANOVA 
+02A Moca-Croce -> None:M. Toussaint NICOLAI 
+02A Olmiccia -> None:M. Roméo ADORNI 
+02A Pastricciola -> None:M. Paul-Mathieu LEGAL-OTTAVIANI 
+02A Pianotolli-Caldarello -> None:M. Charles Henri BIANCONI 
+02A Pietrosella -> None:M. Jean-Baptiste LUCCIONI
+02A Rezza -> None:Mme Chrystelle NICOLI 
+02A Rosazia -> None:M. Jean-Yves HEIMBURGER 
+02A Sant'Andréa-d'Orcino -> None:M. Dominique André POLI 
+02B Bigorno -> None:M. Christophe Albert GRAZIANI 
+02B Carpineto -> None:Mme Marie-Dominique CHIPPONI 
+02B Casevecchie -> None:M. Pierre-Andre BERNIERI 
+02B Castineta -> None:M. Stéphane CAMPE 
+02B Croce -> None:M. Jean-François MATTEI 
+02B Erone -> None:M. Jean-Claude ANGELI 
+02B Felce -> None:M. Jules BERENI 
+02B Lano -> None:M. Jérôme ANGELI 
+02B L'Ile-Rousse -> None:M. Jean-Joseph ALLEGRINI-SIMONETTI
+02B Mausoléo -> None:M. Jean-Christophe ANTONELLI 
+02B Olmeta-di-Capocorso -> None:Mme Françoise DRAGONI 
+02B Perelli -> None:Mme Annie-Suzette MASSONI 
+02B Piedipartino -> None:M. Claude Alain ALBERTINI 
+02B Pie-d'Orezza -> None:Mme Constance-Josette BACCARELLI EPSE PINELLI 
+02B Pietroso -> None:M. Jules-Pierre SISTI 
+02B Poggio-di-Venaco -> None:M. Jean-Marie OTTAVIANI 
+02B Quercitello -> None:M. Jean-Paul ORSONI 
+02B Rapaggio -> None:M. Stéphane ANZIANI 
+02B San-Damiano -> None:Mme Rose GIUDICELLI-SICURANI 
+02B Scata -> None:Mme Marie-France ALIBERTI 
+02B Valle-d'Alesani -> None:M. Antoine GRISONI 
+02B Verdèse -> None:M. Simon-Jean RAFFALLI 
+02B Volpajola -> None:M. André GRIMALDI 
+02B Zuani -> None:M. Ange CIANCIONI 
+030 Alès -> None:M. Max ROUSTAN
+030 Beauvoisin -> None:M. Guy SCHRAMM
+030 Campestre-et-Luc -> None:Mme Sandrine GENIEYZ 
+030 Corbès -> None:M. Richard MARTEL 
+030 Estézargues -> None:M. Bernard MAGGI 
+030 Laudun-l'Ardoise -> None:M. Philippe PECOUT
+030 Mauressargues -> None:Mme Florence LECLERC 
+030 Saint-Dionizy -> None:M. Gilles MONTILLET 
+030 Saint-Etienne-de-l'Olm -> None:M. Marc BRULÉ 
+030 Saint-Etienne-des-Sorts -> None:M. Thierry PEULET 
+030 Saint-Julien-de-la-Nef -> None:M. Gérard SALZE 
+030 Uzès -> None:M. Jean-Luc CHAPON
+031 Bachos -> None:M. Jean-Claude BERDOULAT 
+031 Balesta -> None:M. Lionel BERNIER 
+031 Baren -> None:Mme Michèle ARNAUD ÉPOUSE CABRAS 
+031 Bazus -> None:M. Serge FAVA 
+031 Benque-Dessous-et-Dessus -> None:M. Pierre TAJAN 
+031 Binos -> None:M. François PÉRIÉ 
+031 Blajan -> None:M. Antonin RUBIO 
+031 Cathervielle -> None:Mme Maryvonne CREIS SOULÉ 
+031 Cazaril-Laspènes -> None:Mme Sandra CAZCARRA 
+031 Cazaux-Layrisse -> None:M. Serge DESCAZAUX 
+031 Ciadoux -> None:M. Thierry TOUBERT 
+031 Fustignac -> None:Mme Nicole PIQUES 
+031 Goudex -> None:Mme Françoise POUGET 
+031 Lahitère -> None:M. René AUDOUBERT 
+031 Latour -> None:M. Olivier ROSSO 
+031 Lège -> None:M. Roger DELMAS 
+031 Lescuns -> None:Mme Carine GUILHOT 
+031 Liéoux -> None:Mme Corine PIQUEMAL 
+031 Mailholas -> None:M. Michel ANZALONE 
+031 Mascarville -> None:M. Alain ESPIGAT 
+031 Monès -> None:Mme Céline CAPELLE 
+031 Monestrol -> None:M. Gilbert ANTONY 
+031 Montastruc-de-Salies -> None:M. Bertrand LACARRERE 
+031 Montastruc-Savès -> None:Mme Mary-Claude VIGNAUX 
+031 Mont-de-Galié -> None:M. Bertrand THÉBÉ 
+031 Montgras -> None:Mme Isabelle ROGISTER 
+031 Montoulieu-Saint-Bernard -> None:M. Christophe GAILLARD 
+031 Nizan-Gesse -> None:M. Gilles SAUX 
+031 Proupiary -> None:M. Joël CASTIES 
+031 Prunet -> None:M. Jean-Pierre CROUZIL 
+031 Puysségur -> None:M. Roger LAGRANGE 
+031 Saccourvielle -> None:M. Alain GARCIA 
+031 Saint-Araille -> None:M. Francis SANCERRY 
+031 Saint-Elix-le-Château -> None:M. Alain AKA 
+031 Saint-Elix-Séglan -> None:M. Nicolas SUSPENE 
+031 Saint-Ferréol -> None:M. Guillaume BAJOU 
+031 Saint-Geniès-Bellevue -> None:M. Jacques MAZEAU
+031 Saint-Julien -> None:M. Patrick LEFEBVRE 
+031 Saint-Orens-de-Gameville -> None:Mme Dominique FAURE
+031 Saleich -> None:M. Daniel BILLAC 
+031 Sode -> None:M. Jean-Bertrand CHEZE 
+031 Toulouse -> None:M. Jean-Luc MOUDENC
+031 Urau -> None:M. Bruno FEUILLERAT 
+031 Vaux -> None:Mme Suzanne PERE 
+032 Armentieux -> None:Mme Josette PERES 
+032 Augnax -> None:M. Henri FRANÇOIS 
+032 Aussos -> None:Mme Christelle DERVAL 
+032 Bazian -> None:M. Patrick BERGES 
+032 Bellegarde-Adoulins -> None:M. Alain CHELAN 
+032 Escorneboeuf -> None:M. Christian DULONG 
+032 Estampes-Castelfranc -> None:M. Serge RICOURT 
+032 Mansencôme -> None:M. Alain DELSUS 
+032 Marseillan -> None:M. Michel RAFFIN 
+032 Mirepoix -> None:M. Stéphane GORSE 
+032 Monclar-d'Armagnac -> None:Mme Sophie DURANTHON 
+032 Mont-de-Marrast -> None:M. Alain HARELLE 
+032 Monties -> None:M. Jean-Pierre BOUAS 
+032 Mourède -> None:Mme Christine TOSIN 
+032 Pébées -> None:M. Bernard REVEL 
+032 Perchède -> None:M. André DAMINATO 
+032 Pouyloubrin -> None:M. Xavier LEVANNIER 
+032 Sabaillan -> None:Mme Nathalie ESTEBE 
+032 Sadeillan -> None:M. Jean-Pierre DASTUGUE 
+032 Saint-Avit-Frandat -> None:M. Christian CABALLE 
+032 Sainte-Aurence-Cazaux -> None:M. Florian BARTHE 
+032 Saint-Elix-d'Astarac -> None:M. Christophe VICEDO 
+032 Saint-Elix-Theux -> None:M. José SENAC 
+032 Saint-Loube-Amades -> None:M. Didier GROS JEAN 
+032 Sansan -> None:Mme Nadine ZANNET 
+032 Sauveterre -> None:M. Bernard CHANCHOLLE 
+032 Sauviac -> None:M. Gérard NIOLET 
+032 Tirent-Pontéjac -> None:M. Alain POURCET 
+032 Tudelle -> None:Mme Eliane GAVARRET 
+032 Verlus -> None:M. Lorin BOURGES 
+032 Villefranche-d'Astarac -> None:Mme Brigitte FORGUES 
+033 Biganos -> None:M. Bruno LAFON
+033 Bordeaux -> None:M. Alain JUPPÉ
+033 Bruges -> None:Mme Brigitte TERRAZA
+033 Etauliers -> None:M. Bernard LAVIE-CAMBOT
+033 Floirac -> None:M. Jean-Jacques PUYOBRAU
+033 Gironde-sur-Dropt -> gironde-sur-dropt@wanadoo.fr:None
+033 Labescau -> None:Mme Céline BONNIN 
+033 Lugon-et-l'Ile-du-Carnay -> None:M. Michel FROUIN
+033 Saint-Emilion -> None:M. Bernard LAURET
+033 Saint-Etienne-de-Lisse -> None:M. Jean-Baptiste REMY 
+033 Salleboeuf -> None:M. Marc AVINEN
+033 Yvrac -> None:M. Francis DANG
+034 Arboras -> None:M. Gilles NOCCA 
+034 Causses-et-Veyran -> None:Mme Françoise MAUREL 
+034 Fontès -> None:M. Dominique DONIS 
+034 Juvignac -> None:M. Jean-Luc SAVY
+034 Lavalette -> None:Mme Catherine BERTHOMIEU 
+034 Montpellier -> None:M. Philippe SAUREL
+034 Nézignan-l'Evêque -> None:Mme Marie France DESSENOIX
+034 Olmet-et-Villecun -> None:M. Kévin SEJOURNE 
+034 Saint-André-de-Sangonis -> None:M. Patrick LAMBOLEZ
+034 Saint-Etienne-d'Albagnan -> None:M. Marc TARBOURIECH 
+034 Saint-Etienne-de-Gourgas -> None:M. Roger CORROCHANO 
+034 Saint-Etienne-Estréchoux -> None:M. Mariem OULD DERWICH 
+034 Saint-Jean-de-Fos -> None:M. Franck VIDAL
+034 Sète -> None:M. François COMMEINHES
+034 Valmascle -> None:Mme Myriam RAUNIER 
+035 Acigné -> None:M. Olivier DEHAESE
+035 Amanlis -> None:M. Loïc GODET
+035 Andouillé-Neuville -> None:M. Gérard CANTO 
+035 Antrain -> None:M. Sébastien NAHON
+035 Arbrissel -> None:M. Thomas BARDY 
+035 Argentré-du-Plessis -> None:M. Daniel BAUSSON
+035 Aubigné -> None:M. Dominique CHAMPALAUNE 
+035 Availles-sur-Seiche -> None:Mme Brigitte ROBERT 
+035 Baguer-Morvan -> None:M. Jean-Paul ERARD
+035 Baguer-Pican -> None:M. Armel LAUNAY
+035 Baillé -> None:M. Arnaud JUHEL 
+035 Bain-de-Bretagne -> None:M. Yves THEBAULT
+035 Bains-sur-Oust -> None:M. Marc DERVAL
+035 Bais -> None:Mme Nathalie CLOUET
+035 Balazé -> None:Mme Maryanick MEHAIGNERIE
+035 Baulon -> None:M. Jean-Paul RIU
+035 Bazouges-la-Pérouse -> None:M. François DURET
+035 Beaucé -> None:M. Jean-Louis LAGREE
+035 Bécherel -> None:M. Gaël LE LOSTEC 
+035 Bédée -> None:M. Joseph THEBAULT
+035 Betton -> None:M. Michel GAUTIER
+035 Billé -> None:M. Daniel BALLUAIS
+035 Bléruais -> None:Mme Angélique HUET 
+035 Boisgervilly -> None:M. Bernard PIEDVACHE
+035 Boistrudan -> None:M. Laurent DESMOTS 
+035 Bonnemain -> None:M. Loïc LEBRET
+035 Bourgbarré -> None:M. Didier NOUYOU
+035 Bourg-des-Comptes -> None:M. Christian LEPRETRE
+035 Bovel -> None:M. Christian DE SALLIER 
+035 Bréal-sous-Montfort -> None:M. Bernard ETHORE
+035 Bréal-sous-Vitré -> None:Mme Pascale CARTRON 
+035 Brécé -> None:M. Jean-Paul GERARD
+035 Breteil -> None:M. Joseph LE LEZ
+035 Brielles -> None:M. Christophe QUINTIN 
+035 Brie -> None:Mme Maryvonne GUENE 
+035 Broualan -> None:M. André DAVY 
+035 Bruc-sur-Aff -> None:M. Yann TONNELIER 
+035 Bruz -> None:M. Auguste LOUAPRE
+035 Campel -> None:M. Régis JUTEL 
+035 Cancale -> None:M. Pierre-Yves MAHIEU
+035 Cardroc -> None:M. Justin VASSAL 
+035 Cesson-Sévigné -> None:M. Albert PLOUHINEC
+035 Champeaux -> None:M. Gérard PAQUET 
+035 Chancé -> None:M. Sébastien MARION 
+035 Chanteloup -> None:M. Vincent MINIER
+035 Chantepie -> None:M. Grégoire LE BLOND
+035 Chartres-de-Bretagne -> None:M. Philippe BONNIN
+035 Chasné-sur-Illet -> None:M. Guy VASNIER
+035 Châteaubourg -> None:M. Teddy REGNIER
+035 Châteaugiron -> None:Mme Françoise GATEL
+035 Châteauneuf-d'Ille-et-Vilaine -> None:M. Joël MASSERON
+035 Châtillon-en-Vendelais -> None:M. Jean-Yves TALIGOT
+035 Chauvigné -> None:M. LoÏC BONDIGUEL 
+035 Chavagne -> None:M. André CROCQ
+035 Chelun -> None:M. Romain LAISNE 
+035 Cherrueix -> None:M. Jean-Luc BOURGEAUX
+035 Chevaigné -> None:M. Gilles NICOLAS
+035 Cintré -> None:M. jacques RUELLO
+035 Clayes -> None:M. RONAN LE GARREC 
+035 Coësmes -> None:M. LUC GALLARD
+035 Coglès -> None:Mme Edith POMMEREUL 
+035 Comblessac -> None:M. Jean-Pierre FEVRIER 
+035 Combourg -> None:M. Joël LE BESCO
+035 Combourtillé -> None:Mme Sophie BACQUET 
+035 Cornillé -> None:M. Pascal GRANDGIRARD 
+035 Corps-Nuds -> None:M. Alain PRIGENT
+035 Crévin -> None:M. Daniel GENDROT
+035 Cuguen -> None:M. David JANNIN 
+035 Dinard -> None:Mme Martine CRAVEIA
+035 Dingé -> None:M. Bertrand GUILLEMER
+035 Dol-de-Bretagne -> None:M. Denis RAPINEL
+035 Domagné -> None:M. Bernard RENOU
+035 Domalain -> None:M. Christian OLIVIER
+035 Domloup -> None:M. Jacky LECHABLE
+035 Dompierre-du-Chemin -> None:M. Joël MAUPILLE 
+035 Dourdain -> None:M. Gérard ORY
+035 Drouges -> None:M. Jean-Claude PIPARD 
+035 Eancé -> None:Mme Gisèle GESLIN 
+035 Epiniac -> None:Mme Sophie TRUFFLET
+035 Erbrée -> None:M. Pierre BILLOT
+035 Ercé-en-Lamée -> None:M. Patrick DERVAL
+035 Ercé-près-Liffré -> None:M. Régis HAMARD
+035 Essé -> None:M. Joseph GESLIN
+035 Etrelles -> None:Mme Marie-Christine MORICE
+035 Feins -> None:M. Jean-Pierre ROBERT 
+035 Fleurigné -> None:Mme Monique POMMEREUL
+035 Forges-la-Forêt -> None:Mme Jeanine RENAULT 
+035 Fougères -> None:M. Louis FEUVRIER
+035 Gaël -> None:M. Alain LOHAT
+035 Gahard -> None:M. Patrick BESNARD
+035 Gennes-sur-Seiche -> None:Mme Myriam JÉBY 
+035 Gévezé -> None:M. Jean-Claude ROUAULT
+035 Gosné -> None:M. Philippe FAVARON
+035 Goven -> None:M. Philippe GOURRONC
+035 Grand-Fougeray -> None:M. Alain DAVID
+035 Guichen -> None:M. Joël SIELLER
+035 Guignen -> None:M. Joseph LETOURNEL
+035 Guipel -> None:M. François DECERGY
+035 Guipry -> None:M. Bernard BOULAIS
+035 Hédé-Bazouges -> None:M. Jean-Christophe BENIS
+035 Hirel -> None:M. Frédéric DERRIEN
+035 Iffendic -> None:M. Christophe MARTINS
+035 Irodouër -> None:M. Hervé DE LA FOREST
+035 Janzé -> None:M. Hubert PARIS
+035 Javené -> None:M. Bernard DELAUNAY
+035 Laignelet -> None:M. André PHILIPOT
+035 Laillé -> None:M. Pascal HERVE
+035 Lalleu -> None:M. Thierry LASSALLE 
+035 Landavran -> None:Mme Brigitte BEAUGENDRE 
+035 Landéan -> None:M. Louis-Gérard GUERIN
+035 Landujan -> None:M. Gilbert POULNAIS 
+035 Langan -> None:M. Aymeric BERTRAND 
+035 Langon -> None:M. Michel RENOUL
+035 Langouet -> None:Mme Christine LECLERC 
+035 Lanhélin -> None:M. Patrice VIGOUR 
+035 Lanrigan -> None:M. Eric DELAUNE 
+035 Lassy -> None:M. Didier LE CHENECHAL
+035 Lécousse -> None:M. Bernard MARBOEUF
+035 L'Hermitage -> None:M. André CHOUAN
+035 Lieuron -> None:M. Olivier BALARD 
+035 Liffré -> None:M. Loïg CHESNAIS-GIRARD
+035 Lillemer -> None:Mme Nathalie KRIEGER 
+035 Livré-sur-Changeon -> None:M. Emmanuel FRAUD
+035 Lohéac -> None:M. Arnaud CHOTARD 
+035 Longaulnay -> None:M. Dominique ROUAULT 
+035 Lourmais -> None:M. Michel GAUTIER 
+035 Loutehel -> None:Mme Pascale GUILLEMAIN 
+035 Louvigné-de-Bais -> None:Mme Marie-Noëlle RENAULT
+035 Louvigné-du-Désert -> None:M. Jean-Pierre OGER
+035 Luitré -> None:M. Michel BALLUAIS
+035 Marcillé-Raoul -> None:M. Alain BOUÉ 
+035 Marcillé-Robert -> None:Mme Colette CADOT 
+035 Marpiré -> None:M. Auguste FAUVEL
+035 Martigné-Ferchaud -> None:M. Pierre JEGU
+035 Maure-de-Bretagne -> None:M. Michel CHIRON
+035 Maxent -> None:M. Henri DORANLO
+035 Mecé -> None:Mme Laurence DARIDAN 
+035 Médréac -> None:M. Jean-Claude OMNES
+035 Meillac -> None:M. Michel PONCELET
+035 Melesse -> None:M. Claude JAOUEN
+035 Mellé -> None:M. Pierre GUERIN 
+035 Mernel -> None:M. Jean Yves INIZAN
+035 Messac -> None:M. Thierry BEAUJOUAN
+035 Mézières-sur-Couesnon -> None:Mme Nolwenn PRIOUL
+035 Miniac-Morvan -> None:M. Dominique LOUVEL
+035 Miniac-sous-Bécherel -> None:Mme Patricia MAURAIS 
+035 Mondevert -> None:M. Jean-Christophe SMATI 
+035 Montauban-de-Bretagne -> None:M. Serge JALU
+035 Montautour -> None:M. David CHEMINANT 
+035 Mont-Dol -> None:Mme Marie-Elisabeth SOLIER
+035 Monterfil -> None:M. Michel DUAULT
+035 Montfort-sur-Meu -> None:Mme Delphine DAVID
+035 Montgermont -> None:Mme Brigitte LE MEN
+035 Monthault -> None:M. Jean-François NIVLET 
+035 Montours -> None:M. Jean MALAPERT
+035 Montreuil-des-Landes -> None:M. Georges BERHAULT 
+035 Montreuil-le-Gast -> None:M. Jean-Yves BILLON
+035 Montreuil-sous-Pérouse -> None:M. Louis MENAGER
+035 Montreuil-sur-Ille -> None:M. Yvon TAILLARD
+035 Mordelles -> None:M. Thierry LE BIHAN
+035 Mouazé -> None:M. Thierry LUCAS
+035 Moulins -> None:M. Dominique GREGOIRE 
+035 Moussé -> None:Mme Sophie HUNAULT 
+035 Moutiers -> None:M. Yves COLAS 
+035 Muel -> None:Mme Anne-Marie MORICE 
+035 Nouvoitou -> None:M. Jean-Marc LEGAGNEUR
+035 Noyal-Châtillon-sur-Seiche -> None:M. Gilles DE BEL AIR
+035 Noyal-sous-Bazouges -> None:M. Bertrand MALLET 
+035 Noyal-sur-Vilaine -> None:Mme Marielle MURET-BAUDOIN
+035 Orgères -> None:M. Daniel DEIN
+035 Ossé -> None:M. Joseph MENARD
+035 Pacé -> None:M. Paul KERDRAON
+035 Paimpont -> None:M. Alain LEFEUVRE
+035 Pancé -> None:M. Jean-Marie PRINCEN
+035 Parcé -> None:M. Patrice CHEVALLIER 
+035 Parigné -> None:M. Maurice JANVIER
+035 Parthenay-de-Bretagne -> None:M. Jacky SAVIN
+035 Pipriac -> None:M. Marcel BOUVIER
+035 Piré-sur-Seiche -> None:M. Dominique DENIEUL
+035 Pléchâtel -> None:M. Eric BOURASSEAU
+035 Pleine-Fougères -> None:M. Louis THEBAULT
+035 Plélan-le-Grand -> None:M. Laurent PEYRÈGNE
+035 Plerguer -> None:M. Jean-Luc BEAUDOIN
+035 Plesder -> None:Mme Jocelyne BRYON 
+035 Pleugueneuc -> None:M. Pascal EGAULT
+035 Pleumeleuc -> None:Mme Patricia COUSIN
+035 Pleurtuit -> None:M. Alain LAUNAY
+035 Pocé-les-Bois -> None:M. Frédéric MARTIN
+035 Poilley -> None:M. Gérard BARBEDETTE 
+035 Poligné -> None:M. Guy RINFRAY
+035 Pont-Péan -> None:M. Jean-Luc GAUDIN
+035 Princé -> None:M. Frédéric FAUCHEUX 
+035 Québriac -> None:M. Jacques BORDE
+035 Quédillac -> None:M. Hubert LORAND
+035 Rannée -> None:M. Gérard CHOPIN
+035 Redon -> None:M. Pascal DUCHENE
+035 Renac -> None:Mme Stéphanie PARIS 
+035 Rennes -> None:Mme Nathalie APPÉRÉ
+035 Retiers -> None:M. Thierry RESTIF
+035 Rimou -> None:M. Olivier DELEURME 
+035 Romagné -> None:M. Pierre GAUTIER
+035 Romazy -> None:M. Arnaud PARENT 
+035 Romillé -> None:Mme Marie-Hélène DAUCÉ
+035 Roz-Landrieux -> None:Mme Marie-Pierre MARTIN
+035 Roz-sur-Couesnon -> None:M. Christophe FAMBON
+035 Sains -> None:Mme Sabrina GUIILLARD 
+035 Saint-Armel -> None:M. Pierric HOUSSEL
+035 Saint-Aubin-d'Aubigné -> None:M. Jacques RICHARD
+035 Saint-Aubin-des-Landes -> None:M. Vincent DESILLE 
+035 Saint-Aubin-du-Cormier -> None:M. Jérôme BEGASSE
+035 Saint-Aubin-du-Pavail -> None:Mme Séverine MAYEUX 
+035 Saint-Benoît-des-Ondes -> None:M. Gérard BAUDRY
+035 Saint-Briac-sur-Mer -> None:M. Vincent DENBY WILKES
+035 Saint-Brice-en-Coglès -> None:M. Louis DUBREIL
+035 Saint-Brieuc-des-Iffs -> None:Mme Priscille DU MERLE 
+035 Saint-Broladre -> None:M. Guy VIDELOUP
+035 Saint-Christophe-des-Bois -> None:M. Jeanick CHEMIN 
+035 Saint-Christophe-de-Valains -> None:M. Gérald MEZZAFONTE 
+035 Saint-Coulomb -> None:M. Loïc LEVILLAIN
+035 Saint-Didier -> None:M. Vincent HERBERT
+035 Saint-Domineuc -> None:M. Benoît SOHIER
+035 Sainte-Anne-sur-Vilaine -> None:M. Michel DOLO
+035 Sainte-Colombe -> None:M. Guillaume GASTEL 
+035 Sainte-Marie -> None:Mme Françoise BOUSSEKEY
+035 Saint-Erblon -> None:M. Hervé LETORT
+035 Saint-Etienne-en-Coglès -> None:M. Luc GARNIER
+035 Saint-Ganton -> None:Mme Stéphanie HERVE 
+035 Saint-Georges-de-Chesné -> None:M. Dominique FROC 
+035 Saint-Georges-de-Gréhaigne -> None:M. Eric GUENARD 
+035 Saint-Georges-de-Reintembault -> None:Mme Marie-Claire BOUCHER
+035 Saint-Germain-du-Pinel -> None:M. Erick GESLIN 
+035 Saint-Germain-en-Coglès -> None:M. Amand ROGER
+035 Saint-Germain-sur-Ille -> None:M. Alain BARON 
+035 Saint-Gilles -> None:M. Philippe THEBAULT
+035 Saint-Gondran -> None:M. Yannick LARIVIERE-GILLET 
+035 Saint-Gonlay -> None:M. Yvon LEMOINE 
+035 Saint-Grégoire -> None:M. Pierre BRETEAU
+035 Saint-Guinoux -> None:M. Pascal SIMON 
+035 Saint-Hilaire-des-Landes -> None:M. David ALEXANDRE 
+035 Saint-Jacques-de-la-Lande -> None:M. Emmanuel COUET
+035 Saint-Jean-sur-Couesnon -> None:M. Pierre PRODHOMME
+035 Saint-Jean-sur-Vilaine -> None:M. Marc FAUVEL
+035 Saint-Jouan-des-Guérets -> None:M. Luc COUAPEL
+035 Saint-Just -> None:M. Nicolas DEBRAY
+035 Saint-Léger-des-Prés -> None:Mme Joëla HOGUET ÉPOUSE GRIFFON 
+035 Saint-Lunaire -> None:M. Michel PENHOUET
+035 Saint-Malo-de-Phily -> None:M. Patrick PABOEUF 
+035 Saint-Malo -> None:M. Claude RENOULT
+035 Saint-Malon-sur-Mel -> None:Mme Sylvie CHEVILLARD 
+035 Saint-Marcan -> None:Mme Marine THIEURMEL 
+035 Saint-Marc-le-Blanc -> None:M. Alain BESNIER
+035 Saint-Marc-sur-Couesnon -> None:M. Christophe PEGNE 
+035 Saint-Maugan -> None:M. Stéphane GALBOIS 
+035 Saint-Médard-sur-Ille -> None:M. Lionel VAN AERTRYCK
+035 Saint-Méen-le-Grand -> None:M. Pierre GUITTON
+035 Saint-Méloir-des-Ondes -> None:M. René BERNARD
+035 Saint-M'Hervé -> None:M. Dominique KERJOUAN
+035 Saint-M'Hervon -> None:M. Loïc UDIN 
+035 Saint-Onen-la-Chapelle -> None:M. Louis BOHANNE
+035 Saint-Ouen-des-Alleux -> None:M. Yves ROPERT
+035 Saint-Ouen-la-Rouërie -> None:M. Philippe LEFEUVRE 
+035 Saint-Péran -> None:M. Bernard BAREL 
+035 Saint-Père -> None:M. Jean-Francis RICHEUX
+035 Saint-Pern -> None:Mme Mireille LEVACHER 
+035 Saint-Pierre-de-Plesguen -> None:M. Robert MONNIER
+035 Saint-Rémy-du-Plain -> None:Mme Christelle ROCHELLE 
+035 Saint-Sauveur-des-Landes -> None:M. Jean-Pierre HARDY
+035 Saint-Séglin -> None:Mme Marie-Thérèse MONVOISIN 
+035 Saint-Senoux -> None:M. Jean-Pierre CORMIER
+035 Saint-Suliac -> None:M. Rémy BOUVET 
+035 Saint-Sulpice-des-Landes -> None:Mme Christiane CHOPIN 
+035 Saint-Sulpice-la-Forêt -> None:M. Didier DUPERRIN
+035 Saint-Symphorien -> None:M. Nicolas POLET 
+035 Saint-Thual -> None:M. Roger SARCIAUX 
+035 Saint-Thurial -> None:M. Auguste THÉSÉE
+035 Saint-Uniac -> None:M. Eric LE BLANC 
+035 Saulnières -> None:M. Franck DENIEL 
+035 Sens-de-Bretagne -> None:M. Yves COLOMBEL
+035 Servon-sur-Vilaine -> None:M. joseph JAN
+035 Sixt-sur-Aff -> None:M. René RIAUD
+035 Sougéal -> None:M. Jean-Yves LEFRANÇOIS 
+035 Taillis -> None:Mme Marie-Françoise VERGER
+035 Talensac -> None:M. Armand BOHUON
+035 Teillay -> None:M. Yvon MELLET
+035 Thorigné-Fouillard -> None:M. Jean-Jacques BERNARD
+035 Thourie -> None:Mme Dominique LEGROS 
+035 Tinténiac -> None:M. Louis ROCHEFORT
+035 Torcé -> None:M. Yannick FOUET
+035 Trans-la-Forêt -> None:M. Adolphe BENOIST 
+035 Treffendel -> None:Mme Françoise KERGUELEN
+035 Tremblay -> None:Mme Brigitte MARIAU
+035 Trémeheuc -> None:Mme Martine HERVE 
+035 Tresboeuf -> None:Mme Annie MOUTEL
+035 Tressé -> None:M. Jean-Yves CHARTIER 
+035 Trévérien -> None:M. René SAUDRAIS 
+035 Trimer -> None:M. Christophe BAOT 
+035 Val-d'Izé -> None:M. Thierry TRAVERS
+035 Vendel -> None:M. Ludovic DANKO 
+035 Vergéal -> None:Mme Myriam GEORGEAULT 
+035 Vern-sur-Seiche -> None:M. Didier MOYON
+035 Vezin-le-Coquet -> None:M. Jean ROUDAUT
+035 Vieux-Viel -> None:M. Gérard DUFEU 
+035 Vieux-Vy-sur-Couesnon -> None:M. Joël HARDY
+035 Vignoc -> None:M. Jean LE GALL
+035 Villamée -> None:Mme Céline BESNARD 
+035 Visseiche -> None:Mme Sonia DIOT 
+035 Vitré -> None:M. Pierre MEHAIGNERIE
+036 Badecon-le-Pin -> None:M. François BROGGI 
+036 Ceaulmont -> None:Mme Agnès CHION 
+036 Ecueillé -> None:M. Jean AUFRERE
+036 Eguzon-Chantôme -> None:M. Michel FIDON
+036 Etrechet -> None:M. Pierre-Alexandre PRIME 
+036 Obterre -> None:M. Florent TAILLY 
+036 Sazeray -> None:M. Laurent BLINET 
+036 Vendoeuvres -> None:M. Christophe VANDAELE
+037 Avoine -> None:M. Didier GODOY
+037 Chaveignes -> None:M. Eric NAVARRE 
+037 Epeigné-les-Bois -> None:M. Philippe GALLET 
+037 Epeigné-sur-Dême -> None:M. Rodolphe DURAND 
+037 L'Ile-Bouchard -> None:Mme Valérie BOUCHAUD - VIOLLEAU
+037 Saint-Avertin -> None:M. Jean-Gérard PAUMIER
+037 Saint-Epain -> None:M. Serge LECOMTE
+037 Saint-Etienne-de-Chigny -> None:M. Patrick CHALON
+037 Saint-Hippolyte -> None:M. Hervé CHAPU 
+037 Saint-Nicolas-des-Motets -> None:M. Frédéric BIZIEUX 
+038 Allemont -> None:M. Laurent PELLISSIER 
+038 Ambel -> None:Mme Eliane TIERI 
+038 Châlons -> None:Mme Danielle PUPAT 
+038 Charvieu-Chavagneux -> None:M. Gérard DEZEMPTE
+038 Echirolles -> None:M. Renzo SULLI
+038 Estrablin -> None:M. Sylvain LAIGNEL
+038 Grenoble -> None:M. Eric PIOLLE
+038 Malleval -> None:M. Clément TREMOULHEAC 
+038 Meyrié -> None:M. Eugène REY
+038 Meyrieu-les-Etangs -> None:Mme Brigitte BOYET 
+038 Meyssiès -> None:M. Patrice RUOL 
+038 Miribel-les-Echelles -> None:M. Gilles PERIER-MUZET
+038 Moirans -> None:M. Gérard SIMONET
+038 Notre-Dame-de-Vaux -> None:M. Jean-Louis LEON 
+038 Pont-Evêque -> None:Mme Martine FAITA
+038 Saint-Baudille-de-la-Tour -> None:M. Martial BONNAVENT 
+038 Saint-Cassien -> None:M. Guy GUILMEAU
+038 Saint-Christophe-en-Oisans -> None:M. Jean-Paul TURC 
+038 Saint-Egrève -> None:Mme Catherine KAMOWSKI
+038 Saint-Etienne-de-Crossey -> None:M. Jean-François GAUJOUR
+038 Saint-Etienne-de-Saint-Geoirs -> None:M. Yannick NEUDER
+038 Saint-Jean-de-Soudain -> None:M. Frédéric CAPPE
+038 Saint-Marcellin -> None:M. Jean-Michel REVOL
+038 Seyssinet-Pariset -> None:M. Marcel REPELLIN
+038 Sousville -> None:M. Ludovic MOURARD 
+038 Villard-Notre-Dame -> None:M. Thierry BRUN 
+038 Voiron -> None:M. Julien POLAT
+039 Abergement-lès-Thésy -> None:M. Jacques GIROD 
+039 Bief-du-Fourg -> None:M. Ludovic RAICHON 
+039 Bretenières -> None:Mme Manuelle LAMBOLEY 
+039 Chemenot -> None:Mme Angéline CUSEY 
+039 Chemilla -> None:Mme Aurélie GROS 
+039 Chêne-Sec -> None:M. Pierre CHANOIS 
+039 Communailles-en-Montagne -> None:Mme Marie-Paule SCHENCK 
+039 Dramelay -> None:M. Jean-François DURY 
+039 Eclans-Nenon -> None:Mme Virginie POIGEAUT 
+039 Ecleux -> None:M. Jean-Luc BAURAND 
+039 Ecrille -> None:M. Alain JULIEN 
+039 Equevillon -> None:Mme Sandrine METTEZ 
+039 Etival -> None:M. Charles LOCATELLI 
+039 Etrepigney -> None:M. Frédéric BREGAND 
+039 Evans -> None:M. Eric QUANTIN 
+039 Fétigny -> None:M. Alain BOROD 
+039 Fort-du-Plasne -> None:Mme Catherine CHABROLLE 
+039 Francheville -> None:M. Franck BONJOUR 
+039 Germigney -> None:M. Emmanuel OGIER 
+039 Lombard -> None:M. Jean-Philippe BOURDY 
+039 Marnézia -> None:M. Roland DEGRACE 
+039 Menétru-le-Vignoble -> None:M. Jean-Noël BAILLY 
+039 Mérona -> None:M. Alain DE MERONA 
+039 Molain -> None:M. Stéphane BIGNON 
+039 Monay -> None:Mme Claudine ENARD 
+039 Montmarlon -> None:M. Michaël BENETRUY 
+039 Rix-Trebief -> None:M. Steve CUYNET 
+039 Saint-Jean-d'Etreux -> None:Mme Amandine GRANDGIRARD 
+039 Séligney -> None:M. Jean-Marie GAIRE 
+039 Val-d'Epy -> None:M. Michel GANNEVAL 
+039 Varessia -> None:M. Jean-Pierre JACQUIER 
+039 Vernantois -> None:M. Gerard GIONO 
+039 Vers-sous-Sellières -> None:M. Jean-Louis BRULEBOIS 
+039 Vulvoz -> None:M. Sylvain WALTERSPIELER 
+040 Biaudos -> None:Mme Elise GUILLAUME 
+040 Boos -> None:Mme Gaelle ETCHESSAHAR 
+040 Gourbera -> None:M. Jean-François DUSSARAT 
+040 Larrivière -> None:M. Jean-Luc LAMOTHE 
+040 Onesse-et-Laharie -> None:M. Sébastien MENAUT 
+040 Saint-Etienne-d'Orthe -> None:M. Julien CAZAUX 
+040 Saint-Sever -> None:M. Arnaud TAUZIN
+041 Blois -> None:M. Marc GRICOURT
+041 Epiais -> None:M. Stéphane COYAU 
+041 Epuisay -> None:Mme Ghislaine CHAUDEMANCHE 
+041 Saint-Etienne-des-Guérets -> None:Mme Nicole ROCHE 
+041 Villefrancoeur -> None:M. Michaël BOULAY 
+042 Chamboeuf -> None:M. André CHARBONNIER
+042 Châtelus -> chatelus.mairie@wanadoo.fr:None
+042 Cherier -> None:Mme Isabelle COUAVOUX 
+042 Ecoche -> None:Mme Nelly DUBOUIS 
+042 Ecotay-l'Olme -> None:M. Pierre BAYLE
+042 Epercieux-Saint-Paul -> None:M. Patrick CHAUSSE 
+042 L'Etrat -> None:M. Yves MORAND
+042 Sainte-Agathe-en-Donzy -> None:M. Robert QUERAT 
+042 Saint-Etienne-le-Molard -> None:Mme Linda MOLLON 
+042 Saint-Etienne -> None:M. Gaël PERDRIAU
+042 Saint-Pierre-de-Boeuf -> None:M. Serge RAULT
+042 Saint-Priest-la-Vêtre -> None:M. Paul PERICHON 
+042 Sury-le-Comtal -> None:M. Yves MARTIN
+043 Beaux -> None:M. Christophe BOISSELY 
+043 Couteuges -> None:M. Alain BESSON 
+043 Frugères-les-Mines -> None:Mme Audrey DELORT 
+043 Lavaudieu -> None:M. Patrick BERTIN 
+043 Malvières -> None:M. René ROUX 
+043 Mercoeur -> None:Mme Aurélie LASHERMES 
+043 Saint-Christophe-d'Allier -> None:M. Pascal BOUGE 
+043 Saint-Etienne-du-Vigan -> None:M. Aurélien TEYSSIER 
+043 Saint-Etienne-Lardeyrol -> None:Mme Jocelyne BRUN 
+043 Saint-Etienne-sur-Blesle -> None:M. Lionel VERDURON 
+043 Saint-Jean-de-Nay -> None:M. Andre AMBERT 
+043 Sanssac-l'Eglise -> None:M. Jean FAYARD
+043 Vals-le-Chastel -> None:M. Yves MAZAL 
+044 Bonnoeuvre -> None:M. Guy BLAIZE 
+044 Bouaye -> None:M. Jacques GARREAU
+044 Carquefou -> None:Mme Véronique DUBETTIER-GRENIER
+044 Mauves-sur-Loire -> None:M. Patrick VRIGNAUD
+044 Paimboeuf -> None:Mme Marguerite LUSSAUD
+044 Sainte-Luce-sur-Loire -> None:M. Jean-Guy ALIX
+044 Saint-Etienne-de-Mer-Morte -> None:M. Jean GILET
+044 Saint-Etienne-de-Montluc -> None:M. Rémy NICOLEAU
+044 Saint-Nazaire -> None:M. David SAMZUN
+045 Boësse -> None:M. Bruno AUDEBERT 
+045 Boisseaux -> None:M. Ludovic DRAPPIER 
+045 Cernoy-en-Berry -> None:M. Rodolphe DUROZIER 
+045 Chapelon -> None:M. Pascal DAIRE 
+045 Desmont -> None:M. Hervé CARRIER 
+045 Echilleuses -> None:M. Patrick LEGROS 
+045 Egry -> None:M. Jean-Louis DUJARDIN 
+045 Epieds-en-Beauce -> None:M. Christian GAUCHARD
+045 Ferrières -> None:M. Gérard LARCHERON
+045 Pannecières -> None:M. Laurent GITTON 
+045 Pannes -> None:M. Dominique LAURENT
+045 Rosoy-le-Vieil -> None:Mme Christiane FRÈRE 
+045 Rouvray-Sainte-Croix -> None:M. Jean-Claude TICOT 
+045 Rouvres-Saint-Jean -> None:M. Gilles DESFORGES 
+045 Saint-Brisson-sur-Loire -> None:M. Cédric CHAUVETTE
+045 Saint-Jean-le-Blanc -> None:M. Christian BOIS
+045 Treilles-en-Gâtinais -> None:M. Laurent ROGER 
+046 Albiac -> None:M. Alain ROUGIE 
+046 Cahors -> None:M. Jean-Marc VAYSSOUZE-FAURE
+046 Cardaillac -> None:M. Emmanuel LASCOUT 
+046 Cézac -> None:M. Lilian GIRMA 
+046 Laroque-des-Arcs -> None:M. Yann LE PALLEC 
+046 Mechmont -> None:Mme Annie GILLIG 
+046 Nadillac -> nadillac2@wanadoo.fr:None
+046 Puyjourdes -> None:Mme Chantal MOYANO 
+046 Puy-l'Evêque -> None:M. Serge GUERIN
+046 Saint-Cyprien -> None:Mme Nathalie LOUBEJAC 
+046 Saint-Paul-de-Loubressac -> None:M. Alain GIRMA 
+046 Valroufié -> None:Mme Marie-José TORTAJADA 
+047 Casteljaloux -> None:M. Jean-Claude GUENIN
+047 Grateloup -> None:M. Julien CARNIR 
+047 Lasserre -> None:M. Serge PERES 
+047 Puysserampion -> None:M. Gérald BORDIN 
+047 Sainte-Colombe-de-Villeneuve -> None:M. Daniel GRUELLES 
+047 Saint-Etienne-de-Fougères -> None:M. Pierre LABORDE 
+047 Saint-Etienne-de-Villeréal -> None:M. Serge BATAILLÉ 
+047 Tombeboeuf -> None:M. Bernard DE NARDI 
+048 Cheylard-l'Evêque -> None:M. Bruno BAUCHET 
+048 Cubiérettes -> None:M. André TIRADO 
+048 Fraissinet-de-Fourques -> None:Mme Marie CLEMENT 
+048 Marchastel -> None:M. Nicolas BOISSONNADE 
+048 Saint-André-de-Lancize -> None:M. Hervé COUDERC 
+048 Sainte-Eulalie -> None:M. Roger COMTE 
+048 Saint-Etienne-du-Valdonnez -> None:M. Jean-François CHABERT 
+048 Saint-Etienne-Vallée-Française -> None:Mme Jennifer GRANDON 
+048 Saint-Hilaire-de-Lavit -> None:Mme Colette CHAMARD 
+048 Saint-Léger-du-Malzieu -> None:M. Ludovic JAFFUEL 
+049 Bourg-l'Evêque -> None:Mme Isabelle RISS 
+049 Cantenay-Epinard -> None:M. Marc CAILLEAU
+049 Echemiré -> None:M. Philippe CHAUZAIN 
+049 Ecouflant -> None:M. Denis CHIMIER
+049 Ecuillé -> None:Mme Maria DANIEL 
+049 Epieds -> None:Mme Marie-Christine DELHOUMEAU 
+049 Etriché -> None:Mme Régine BRICHET
+049 Saint-Christophe-la-Couperie -> None:M. Bernard CLEMOT 
+049 Soeurdres -> None:Mme Carole PETITHOMME 
+050 Angoville-au-Plain -> None:M. Pascal SOURDIN 
+050 Audouville-la-Hubert -> None:Mme Geneviève LECONTE-NOËL 
+050 Aumeville-Lestre -> None:M. Guillaume LELERRE 
+050 Auvers -> None:M. Bertrand LEGASTELOIS 
+050 Auxais -> None:M. Antoine MARIE 
+050 Beauficel -> None:Mme Liliane PAIGNON 
+050 Beuvrigny -> None:M. Cyril FAUVEL 
+050 Blosville -> None:M. Sébastien EUSTACE 
+050 Brainville -> None:M. Michel LEMIERE 
+050 Brectouville -> None:M. Sébastien MEERT 
+050 Chavoy -> None:M. Eric BOISIVON 
+050 Courtils -> None:M. Guy POLFLIET 
+050 Dangy -> None:M. Yvon LEPRIEUR 
+050 Ecausseville -> None:Mme Catherine AZE 
+050 Ecoquenéauville -> None:M. Joël MARTIN 
+050 Eculleville -> None:M. Gilbert ANDRE 
+050 Emondeville -> None:M. Jean-Yves LEPETIT 
+050 Equeurdreville-Hainneville -> None:M. Bernard CAUVIN
+050 Equilly -> None:M. Patrick LELIGNY 
+050 Eroudeville -> None:Mme Roselyne RENOUF 
+050 Etienville -> None:Mme Sylvie MOUCHEL 
+050 Gouvets -> None:Mme Frédérique YONNET 
+050 Granville -> None:Mme Dominique BAUDRY
+050 Hémevez -> None:Mme Nathalie LEMONNIER 
+050 Hiesville -> None:Mme Agnès BOUFFARD 
+050 Lapenty -> None:M. Jany CHANCE 
+050 L'Etang-Bertrand -> None:M. Jean-René LECHATREUX 
+050 Macey -> None:Mme Anne-Lesley ALDERSLEY 
+050 Montrabot -> None:M. Jean-Pierre MARIE 
+050 Morsalines -> None:Mme Véronique ENQUEBECQ 
+050 Neuville-au-Plain -> None:M. Christian DESSOLIERS 
+050 Neuville-en-Beaumont -> None:Mme Odette FALAIZE 
+050 Octeville-l'Avenel -> None:M. Bernard LEVIGOUREUX 
+050 Pirou -> None:Mme Noelle LEFORESTIER
+050 Reigneville-Bocage -> None:Mme Sonia CHOJNACKI 
+050 Saint-André-de-l'Epine -> None:M. Loic LECORNU 
+050 Saint-Ebremond-de-Bonfossé -> None:Mme Delphine LEFORESTIER 
+050 Sainte-Mère-Eglise -> None:M. Jean QUETIER
+050 Saint-Hilaire-du-Harcouët -> None:M. Gilbert BADIOU
+050 Saint-Laurent-de-Terregatte -> None:Mme Bernadette DUPARD 
+050 Saint-Lô -> None:M. François BRIÈRE
+050 Saint-Pierre-Eglise -> None:M. Rémy SALLEY
+050 Saint-Vigor-des-Monts -> None:Mme Sabrina GESNOUIN 
+050 Sortosville -> None:M. Jacques LEVÉZIEL 
+050 Taillepied -> None:M. Lionel VAUTIER 
+050 Tourlaville -> None:M. Gilbert LEPOITTEVIN
+050 Urville -> None:M. Pascal GUILBERT 
+050 Videcosville -> None:M. Philippe LE PETIT 
+051 Aougny -> None:M. Aymeric POUGNIET 
+051 Argers -> None:Mme Amélie BOSSUS 
+051 Aubilly -> None:M. Bernard THIERY 
+051 Baconnes -> None:M. Nicolas DELAHAYE 
+051 Bannay -> None:M. Jérôme CURFS 
+051 Bannes -> None:M. Thierry CHARPENTIER 
+051 Baslieux-lès-Fismes -> None:M. Frédéric DEFAUT 
+051 Belval-en-Argonne -> None:M. Alain BERTRAND 
+051 Bettancourt-la-Longue -> None:M. Patrick DIDIER 
+051 Bouleuse -> None:M. Philippe MELOTTE 
+051 Brandonvillers -> None:Mme Christelle GIRONDE 
+051 Braux-Sainte-Cohière -> None:Mme Nadia DOCHY 
+051 Broussy-le-Petit -> None:M. Nicolas COUTENCEAU 
+051 Bussy-le-Château -> None:Mme Fabienne VASSEUR 
+051 Cernay-en-Dormois -> None:Mme Isabel PASCUAL 
+051 Cernay-lès-Reims -> None:M. Patrick BEDEK
+051 Châlons-en-Champagne -> None:M. Benoist APPARU
+051 Champlat-et-Boujacourt -> None:M. Laurent COUVREUR 
+051 Cheppes-la-Prairie -> None:Mme Alison ARNOULD 
+051 Clamanges -> None:Mme Nathalie COULMIER 
+051 Cormoyeux -> None:M. Mathieu FANIEL 
+051 Courcemain -> None:M. Eric WARGNIEZ 
+051 Courlandon -> None:Mme Cathy BEURRIER 
+051 Courthiézy -> None:Mme Carole CHARLES 
+051 Cuisles -> None:M. Valentin BONSANT 
+051 Dampierre-le-Château -> None:M. Maxime DAUSSEUR 
+051 Dommartin-Dampierre -> None:M. Michel SAUVAGEOT 
+051 Dommartin-sous-Hans -> None:M. Fabien VAROQUIER 
+051 Eclaires -> None:M. Régis LAGARDE 
+051 Ecollemont -> None:M. Eric GAUDIN 
+051 Ecriennes -> None:M. Max LARCHER 
+051 Ecueil -> None:Mme Annie PERRARD 
+051 Ecury-le-Repos -> None:Mme Dominique GILMERT 
+051 Ecury-sur-Coole -> None:M. Arnaud MATHIOTTE 
+051 Elise-Daucourt -> None:M. Pierre DE WAELE 
+051 Epense -> None:M. Joël THOMAS 
+051 Epernay -> None:M. Franck LEROY
+051 Epoye -> None:M. Christophe CAPRON 
+051 Etoges -> None:M. Thibaut COYARD 
+051 Etréchy -> None:M. Sébastien THIEL 
+051 Etrepy -> None:M. Julien NICOLE 
+051 Euvy -> None:Mme Anne DUMENIL 
+051 Fontaine-en-Dormois -> None:M. Denis LABBE 
+051 Granges-sur-Aube -> None:Mme Angélique BRIER 
+051 Heiltz-l'Evêque -> None:Mme Christelle ROSETTE 
+051 Humbauville -> None:M. Aurélien PETIT 
+051 Joiselle -> None:M. Gérard AMON 
+051 Laval-sur-Tourbe -> None:Mme Odile HUVET 
+051 L'Epine -> None:M. Samuel LAGILLE 
+051 Lhéry -> None:M. Olivier LAMOTTE 
+051 Linthes -> None:Mme Sandrine PIERRE 
+051 Maffrécourt -> None:Mme Magali PINOT 
+051 Malmy -> None:Mme Peggy CARRIERE 
+051 Marfaux -> None:Mme Valerie KREIN 
+051 Margerie-Hancourt -> None:Mme Michelle GEOFFROY 
+051 Marigny -> None:M. Aurélien LEPAGE 
+051 Marsangis -> None:Mme Annie LEBRUN 
+051 Massiges -> None:M. Jean-Claude MICHEL 
+051 Matignicourt-Goncourt -> None:M. Michel CHATELOT 
+051 Minaucourt-le-Mesnil-lès-Hurlus -> None:Mme Chantal ZENTNER 
+051 Moeurs-Verdey -> None:M. Claude POUZIER 
+051 Moiremont -> None:Mme Martine CHABANIER 
+051 Norrois -> None:M. Remy FOUGEROUSE 
+051 OEuilly -> None:M. Daniel LEBEAU 
+051 Ognes -> None:M. Romain POIREL 
+051 Olizy -> None:M. Jacky CHOPIN 
+051 Poilly -> None:M. Jean-Christophe LETOFFE 
+051 Queudes -> None:M. Jean-Louis LEROY 
+051 Rapsécourt -> None:Mme Marie-Hélène CHEVALIER 
+051 Romigny -> None:M. Pierre AUDURENQ 
+051 Rouffy -> None:M. Sébastien MEUNIER 
+051 Rouvroy-Ripont -> None:M. Luc BAGNOLI 
+051 Saint-Bon -> None:M. Didier THIERCELIN 
+051 Saint-Etienne-au-Temple -> None:M. Emmanuel BONAFOUS 
+051 Saint-Etienne-sur-Suippe -> None:M. Jérôme CLERGÉ 
+051 Saint-Jean-sur-Tourbe -> None:M. José SEVESTRE 
+051 Saint-Loup -> None:M. Xavier ROUYER 
+051 Saint-Lumier-la-Populeuse -> None:M. Gérard GAVEL 
+051 Saint-Mard-sur-Auve -> None:M. Roger MOSSER 
+051 Saint-Ouen-Domprot -> None:M. Rudy ROYER 
+051 Saint-Quentin-les-Marais -> None:Mme Alexia BARBOSA 
+051 Saint-Quentin-le-Verger -> None:M. François SEURAT 
+051 Saint-Quentin-sur-Coole -> None:M. Anthony JEANSON 
+051 Saint-Remy-sous-Broyes -> None:M. Sébastien DOS SANTOS 
+051 Saint-Saturnin -> None:Mme Fernande DAVESNE 
+051 Servon-Melzicourt -> None:Mme Laetitia PONCELET 
+051 Sivry-Ante -> None:M. Bruno BORTOLOMIOL 
+051 Somme-Bionne -> None:M. Jean-Claude GAUDON 
+051 Soulières -> None:M. Jacques DIERYCKXVISSCHERS 
+051 Thaas -> None:M. Jeannick DAVESNE 
+051 Togny-aux-Boeufs -> None:M. Michel JACQUET 
+051 Valmy -> None:M. Claude BARTHE 
+051 Vandeuil -> None:M. François MOURRA 
+051 Vauciennes -> None:M. Jean-Claude LANZLOTH 
+051 Vavray-le-Petit -> None:M. Michel GILLOT 
+051 Venteuil -> None:M. Patrick MARX 
+051 Vernancourt -> None:M. Jonathan THIBAULT 
+051 Vienne-le-Château -> None:M. Frédéric RISSER 
+051 Ville-en-Tardenois -> None:Mme Sandrine PUPPINI 
+051 Villeneuve-Saint-Vistre-et-Villevotte -> None:M. William NOBLET 
+051 Villers-aux-Noeuds -> None:M. Loïc BROCHET 
+051 Ville-sur-Tourbe -> None:M. Stéphane DUHAL 
+051 Virginy -> None:M. Philippe BEAUDET 
+051 Vouarces -> None:M. Georges LANCELOT 
+052 Aigremont -> None:Mme Geneviève LEFAIVRE 
+052 Aingoulaincourt -> None:M. Baptiste DAVID 
+052 Aizanville -> None:Mme Sabrina CHARROY ODOT 
+052 Ambonville -> None:M. François LESEUR 
+052 Anrosey -> None:M. Robert BILLON 
+052 Aujeurres -> None:Mme Anita BOURRIER 
+052 Aulnoy-sur-Aube -> None:M. Bernard ODIN 
+052 Autigny-le-Petit -> None:M. Jean-Marc HURAUX 
+052 Bailly-aux-Forges -> None:M. Franck MIROUEL-CHAUCHARD 
+052 Beurville -> None:Mme Béatrice GRAF 
+052 Bourg-Sainte-Marie -> None:M. Hubert VOILLEMONT 
+052 Bouzancourt -> None:M. Eric LEFEBVRE 
+052 Chambroncourt -> None:M. Gérard MILLOT 
+052 Charmes-en-l'Angle -> None:Mme Louisa ATMANI 
+052 Chatenay-Mâcheron -> None:M. Luc LEFEBVRE 
+052 Chatenay-Vaudin -> None:Mme Marie-Hélène BOUSQUET 
+052 Chézeaux -> None:M. Serge BARMOY 
+052 Choiseul -> None:Mme Christine RATTE 
+052 Cirey-sur-Blaise -> None:Mme Trinidad IGLESIAS 
+052 Coiffy-le-Bas -> None:M. Jean THENARD 
+052 Colombey-les-Deux-Eglises -> None:M. Pascal BABOUOT 
+052 Consigny -> None:M. JEAN-PIERRE DIMEY 
+052 Cour-l'Evêque -> None:M. Dominique GUILLAUME 
+052 Cuves -> None:M. Francis BOILLETOT 
+052 Daillancourt -> None:M. Bernard CHAPPUIS 
+052 Dommartin-le-Saint-Père -> None:M. Michel MARTINOT 
+052 Doncourt-sur-Meuse -> None:M. Pascal COURTY 
+052 Echenay -> None:Mme Martine BARON ROBERT 
+052 Eclaron-Braucourt-Sainte-Livière -> None:M. JEAN-YVES MARIN
+052 Ecot-la-Combe -> None:M. Jean-Paul LEGROS 
+052 Enfonvelle -> None:M. Philippe HENRY 
+052 Epizon -> None:M. Olivier MATHEY 
+052 Euffigneix -> None:M. Serge BERTRAND 
+052 Farincourt -> None:M. Thierry JAPIOT 
+052 Fays -> None:M. Benoît DECHAUX 
+052 Ferrière-et-Lafolie -> None:Mme Elisabeth ANDOUARD 
+052 Frampas -> None:Mme Aurelie THIRIOT 
+052 Germaines -> None:M. Ronald RONDEAU 
+052 Germisay -> None:M. Gilles CHARLES 
+052 Gillaumé -> None:M. Gregory BRUNEEL 
+052 Grandchamp -> None:None
+052 Hâcourt -> None:M. André DUFOUR 
+052 Humberville -> None:M. Patrick BIAGI 
+052 Lavilleneuve-au-roi -> None:M. Patrice PENSEE 
+052 Leurville -> None:M. Steve LAHAYE 
+052 Levécourt -> None:Mme Monique CHARLET 
+052 Magneux -> None:M. Serge DUFANT 
+052 Maizières -> None:M. Julien EQUI 
+052 Marcilly-en-Bassigny -> None:M. Frédéric BLANC 
+052 Mennouveaux -> None:Mme Catherine SAUVAGE 
+052 Millières -> None:Mme Sophie COQUIN 
+052 Montreuil-sur-Blaise -> None:M. Manuel HERNANDEZ 
+052 Morionvilliers -> None:M. René MOUROT 
+052 Neuilly-l'Evêque -> None:M. Patrice KONARSKI 
+052 Noidant-Chatenoy -> None:Mme Virginie PAPON 
+052 Noyers -> None:Mme Michelle THÉVENY 
+052 Orbigny-au-Val -> None:M. Daniel BLANCHARD 
+052 Orcevaux -> None:M. Benoit COLLIN 
+052 Ormoy-lès-Sexfontaines -> None:Mme Marie-Thérèse DORE 
+052 Ozières -> None:M. René REMY 
+052 Palaiseul -> None:Mme Monique CAMUS 
+052 Pancey -> None:M. Philippe DELBÉ 
+052 Perrogney-les-Fontaines -> None:M. Benoît DÉZÉ 
+052 Plesnoy -> None:Mme Huguette TRASPADINI - COMBES 
+052 Rachecourt-sur-Marne -> None:M. Cyril SCARCELLI 
+052 Rachecourt-Suzémont -> None:M. Michel JOLY 
+052 Rangecourt -> None:M. Stéphane BELOUET 
+052 Reynel -> None:M. Aurélien ROUTIER 
+052 Richebourg -> None:M. François GARNIER 
+052 Rochefort-sur-la-Côte -> None:M. Jean-Paul KIHM 
+052 Romain-sur-Meuse -> None:M. Sandro BELLORTI 
+052 Rouécourt -> None:Mme Françoise NEMARD 
+052 Rouelles -> None:M. Roland MIELLE 
+052 Sailly -> None:Mme Elodie FADEL 
+052 Saint-Broingt-le-Bois -> None:M. Claude PELOTTE 
+052 Saulles -> None:M. Christophe HUTINET 
+052 Sommerécourt -> None:M. JEAN-LUC THOUVENIN 
+052 Tremilly -> None:Mme Adeline VIELHOMME 
+052 Velles -> None:M. Francis MARTIN 
+052 Verseilles-le-Haut -> None:M. Lionel BLANCHOT 
+052 Violot -> None:M. Eric CLAUDON 
+052 Vroncourt-la-Côte -> None:Mme Evelyne BOURCELOT 
+053 Beaumont-Pied-de-Boeuf -> None:M. Emmanuel ECHIVARD 
+053 Deux-Evailles -> None:Mme Sidonie GRASSIN 
+053 Epineux-le-Seguin -> None:M. Mickaël DUBOIS 
+053 Evron -> None:M. Joël BALANDRAUD
+053 Livré -> None:M. Philippe CHANCEREL 
+053 Saint-Léger-en-charnie -> None:M. Franck HUCHET 
+053 Thuboeuf -> None:M. Yannick COSNEAU 
+054 Ansauville -> None:Mme Nathalie COLLIN 
+054 Autrey-sur-Madon -> None:Mme Patricia ANTOINE 
+054 Avillers -> None:M. Philippe SAILLET 
+054 Bainville-aux-Miroirs -> None:M. Jean-Pierre PETITJEAN 
+054 Barisey-la-Côte -> None:M. Pascal CHRISTOPHE 
+054 Battigny -> None:M. Jean-Yves OUDOT 
+054 Beuvezin -> None:M. Jean-Paul NOUE 
+054 Bezange-la-Grande -> None:M. Laurent MASSEL 
+054 Boucq -> None:Mme Marie-Christine BARNIER 
+054 Bouillonville -> None:M. Maxime FATRE 
+054 Bratte -> None:M. Francis GRIETTE 
+054 Coincourt -> None:M. Charles LEGEAY 
+054 Crézilles -> None:Mme Rachel RICHARD 
+054 Ecrouves -> None:M. Jean-Robert GORCE
+054 Epiez-sur-Chiers -> None:Mme Delphine BREDA 
+054 Eply -> None:M. Michael GODEFROY 
+054 Essey-et-Maizerais -> None:Mme Pascale DEFAUX 
+054 Etreval -> None:Mme Ghislaine VALIN 
+054 Favières -> None:Mme Marie-Louise HARALAMBON 
+054 Fraisnes-en-Saintois -> None:M. Michel PULTIER 
+054 Gibeaumeix -> None:M. Thierry COLIN 
+054 Giriviller -> None:M. Olivier SIMON 
+054 Gogney -> None:M. Marcel VUILLAUME 
+054 Griscourt -> None:M. Jean-Paul MARCHAL 
+054 Gugney -> None:M. Florian CILLA 
+054 Han-Devant-Pierrepont -> None:M. Thierry DAMGÉ 
+054 Homécourt -> None:M. Jean-Pierre MINELLA
+054 Jarny -> None:M. Jacky ZANARDO
+054 Jeandelize -> None:M. François WAGNER 
+054 Joeuf -> None:M. André CORZANI
+054 Laloeuf -> None:M. Philippe SCHUMACKER 
+054 Landécourt -> None:M. Jean-Marie PETIT 
+054 Laxou -> None:M. Laurent GARCIA
+054 Leménil-Mitry -> None:Mme Nicole CHARROIS 
+054 Malzéville -> None:M. Bertrand KLING
+054 Martincourt -> None:M. Patrice POIREL 
+054 Merviller -> None:M. Bernard BLAISE 
+054 Mont-l'Etroit -> None:M. Domenico LUZI 
+054 Nancy -> None:M. Laurent HÉNART
+054 Othe -> None:Mme Véronique CASAVECCHIA 
+054 Petit-Failly -> None:Mme Thérèse HAUTECOUVERTURE 
+054 Saint-Clément -> None:M. Christian PILLE 
+054 Saint-Jean-lès-Longuyon -> None:M. Patrice ROSSILLION 
+054 Saint-Nicolas-de-Port -> None:M. Luc BINSINGER
+054 Tramont-Emy -> None:Mme Michèle HOFFEMANN DIDELOT 
+054 Vandoeuvre-lès-Nancy -> None:M. Stéphane HABLOT
+054 Villey-Saint-Etienne -> None:M. Jean-Pierre COUTEAU
+054 Vittonville -> None:M. Boris THEILMANN 
+055 Amel-sur-l'Etang -> None:M. Christian TOUSSAINT 
+055 Autrécourt-sur-Aire -> None:M. Serge FLÉCHEUX 
+055 Avillers-Sainte-Croix -> None:Mme Marie-Hélène KLEIN 
+055 Avocourt -> None:M. Maxime DROUET 
+055 Azannes-et-Soumazannes -> None:M. Jacques NADAL 
+055 Baulny -> None:Mme Annie BOILEAU 
+055 Belrain -> None:M. Sébastien CHARUEL 
+055 Béthincourt -> None:M. Yann PARISE 
+055 Billy-sous-Mangiennes -> None:Mme Alicia GILLET 
+055 Blanzée -> None:M. Claude BROYART 
+055 Boinville-en-Woëvre -> None:M. Sébastien GANIER 
+055 Boureuilles -> None:Mme Denise HERBILLON 
+055 Brizeaux -> None:M. Cyril CHARLES 
+055 Chaumont-devant-Damvillers -> None:Mme Annie ARDOUIN 
+055 Chaumont-sur-Aire -> None:Mme Karine PATRIS 
+055 Cierges-sous-Montfaucon -> None:M. Médéric MARIE 
+055 Cléry-Grand -> None:M. Gerard NENIN 
+055 Cléry-Petit -> None:M. Vincent LELORRAIN 
+055 Combres-sous-les-Côtes -> None:Mme Sylvie PIEDFER 
+055 Courcelles-sur-Aire -> None:Mme Pascale ZEHR 
+055 Cuisy -> None:M. Christian HAUSSARD 
+055 Culey -> None:M. Didier GUEGUEN 
+055 Cunel -> None:M. Daniel SIBILLE 
+055 Delut -> None:M. Marcel ROSQUIN 
+055 Dombras -> None:M. Daniel IGIER 
+055 Dommartin-la-Montagne -> None:Mme Emilie BETHOUART 
+055 Doncourt-aux-Templiers -> None:Mme Christiane BERNARD 
+055 Duzey -> None:M. Dominique GOBERT 
+055 Ecouviez -> None:Mme Marie-Andrée FREDERICK-NOEL 
+055 Ecurey-en-Verdunois -> None:Mme Laura BRION 
+055 Epiez-sur-Meuse -> None:Mme Mauricette HENRION 
+055 Epinonville -> None:M. Roger COOK 
+055 Erize-la-Brûlée -> None:Mme Maryline GERARD 
+055 Erize-la-Petite -> None:M. Yannick PEZET 
+055 Erize-Saint-Dizier -> None:M. Luc CHAVRELLE 
+055 Etain -> None:M. Jean PICART
+055 Eton -> None:M. Patrice GIRELLI 
+055 Etraye -> None:M. Cyrille GLORY 
+055 Evres -> None:Mme Elisabeth GERARD 
+055 Flassigny -> None:M. Daniel CHAUMONT 
+055 Foucaucourt-sur-Thabas -> None:M. Bernard GEMINEL 
+055 Frémeréville-sous-les-Côtes -> None:M. Sébastien BERTHELON 
+055 Froidos -> None:M. Laurent JOSA 
+055 Gimécourt -> None:M. Jean-Pierre GOUJON 
+055 Girauvoisin -> None:Mme Evelyne DULEY 
+055 Gremilly -> None:M. Bernard GAUDE 
+055 Gussainville -> None:M. Michel DE SOUSA 
+055 Koeur-la-Grande -> None:M. Damien BERTHAUD 
+055 Koeur-la-Petite -> None:M. Olivier SCHUMAKER 
+055 Lignières-sur-Aire -> None:Mme Anne-Laure LECLERC 
+055 Lissey -> None:M. Bertrand LE FRANCOIS 
+055 Loisey -> None:Mme Nathalie MUSSET 
+055 Maizeray -> None:M. Gérard CASTELLANI 
+055 Mandres-en-Barrois -> None:M. René LABAT 
+055 Manheulles -> None:M. Bernard BERTOUT 
+055 Mogeville -> None:M. Emeric HABLOT 
+055 Montigny-devant-Sassey -> None:M. Olivier MATHIEU 
+055 Neuville-en-Verdunois -> None:M. Olivier GUILLAUME 
+055 Ornes -> None:Mme Florence AMAGLIO 
+055 Peuvillers -> None:M. Philippe NIVELET 
+055 Pouilly-sur-Meuse -> None:Mme Edith MERCIER 
+055 Pretz-en-Argonne -> None:M. Thierry RAMAND 
+055 Remoiville -> None:M. Laurent DESTREMONT 
+055 Riaville -> None:M. Jean-François MANGIN 
+055 Saint-Aubin-sur-Aire -> None:M. Jean-Claude HATARD 
+055 Saint-Pierrevillers -> None:M. Jean-Marie MISSLER 
+055 Saulmory-et-Villefranche -> None:M. Alain REMY 
+055 Saulx-lès-Champlon -> None:M. Fabrice LAMBERT 
+055 Senoncourt-les-Maujouy -> None:M. Ludovic SCHMITT 
+055 Verneuil-Grand -> None:M. Christophe MAERTENS 
+055 Véry -> None:M. Sylvain ARCHAMBEAUX 
+055 Ville-devant-Chaumont -> None:Mme Bernadette SUSEK 
+055 Villers-lès-Mangiennes -> None:M. Daniel MACEL 
+055 Villotte-sur-Aire -> None:M. Michel VARNUSSON 
+055 Vilosnes-Haraumont -> None:M. José HOUPE 
+055 Waly -> None:M. Florian LEHERLE 
+055 Willeroncourt -> None:M. Michel CALVO 
+056 Etel -> None:M. Guy HERCEND
+056 Evriguet -> None:M. Nicolas POUSSIN 
+056 Hoedic -> None:M. Philippe LE PALMEC 
+056 Ile-aux-Moines -> None:M. Régis TALHOUARNE 
+056 Ile-d'Arz -> None:Mme Marie-Hélène STEPHANY 
+056 Languidic -> None:Mme Patricia KERJOUAN
+056 Lorient -> None:M. Norbert METAIRIE
+056 Pont-Scorff -> None:M. Pierrik NEVANNEN
+056 Saint-Servant-sur-Oust -> None:Mme Catherine OLLIVE 
+057 Achain -> None:M. Benoît HUMBERT 
+057 Ars-sur-Moselle -> None:M. Bruno VALDEVIT
+057 Attilloncourt -> None:M. Claude THIEBAUT 
+057 Beyren-lès-Sierck -> None:Mme Bénédicte MARQUET 
+057 Bickenholtz -> None:M. Gilles VOZELLE 
+057 Blanche-Eglise -> None:M. Antoine BETTING 
+057 Blies-Ebersing -> None:M. Francis MULLER 
+057 Bréhain -> None:M. Frédéric CONVERSET 
+057 Burlioncourt -> None:M. François RICATTE 
+057 Charleville-sous-Bois -> None:M. Jean-Noël PINCK 
+057 Château-Bréhain -> None:M. Martial COLASSE 
+057 Cutting -> None:M. Jean Louis GOUASDON 
+057 Danne-et-Quatre-Vents -> None:M. Fabrice SANTIAGO 
+057 Desseling -> None:Mme Alexandra KRUCH 
+057 Ebersviller -> None:Mme Gaelle CHALAL 
+057 Eblange -> None:M. Frederic NOEL 
+057 Eguelshardt -> None:M. Emile EITEL 
+057 Evrange -> None:M. Sébastien FARAUD 
+057 Fonteny -> None:M. Marcel PERNET 
+057 Frémestroff -> None:M. Joël RACAT 
+057 Gerbécourt -> None:M. Pascal MARC 
+057 Guébestroff -> None:Mme Isabelle AMANN 
+057 Guessling-Hémering -> None:M. Rémy FRANCK 
+057 Haspelschiedt -> None:Mme Nathalie FOUILLOT 
+057 Hermelange -> None:M. Alain BOUVAREL 
+057 Kemplich -> None:Mme Sandrine DESBOEUFS 
+057 Koenigsmacker -> None:M. Pierre ZENNER
+057 Longeville-lès-Metz -> None:M. Alain CHAPELAIN
+057 Maizery -> None:M. Romain LOOSLI 
+057 Menskirch -> None:M. Gérard MULLER 
+057 Metz -> None:M. Dominique GROS
+057 Moulins-lès-Metz -> None:M. Jean BAUCHEZ
+057 OEting -> None:M. Bernard LAPP
+057 Pévange -> None:M. Fernand HAMANT 
+057 Puttigny -> None:M. André WINTERSTEIN 
+057 Rolbing -> None:Mme Audrey ZAHM 
+057 Roussy-le-Village -> None:M. Benoit STEINMETZ
+057 Russange -> None:M. Gilbert KAISER
+057 Salonnes -> None:Mme Isabelle LÉONARD 
+057 Sanry-sur-Nied -> None:M. Bernard KREBS 
+057 Schoeneck -> None:M. Paul FELLINGER
+057 Silly-en-Saulnois -> None:M. Kévin HENRION 
+057 Vasperviller -> None:Mme Jocelyne BARTOLIK 
+057 Villers-sur-Nied -> None:Mme Gisèle FOULÉ 
+057 Voelfling-lès-Bouzonville -> None:M. Hervé OBERLENDER 
+057 Wintersbourg -> None:M. Jean-Claude BIER 
+057 Woelfling-lès-Sarreguemines -> None:M. Thierry WENDLING 
+057 Wuisse -> None:M. Olivier NOTIN 
+057 Xanrey -> None:M. Bernard PLIGOT 
+057 Zoufftgen -> None:M. Michel PAQUET 
+058 Asnois -> None:M. Maurice LEYGLENE 
+058 Béard -> None:M. Alexis PAUTRAT 
+058 Château-Chinon(Campagne) -> None:M. Nicolas GODARD 
+058 Château-Chinon(Ville) -> None:M. Henri MALCOIFFE
+058 Marigny-l'Eglise -> None:Mme Marie-Thérèse GARNIER 
+058 Moissy-Moulinot -> None:M. Sylvain DEGRAEVE 
+058 Nevers -> None:M. Denis THURIOT
+058 Rémilly -> None:M. Didier DAUTELOUP 
+058 Saint-Eloi -> None:M. Robert DUCREUX
+058 Saint-Firmin -> None:Mme Laurence BRILLANT 
+058 Saint-Malo-en-Donziois -> None:Mme Louisette COIGNET 
+058 Saint-Ouen-sur-Loire -> None:M. Pascal DEFOSSE 
+058 Sardy-lès-Epiry -> None:Mme Pascale JAMIN 
+058 Sémelay -> None:M. Michel JUDAS 
+059 Annoeullin -> None:M. Philippe PARSY
+059 Aulnoye-Aymeries -> None:M. Bernard BAUDOUX
+059 Beaurain -> None:M. Denis SEMAILLE 
+059 Bray-Dunes -> None:Mme Catherine VERLYNDE
+059 Caudry -> None:M. Guy BRICOUT
+059 Condé-sur-l'Escaut -> None:M. Grégory LELONG
+059 Crèvecoeur-sur-l'Escaut -> None:M. Gilbert DRAIN 
+059 Croix -> None:M. Régis CAUCHE
+059 Dehéries -> None:Mme France BOUTRY 
+059 Denain -> None:Mme Anne-Lise DUFOUR-TONINI
+059 Dunkerque -> None:M. Patrice VERGRIETE
+059 Ecaillon -> None:M. Jacques PEREIRA
+059 Eclaibes -> None:M. Jean-Pierre GERARD 
+059 Ecuélin -> None:Mme Danielle TROCLET 
+059 Elesmes -> None:M. Antoine CHARLET 
+059 Elincourt -> None:Mme Valérie FALEMPIN 
+059 Emerchicourt -> None:M. Régis ROUSSEL 
+059 Escaudoeuvres -> None:M. Patrice EGO
+059 Etroeungt -> None:M. José PRISSETTE
+059 Forest-sur-Marque -> None:Mme Marie-Thérèse PINCEDE
+059 Goeulzin -> None:M. Denis LAMY
+059 Houplin-Ancoisne -> None:M. Jean CRESPEL
+059 Lambersart -> None:M. Marc-Philippe DAUBRESSE
+059 Lille -> None:Mme Martine AUBRY
+059 Limont-Fontaine -> None:Mme Annouck VALLIN 
+059 Marcq-en-Baroeul -> None:M. Bernard GERARD
+059 Maubeuge -> None:M. Arnaud DECAGNY
+059 Mecquignies -> None:Mme Graziella MER 
+059 Moeuvres -> None:M. Aurelien HNATYSZYN 
+059 Monchaux-sur-Ecaillon -> None:M. Bernard DE MEYER 
+059 Monchecourt -> None:M. Jean SAVARY
+059 Mons-en-Baroeul -> None:M. Rudy ELEGEEST
+059 Nivelle -> None:M. Jacques DUBOIS
+059 Obies -> None:Mme Anne BON 
+059 Paillencourt -> None:Mme Didier LEROUX 
+059 Petite-Forêt -> None:M. Marc BURY
+059 Reumont -> None:M. Jean-Marie COLLERY 
+059 Roeulx -> None:M. Charles LEMOINE
+059 Saint-Martin-sur-Ecaillon -> None:M. Bernard DORCHI 
+059 Staple -> None:M. Michel HUYGHE 
+059 Thun-l'Evêque -> None:M. Yves HASDENTEUFEL 
+059 Tourcoing -> None:M. Gérald DARMANIN
+059 Vendegies-sur-Ecaillon -> None:Mme Annie FAURE
+059 Villeneuve-d'Ascq -> None:M. Gérard CAUDRON
+060 Baboeuf -> None:Mme Marie-Claude DESCHAMPS 
+060 Belle-Eglise -> None:M. Alain FRANÇAIS 
+060 Braisnes -> None:M. René BALITOUT 
+060 Briot -> None:M. Laurent PRUVOST 
+060 Buicourt -> None:M. Ludovic BRETON 
+060 Canny-sur-Thérain -> None:Mme Yamina VAUTIER 
+060 Catheux -> None:M. Nicolas NORTIER 
+060 Catigny -> None:Mme Christelle LEFEBVRE 
+060 Chiry-Ourscamps -> None:M. Jean-François GOUT
+060 Compiègne -> None:M. Philippe MARINI
+060 Crèvecoeur-le-Grand -> None:M. André COËT
+060 Crèvecoeur-le-Petit -> None:Mme Jeannine OPSOMER 
+060 Croissy-sur-Celle -> None:M. Thierry PORTOIS 
+060 Ecuvilly -> None:M. Didier CLERMONT 
+060 Elencourt -> None:M. Stéphane HERVIEU 
+060 Elincourt-Sainte-Marguerite -> None:M. Benoît ROUILLY 
+060 Eméville -> None:M. Florent PIERRON 
+060 Enencourt-Léage -> None:Mme Maria NEELS 
+060 Enencourt-le-Sec -> None:M. Christophe BARREAU 
+060 Epineuse -> None:M. Manuel DA SILVA 
+060 Eragny-sur-Epte -> None:Mme Sophie PICARD 
+060 Etavigny -> None:Mme Delphine HOFFMANN 
+060 Etouy -> None:M. Arnaud LEFEVRE 
+060 Eve -> None:M. Laurent STOUFFLET 
+060 Evricourt -> None:Mme Colette DRUX 
+060 Fay-les-Etangs -> None:M. Michel GARNIER 
+060 Feigneux -> None:Mme Véronique CAVALETTI 
+060 Fléchy -> None:M. Jean-Christophe VITTE 
+060 Fresnières -> None:Mme Emilie DE CLERCQ 
+060 Frétoy-le-Château -> None:Mme Alia HENINE 
+060 Glatigny -> None:M. Vincent YVER 
+060 Hainvillers -> None:M. Yves FLON 
+060 Hautbos -> None:M. Yvon PUISSANT 
+060 Haute-Epine -> None:M. Gérard DOUVILLE 
+060 Hodenc-l'Evêque -> None:M. Frédéric GOURSAT 
+060 Lachaussée-du-Bois-d'Ecu -> None:M. Bruno GRUEL 
+060 Maisoncelle-Saint-Pierre -> None:M. Michel FONTAINE 
+060 Maisoncelle-Tuilerie -> None:M. Fabrice FLEURY 
+060 Monchy-Saint-Eloi -> None:M. Alain BOUCHER
+060 Montataire -> None:M. Jean-Pierre BOSINO
+060 Mont-l'Evêque -> None:Mme Michelle LOZANO 
+060 Omécourt -> None:M. François TRANCART 
+060 Pont-l'Evêque -> None:Mme Virginie ZORELLE 
+060 Saint-Etienne-Roilaye -> None:M. Jérémy MORINEAU 
+060 Saint-Martin-le-Noeud -> None:M. Philippe HENNEQUIN
+060 Sérévillers -> None:M. André DE WILDE 
+060 Troussures -> None:M. Patrick DOMANIECKI 
+060 Varinfroy -> None:Mme Catherine DENIS 
+060 Viefvillers -> None:M. Jean-Michel EMARD 
+060 Villers-Vermont -> None:Mme Lucette FREROT 
+060 Villers-Vicomte -> None:M. Rémy TERNISIEN 
+060 Vrocourt -> None:M. Pierre TOUPART 
+061 Cerisy-Belle-Etoile -> None:M. Hervé BORDERIE 
+061 Chandai -> None:M. Thierry LESOURD 
+061 Chaumont -> None:M. Vincent MOTTÉ 
+061 Coudehard -> None:M. Guy TESSIER 
+061 Crulai -> None:M. Gonzague DE GOUSSENCOURT 
+061 Echalou -> None:Mme Coralie BIGNON 
+061 Echauffour -> None:M. Yves MARIETTE 
+061 Ecorcei -> None:M. Philippe THOURET 
+061 Ecorches -> None:M. Thierry COUANON 
+061 Ecouché -> None:M. Jean-Pierre LATRON
+061 Francheville -> None:M. Patrice AURÉGAN 
+061 Fresnay-le-Samson -> None:Mme Christiane TURPIN 
+061 Godisson -> None:M. Jean-Charles DELABROISE 
+061 L'Epinay-le-Comte -> None:M. Félix GUESNON 
+061 Mardilly -> None:Mme Cathy PÉGARD 
+061 Marmouillé -> None:Mme Cécile DUVAL 
+061 Ménil-Hubert-en-Exmes -> None:Mme Liliane TOCQUEVILLE 
+061 Nécy -> None:M. Mickaël LHOMMET 
+061 Orville -> None:M. Jean MARIE 
+061 Putanges-Pont-Ecrepin -> None:M. Jacques MARTINEAU
+061 Saint-Didier-sous-Ecouves -> None:M. Sylvain LÉVEILLÉ 
+061 Saint-Germain-de-Martigny -> None:M. Edgard TAMANINI 
+061 Saint-Mars-d'Egrenne -> None:M. Julien DALIGAULT 
+061 Saint-Martin-d'Ecublei -> None:M. Bruno ROY 
+061 Saint-Michel-Tuboeuf -> None:Mme Noëlla LEMAÎTRE 
+061 Saint-Ouen-sur-Maire -> None:Mme Marie-Thérèse BRARD 
+061 Saint-Roch-sur-Egrenne -> None:Mme Marie LECHERBONNIER 
+061 Survie -> None:Mme Nathalie CHRÉTIEN 
+061 Valframbert -> None:M. Francis AÏVAR
+062 Avesnes-lès-Bapaume -> None:M. Bernard DOBOEUF 
+062 Avesnes -> None:M. Colin PAWLEY 
+062 Azincourt -> None:M. Eric DE CHABOT-TRAMECOURT 
+062 Bayenghem-lès-Eperlecques -> None:M. Benoît BECQUET 
+062 Beaudricourt -> None:M. Hubert DUHAUTOY 
+062 Beauvois -> None:M. Vincent LERICHE 
+062 Boisdinghem -> None:M. Olivier COLIN 
+062 Bréxent-Enocq -> None:M. Bernard ELOY 
+062 Bruay-la-Buissière -> None:M. Alain WACHEUX
+062 Buneville -> None:M. Philippe DERISBOURG 
+062 Canettemont -> None:M. Jean-Pierre LALART 
+062 Carvin -> None:M. Philippe KEMEL
+062 Caucourt -> None:Mme Dorothée DESCAMPS 
+062 Conteville-en-Ternois -> None:M. Cédric MALHEIRO 
+062 Coupelle-Vieille -> None:M. Abel HANOCQ 
+062 Courcelles-le-Comte -> None:M. Jean-Noël MENAGE 
+062 Couturelle -> None:M. Jean-Luc CORET 
+062 Coyecques -> None:M. Dany HUGUET 
+062 Dennebroeucq -> None:M. Christian CRUNELLE 
+062 Douchy-lès-Ayette -> None:M. Jean-Louis COURTY 
+062 Eclimeux -> None:M. Jean-Robert OSSART 
+062 Ecoivres -> None:Mme Nathalie ANDRIEUX 
+062 Ecourt-Saint-Quentin -> None:M. Stéphane TONELLE
+062 Ecoust-Saint-Mein -> None:M. Olivier HOUPLAIN 
+062 Ecuires -> None:Mme Christiane DEGARDIN 
+062 Ecurie -> None:M. Yves QUIGNON 
+062 Eleu-dit-Leauwette -> None:M. Alain BAVAY
+062 Eperlecques -> None:M. Laurent DENIS
+062 Epinoy -> None:M. Marc SARFATI 
+062 Equihen-Plage -> None:M. Christian FOURCROY
+062 Equirre -> None:M. Damien TROPÉE 
+062 Erin -> None:M. Jérôme WAVELET 
+062 Escoeuilles -> None:M. Christian LEROY 
+062 Etaing -> None:M. Thibaut DELAMAÏDE 
+062 Etaples -> None:M. Philippe FAIT
+062 Eterpigny -> None:M. Hervé DEPRET 
+062 Etrun -> None:M. Michel MATHISSART 
+062 Evin-Malmaison -> None:M. Daniel GOCZKOWSKI
+062 Famechon -> None:M. Jean-Michel HENQUENET 
+062 Feuchy -> None:M. Roger POTEZ
+062 Ficheux -> None:M. Bertrand CAFFIN 
+062 Fontaine-l'Etalon -> None:M. Jérémy CARLU 
+062 Framecourt -> None:M. Luc MERGEZ 
+062 Fresnoy -> None:M. Philippe DECOBERT 
+062 Gauchin-Verloingt -> None:M. Thierry FAUQUEMBERGUE 
+062 Grévillers -> None:Mme Frédérique LOISEAU 
+062 Haravesnes -> None:M. Philippe ARMAND 
+062 Hautecloque -> None:M. Michel DUCRAY 
+062 Hendecourt-lès-Ransart -> None:M. Nicolas DE DIESBACH 
+062 Héricourt -> None:M. Eric LIMANTOUR 
+062 Herlin-le-Sec -> None:M. Nicolas DIEVAL 
+062 Hézecques -> None:M. Christian CARON 
+062 Humeroeuille -> None:M. Gilbert PINCHON 
+062 Izel-lès-Equerchin -> None:M. Georges HOUZIAUX 
+062 Léchelle -> None:M. Gabriel TRANNIN 
+062 Liencourt -> None:Mme Christine EXMELIN 
+062 Ligny-Saint-Flochel -> None:M. Jérôme HELLIO 
+062 Loison-sous-Lens -> None:M. Daniel KRUSZKA
+062 Marant -> None:M. Denis BEAUVOIS 
+062 Maresville -> None:M. Maxime DELIANNE 
+062 Maroeuil -> None:M. Daniel DAMART
+062 Matringhem -> None:M. Clément PACAUX 
+062 Mingoval -> None:Mme Sidonie DURIEZ 
+062 Moncheaux-lès-Frévent -> None:M. Frédéric VASSEUR 
+062 Montreuil -> None:M. Charles BAREGE
+062 Mont-Saint-Eloi -> None:M. Ludovic BRIFFAUT
+062 Nabringhen -> None:M. Vincent HAMY 
+062 Neuve-Chapelle -> None:M. Ronald LIEVEN
+062 Neuville-Bourjonval -> None:Mme Bernadette DECOMBLE 
+062 Noeux-lès-Auxi -> None:M. Gilles BATTISTELLA 
+062 Noeux-les-Mines -> None:M. Serge MARCELLAK
+062 Nouvelle-Eglise -> None:M. Eric DRIEUX 
+062 Noyelles-lès-Humières -> None:M. Daniel FARDEL 
+062 Noyellette -> None:Mme Nadine VENDEVILLE 
+062 OEuf-en-Ternois -> None:M. Eric ROUSSEL 
+062 Pierremont -> None:M. Régis LOMBART 
+062 Quernes -> None:M. Eric CARPENTIER 
+062 Quoeux-Haut-Maînil -> None:M. Bernard BEZU 
+062 Roeux -> None:M. Eugène CITERNE
+062 Rumilly -> None:Mme Corinne LAMORT 
+062 Saint-Denoeux -> None:M. Irénée THERRY 
+062 Saint-Etienne-au-Mont -> None:Mme Brigitte PASSEBOSC
+062 Saint-Georges -> None:M. Jean-Paul LIMANTOUR 
+062 Séricourt -> None:M. Bertrand CASTELAIN 
+062 Thièvres -> None:M. Patrick VOISIN 
+062 Tigny-Noyelle -> None:M. Thierry FICHEUX 
+062 Tollent -> None:Mme Bernadette NIVEL 
+062 Vieille-Eglise -> None:M. Dominique POURRE
+062 Villers-lès-Cagnicourt -> None:M. Jean-Sebastien GALLOO 
+062 Vincly -> None:M. Claude BOCQUET 
+062 Warluzel -> None:M. Richard FLAMANT 
+062 Wierre-au-Bois -> None:M. Christophe ALLION 
+062 Wingles -> None:Mme Maryse LOUP-ROUZÉ
+063 Beauregard-l'Evêque -> None:M. Alain NÉRI
+063 Blot-l'Eglise -> None:M. Denis BARDEL 
+063 Bort-l'Etang -> None:M. Jean-Christophe LACAS 
+063 Chalus -> mairie.chalus.63@wanadoo.fr:None
+063 Châtelguyon -> None:M. Frédéric BONNICHON
+063 Cournon-d'Auvergne -> None:M. Bertrand PASCIUTO
+063 Dauzat-sur-Vodable -> None:M. Laurent FRADIN 
+063 Dore-l'Eglise -> None:Mme Karine LEFIEUX 
+063 Durtol -> None:M. François CARMIER
+063 Echandelys -> None:Mme Yvette RENAUDIAS 
+063 Egliseneuve-d'Entraigues -> None:M. Silvère PLANE 
+063 Egliseneuve-des-Liards -> None:M. Michel REDON 
+063 Egliseneuve-près-Billom -> None:M. José MULA 
+063 Eglisolles -> None:Mme Hélène COCHARD 
+063 Heume-l'Eglise -> None:M. David MAILLOT 
+063 Issoire -> None:M. Bertrand BARRAUD
+063 Joserand -> None:M. André LANGUILLE 
+063 Mazayes -> None:M. Aymeric BONNIER 
+063 Neuf-Eglise -> None:M. Olivier GRAVIER 
+063 Nonette -> mairiedenonette@wanadoo.fr:M. Daniel BORIE 
+063 Pardines -> None:M. Bertrand JOUGOUNOUX 
+063 Saint-Eloy-la-Glacière -> None:Mme Maryse BESSEYRIAS 
+063 Saint-Eloy-les-Mines -> None:Mme Marie-Thérèse SIKORA
+063 Saint-Etienne-des-Champs -> None:Mme Antonia ANDANSON 
+063 Saint-Etienne-sur-Usson -> None:Mme Françoise BARDIAUX 
+063 Saint-Martin-des-Olmes -> None:M. Daniel BARRIER 
+064 Amendeuix-Oneix -> None:Mme Marie EPELVA 
+064 Anos -> None:M. Wilfried LABARTHE 
+064 Arnos -> None:M. Yves PEDEGERT 
+064 Aydie -> None:M. André BEHEITY 
+064 Baliracq-Maumusson -> None:M. Ludovic LANNE 
+064 Béhorléguy -> None:Mme Valérie UNHASSOBISCAY 
+064 Doumy -> None:M. Jean-Pierre TRUCHY 
+064 Espiute -> None:Mme Martine DE PORTAL 
+064 Fichous-Riumayou -> None:M. Marc CHAIGNEAU 
+064 Jaxu -> None:Mme Alexia AMESTOY 
+064 Montagut -> None:M. Jean-Luc DESPOUYS 
+064 Pardies-Piétat -> None:Mme Claire LABEDE 
+064 Peyrelongue-Abos -> None:M. Christian DANIEL 
+064 Ribarrouy -> None:M. Jean-Pierre MONDEILH 
+064 Saint-Etienne-de-Baïgorry -> None:M. Jean-Michel COSCARAT
+064 Saint-Girons -> None:Mme Marie Edmée DARTEYRE 
+064 Saint-Gladie-Arrive-Munein -> None:M. Gilbert LARROUDE 
+064 Samsons-Lion -> None:Mme Marie-Claude LAHONDA 
+064 Sauguis-Saint-Etienne -> None:M. Pierre ARROSSAGARAY 
+065 Ancizan -> None:Mme Magaly ZALDUENDO 
+065 Antist -> None:M. Jean-Paul POURQUE-GRACIANET 
+065 Arcizans-Dessus -> None:M. Dominique CAZAJOUS 
+065 Ardengost -> None:M. Christian SAJOUS 
+065 Argelès -> None:M. Daniel MANSE 
+065 Armenteule -> None:M. Jean-Bernard MARSALET 
+065 Arrodets -> None:M. François AUBAULT 
+065 Artigues -> None:M. René ABBADIE 
+065 Averan -> None:Mme Emmanuelle RICHARD 
+065 Aveux -> None:Mme Sylvie FONTEBASSO 
+065 Barbazan-Dessus -> None:M. Bernard VIGNOLES 
+065 Bareilles -> None:M. André CARRERE 
+065 Barrancoueu -> None:M. Guillaume COMPAGNET 
+065 Batsère -> None:Mme Frédérique BERNIGOLE 
+065 Bazus-Neste -> None:M. Patrick MAUPOME 
+065 Bernac-Debat -> None:Mme Amandine PEREZ 
+065 Bernac-Dessus -> None:M. Joël CAZEDEBAT 
+065 Bernadets-Debat -> None:M. Jean-Louis MAILHES 
+065 Bettes -> None:M. Philippe MENU 
+065 Bordères-sur-l'Echez -> None:M. Christian PAUL
+065 Bouilh-Devant -> None:Mme Roselyne HERMIER 
+065 Bramevaque -> None:Mme Marie-Claude BORIE 
+065 Bulan -> None:M. Max DOUILLARD 
+065 Caharet -> None:M. Raymond PÉRÉ 
+065 Caixon -> None:M. Thierry PERRET-LATAPIE 
+065 Camalès -> None:M. Michel MOULERE 
+065 Camous -> None:M. Gaël FICHANT 
+065 Campistrous -> None:M. Serge MARMOUGET 
+065 Castéra-Lanusse -> None:Mme Madeleine DAVIAU PIÉ PENAS 
+065 Castéra-Lou -> None:M. Olivier WATIER 
+065 Cazaux-Fréchet-Anéran-Camors -> None:Mme Marie-France DUPOUY-ROSSI 
+065 Clarac -> None:M. Régis LAFORGUE 
+065 Collongues -> None:M. Michel CAPDEVILLE 
+065 Coussan -> None:M. Vincent LABORDE 
+065 Créchets -> None:M. Alain COIGNARD 
+065 Esconnets -> None:M. Pierre DUCAY 
+065 Escots -> None:M. Éric DOUTRIAUX 
+065 Espèche -> None:M. Joël CASTAING 
+065 Espieilh -> None:M. Jean-Claude TAJAN 
+065 Estarvielle -> None:M. François BRISSOT 
+065 Estensan -> None:M. Jérémie ANGLADE 
+065 Fontrailles -> None:Mme Séverine DINGREVILLE 
+065 Fréchède -> None:M. Francis ABADIE 
+065 Fréchet-Aure -> None:Mme Clothilde BAZERQUE 
+065 Gazave -> None:Mme Danièle VIDAL 
+065 Gonez -> None:M. Joseph AMBIELLE 
+065 Gourgue -> None:Mme Sophie SERRES 
+065 Guizerix -> None:M. Philippe GARAUD 
+065 Hauban -> None:M. Franck COMPAGNET 
+065 Hibarette -> None:Mme Blandine LAPEYRE 
+065 Ilheu -> None:M. Franck TREY 
+065 Lalanne-Trie -> None:Mme Patricia AURADE 
+065 Lançon -> None:M. Eric GAY 
+065 Lansac -> None:M. Yves MARQUERIE 
+065 Lhez -> None:M. Jean-Luc PÉBAY 
+065 Lies -> None:M. Frédéric BALAGNA 
+065 Lomné -> None:M. Alain CARRERE 
+065 Loudervielle -> None:M. Charles VALENTIN 
+065 Louit -> None:M. Bernard LAPASSET 
+065 Luby-Betmont -> None:M. Patrick DASTUGUE 
+065 Marsas -> None:Mme Sylvie PALOT 
+065 Mauvezin -> None:Mme Martine LARROUY 
+065 Mazouau -> None:M. Yvan BAZERQUE 
+065 Mérilheu -> None:M. Bernard DORIGNAC 
+065 Mingot -> None:M. Damien MURE 
+065 Molère -> None:M. Dominique FITTE 
+065 Momères -> None:M. Gilles SEMMARTIN 
+065 Moumoulous -> None:M. Jean-Claude DOLEAC 
+065 Organ -> None:M. Jean-Jacques LONGATO 
+065 Osmets -> None:M. Patrick NOËL 
+065 Ourdon -> None:M. Daniel ARAGNOUET 
+065 Péré -> None:M. Jean-Michel CAMBOURS 
+065 Peyrun -> None:M. Alain BONNECARRERE 
+065 Poumarous -> None:Mme Martine LHEZ 
+065 Rabastens-de-Bigorre -> None:M. Alain GUILLOUET
+065 Ricaud -> None:M. Gilbert PERES 
+065 Ris -> None:M. Charles GATTI 
+065 Saint-Lézer -> None:M. Serge JOSEPH 
+065 Saint-Sever-de-Rustan -> None:M. Jean-Louis LUSSAN 
+065 Samuran -> None:M. Olivier TORTORICI 
+065 Sanous -> None:Mme Annie JORRO 
+065 Sarlabous -> None:M. Jean- Paul COMPAGNET 
+065 Sentous -> None:M. Jean-Claude SABATHIE 
+065 Souyeaux -> None:M. Nicolas LESTRADE 
+065 Thèbe -> None:M. Sébastien ANTICHAN 
+065 Tibiran-Jaunac -> None:M. Pierre DUPOUY 
+065 Tournous-Devant -> None:M. Nicolas LAFONT 
+065 Tuzaguet -> None:Mme Marie FONTAN 
+065 Vic-en-Bigorre -> None:M. Clément MENET
+065 Vidou -> None:M. Francis BONNEMAISON 
+065 Villembits -> None:Mme Andrée JUNCA 
+065 Villenave-près-Béarn -> None:M. Franck PEYRE 
+065 Villenave-près-Marsac -> None:Mme Thérèse PEYCERE 
+066 Banyuls-dels-Aspres -> None:M. Frédéric MALET
+066 Boule-d'Amont -> None:M. Yann OHEIX 
+066 Cabestany -> None:M. Jean VILA
+066 Egat -> None:M. Pascal LEFEBVRE 
+066 Molitg-les-Bains -> None:M. Gilbert QUES 
+066 Perpignan -> None:M. Jean-Marc PUJOL
+066 Prades -> None:M. Jean CASTEX
+066 Sansa -> None:M. Daniel DURAND 
+066 Souanyas -> None:M. Guy BOBE 
+066 Valmanya -> None:M. Daniel SONGEON 
+067 Bischheim -> None:M. Jean-Louis HOERLE
+067 Boersch -> None:M. Philippe MEYER
+067 Boesenbiesen -> None:Mme Agnès ROHR 
+067 Croettwiller -> None:M. Fredy STOEHR 
+067 Dieffenbach-lès-Woerth -> None:M. Rémy WALTHER 
+067 Donnenheim -> None:M. Thomas GILLIG 
+067 Froeschwiller -> None:M. Jean-Philippe EBERSOHL 
+067 Goerlingen -> None:M. Christophe ERHARD 
+067 Goersdorf -> None:M. Michel SCHNEIDER
+067 Hinsingen -> None:M. Frédéric BELLOTT 
+067 Hoenheim -> None:M. Vincent DEBES
+067 Hoerdt -> None:M. Denis RIEDINGER
+067 Hohengoeft -> None:M. Jean-Claude UHLRICH 
+067 Kesseldorf -> None:M. Jean-Marc KERN 
+067 Kleingoeft -> None:Mme Carine RITTER 
+067 Knoersheim -> None:M. Charles WEBER 
+067 Neuve-Eglise -> None:Mme Régine SIFFER 
+067 Niederroedern -> None:M. Alphonse MODERY 
+067 Oberroedern -> None:Mme Laurence ERHOLD 
+067 Reinhardsmunster -> None:M. Cédric SALI 
+067 Roeschwoog -> None:M. Michel LORENTZ
+067 Schoenau -> None:M. Rémy WEIBEL 
+067 Schoenbourg -> None:M. Philippe EULERT 
+067 Schoenenbourg -> None:Mme Nathalie BOHEIM 
+067 Strasbourg -> None:M. Roland RIES
+067 Uttenhoffen -> None:M. Jean-Georges JUNG 
+067 Voellerdingen -> None:M. Stéphane KLAM 
+067 Woerth -> None:M. Alain FUCHS
+067 Zoebersdorf -> None:M. Dominique MICHEL 
+068 Ammertzwiller -> None:Mme Sylvie KNECHT 
+068 Bergholtz-zell -> None:Mme Gaby KIBLER 
+068 Bitschwiller-les-Thann -> None:M. Jean-Marie MICHEL
+068 Chavannes-sur-l'Etang -> None:M. André THEVENOT 
+068 Froeningen -> None:Mme Dolorès ALLENBACH 
+068 Guebwiller -> None:M. Francis KLEITZ
+068 Knoeringue -> None:M. André UEBERSCHLAG 
+068 Koestlach -> None:Mme Laurence SCHNEIDER 
+068 Koetzingue -> None:M. Materne BRUNNER 
+068 Lautenbach-zell -> None:M. Richard KARMEN 
+068 Moernach -> None:M. David ENDERLIN 
+068 Mulhouse -> None:M. Jean ROTTNER
+068 Rimbach-zell -> None:Mme Angélique MULLER 
+068 Voegtlinshoffen -> None:M. Benoît GRANDMOUGIN 
+068 Waldighoffen -> None:M. Henri HOFF
+069 Chassieu -> None:M. Jean-Jacques SELLÈS
+069 Chessy-les-Mines -> None:M. Gilbert MARTINEZ
+069 Echalas -> None:Mme Christiane JURY
+069 Ecully -> None:M. Yves-Marie UHLRICH
+069 Emeringes -> None:M. Pierre CHAZAL 
+069 Eveux -> None:M. Jean MARTINAGE
+069 Feyzin -> None:Mme Murielle LAURENT
+069 Lyon -> None:None
+069 Marcy-l'Etoile -> None:Mme Sabine BUSSIERE
+069 Poule-les-Echarmeaux -> None:M. Ludovic PINTO
+069 Saint-Christophe-la-Montagne -> None:Mme Claudine BOURGEON 
+069 Saint-Clément-sous-Valsonne -> None:M. Christian DALIGAND 
+069 Sainte-Foy-lès-Lyon -> None:Mme Véronique SARSELLI
+069 Saint-Etienne-des-Oullières -> None:M. Gilles DUTHEL
+069 Saint-Etienne-la-Varenne -> None:Mme Alexia GUILLOUD 
+069 Saint-Marcel-l'Eclairé -> None:Mme Marie-Hélène GOUJET 
+069 Saint-Priest -> None:M. Gilles GASCON
+069 Ternand -> None:M. Bernard DUMAS 
+069 Thizy-Les-Bourgs -> None:M. Michel MERCIER
+069 Vénissieux -> None:Mme Michèle PICARD
+069 Villié-Morgon -> None:M. Pierre SAVOYE
+070 Achey -> None:M. Francis NOBLOT 
+070 Athesans-Etroitefontaine -> None:M. Alain BIZZOTTO 
+070 Bard-lès-Pesmes -> None:Mme Marie-Jeanne GUICHET 
+070 Betoncourt-sur-Mance -> None:Mme Martine RIUS 
+070 Beulotte-Saint-Laurent -> None:M. Jean-Charles HENRY 
+070 Bouligney -> None:M. Joël DUPRÉ 
+070 Bourguignon-lès-Morey -> None:Mme Sylvie AUBERT 
+070 Chantes -> None:M. Dominique JACQUOT 
+070 Châteney -> None:Mme Marguerite FAIVRE 
+070 Chauvirey-le-Vieil -> None:M. Bernard DROUHOT 
+070 Cordonnet -> None:M. Daniel GAUDARD 
+070 Courtesoult-et-Gatey -> None:Mme Christelle MARCHISET 
+070 Creveney -> None:M. Pascal LAEMLIN 
+070 Cugney -> None:M. Fabrice JACQUOT 
+070 Echavanne -> None:Mme Marie-Céline BRETONNEAU 
+070 Echenans-sous-Mont-Vaudois -> None:M. Laurent DECLERCK 
+070 Echenoz-la-Méline -> None:M. Olivier CATRIN
+070 Echenoz-le-Sec -> None:M. Serge DEIBER 
+070 Ecromagny -> None:Mme Michèle CHIPAUX 
+070 Ecuelle -> None:Mme Geneviève MONGIN 
+070 Ehuns -> None:M. Joël GRANDJEAN 
+070 Equevilley -> None:Mme Céline ECREMENT 
+070 Etobon -> None:M. André BOYER 
+070 Etrelles-et-la-Montbleuse -> None:M. Jacky HEZARD 
+070 Etuz -> None:M. Pierre-André BRUCHON 
+070 Faucogney-et-la-Mer -> None:M. Eric POIROT 
+070 Fédry -> None:M. Maurice ROBERT 
+070 Francalmont -> None:Mme Claudine COME 
+070 Francourt -> None:M. Didier BARTHELET 
+070 Granges-la-Ville -> None:M. Hugo WALZ 
+070 Lambrey -> None:M. Serge MARCHAND 
+070 Larret -> None:Mme Odette BALZ 
+070 Lieucourt -> None:M. Vincent DAMIEN 
+070 Loeuilley -> None:M. Ghislain POYER 
+070 Maussans -> None:M. Thierry TROUTIER 
+070 Montessaux -> None:M. Edouard MICHELIN 
+070 Onay -> None:M. Jean-Noël ROUSSET 
+070 Provenchère -> None:M. Bruno GAUTHIER 
+070 Pusy-et-Epenoux -> None:Mme Christiane BARJOU 
+070 Raincourt -> None:Mme Florence AUBRY 
+070 Ranzevelle -> None:M. Pascal GARRET 
+070 Recologne -> None:M. Jean-Paul MAUNY 
+070 Sainte-Reine -> None:M. Roger LORIOZ 
+070 Saint-Ferjeux -> None:M. Claude THUEILLON 
+070 Saint-Loup-Nantouard -> None:M. Alain CHAPUIS 
+070 Vars -> None:Mme Hélène BERGELIN 
+070 Velesmes-Echevanne -> None:M. Guy JACQUIN 
+070 Vellemoz -> None:M. Jacques DESY 
+070 Venisey -> None:M. Fabrice RAISON 
+070 Villafans -> None:M. Alain COMPARON 
+070 Villers-Chemin-et-Mont-lès-Etrelles -> None:M. Frédéric MAY 
+070 Vilory -> None:Mme Delphine VILLATTE 
+070 Visoncourt -> None:M. Bernard MEZELLE 
+071 Ecuelles -> None:M. Cyrille LENEUF 
+071 Ecuisses -> None:M. Jean CHEVALIER
+071 Epertully -> None:M. Hervé BOUARD 
+071 Epervans -> None:M. Eric MICHOUX
+071 Epinac -> None:M. Claude MERCKEL
+071 Etang-sur-Arroux -> None:M. Dominique COMMEAU
+071 Etrigny -> None:M. Jean-François BAUM 
+071 Issy-l'Evêque -> None:Mme Bernadette BOULOT 
+071 Juif -> None:M. André BECHE 
+071 Lucenay-l'Evêque -> None:Mme Françoise DURIAU 
+071 Melay -> None:M. Jean-Paul MILLET 
+071 Montceaux-l'Etoile -> None:M. Christophe MEUNIER 
+071 Montcenis -> None:M. Michel REY
+071 Palleau -> None:M. René BECHE 
+071 Saint-Emiland -> None:M. Jean-Luc MICHELOT 
+071 Saint-Etienne-en-Bresse -> None:M. Benoit PERRAUDIN 
+071 Saint-Huruge -> None:Mme Annie BERNARD 
+071 Saint-Maurice-de-Satonnay -> None:M. Jean-Yves BRIDAY 
+071 Saint-Romain-sous-Versigny -> None:M. Vincent PRUDENCE 
+072 Amné-en-Champagne -> None:M. Eric HERVE 
+072 Beaumont-Pied-de-Boeuf -> None:M. Jean-Claude FROGER 
+072 Blèves -> None:M. Noël GODEFROY 
+072 Courceboeufs -> None:M. Lionel DANGEARD 
+072 Cré-sur-Loir -> None:M. Christophe BESNARD 
+072 Douillet-le-Joly -> None:Mme Carole LEFEVRE 
+072 Ecommoy -> None:M. Sébastien GOUHIER
+072 Ecorpain -> None:Mme Sylvie CARREAU 
+072 Epineu-le-Chevreuil -> None:M. Jean-Claude BESNARD 
+072 Etival-lès-le-Mans -> None:M. Emmanuel FRANCO
+072 Evaillé -> None:M. Cédric DELMOTTE 
+072 Fillé-sur-Sarthe -> None:M. Loïc TRIDEAU
+072 Parigné-l'Evêque -> None:M. Guy LUBIAS
+072 Pruillé-l'Eguillé -> None:Mme Angéla LONGERAY 
+072 Rouez-en-Champagne -> None:M. Sébastien VIVET 
+072 Saint-Jean-des-Echelles -> None:M. Yves GOULLIER 
+072 Savigné-l'Evêque -> None:M. Philippe METIVIER
+072 Savigné-sous-le-Lude -> None:Mme Virginie HAUTREUX 
+072 Thorigné-sur-Dué -> None:M. Jean-Claude GODEFROY
+072 Yvré-l'Evêque -> None:Mme Dominique AUBIN
+073 Champlaurent -> None:M. Eric BARBIER 
+073 Ecole -> None:M. Florent CARRET 
+073 Epersy -> None:M. Fabien BERTHET 
+073 Epierre -> None:Mme Sylvie DREGE 
+073 Etable -> None:Mme Pierrette PEYRE 
+073 Moûtiers -> None:M. Bernard GSELL
+073 Saint-Alban-des-Hurtières -> None:M. Patrick GADROY-LEGENVRE 
+073 Saint-Christophe-La-Grotte -> None:M. Mattéo JARRIN 
+073 Saint-Etienne-de-Cuines -> None:M. Dominique LAZZARO
+073 Saint-Georges-des-Hurtières -> None:M. Charles ESAIN 
+073 Saint-Pierre-d'Entremont -> None:M. Louis BOCCHINO 
+074 Arâches -> None:M. Marc IOCHUM
+074 Ayse -> None:M. Jean-Pierre MERMIN
+074 Eloise -> None:Mme Marcelle CURTENAZ 
+074 Epagny -> None:M. Roland DAVIET
+074 Eteaux -> None:M. David RATSIMBA
+074 Etercy -> None:Mme Laurence RICARD 
+074 Etrembières -> None:M. Hervé HADAMAR
+074 Evian-les-Bains -> None:M. Marc FRANCINA
+074 Evires -> None:Mme Catherine GURLIAT CLERC
+074 Jonzier-Epagny -> None:Mme Virginie BOUVARD 
+074 Magland -> None:M. René POUCHOT
+074 Marcellaz-en-Faucigny -> None:Mme Carole GRILLET-AUBERT 
+074 Montmin -> None:M. Marcel MANIGLIER 
+074 Novel -> None:M. Guy MERTENS 
+074 Passy -> None:M. Patrick KOLLIBAY
+074 Reignier-Esery -> None:M. Jean-François CICLET
+074 Saint-Eustache -> None:M. Sébastien SAVOY 
+074 Thonon-les-Bains -> None:M. Jean DENAIS
+074 Viry -> None:M. André BONAVENTURE
+075 Paris -> None:None
+076 Aubermesnil-aux-Erables -> None:Mme Murielle CARPENTIER 
+076 Bailleul-Neuville -> None:M. Sylvain GAUTIER 
+076 Belleville-en-Caux -> None:M. Denis GUILLEBERT 
+076 Bihorel -> None:M. Pascal HOUBRON
+076 Biville-la-Rivière -> None:M. Mathieu VAILLANT 
+076 Bois-Guillaume -> None:M. Gilbert RENARD
+076 Bois-l'Evêque -> None:Mme Brigitte MARITAUD GRONGNET 
+076 Bosc-Edeline -> None:M. Hervé DURAME 
+076 Brametot -> None:M. Jean-Francois ALIGNY 
+076 Brunville -> None:M. Daniel HENOCQUE 
+076 Calleville-les-Deux-Eglises -> None:Mme Mathilde LAMBERT 
+076 Canville-les-Deux-Eglises -> None:Mme Ghislaine LIQUEN 
+076 Clais -> None:Mme Joëlle BERTHE 
+076 Contremoulins -> None:M. Gilbert LEPREVOST 
+076 Cropus -> None:M. Jean-Pierre DUFOUR 
+076 Dancourt -> None:Mme Sylviane ROBIN 
+076 Dénestanville -> None:M. Rémy AUBLE 
+076 Ecalles-Alix -> None:Mme Stéphanie LUCE 
+076 Ecrainville -> None:Mme Claire GUEROULT
+076 Ecretteville-lès-Baons -> None:Mme Lydie RACINE 
+076 Ecretteville-sur-Mer -> None:M. Thierry LEBON 
+076 Ectot-l'Auber -> None:M. Didier DELAMARE 
+076 Eletot -> None:Mme Genevieve LECOINTRE 
+076 Ellecourt -> None:Mme Josiane BUTTAZONI 
+076 Emanville -> None:M. Patrice FROMENTIN 
+076 Epinay-sur-Duclair -> None:Mme Edwige TESSON 
+076 Epouville -> None:M. Gilbert CONAN
+076 Epretot -> None:M. Nicolas ANGINOT 
+076 Epreville -> None:M. Pascal DONNET
+076 Estouteville-Ecalles -> None:Mme Valerie LAGNEL 
+076 Etaimpuis -> None:M. Antoine FAURE 
+076 Etainhus -> None:M. Didier SANSON
+076 Etalleville -> None:M. Daniel SANNIER 
+076 Etalondes -> None:M. Lucien FOSSE
+076 Etoutteville -> None:M. Christian FERON 
+076 Etretat -> None:M. Franck COTTARD
+076 Fry -> None:M. Christian GAUPIN 
+076 Gancourt-Saint-Etienne -> None:M. Jacky DUVAL 
+076 Gueures -> None:Mme Maryline DELAUNAY 
+076 Gueutteville -> None:M. Gauthier CUVELIER 
+076 Haucourt -> None:M. Pascal LEROY 
+076 Haussez -> None:M. Olivier LONCKE 
+076 Hautot-l'Auvray -> None:M. Frank DECULTOT 
+076 Illois -> None:Mme Sandrine PARIS 
+076 Lindebeuf -> None:M. Pascal CORDIER 
+076 Longmesnil -> None:Mme Isabelle SANSON 
+076 Martainville-Epreville -> None:M. Lionel SAILLARD 
+076 Martin-Eglise -> None:M. Gill GERYL
+076 Mesnil-Follemprise -> None:M. Eric BATTEMENT 
+076 Meulers -> None:M. Frederic LEFEBVRE 
+076 Muchedent -> None:M. Jean-Jacques LAVENU 
+076 Ouainville -> None:M. Christophe LESUEUR 
+076 Prétot-Vicquemare -> None:M. Yves TOSTAIN 
+076 Preuseville -> None:M. Benoit DUMINIL 
+076 Rainfreville -> None:Mme Odile LIMARE 
+076 Saint-Antoine-la-Forêt -> None:M. Joël CLEMENT
+076 Saint-Arnoult -> None:M. Patrice COLOMBEL
+076 Saint-Aubin-Epinay -> None:M. Vincent TURPIN 
+076 Saint-Aubin-lès-Elbeuf -> None:M. Jean-Marie MASSON
+076 Saint-Etienne-du-Rouvray -> None:M. Hubert WULFRANC
+076 Saint-Germain-des-Essourts -> None:M. Alain BURETTE 
+076 Saint-Germain-d'Etables -> None:M. Janick LAFOSSE 
+076 Saint-Honoré -> None:M. Wulfran DARGENT 
+076 Saint-Laurent-en-Caux -> None:Mme Nadège REMOUSSIN 
+076 Saint-Maurice-d'Etelan -> None:M. Jean-Bernard DAIZE 
+076 Saint-Pierre-lès-Elbeuf -> None:M. Patrice DESANGLOIS
+076 Saint-Riquier-en-Rivière -> None:M. Alain MIQUIGNON 
+076 Saint-Romain-de-Colbosc -> None:M. Bertrand GIRARDIN
+076 Saint-Sauveur-d'Emalleville -> None:M. Hervé DECULTOT
+076 Saint-Vaast-d'Equiqueville -> None:M. Patrick LEBON 
+076 Saint-Vaast-Dieppedalle -> None:M. Gérard LAIGUILLON 
+076 Sassetot-le-Malgardé -> None:Mme Valérie EVRARD 
+076 Sévis -> None:Mme Céline LETEURTRE 
+076 Villainville -> None:Mme Jacqueline MAHIEU 
+076 Villers-Ecalles -> None:M. Jean-Christophe EMO
+076 Yville-sur-Seine -> None:Mme Hélène SOMMELLA 
+077 Bagneaux-sur-Loing -> None:M. Claude JAMET
+077 Boitron -> None:M. Jacques LOIGEROT 
+077 Cannes-Ecluse -> None:M. Denis MIGUET
+077 Chenou -> None:Mme Annick LEBLANC 
+077 Crèvecoeur-en-Brie -> None:M. Marc CUYPERS 
+077 Croissy-Beaubourg -> None:M. Michel GERES
+077 Cucharmoy -> None:Mme Véronique DARCY 
+077 Echouboulains -> None:M. Philippe DUFOUR 
+077 Ecuelles -> None:M. Alain GIRAULT
+077 Egligny -> None:M. Alexandre TOUSSAINT 
+077 Egreville -> None:M. Bruno BASCHET
+077 Emerainville -> None:M. Alain KELYOR
+077 Episy -> None:M. Régis CHABERNAUD 
+077 Etrépilly -> None:Mme Marie-Claire HERON 
+077 Evry-Grégy-sur-Yerre -> None:M. Pierre PLUTON
+077 Germigny-l'Evêque -> None:Mme Aline MARIE-MELLARE
+077 Gesvres-le-Chapitre -> None:M. Christophe CHAMBERLAND 
+077 Meaux -> None:M. Jean-François COPE
+077 Melun -> None:M. Gérard MILLET
+077 Montenils -> None:M. Jean-Pierre DENEUVILLE 
+077 Montereau-Fault-Yonne -> None:M. Yves JEGO
+077 Noisy-sur-Ecole -> None:M. Christian BOURNERY
+077 Passy-sur-Seine -> None:Mme Isabelle VOCELLE 
+077 Puisieux -> None:Mme Corinne DUPLOUIS 
+077 Rumont -> None:M. Jean-Martial BERTRAND 
+077 Saint-Germain-sur-Ecole -> None:Mme Sylvie DUBOIS 
+077 Saint-Léger -> None:M. Dominique DEMAREY 
+077 Saint-Sauveur-sur-Ecole -> None:M. Christophe BAGUET
+077 Sancy -> None:M. Philippe DUMONT 
+077 Soignolles-en-Brie -> None:M. Patrice BELLIARD
+077 Verneuil-l'Etang -> None:M. Christian CIBIER
+077 Villeneuve-les-Bordes -> None:M. Dominique RYS 
+077 Vincy-Manoeuvre -> None:M. Gilles DUROUCHOUX 
+078 Achères -> None:M. Marc HONORE
+078 Auteuil-le-Roi -> None:M. Samuel BLONDEAU 
+078 Carrières-sous-Poissy -> None:M. Christophe DELRIEU
+078 Cravent -> None:M. Denis FAUGERES 
+078 Elancourt -> None:M. Jean-Michel FOURGOUS
+078 Emancé -> None:Mme Michèle DUPRAT 
+078 Epône -> None:M. Guy MULLER
+078 Evecquemont -> None:Mme Cécile LEROY 
+078 Flins-Neuve-Eglise -> None:M. Gilles DUVAL 
+078 Jouars-Pontchartrain -> None:M. Hervé LEMOINE
+078 L'Etang-la-Ville -> None:M. Jean-Yves BOUHOURD
+078 Mantes-la-Ville -> None:M. Cyril NAUTH
+078 Meulan-en-Yvelines -> None:Mme Cécile ZAMMIT-POPESCU
+078 Millemont -> None:Mme Céline VIANA DE MENDONCA 
+078 Montesson -> None:M. Jean-François BEL
+078 Mulcent -> None:Mme Delphine NOUVIAN 
+078 Poissy -> None:M. Karl OLIVE
+078 Rambouillet -> None:M. Marc ROBERT
+078 Rocquencourt -> None:M. Jean-François PEUMERY
+078 Saint-Cyr-l'Ecole -> None:M. Bernard DEBAIN
+078 Vernouillet -> None:M. Pascal COLLADO
+078 Vert -> None:Mme Germaine SAVARY 
+078 Vieille-Eglise-en-Yvelines -> None:M. Bernard MANCELLIER 
+078 Viroflay -> None:M. Olivier LEBRUN
+079 Ardilleux -> None:Mme Corinne BOUTEILLER 
+079 Argenton-l'Eglise -> None:M. Bernard MAURY
+079 Champdeniers-Saint-Denis -> None:M. Jean-François FERRON
+079 Echiré -> None:M. Thierry DEVAUTOUR
+079 Epannes -> None:Mme Chantal GUIGNARD 
+079 Etusson -> None:M. Arnaud PASQUIER 
+079 Maisonnais -> None:M. Joseph KERDRAON 
+079 Nueil-les-Aubiers -> None:M. Philippe BREMOND
+079 Oroux -> None:M. Hervé BOTON 
+079 Plibou -> None:M. Daniel LAPRADE 
+079 Saint-Etienne-la-Cigogne -> None:M. Patrick FORGET 
+079 Saint-Maixent-l'Ecole -> None:M. Léopold MOREAU
+079 Saint-Pardoux -> None:Mme Sandra VIDARD
+079 Saint-Pierre-des-Echaubrognes -> None:M. Claude POUSIN
+079 Sompt -> None:M. Guillaume VIOLLET 
+079 Thorigny -> None:M. Alain Roger HEIM 
+080 Abbeville -> None:M. Nicolas DUMONT
+080 Aizecourt-le-Bas -> None:M. Jean-Pierre TARDIEU 
+080 Aizecourt-le-Haut -> None:Mme Roseline LAOUT 
+080 Amiens -> None:Mme Brigitte FOURÉ
+080 Andechy -> None:M. Kévin COLLIN 
+080 Argoeuves -> None:M. Gérard PRUVOT 
+080 Assainvillers -> None:M. Michel MILLON 
+080 Aubercourt -> None:M. Aymeric CRABÉ 
+080 Auchonvillers -> None:M. Cyril CARNEL 
+080 Ayencourt -> None:Mme Corinne TANTON 
+080 Baizieux -> None:M. Mathieu LENAIN 
+080 Balâtre -> None:Mme Christiane ROGER-BÉRANGER 
+080 Becquigny -> None:M. Vincent DUFRENOY 
+080 Béthencourt-sur-Somme -> None:M. Marc SPLINGART 
+080 Billancourt -> None:M. Jean-Pierre JOURDAIN 
+080 Bourseville -> None:M. Jean-Daniel CANTRELLE 
+080 Bouvaincourt-sur-Bresle -> None:M. François PEGARD 
+080 Bouvincourt-en-Vermandois -> None:Mme Lucie GANAYE 
+080 Briquemesnil-Floxicourt -> None:Mme Monique MEULIN 
+080 Bus-la-Mésière -> None:M. Didier OUSTINUK 
+080 Bussy-lès-Poix -> None:M. Yannick DUMEIGE 
+080 Cahon -> None:M. Yves HAUTEFEUILLE 
+080 Cambron -> None:M. Bernard GAWRONSKI 
+080 Camps-en-Amiénois -> None:M. Olivier POIRET 
+080 Cantigny -> None:Mme Marie-Christine DESORMEAUX 
+080 Caulières -> None:M. Jacques POTIER 
+080 Cayeux-en-Santerre -> None:Mme Ludivine LOWACK 
+080 Chirmont -> None:Mme Agnès BOULLENGER 
+080 Cizancourt -> None:M. Jean-Pierre SANCHEZ 
+080 Coigneux -> None:M. Maurice DERUIT 
+080 Colincamps -> None:M. Bruno LE ROUX DE BRETAGNE 
+080 Coullemelle -> None:M. Nicolas HEBERT 
+080 Courcelles-au-Bois -> None:M. Xavier CAUDRON 
+080 Courcelles-sous-Moyencourt -> None:Mme Sylvie SOREL 
+080 Courtemanche -> None:Mme Catherine DELPORTE 
+080 Cramont -> None:M. Alain CADET 
+080 Creuse -> None:M. Maurice BOULOT 
+080 Dancourt-Popincourt -> None:M. Philippe BOBER 
+080 Driencourt -> None:M. Michel MASCRÉ 
+080 Eclusier-Vaux -> None:Mme Laëtitia DEHAN 
+080 Epagne-Epagnette -> None:Mme Karine LESAGE 
+080 Epaumesnil -> None:M. Patrick PURSON 
+080 Epécamps -> None:M. Engilbert DE FRANSSU 
+080 Epehy -> None:M. Jean-Michel MARTIN
+080 Epénancourt -> None:M. Sébastien DOSSU 
+080 Eplessier -> None:M. Frédéric BOUTILLIER 
+080 Equancourt -> None:M. Jean-Baptiste DELCAMBRE 
+080 Equennes-Eramecourt -> None:Mme Claire MAISON 
+080 Erondelle -> None:M. Joel ROUSSELLE 
+080 Esclainvillers -> None:Mme Claudine DARTUS 
+080 Estréboeuf -> None:M. Eric VEST 
+080 Etalon -> None:Mme Claire RICHARD 
+080 Etelfay -> None:Mme Marie-Line BAILLEUL 
+080 Eterpigny -> None:M. Daniel HÉRON 
+080 Etinehem -> None:Mme Claudine LAURENCE 
+080 Etréjust -> None:M. Jérôme COURTOIS 
+080 Etricourt-Manancourt -> None:M. Michel TEMPLEUX 
+080 Fignières -> None:Mme Stéphanie DE  CLERCQ 
+080 Fonches-Fonchette -> None:M. Patrick JOUVENELLE 
+080 Fontaine-lès-Cappy -> None:Mme Bénédicte GUILBART 
+080 Fontaine-le-Sec -> None:M. Julien BEAURAIN 
+080 Fontaine-sous-Montdidier -> None:Mme Paulette TAILLEUX 
+080 Foucaucourt-en-Santerre -> None:Mme Marie-Berthe TARLIER 
+080 Foucaucourt-Hors-Nesle -> None:M. Mathieu BUREL 
+080 Fouquescourt -> None:M. Jacques SERPETTE 
+080 Francières -> None:M. Jean-Michel DUPUIS 
+080 Franqueville -> None:Mme Marie-Claire DARDENNE 
+080 Fransart -> None:M. Albert HASSINGER 
+080 Fransu -> None:M. Jacques BOURNOUVILLE 
+080 Fransures -> None:M. Hubert CARON 
+080 Fresnes-Mazancourt -> None:M. Anthony BLANSTIER 
+080 Fresnoy-Andainville -> None:M. Damien VEREECKE 
+080 Fresnoy-lès-Roye -> None:Mme Dorothée MOREAU 
+080 Frettecuisse -> None:Mme Agnès FACQUET 
+080 Frettemeule -> None:Mme Ludivine GAUTIER 
+080 Fricourt -> None:M. Sébastien MASSE 
+080 Frohen-sur-Authie -> None:M. Jean-François PECQUET 
+080 Gapennes -> None:M. Simon DOLIGEZ 
+080 Goyencourt -> None:M. Hervé ETEVEZ 
+080 Gratibus -> None:Mme Pierrette CERF 
+080 Grivillers -> None:Mme Chantal LEFÉVRE 
+080 Guerbigny -> None:Mme Maryline DESPREZ 
+080 Hallu -> None:M. Philippe CHUFFART 
+080 Hancourt -> None:M. Mickaël VERMEERSCH 
+080 Hangard -> None:Mme Pamela DELAHAIE 
+080 Hautvillers-Ouville -> None:Mme Mélanie DECAYEUX 
+080 Hénencourt -> None:M. Ludovic FRANÇOIS 
+080 Herleville -> None:M. David WANESSE 
+080 Herly -> None:M. Didier LAURENT 
+080 Hesbécourt -> None:M. Daniel BONIFACIO 
+080 Inval-Boiron -> None:Mme Coralie COYETTE 
+080 Jumel -> None:M. Éric VAN GOETHEM 
+080 Lafresguimont-Saint-Martin -> None:M. Laurent BAYON 
+080 Lahoussoye -> None:Mme Océane MARECHAL 
+080 Laleu -> None:M. Jean-Jacques FERTEL 
+080 Lamaronde -> None:M. Pierre-Luc DESPREAUX 
+080 L'Echelle-Saint-Aurin -> None:M. David AME 
+080 Lesboeufs -> None:Mme Fabienne POIX 
+080 L'Etoile -> None:M. Alain CASTELLO
+080 Lignières -> None:M. Gilbert LEJUSTE 
+080 Limeux -> None:Mme Francine VAST 
+080 Loeuilly -> None:Mme Emeline NAMONT 
+080 Longuevillette -> None:M. Davy BERNE 
+080 Machy -> None:M. Nicolas COURONNEL 
+080 Malpart -> None:M. Pierre DELAHAYE 
+080 Marché-Allouarde -> None:M. Stéphane PREVOST 
+080 Marchélepot -> None:M. Ludovic BERTRAND 
+080 Marestmontiers -> None:M. Romuald DEVELLENNE 
+080 Marieux -> None:M. Régis GORET 
+080 Marlers -> None:M. Claude TERNOIS 
+080 Marquaix -> None:M. Rémy VERMEILLE 
+080 Méréaucourt -> None:M. Marc BLAREL 
+080 Mesnil-Bruntel -> None:M. Jean-Marc POUCHAIN 
+080 Mesnil-en-Arrouaise -> None:Mme Denise GUISE 
+080 Mesnil-Saint-Georges -> None:M. Christophe CLAIN 
+080 Misery -> None:M. Fabien LEROUX 
+080 Montonvillers -> None:M. Laurent CRAMPON 
+080 Mouflers -> None:M. Thierry HAIGNERE 
+080 Mouflières -> None:M. Claude MOREL 
+080 Nampty -> None:Mme Mauricette RAMPONNEAU 
+080 Neslette -> None:M. Jackie BIGORNE 
+080 Neuilly-le-Dien -> None:Mme Marie-Jeanne ROUSSEL 
+080 Neuville-au-Bois -> None:M. Denis BAILLET 
+080 Neuville-lès-Loeuilly -> None:M. Benoît DELAVENNE 
+080 Noyelles-sur-Mer -> None:M. Luc GAPENNE 
+080 Offignies -> None:Mme Michèle HERDUIN 
+080 Oissy -> None:M. Patrick LÉPINE 
+080 Pargny -> None:M. Gérard MARTINEAU 
+080 Poeuilly -> None:M. Bertrand NUTTENS 
+080 Potte -> None:M. Ludovic PLESSIER 
+080 Punchy -> None:M. Didier MESSIO 
+080 Rambures -> None:M. Fabrice VUE 
+080 Regnière-Ecluse -> None:M. Jean-Francois DANGLETERRE 
+080 Remaisnil -> None:M. Alain REGNAULT 
+080 Rouvroy-en-Santerre -> None:Mme Séverine FOURNIER 
+080 Rouy-le-Petit -> None:M. Hervé PARAIN 
+080 Saint-Acheul -> None:M. Marc BETTEFORT 
+080 Sainte-Segrée -> None:M. Gérard DESMAREST 
+080 Saint-Léger-sur-Bresle -> None:M. Jannick AVELINE 
+080 Saulchoy-sous-Poix -> None:Mme Sabrina LOY 
+080 Sorel-en-Vimeu -> None:M. Yves DAMONNEVILLE 
+080 Sourdon -> None:M. Jean-François THILLOY 
+080 Surcamps -> None:M. Lucien CARLE 
+080 Tertry -> None:M. Mathieu TERNISIEN 
+080 Thiepval -> None:M. Bruno BRIEN 
+080 Toeufles -> None:Mme Catherine CLIPET 
+080 Treux -> None:M. Philippe DASSONVILLE 
+080 Ugny-l'Equipée -> None:Mme Brigitte BUSTIN 
+080 Vadencourt -> None:M. Christian BOCQUET 
+080 Vermandovillers -> None:Mme Marie-José GUILLAUME 
+080 Villecourt -> None:M. Christophe DOYEN 
+080 Villeroy -> None:M. Hubert JOLY 
+080 Villers-aux-Erables -> None:Mme Christiane NANSOT 
+080 Villers-lès-Roye -> None:M. Maurice LEFEVRE 
+080 Villers-Tournelle -> None:M. Jean-Marc GHEERAERT 
+080 Ville-sur-Ancre -> None:M. François BILLARD 
+080 Vraignes-lès-Hornoy -> None:M. François VINCENT 
+080 Wiencourt-l'Equipée -> None:Mme Sylviane FINAZ 
+080 Wiry-au-Mont -> None:M. Samuel DAMIS 
+080 Woirel -> None:M. Herve BRUTELLE 
+080 Yzeux -> None:M. Philippe ALLIOTE 
+081 Curvalle -> None:M. Emile CHIFFRE 
+081 Frayssines -> None:M. Joël GAUBERT 
+081 Mazamet -> None:M. Olivier FABRE
+081 Mouzieys-Teulet -> None:Mme Colette VEROLLET 
+081 Palleville -> None:M. Jérôme BELAUD 
+081 Poulan-Pouzols -> None:Mme Bernardette SALVIGNOL 
+081 Pratviel -> None:M. Pierre BRESSOLLES 
+081 Saint-Amancet -> None:M. Stéphane GARDEIL 
+081 Saint-Genest-de-Contest -> None:M. Pascal FOUILLET 
+081 Saint-Germier -> None:M. Gilles TESTE 
+081 Saint-Michel-Labadié -> None:M. Gilbert LIEGE 
+082 Canals -> None:M. Gilles LARRIEU 
+082 Marignac -> None:Mme Christine DURAN 
+082 Saint-Etienne-de-Tulmont -> None:M. Vincent TEULIERES
+082 Saint-Jean-du-Bouzet -> None:M. Michel BORGOLOTTO 
+083 Bandol -> None:M. Jean-Paul JOSEPH
+083 Brenon -> None:Mme Lucie ROUVIER 
+083 Carqueiranne -> None:M. Marc GIRAUD
+083 Draguignan -> None:M. Richard STRAMBIO
+083 Evenos -> None:Mme Blandine MONIER
+083 Forcalqueiret -> None:M. Pierre GAUTIER
+083 Plan-de-la-Tour -> None:Mme Florence LANLIARD
+083 Saint-Martin -> None:M. Bernard DE BOISGELIN 
+083 Six-Fours-les-Plages -> None:M. Jean Sebastien VIALATTE
+083 Toulon -> None:M. Hubert FALCO
+084 Apt -> None:M. Olivier CUREL
+084 Méthamis -> None:M. Sylvain BRIANÇON 
+084 Sorgues -> None:M. Thierry LAGNEAU
+084 Vacqueyras -> None:M. Jean-Marie GRAVIER
+085 L'Epine -> None:M. Dominique CHANTOIN
+085 L'Ile-d'Elle -> None:M. Guy SOULAINE
+085 L'Ile-d'Olonne -> None:M. Fabrice CHABOT
+085 L'Ile-d'Yeu -> None:M. Bruno NOURY
+085 Luçon -> None:M. Pierre-Guy PERRIER
+085 Nesmy -> None:M. Gérard RIVOISY
+085 Noirmoutier-en-l'Ile -> None:M. Noël FAUCHER
+085 Saint-Etienne-de-Brillouet -> None:M. Patrick COUSSOT 
+085 Saint-Etienne-du-Bois -> None:M. Guy AIRIAU
+086 Buxeuil -> None:M. David CATHELIN 
+086 Celle-Lévescault -> None:M. Jean-Marie AUCHER
+086 Châtellerault -> None:M. Jean-Pierre ABELIN
+086 Maulay -> None:M. Philippe BEAUTRAIS 
+086 Ouzilly -> None:M. Christophe MACKOWIAK 
+086 Saint-Clair -> None:M. Dominique BRUNET 
+086 Sossay -> None:M. Jean-Louis GIRAUDEAU 
+086 Vellèches -> None:M. Enric PETIT 
+087 Dompierre-les-Eglises -> None:M. Jean-Michel DUCHIRON 
+087 Lussac-les-Eglises -> None:M. Christopher SEARS 
+087 Roziers-Saint-Georges -> None:Mme Marion BOUTIN 
+087 Saint-Gilles-les-Forêts -> None:Mme Chrystèle LERISSE 
+087 Saint-Jean-Ligoure -> None:Mme Christelle BOBEAU 
+087 Saint-Laurent-les-Eglises -> None:M. Gérard FAURE 
+088 Aroffe -> None:M. Philippe DURANTON 
+088 Autrey -> None:Mme Cécile CHAUMONT 
+088 Avranville -> None:Mme Angélique SOYER 
+088 Bazegney -> None:M. Jean-Pierre MANGENOT 
+088 Belrupt -> None:M. Joseph BAGUET 
+088 Boulaincourt -> None:M. Jean-Christophe HALLUIN 
+088 Brantigny -> None:M. Laurent VINCENT 
+088 Colroy-la-Grande -> None:Mme Nicole GEORGES 
+088 Domvallier -> None:M. Denis BARABAN 
+088 Eloyes -> None:M. André JACQUEMIN
+088 Epinal -> None:M. Michel HEINRICH
+088 Etival-Clairefontaine -> None:M. Christian FEGLI
+088 Evaux-et-Ménil -> None:M. Gérard MATHIEU 
+088 Fouchécourt -> None:M. Jacques Dit Bernard MUNIER 
+088 Frain -> None:M. Didier LECLERC 
+088 Grandrupt-de-Bains -> None:M. Jean-Paul THOMAS 
+088 Hardancourt -> None:Mme Marion HAAS 
+088 Jésonville -> None:M. Christophe LEDUC 
+088 Lesseux -> None:M. Pascal SEFFRE 
+088 Longchamp-sous-Châtenois -> None:M. Philippe HUREAU 
+088 Luvigny -> None:M. David BURGER 
+088 Malaincourt -> None:M. Alain CHAMPAGNE 
+088 Mandres-sur-Vair -> None:M. Laurent CHAMPAGNE 
+088 Marey -> None:M. Laurent PILOT 
+088 Maroncourt -> None:Mme Andrée ANNEN 
+088 Martigny-les-Gerbonvaux -> None:M. Rémi MARTIN 
+088 Ménil-sur-Belvitte -> None:M. Michel RENARD 
+088 Morizécourt -> None:M. Jérôme CHAMPION 
+088 Morville -> None:M. Stéphane GUENIOT 
+088 Ollainville -> None:Mme Noémie ROBERT 
+088 Pallegney -> None:M. Sylvain DUMAS 
+088 Ramecourt -> None:Mme Martine CLEMENT 
+088 Rancourt -> None:M. Gérard LANTERNE 
+088 Raon-l'Etape -> None:M. Benoit PIERRAT
+088 Rapey -> None:M. Dominique CONRARD 
+088 Repel -> None:M. Jean-Pierre ZEH 
+088 Saint-Dié -> None:M. David VALENCE
+088 Saint-Etienne-lès-Remiremont -> None:M. Michel DEMANGE
+088 Saint-Genest -> None:Mme Claudie AMBUHL 
+088 Saint-Julien -> None:M. Marcel PATRIS 
+088 Saint-Pierremont -> None:M. Gilles THOMAS 
+088 Savigny -> None:Mme Justine NICOLAS 
+088 Sercoeur -> None:M. Frédéric JACQUIN 
+088 Socourt -> None:M. Aimé HOUILLON 
+088 Soulosse-sous-Saint-Elophe -> None:Mme Géraldine DESTRIGNEVILLE 
+088 Thiraucourt -> None:M. Eric SAINT MICHEL 
+088 Tranqueville-Graux -> None:M. Hervé DURAND 
+088 Varmonzey -> None:M. Joël BARBE 
+088 Vaudoncourt -> None:Mme Laurence CRETENOY 
+088 Vicherey -> None:M. Christian FRANCE 
+088 Villouxel -> None:M. Patrick CHILLON 
+088 Viviers-lès-Offroicourt -> None:M. Sébastien MARCELIN 
+088 Vomécourt-sur-Madon -> None:Mme Corinne NICOLAS 
+089 Baon -> None:M. Samuel VIGNAL 
+089 Boeurs-en-Othe -> None:M. André ROY 
+089 Bois-d'Arcy -> None:M. Marcel BRICAGE 
+089 Egleny -> None:M. Gilbert AUDOUX 
+089 Egriselles-le-Bocage -> None:M. Christian DESCHAMPS
+089 Epineau-les-Voves -> None:M. Patrick GIRARD 
+089 Epineuil -> None:M. Claude REGNIER 
+089 Etais-la-Sauvin -> None:M. Nicolas GAUTHIER 
+089 Etaules -> None:Mme Mireille GUIOD 
+089 Etigny -> None:M. Jean-Michel GODIGNON 
+089 Etivey -> None:M. Patrick ROSSI 
+089 Evry -> None:Mme Jocelyne LORRAIN 
+089 Grimault -> None:M. Jean-Pierre ANJUERER 
+089 Gy-l'Evêque -> None:M. José VICENTE 
+089 Jouancy -> None:M. Stéphane BARDOUX 
+089 Marmeaux -> None:Mme Colette PESTEL 
+089 Noyers-sur-Serein -> None:M. Daniel ROBERT 
+089 Rogny-les-Sept-Ecluses -> None:Mme Roxane BORNAT 
+089 Rosoy -> None:Mme Dominique CHAPPUIT
+089 Saint-Denis -> None:M. Jean-Louis TAVERNE 
+089 Saints -> None:M. Jean-François JURY 
+089 Sarry -> None:Mme Danielle RIOTTE 
+089 Thorey -> None:Mme Gisèle DÉANS 
+089 Trévilly -> None:M. Denis RAPPENEAU 
+089 Vassy -> None:M. Maurice PHILIPOT 
+090 Eloie -> None:M. Michel ORIEZ
+090 Etueffont -> None:M. Alain FESSLER
+090 Evette-Salbert -> None:M. Bernard GUILLEMET
+090 Fêche-l'Eglise -> None:M. Marc JEANNOUTOT 
+090 Montreux-Château -> None:M. Laurent CONRAD
+090 Petitefontaine -> None:M. Emmanuel CHAIGNOT 
+090 Saint-Dizier-l'Evêque -> None:Mme Francine WITTIG 
+091 Athis-Mons -> None:Mme Christine RODIER
+091 Brières-les-Scellés -> None:M. Michel ROULAND
+091 Brunoy -> None:M. Bruno GALLIER
+091 Chauffour-lès-Etréchy -> None:M. Marc AUGER 
+091 Chilly-Mazarin -> None:M. Jean-Paul BENEYTOU
+091 Echarcon -> None:M. Pascal MICHEL 
+091 Egly -> None:M. Gérard MARCONNET
+091 Epinay-sous-Sénart -> None:M. Georges PUJALS
+091 Epinay-sur-Orge -> None:M. Guy MALHERBE
+091 Etampes -> None:M. Franck MARLIN
+091 Etiolles -> None:M. Philippe JUMELLE
+091 Etréchy -> None:Mme Elisabeth DAILLY
+091 Evry -> None:M. Francis CHOUAT
+091 Longjumeau -> None:Mme Sandrine GELOT RATEAU
+091 Moigny-sur-Ecole -> None:M. Pascal SIMONNOT
+091 Oncy-sur-Ecole -> None:M. Christophe COUDER 
+091 Roinville-sous-Dourdan -> None:M. Dominique ECHAROUX
+091 Roinvilliers -> None:M. Pascal EGEL 
+091 Saclas -> None:M. Yves GAUCHER
+091 Soisy-sur-Ecole -> None:M. Philippe BERTHON
+091 Vigneux-sur-Seine -> None:M. Serge POINSOT
+091 Viry-Chatillon -> None:M. Jean-Marie VILAIN
+091 Yerres -> None:M. Nicolas DUPONT-AIGNAN
+092 Bagneux -> None:Mme Marie-Hélène AMIABLE
+092 Boulogne-Billancourt -> None:M. Pierre-Christophe BAGUET
+092 Chaville -> None:M. Jean-Jacques GUILLET
+092 Clamart -> None:M. Jean-Didier BERGER
+092 Clichy -> None:M. Gilles CATOIRE
+092 Colombes -> None:Mme Nicole GOUETA
+092 Fontenay-aux-Roses -> None:M. Laurent VASTEL
+092 Levallois-Perret -> None:M. Patrick BALKANY
+092 Nanterre -> None:M. Patrick JARRY
+092 Neuilly-sur-Seine -> None:M. Jean-Christophe FROMANTIN
+092 Suresnes -> None:M. Christian DUPUY
+092 Vanves -> None:M. Bernard GAUDUCHEAU
+092 Villeneuve-la-Garenne -> None:M. Alain-Bernard BOULANGER
+093 Aubervilliers -> None:M. Pascal BEAUDET
+093 Bobigny -> None:M. Stéphane DE PAOLI
+093 Bondy -> None:Mme Sylvine THOMASSIN
+093 Coubron -> None:M. Ludovic TORO
+093 Epinay-sur-Seine -> None:M. Hervé CHEVREAU
+093 Gournay-sur-Marne -> None:M. Eric SCHLEGEL
+093 L'Ile-Saint-Denis -> None:M. Michel BOURGAIN
+093 Noisy-le-Grand -> None:M. Michel PAJON
+093 Pantin -> None:M. Bertrand KERN
+093 Romainville -> None:Mme Corinne VALLS
+093 Rosny-sous-Bois -> None:M. Claude CAPILLON
+093 Saint-Denis -> None:M. Didier PAILLARD
+093 Saint-Ouen -> None:M. William DELANNOY
+093 Sevran -> None:M. Stéphane GATIGNON
+093 Tremblay-en-France -> None:M. François ASENSI
+094 Alfortville -> None:M. Luc CARVOUNAS
+094 Charenton-le-Pont -> None:M. Jean-Marie BRÉTILLON
+094 Chennevières-sur-Marne -> None:M. Jean-Pierre BARNAUD
+094 Choisy-le-Roi -> None:M. Didier GUILLAUME
+094 Gentilly -> None:Mme Patricia TORDJMAN
+094 L'Hay-les-Roses -> None:M. Vincent JEANBRUN
+094 Nogent-sur-Marne -> None:M. Jacques J.P MARTIN
+094 Périgny-sur-Yerres -> None:M. Georges URLACHER
+094 Rungis -> None:M. Raymond CHARRESSON
+094 Saint-Maurice -> None:M. Christian CAMBON
+094 Sucy-en-Brie -> None:Mme Marie-Carole CIUNTU
+094 Villejuif -> None:M. Franck LE BOHELLEC
+094 Villeneuve-Saint-Georges -> None:Mme Sylvie ALTMAN
+094 Vincennes -> None:M. Laurent LAFON
+095 Argenteuil -> None:M. Georges MOTHRON
+095 Bessancourt -> None:M. Jean-Christophe POULET
+095 Brignancourt -> None:M. Fabrice BORDEAU 
+095 Cergy -> None:M. Jean-Paul JEANDON
+095 Champagne-sur-Oise -> None:Mme Corinne VASSEUR
+095 Chaumontel -> None:Mme Betty BEASLAY
+095 Deuil-la-Barre -> None:Mme Muriel SCOLAN
+095 Ecouen -> None:M. Bernard ANGELS
+095 Enghien-les-Bains -> None:M. Philippe SUEUR
+095 Epiais-lès-Louvres -> None:Mme Karine BOZZINI 
+095 Epiais-Rhus -> None:Mme Catherine DEMANGE 
+095 Epinay-Champlâtreux -> None:M. Sylvain BERNARD 
+095 Eragny -> None:M. Thibault HUMBERT
+095 Ezanville -> None:M. Alain BOURGEOIS
+095 Garges-lès-Gonesse -> None:M. Maurice LEFEVRE
+095 Goussainville -> None:M. Alain LOUIS
+095 Guiry-en-Vexin -> None:M. Nicolas DE MAISTRE 
+095 L'Isle-Adam -> None:M. Axel PONIATOWSKI
+095 Luzarches -> None:M. Patrick DECOLIN
+095 Menouville -> None:M. Christian PION 
+095 Montigny-lès-Cormeilles -> None:M. Jean-Noël CARPENTIER
+095 Montmagny -> None:M. Patrick FLOQUET
+095 Nesles-la-Vallée -> None:M. Philippe GUEROULT
+095 Pontoise -> None:M. Philippe HOUILLON
+095 Puiseux-en-France -> None:M. Yves MURRU
+095 Saint-Leu-la-Forêt -> None:M. Sébastien MEURANT
+095 Sannois -> None:M. Bernard JAMET
+095 Villiers-le-Bel -> None:M. Jean-Louis MARSAC
+972 Basse-Pointe -> None:Mme Marie-Urbain-Thérèse CASIMIRIUS
+972 Bellefontaine -> None:M. Félix ISMAIN
+972 Case-Pilote -> None:M. Ralph MONPLAISIR
+972 Ducos -> None:M. Charles-André MENCE
+972 Fonds-Saint-Denis -> None:Mme Nadiège DESPROL 
+972 Fort-de-France -> None:M. Didier LAGUERRE
+972 Grand'Rivière -> None:M. Jocelyn AFRICA 
+972 Gros-Morne -> None:M. Gilbert COUTURIER
+972 L'Ajoupa-Bouillon -> None:M. Thomas ACCAMAH
+972 Macouba -> None:M. Elie BORVAL
+972 Rivière-Pilote -> None:M. Raymond Léonard THEODOSE
+972 Rivière-Salée -> None:M. André LESUEUR
+972 Sainte-Anne -> None:M. Jean-Michel GEMIEUX
+972 Sainte-Luce -> None:M. Nicaise Gérard MONROSE
+972 Sainte-Marie -> None:M. Bruno Nestor AZEROT
+972 Saint-Esprit -> None:M. Fred Michel TIRAULT
+972 Saint-Joseph -> None:M. Athanase JEANNE-ROSE
+972 Saint-Pierre -> None:M. Raphaël MARTINE
+972 Schoelcher -> None:M. Luc Louison CLEMENTE
+973 Apatou -> None:M. Paul DOLIANKI
+973 Awala-Yalimapo -> None:M. Jocelyn Roger THÉRÈSE
+973 Camopi -> None:M. Joseph CHANEL
+973 Cayenne -> None:Mme Marie-Laure PHINERA-HORTH
+973 Grand-Santi -> None:M. Paul MARTIN
+973 Iracoubo -> None:M. Daniel MANGAL
+973 Kourou -> None:M. François RINGUET
+973 Macouria -> None:M. Gilles ADELSON
+973 Mana -> None:M. Georges PATIENT
+973 Maripasoula -> None:M. Serge ANELLI
+973 Matoury -> None:M. Gabriel SERVILLE
+973 Montsinéry-Tonnegrande -> None:M. PATRICK LECANTE
+973 Ouanary -> None:Mme Marthe BACK 
+973 Papaichton -> None:M. Jules DEIE
+973 Régina -> None:M. Daniel LALANE 
+973 Remire-Montjoly -> None:M. Jean GANTY
+973 Roura -> None:M. David RICHÉ
+973 Saint-Elie -> None:Mme Rose ALEXANDER 
+973 Saint-Georges -> None:M. Georges ELFORT
+973 Saint-Laurent-du-Maroni -> None:M. Léon BERTRAND
+973 Saül -> None:Mme Marie-Laure BOURGEOIS 
+973 Sinnamary -> None:M. Jean Claude MADELEINE
