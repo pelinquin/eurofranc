@@ -31,7 +31,7 @@
 #    * Encryption with ECC use an idea of jackjack-jj on github
 #-----------------------------------------------------------------------------
 
-
+# 0 STATE INIT (other color)
 # 1 STATE PING (pink color)
 #   YES balance + date_now + 
 #   NO reference
@@ -75,10 +75,9 @@
 #   212\S record transaction 
 #   400\S record main account pubkey
 
-import re, os, sys, urllib.parse, hashlib, http.client, base64, datetime, functools, subprocess, time, smtplib, operator, getpass
-import dbm
+import re, os, sys, urllib.parse, hashlib, http.client, base64, datetime, functools, subprocess, time, smtplib, operator, getpass, dbm.ndbm
 
-#import gmpy2 # for inverse_mod fast computing
+import gmpy2 # for inverse_mod fast computing
 
 __app__    = os.path.basename(__file__)[:-3]
 __dfprt__  = 80
@@ -203,11 +202,11 @@ def inverse_mod2(a, m):
     if ud > 0: return ud
     else: return ud + m
 
-def inverse_mod(a, m):
+def inverse_mod1(a, m):
     return pow(a, m-2, m)
 
-#def inverse_mod3(a, m):
-#    return gmpy2.invert(a, m)
+def inverse_mod3(a, m):
+    return gmpy2.invert(a, m)
 
 ##### API #####
 
@@ -420,6 +419,5 @@ if __name__ == '__main__':
                 print (x, datdecode(s[:4]), btob64(ur), way, b2i(dtrx[s][9:11]), b2i(dtrx[s][11:14]), b2i(dtrx[s][14:16]), b2i(dtrx[s][16:18])  )  
     dblc.close()
     dtrx.close()
-    print (send_get('cup', ''))
 
 # End ⊔net!
