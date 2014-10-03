@@ -205,7 +205,7 @@ def inverse_mod2(a, m):
 def inverse_mod1(a, m):
     return pow(a, m-2, m)
 
-def inverse_mod3(a, m):
+def inverse_mod(a, m):
     return gmpy2.invert(a, m)
 
 ##### API #####
