@@ -270,11 +270,19 @@ def app_update():
     out, err = subprocess.Popen((cd), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
     return '%s\n' % err.decode('utf8') if err else 'Message:%s\n' % out.decode('utf8')
 
+def capture_id(d, arg):
+    "_"
+    dpub = ropen(d['pub'])
+    res = [btob64(u) for u in filter(lambda i:re.match(arg, btob64(i)), dpub.keys())]
+    dpub.close()
+    if len(res) == 1: return res[0]
+    return ''
+
 def header():
     return '<?xml version="1.0" encoding="utf8"?>\n<html>\n<meta name="viewport" content="width=device-width, initial-scale=1"/>'
 
 def title():
-    return '<a href="./"><img title="Eurofranc 2015 pour l\'économie réelle !" src="%s" width="100"/></a>\n' % (get_image('logo.png'))
+    return '<a href="./"><img title="Eurofranc 2015, pour l\'économie réelle !" src="%s" width="100"/></a>\n' % (get_image('logo.png'))
 
 def get_image(img):
     "_"
@@ -294,9 +302,23 @@ def footer():
     "_"
     return '<footer>Contact: <a href="mailto:%s">%s</a><br/><a href="http://cupfoundation.net">⊔FOUNDATION</a> is registered in Toulouse/France SIREN: 399 661 602 00025</footer></html>' % (__email__, __email__)
 
-def app_index(d):
+def app_index(d, env):
     o = header() + favicon() + style_html() + title()
+    o += '<p><i>Consultez un compte</i><form method="post"><input class="txt" title="code \'MOI\' de 18 caractères alphanumérique affiché en haut du téléphone" pattern="\S+" required="yes" name="cm" placeholder="...€f-ID"/><input title="@nom-public-Twitter ou alias-privé-local" class="txt" pattern=".+" required="yes" name="alias" placeholder="@... (Twitter)"/><input type="submit" value="ok"/></form></p>\n'
+    if 'HTTP_COOKIE' in env:
+        for x in env['HTTP_COOKIE'].split(';'):
+            t = x.split('=')
+            #if t[1] == cm64: alias = urllib.parse.unquote(t[0])
+            cm = b64tob(bytes(t[1], 'ascii'))
+            al = urllib.parse.unquote(t[0])
+            o += '<p><a href="./%s" title="%s">%s</a></p>' % (t[1], t[1], al)
+        o += '<p><form method="post"><input type="submit" name="rem" value="Effacer les cookies"/></form></p>\n'
     return o + footer()
+
+def reg(value):
+    " function attribute is a way to access matching group in one line test "
+    reg.v = value
+    return value
 
 def application(environ, start_response):
     "wsgi server app"
@@ -306,16 +328,35 @@ def application(environ, start_response):
     d = init_dbs(('pub', 'trx', 'blc', 'hid'), port)
     if way == 'post':
         s = raw.decode('ascii')
-        r = b64tob(bytes(s, 'ascii')) if len(s) != 13 else s[1:]            
-        if re.match('\S{12}$', s): # get balance | src:9 len(9->12)
+        if reg(re.match('cm=(\S{1,12})&alias=(.+)$', s)):
+            alias = urllib.parse.quote(reg.v.group(2))
+            cm = capture_id(d, reg.v.group(1))
+            if cm:
+                ok = True
+                if 'HTTP_COOKIE' in environ:
+                    for x in environ['HTTP_COOKIE'].split(';'):
+                        t = x.split('=')
+                        if alias == t[0] or cm == t[1]: ok = False
+                if ok:
+                    xprs = time.time() + 100 * 24 * 3600 # 100 days from now
+                    alia = urllib.parse.quote(reg.v.group(2))
+                    ncok.append(('set-cookie', '%s=%s;expires=%s GMT' % (alias, cm, time.strftime('%a, %d-%b-%Y %T', time.gmtime(xprs)))))
+                    if 'HTTP_COOKIE' in environ:
+                        environ['HTTP_COOKIE'] += ';%s=%s' % (alias, cm)
+                    else:
+                        environ['HTTP_COOKIE'] = '%s=%s' % (alias, cm)
+                o = 'OOOKKKK' 
+        elif re.match('\S{12}$', s): # get balance | src:9 len(9->12)
+            r = b64tob(bytes(s, 'ascii'))
             dpub = ropen(d['pub'])
             if r in dpub: 
                 o = '%d' % blc(d, r)
             dpub.close()
-        elif re.match('@\S{12}$', s): # get image
-            fimg = '/%s/%s_%s/img/%s.png' % (__app__, __app__, port, r)
+        elif re.match('@\S{12}$', s): # get Twitter image
+            fimg = '/%s/%s_%s/img/%s.png' % (__app__, __app__, port, S[1:])
             if os.path.isfile(fimg): mime, o = 'image/png', open(fimg, 'rb').read()
         elif re.match('\S{16}$', s): # get transaction | src:9+pos:3 len(12->16)
+            r = b64tob(bytes(s, 'ascii'))
             src, pos, dtrx = r[:9], b2i(r[9:]), ropen(d['trx'])
             if src in dtrx:
                 n = len(dtrx[src])//13
@@ -327,21 +368,25 @@ def application(environ, start_response):
                     # QRCODE:15 btob64(dat+usr:12+val)
             dtrx.close()
         elif re.match('\S{20}$', s): # check transaction (short) | dat:4+scr:9+val:2 len(15->20)
+            r = b64tob(bytes(s, 'ascii'))
             u, dat, src, val, dtrx = r[:13], r[:4], r[4:13], r[:-2], ropen(d['trx'])
             if u in dtrx and dtrx[u][9:11] == val: 
                 o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][16,18]))
             dtrx.close()
         elif re.match('\S{32}$', s): # check transaction (long) | dat:4+scr:9+dst:9+val:2 len(24->32)
+            r = b64tob(bytes(s, 'ascii'))
             u, dst, val, dtrx = r[:13], r[13:22], r[:-2], ropen(d['trx'])
             if u in dtrx and dtrx[u][:9] == dst and dtrx[u][9:11] == val: 
                 o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][14:16]))
             dtrx.close()
         elif re.match('\S{176}$', s): # register publickey | pbk:132 len(132->176) SPAMING RISK -> SHALL BE REMOVED !
+            r = b64tob(bytes(s, 'ascii'))
             pub, src, v, dpub = r, r[-9:], r[:-9], wopen(d['pub'])
             if src in dpub: o = 'old'
             else: dpub[src], o = v, 'new'
             dpub.close()
         elif re.match('\S{212}$', s): # add transaction msg:27+sig:132 len(159->212)
+            r = b64tob(bytes(s, 'ascii'))
             u, dat, v, src, dst, val, ref, msg, sig, k, dpub = r[:13], r[:4], r[13:-132], r[4:13], r[13:22], b2i(r[22:24]), b2i(r[24:27]), r[:-132], r[-132:], ecdsa(), ropen(d['pub'])
             if src in dpub and dst in dpub and src != dst:
                 k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
@@ -365,6 +410,7 @@ def application(environ, start_response):
             else: o += ' ids!'
             dpub.close()
         elif re.match('\S{400}$', s): # register main account: dat:4+hashid:32+pubkey:132+sig:132 len(300->400)
+            r = b64tob(bytes(s, 'ascii'))
             dat, hid, src, pk1, pk2, v, msg, sig, k = r[:4], r[4:36:], r[159:168], r[36:102], r[102:168], r[36:159], r[:-132], r[-132:], ecdsa()
             k.pt = Point(c521, b2i(pk1), b2i(pk2))
             if k.verify(sig, msg):
@@ -376,7 +422,7 @@ def application(environ, start_response):
                 dpub.close()
     else: # get
         s = raw # use directory or argument
-        if base == '' and s == '': o, mime = app_index(d), 'text/html; charset=utf-8'
+        if base == '' and s == '': o, mime = app_index(d, environ), 'text/html; charset=utf-8'
         elif s == '': 
             o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr'
             update_blc(d)
@@ -385,57 +431,7 @@ def application(environ, start_response):
     start_response('200 OK', [('Content-type', mime)] + ncok)
     return [o if mime in ('application/pdf', 'image/png', 'image/jpg') else o.encode('utf8')] 
 
-def test2():
-    print (send_get('cup', ''))
-    print (send_post('cup', btob64(b'h'*9)))
-    print (send_post('cup', btob64(b'h'*12)))
-    print (send_post('cup', btob64(b'h'*15)))
-    print (send_post('cup', btob64(b'h'*24)))
-    print (send_post('cup', btob64(b'h'*132)))
-    print (send_post('cup', btob64(b'h'*156)))
-    id3 = 'SVahsR_yhTxl'
-    print (send_get('eurofranc.fr', id3))
-    sys.exit()
-
-def test1():
-    #t1 = b'AWbfI0lWobEf8oU8ZQ -> 5eI6gg80GKtFAB4AKIygOf650cbadSejCX6fmkSI6kdKimKc2KSFTU9BJMGoXstS0UOUq2fKzWC3h7WzXwylSLi_zb-Zc2J8JZwA_3gBagKnh3yMWhciG138UqK3WjP9l0JHfUQGQ5c9LvINBMK92bTRcBKRxcwfICqGmehv7JWkPbIGpRt1HjK3gwP7ChU'
-    #09:033 SVahsR_yhTxl -> 
-    v1 = b'AWbfCDoBZt8NOgFm3yM6AWbfJDoBZt_65eI6gg80GKtF'
-    #09:060 5eI6gg80GKtF -> 
-    v2 = b'AWbfCElWobEf8oU8ZToBZt8NSVahsR_yhTxlOgFm3yNJVqGxH_KFPGU6AWbfJElWobEf8oU8ZToBZt_6'
-    #13:143 AWbfJElWobEf8oU8ZQ -> 5eI6gg80GKtFAAQAuOk0I6UOg2liShFi9BhT_fA4ks_PoBRaEjzm_g0TxG_3wKjDs1H_6MtxWwdW79RNCYmVXzsdmN367wMxG63xOYIAT4Uh3tU-wN_Qot1jCGEWOPnT2JX22R0AGdoIa2hFCp-7ETfYsJh-CVleuu3Mk6DfuFCIUN1UM_ys0vvFrgBaQVs
-    #13:143 AWbfDUlWobEf8oU8ZQ -> 5eI6gg80GKtFAAIABrfAxJFQK8eOCQy-b6Yk9IcipWTISHts9kX_pibKWkmxYQEym46ewFBlFm9-pueemQEnU0URwgBgKlm0h1PsPDAAhY7_I6iGhkQ31LUp36nN2UPamamVijhvd0_pMNz3JZOBL1MPv_1etujnNkb8w6IM4UAiCRceyYKexHrphSskSYw
-    #13:143 AWbf-uXiOoIPNBirRQ -> SVahsR_yhTxlA-gAvt_pEaU5fKSLmHwdwr1KNB8AQD0WphoExQSF_bhEe0vYINjROElEFw5iuNOAyrF46GyjlV4mQjcs33yPInU9NFoBH4KjbaWy2GA2vsQgWZaKa44uVm9-ZRFO-LjySs96m23Q-bX4ZqAjRoeCPG8n6JaKtSkPlbbJ5Z6dbv9ee19KuaM
-    #13:143 AWbfCElWobEf8oU8ZQ -> 5eI6gg80GKtFAAEBofW_Xd9QUV7fJf820AWshQv5LgQ0WIs5YEIZp9f7SToZiBpHvFleOjUVkuf1BmbUGYiCktjpYnCnXdPDyPSTJLYAbQqjq5AcnWog69L4gDFcBRdAh6YZ-fUT4AsIT0N2xyLZP8Iqnr4CO_rKe9z0mkUoRKKV968QmqaD1zOl_-2AH5E
-
-    x = b64tob(v2)
-    for i in x.split(b':'):
-        print (len(i))
-
-
-    r2 = b'AWbdseXiOoIPNBirRQAAewAa'
-    x = b64tob(r2)
-    print (len(x))
-    print ('dat', datdecode(x[:4]))
-    print (b2i(x[:4]))
-    print ([t for t in x]);
-    sys.exit()
-
-def test3():
-    import cProfile
-    k = ecdsa()
-    kx, ky = 1497626729486698250092836588258522241576986267962509549806031472029777015910199567058370933525287831904420674640244116785460336785990307731327653260061341184, 3913334906008739579549527439581844548577377240182775572287928609736407393883660334541807646401094599739670101579293967007613985154383349376877321098382392173
-    k.pt = Point(c521, kx, ky)
-    k.privkey = 454086624460063511464984254936031011189294057512315937409637584344757371137
-    s = b'AG-ytve_8p-xCFnL-u5iyg9hWPr-8zSj5Ruvu7Ki9XZdqDUzOCa_nq1c87efPEWaLxBs6o-B1mUJNEvb-2Rp4HYAAbxKVzub8ltEjGDi10ncGtrWUMZU41ziHgfsWdtRGZj48RwB-8hpKncK3BBhH7Jj-PErJXCKNEvWIQ0UuLLtlzpv'
-    cProfile.run ("k.verify(b64tob(s), b'hello')")
-    assert k.verify(b64tob(s), b'hello')    
-    sys.exit()
-
 if __name__ == '__main__':
-    #test1()
-    #test2()
-    #test3()
     dtrx, dblc = dbm.open('/ef/ef_80/trx'), dbm.open('/ef/ef_80/blc')
     for src in dtrx.keys():
         if len(src) == 9:            
