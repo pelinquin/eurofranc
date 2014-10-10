@@ -76,6 +76,7 @@
 #   400\S record main account pubkey
 
 import re, os, sys, urllib.parse, hashlib, http.client, base64, datetime, functools, subprocess, time, smtplib, operator, getpass, dbm.ndbm
+import requests, requests_oauthlib
 
 import gmpy2 # for inverse_mod fast computing
 
@@ -320,6 +321,18 @@ def reg(value):
     reg.v = value
     return value
 
+def get_twitter_img(port, user):
+    di = '/%s/%s_%s/img' % (__app__, __app__, port)
+    fi, fk = '%s/%s.png' % (di, user), '%s/twitter_keys' % di
+    if not os.path.isfile(fi):
+        k = eval(open(fk).read())
+        header = requests_oauthlib.OAuth1(k['CK'], k['CS'], k['AK'], k['AS'], signature_type='auth_header')
+        tab = requests.get('https://api.twitter.com/1.1/users/show.json?screen_name=' + user, auth = header).json()
+        if reg(re.match(r'http://([^/]+)(/\S+)$', tab['profile_image_url'])):
+            co = http.client.HTTPConnection(reg.v.group(1))
+            co.request('GET', reg.v.group(2))
+            open(fi, 'wb').write(co.getresponse().read())
+
 def application(environ, start_response):
     "wsgi server app"
     mime, o, now, fname, port = 'text/plain; charset=utf8', 'error', '%s' % datetime.datetime.now(), 'default.txt', environ['SERVER_PORT']
@@ -329,7 +342,9 @@ def application(environ, start_response):
     if way == 'post':
         s = raw.decode('ascii')
         if reg(re.match('cm=(\S{1,12})&alias=(.+)$', s)):
-            alias = urllib.parse.quote(reg.v.group(2))
+            #alias = urllib.parse.quote(reg.v.group(2))
+            #alias = reg.v.group(2)
+            alias = urllib.parse.unquote(reg.v.group(2))
             cm = capture_id(d, reg.v.group(1))
             if cm:
                 ok = True
@@ -339,13 +354,14 @@ def application(environ, start_response):
                         if alias == t[0] or cm == t[1]: ok = False
                 if ok:
                     xprs = time.time() + 100 * 24 * 3600 # 100 days from now
-                    alia = urllib.parse.quote(reg.v.group(2))
                     ncok.append(('set-cookie', '%s=%s;expires=%s GMT' % (alias, cm, time.strftime('%a, %d-%b-%Y %T', time.gmtime(xprs)))))
                     if 'HTTP_COOKIE' in environ:
                         environ['HTTP_COOKIE'] += ';%s=%s' % (alias, cm)
                     else:
                         environ['HTTP_COOKIE'] = '%s=%s' % (alias, cm)
-                o = 'OOOKKKK' 
+                if alias[0] == '@': 
+                    get_twitter_img(port, alias[1:])
+                    o = 'OOOKKKK %s' % alias 
         elif re.match('\S{12}$', s): # get balance | src:9 len(9->12)
             r = b64tob(bytes(s, 'ascii'))
             dpub = ropen(d['pub'])
@@ -432,6 +448,10 @@ def application(environ, start_response):
     return [o if mime in ('application/pdf', 'image/png', 'image/jpg') else o.encode('utf8')] 
 
 if __name__ == '__main__':
+
+    dpub = dbm.open('/ef/ef_80/pub')
+    for src in dpub.keys(): print (btob64(src))
+    dpub.close()
     dtrx, dblc = dbm.open('/ef/ef_80/trx'), dbm.open('/ef/ef_80/blc')
     for src in dtrx.keys():
         if len(src) == 9:            
