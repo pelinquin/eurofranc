@@ -321,9 +321,9 @@ def reg(value):
     reg.v = value
     return value
 
-def get_twitter_img(port, user):
+def get_twitter_img(port, user, cm):
     di = '/%s/%s_%s/img' % (__app__, __app__, port)
-    fi, fk = '%s/%s.png' % (di, user), '%s/twitter_keys' % di
+    fi, fk, fc = '%s/%s.png' % (di, user), '%s/twitter_keys' % di, '%s/%s.png' % (di, cm),
     if not os.path.isfile(fi):
         k = eval(open(fk).read())
         header = requests_oauthlib.OAuth1(k['CK'], k['CS'], k['AK'], k['AS'], signature_type='auth_header')
@@ -332,6 +332,7 @@ def get_twitter_img(port, user):
             co = http.client.HTTPConnection(reg.v.group(1))
             co.request('GET', reg.v.group(2))
             open(fi, 'wb').write(co.getresponse().read())
+    if not os.path.isfile(fc): os.symlink('%s.png' % user, fc)
 
 def application(environ, start_response):
     "wsgi server app"
@@ -342,10 +343,7 @@ def application(environ, start_response):
     if way == 'post':
         s = raw.decode('ascii')
         if reg(re.match('cm=(\S{1,12})&alias=(.+)$', s)):
-            #alias = urllib.parse.quote(reg.v.group(2))
-            #alias = reg.v.group(2)
-            alias = urllib.parse.unquote(reg.v.group(2))
-            cm = capture_id(d, reg.v.group(1))
+            alias, cm = urllib.parse.unquote(reg.v.group(2)), capture_id(d, reg.v.group(1))
             if cm:
                 ok = True
                 if 'HTTP_COOKIE' in environ:
@@ -359,9 +357,14 @@ def application(environ, start_response):
                         environ['HTTP_COOKIE'] += ';%s=%s' % (alias, cm)
                     else:
                         environ['HTTP_COOKIE'] = '%s=%s' % (alias, cm)
-                if alias[0] == '@': 
-                    get_twitter_img(port, alias[1:])
-                    o = 'OOOKKKK %s' % alias 
+                if alias[0] == '@': get_twitter_img(port, alias[1:], cm)
+            o, mime = app_index(d, environ), 'text/html; charset=utf-8'
+        elif s == 'rem=Effacer+les+cookies':
+            for x in environ['HTTP_COOKIE'].split(';'):
+                t = x.split('=')
+                ncok.append(('set-cookie', '%s=no;expires=Thu, 01 Jan 1970 00:00:00 GMT' % t[0]))            
+            del environ['HTTP_COOKIE']
+            o, mime = app_index(d, environ), 'text/html; charset=utf-8'
         elif re.match('\S{12}$', s): # get balance | src:9 len(9->12)
             r = b64tob(bytes(s, 'ascii'))
             dpub = ropen(d['pub'])
@@ -436,6 +439,7 @@ def application(environ, start_response):
                 if src not in dpub: dpub[src] = v
                 dhid.close()
                 dpub.close()
+        else: o = "%s" % s
     else: # get
         s = raw # use directory or argument
         if base == '' and s == '': o, mime = app_index(d, environ), 'text/html; charset=utf-8'
