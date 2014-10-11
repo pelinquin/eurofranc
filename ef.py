@@ -377,7 +377,7 @@ def application(environ, start_response):
                 o = '%d' % blc(d, r)
             dpub.close()
         elif re.match('@\S{12}$', s): # get Twitter image
-            fimg = '/%s/%s_%s/img/%s.png' % (__app__, __app__, port, S[1:])
+            fimg = '/%s/%s_%s/img/%s.png' % (__app__, __app__, port, s[1:])
             if os.path.isfile(fimg): mime, o = 'image/png', open(fimg, 'rb').read()
         elif re.match('\S{16}$', s): # get transaction | src:9+pos:3 len(12->16)
             r = b64tob(bytes(s, 'ascii'))
