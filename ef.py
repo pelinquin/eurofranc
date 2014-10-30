@@ -343,10 +343,10 @@ def app_trx(d):
 def app_report(d, src):
     o, un = header() + favicon() + style_html() + title(), '<euro>&thinsp;€</euro>'
     dtrx, dblc = ropen(d['trx']), ropen(d['blc'])
-    o += '<p class="mono">%s</p><p class="num">%7.2f%s</p><table>' % (src, int(dblc[src])/100 if src in dblc else 0, un) 
+    r = b64tob(bytes(src, 'ascii'))
+    o += '<p class="mono">%s</p><p class="num">%7.2f%s</p><table>' % (src, int(dblc[r])/100 if r in dblc else 0, un) 
     dblc.close()
     #for i, src in enumerate(dtrx.keys()): o += '<tr><td class="num">%d</td></tr>' % (i+1)
-    r = b64tob(bytes(src, 'ascii'))
     if r in dtrx:
         n = len(dtrx[r])//13
         for i in range(n):
