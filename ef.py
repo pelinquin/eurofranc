@@ -350,7 +350,7 @@ def app_report(d, src):
     if r in dtrx:
         n = len(dtrx[r])//13
         for i in range(n):
-            s = dtrx[r][13*(n-x-1):13*(n-x)]
+            s = dtrx[r][13*(n-i-1):13*(n-i)]
             (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == src else (i2b(1,1), s[4:])
             way = '+' if b2i(w) == 1 else '-'
             o += '<tr><td class="num">%d</td><td class="num">%s</td></tr>' % (i+1, datdecode(s[:4]))
