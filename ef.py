@@ -321,11 +321,11 @@ def app_index(d, env):
         o += '<p><form method="post"><input type="submit" name="rem" value="Effacer les cookies"/></form></p>\n'
     return o + footer()
 
-def app_list(d):
+def app_users(d):
     o, un = header() + favicon() + style_html() + title() + '<table>', '<euro>&thinsp;€</euro>'
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
     for i, src in enumerate(dpub.keys()): 
-        o += '<tr><td class="num">%d</td><td class="mono">%s</td><td class="num">%7.2f%s</td></tr>' % (i+1, btob64(src), int(dblc[src])/100 if src in dblc else 0, un)
+        o += '<tr><td class="num">%d</td><td><a href="./%s" class="mono">%s</a></td><td class="num">%7.2f%s</td></tr>' % (i+1, btob64(src), btob64(src), int(dblc[src])/100 if src in dblc else 0, un)
     dpub.close()
     dblc.close()
     return o + '</table>' + footer()
@@ -338,6 +338,23 @@ def app_trx(d):
             # ref b2i(dtrx[s][11:14]),  ??  b2i(dtrx[s][14:16]),  ?? b2i(dtrx[s][16:
             o += '<tr><td class="num">%d</td><td class="num">%s</td><td class="mono">%s</td><td class="mono">%s</td><td class="num">%7.2f%s</td><td class="num">%07d</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(dtrx[t][:9]), b2i(dtrx[t][9:11])/100, un, b2i(dtrx[t][11:14]))
     dtrx.close()
+    return o + '</table>' + footer()
+
+def app_report(d, src):
+    o, un = header() + favicon() + style_html() + title(), '<euro>&thinsp;€</euro>'
+    dtrx, dblc = ropen(d['trx']), ropen(d['blc'])
+    o += '<p class="mono">%s</p><p class="num">%7.2f%s</p><table>' % (src, int(dblc[src])/100 if src in dblc else 0, un) 
+    #for i, src in enumerate(dtrx.keys()): o += '<tr><td class="num">%d</td></tr>' % (i+1)
+    if src in dtrx:
+        n = len(dtrx[src])//13
+        for i in range(n):
+            s = dtrx[src][13*(n-x-1):13*(n-x)]
+            (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == src else (i2b(1,1), s[4:])
+            way = '+' if b2i(w) == 1 else '-'
+            o += '<tr><td class="num">%d</td><td class="num">%s</td></tr>' % (i+1, datdecode(s[:4]))
+            #aa = (btob64(ur), way, b2i(dtrx[s][9:11]), b2i(dtrx[s][11:14]), b2i(dtrx[s][14:16]), b2i(dtrx[s][16:18]))
+    dtrx.close()
+    dblc.close()
     return o + '</table>' + footer()
 
 def reg(value):
@@ -466,11 +483,12 @@ def application(environ, start_response):
         else: o = "%s" % s
     else: # get
         s = raw # use directory or argument
-        if base == '' and s == '': o, mime = app_index(d, environ), 'text/html; charset=utf-8'
+        if re.match('\S{12}$', base): o, mime = app_report(d, base), 'text/html; charset=utf-8'
+        elif base == '' and s == '': o, mime = app_index(d, environ), 'text/html; charset=utf-8'
         elif s == '': 
             o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr'
             update_blc(d)
-        elif base == '' and s == 'users': o, mime = app_list(d), 'text/html; charset=utf-8'
+        elif base == '' and s == 'users': o, mime = app_users(d), 'text/html; charset=utf-8'
         elif base == '' and s == 'transactions': o, mime = app_trx(d), 'text/html; charset=utf-8'
         elif base == '' and s == '_isactive': o = 'ok'
         elif base == '' and s == '_update': o = app_update()
