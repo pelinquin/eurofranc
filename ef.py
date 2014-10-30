@@ -321,6 +321,16 @@ def app_index(d, env):
         o += '<p><form method="post"><input type="submit" name="rem" value="Effacer les cookies"/></form></p>\n'
     return o + footer()
 
+def app_list(d, env):
+    o = header() + favicon() + style_html() + title() + '<table>'
+    dpub, dblc = ropen(d['pub']), ropen(d['blc'])
+    for i, src in enumerate(dpub.keys()): 
+        blc = dblc[src] if src in dblc else '0'
+        o += '<tr><td class="num">%d</td><td class="mono">%s</td><td>%s</td></tr>' % (i, btob64(src), blc)
+    dpub.close()
+    dblc.close()
+    return o + '</table>' + footer()
+
 def reg(value):
     " function attribute is a way to access matching group in one line test "
     reg.v = value
@@ -451,6 +461,7 @@ def application(environ, start_response):
         elif s == '': 
             o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr'
             update_blc(d)
+        elif base == '' and s == 'list': o, mime = app_list(d, environ), 'text/html; charset=utf-8'
         elif base == '' and s == '_isactive': o = 'ok'
         elif base == '' and s == '_update': o = app_update()
     start_response('200 OK', [('Content-type', mime)] + ncok)
