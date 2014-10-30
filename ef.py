@@ -337,7 +337,7 @@ def app_trx(d):
     for i, t in enumerate(dtrx.keys()): 
         if len(t) == 13:            
             # ref b2i(dtrx[s][11:14]),  ??  b2i(dtrx[s][14:16]),  ?? b2i(dtrx[s][16:
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td class="mono">%s</td></tr><td class="mono">%s</td><td class="num">%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(dtrx[t][:9]), b2i(dtrx[t][9:11]))
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td class="mono">%s</td><td class="mono">%s</td><td class="num">%s</td><td class="num">%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(dtrx[t][:9]), b2i(dtrx[t][9:11])/100, b2i(dtrx[t][11:14]))
     dtrx.close()
     return o + '</table>' + footer()
 
