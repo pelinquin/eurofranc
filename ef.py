@@ -326,7 +326,7 @@ def app_list(d):
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
     for i, src in enumerate(dpub.keys()): 
         blc = int(dblc[src])/100 if src in dblc else '0'
-        o += '<tr><td class="num">%d</td><td class="mono">%s</td><td class="num">%s</td></tr>' % (i, btob64(src), blc)
+        o += '<tr><td class="num">%d</td><td class="mono">%s</td><td class="num">%s</td></tr>' % (i+1, btob64(src), blc)
     dpub.close()
     dblc.close()
     return o + '</table>' + footer()
@@ -336,8 +336,8 @@ def app_trx(d):
     dtrx = ropen(d['trx'])
     for i, t in enumerate(dtrx.keys()): 
         if len(t) == 13:            
-            #print b2i(dtrx[s][9:11]), b2i(dtrx[s][11:14]), b2i(dtrx[s][14:16]), b2i(dtrx[s][16:
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td class="mono">%s</td></tr>' % (i, datdecode(t[:4]), btob64(t[4:]))
+            # ref b2i(dtrx[s][11:14]),  ??  b2i(dtrx[s][14:16]),  ?? b2i(dtrx[s][16:
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td class="mono">%s</td></tr><td class="mono">%s</td><td class="num">%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(dtrx[t][:9]), b2i(dtrx[t][9:11]))
     dtrx.close()
     return o + '</table>' + footer()
 
