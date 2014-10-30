@@ -322,11 +322,11 @@ def app_index(d, env):
     return o + footer()
 
 def app_list(d):
-    o = header() + favicon() + style_html() + title() + '<table>'
+    o, un = header() + favicon() + style_html() + title() + '<table>', '<euro>&thinsp;€</euro>'
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
     for i, src in enumerate(dpub.keys()): 
         blc = int(dblc[src])/100 if src in dblc else '0'
-        o += '<tr><td class="num">%d</td><td class="mono">%s</td><td class="num">%s</td></tr>' % (i+1, btob64(src), blc)
+        o += '<tr><td class="num">%d</td><td class="mono">%s</td><td class="num">%7.2f%s</td></tr>' % (i+1, btob64(src), blc, un)
     dpub.close()
     dblc.close()
     return o + '</table>' + footer()
