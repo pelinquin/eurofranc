@@ -344,17 +344,18 @@ def app_report(d, src):
     o, un = header() + favicon() + style_html() + title(), '<euro>&thinsp;€</euro>'
     dtrx, dblc = ropen(d['trx']), ropen(d['blc'])
     o += '<p class="mono">%s</p><p class="num">%7.2f%s</p><table>' % (src, int(dblc[src])/100 if src in dblc else 0, un) 
+    dblc.close()
     #for i, src in enumerate(dtrx.keys()): o += '<tr><td class="num">%d</td></tr>' % (i+1)
-    if src in dtrx:
-        n = len(dtrx[src])//13
+    r = b64tob(bytes(src, 'ascii'))
+    if r in dtrx:
+        n = len(dtrx[r])//13
         for i in range(n):
-            s = dtrx[src][13*(n-x-1):13*(n-x)]
+            s = dtrx[r][13*(n-x-1):13*(n-x)]
             (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == src else (i2b(1,1), s[4:])
             way = '+' if b2i(w) == 1 else '-'
             o += '<tr><td class="num">%d</td><td class="num">%s</td></tr>' % (i+1, datdecode(s[:4]))
             #aa = (btob64(ur), way, b2i(dtrx[s][9:11]), b2i(dtrx[s][11:14]), b2i(dtrx[s][14:16]), b2i(dtrx[s][16:18]))
     dtrx.close()
-    dblc.close()
     return o + '</table>' + footer()
 
 def reg(value):
