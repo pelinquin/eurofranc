@@ -325,7 +325,7 @@ def app_list(d, env):
     o = header() + favicon() + style_html() + title() + '<table>'
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
     for i, src in enumerate(dpub.keys()): 
-        blc = dblc[src] if src in dblc else '0'
+        blc = int(dblc[src])/100 if src in dblc else '0'
         o += '<tr><td class="num">%d</td><td class="mono">%s</td><td>%s</td></tr>' % (i, btob64(src), blc)
     dpub.close()
     dblc.close()
