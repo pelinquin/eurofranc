@@ -321,14 +321,24 @@ def app_index(d, env):
         o += '<p><form method="post"><input type="submit" name="rem" value="Effacer les cookies"/></form></p>\n'
     return o + footer()
 
-def app_list(d, env):
+def app_list(d):
     o = header() + favicon() + style_html() + title() + '<table>'
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
     for i, src in enumerate(dpub.keys()): 
         blc = int(dblc[src])/100 if src in dblc else '0'
-        o += '<tr><td class="num">%d</td><td class="mono">%s</td><td>%s</td></tr>' % (i, btob64(src), blc)
+        o += '<tr><td class="num">%d</td><td class="mono">%s</td><td class="num">%s</td></tr>' % (i, btob64(src), blc)
     dpub.close()
     dblc.close()
+    return o + '</table>' + footer()
+
+def app_trx(d):
+    o = header() + favicon() + style_html() + title() + '<table>'
+    dtrx = ropen(d['trx'])
+    for i, t in enumerate(dtrx.keys()): 
+        if len(t) == 13:            
+            #print b2i(dtrx[s][9:11]), b2i(dtrx[s][11:14]), b2i(dtrx[s][14:16]), b2i(dtrx[s][16:
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td class="mono">%s</td></tr>' % (i, datdecode(t[:4]), btob64(t[4:]))
+    dtrx.close()
     return o + '</table>' + footer()
 
 def reg(value):
@@ -461,7 +471,8 @@ def application(environ, start_response):
         elif s == '': 
             o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr'
             update_blc(d)
-        elif base == '' and s == 'list': o, mime = app_list(d, environ), 'text/html; charset=utf-8'
+        elif base == '' and s == 'users': o, mime = app_list(d), 'text/html; charset=utf-8'
+        elif base == '' and s == 'transactions': o, mime = app_trx(d), 'text/html; charset=utf-8'
         elif base == '' and s == '_isactive': o = 'ok'
         elif base == '' and s == '_update': o = app_update()
     start_response('200 OK', [('Content-type', mime)] + ncok)
