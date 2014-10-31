@@ -335,7 +335,7 @@ def app_trx(d):
     dtrx = ropen(d['trx'])
     for i, t in enumerate(dtrx.keys()): 
         if len(t) == 13:            
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="num">%7.2f%s</td><td class="num">%07d</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), b2i(dtrx[t][9:11])/100, un, b2i(dtrx[t][11:14]))
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="num">%07d</td><td class="num">%7.2f%s</tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -351,7 +351,7 @@ def app_report(d, src):
             s = dtrx[r][13*(n-i-1):13*(n-i)]
             (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == r else (i2b(1,1), s[4:])
             way = '+' if b2i(w) == 1 else '-'
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%s%7.2f%s</td></tr>' % (i+1, datdecode(s[:4]), btob64(ur), btob64(ur), b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="num">%07d</td><td class="num">%s%7.2f%s</td></tr>' % (i+1, datdecode(s[:4]), btob64(ur), btob64(ur), b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
             #b2i(dtrx[s][14:16]), b2i(dtrx[s][16:18]))
     dtrx.close()
     return o + '</table>' + footer()
