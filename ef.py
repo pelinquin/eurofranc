@@ -75,9 +75,14 @@
 #   212\S record transaction 
 #   400\S record main account pubkey
 
+# TRANSACTION MSG
+# date(4)src(9)dst(9)val(2)ref(3):27
+
+# CERTIFICATE MSG
+# 
+
 import re, os, sys, urllib.parse, hashlib, http.client, base64, datetime, functools, subprocess, time, smtplib, operator, getpass, dbm.ndbm
 import requests, requests_oauthlib
-
 import gmpy2 # for inverse_mod fast computing
 
 __app__    = os.path.basename(__file__)[:-3]
@@ -343,7 +348,7 @@ def app_report(d, src):
     o, un = header() + favicon() + style_html() + title(), '<euro>&thinsp;€</euro>'
     dtrx, dblc = ropen(d['trx']), ropen(d['blc'])
     r = b64tob(bytes(src, 'ascii'))
-    o += '<p class="mono">%s</p><p class="num">%7.2f%s</p><table>' % (src, int(dblc[r])/100 if r in dblc else 0, un) 
+    o += '<table><tr><td class="mono">%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (src, int(dblc[r])/100 if r in dblc else 0, un) 
     dblc.close()
     if r in dtrx:
         n = len(dtrx[r])//13
@@ -352,7 +357,6 @@ def app_report(d, src):
             (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == r else (i2b(1,1), s[4:])
             way = '+' if b2i(w) == 1 else '-'
             o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="num">%07d</td><td class="num">%s%7.2f%s</td></tr>' % (i+1, datdecode(s[:4]), btob64(ur), btob64(ur), b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
-            #b2i(dtrx[s][14:16]), b2i(dtrx[s][16:18]))
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -379,7 +383,7 @@ def application(environ, start_response):
     mime, o, now, fname, port = 'text/plain; charset=utf8', 'error', '%s' % datetime.datetime.now(), 'default.txt', environ['SERVER_PORT']
     (raw, way) = (environ['wsgi.input'].read(), 'post') if environ['REQUEST_METHOD'].lower() == 'post' else (urllib.parse.unquote(environ['QUERY_STRING']), 'get')
     base, ncok = environ['PATH_INFO'][1:], []
-    d = init_dbs(('pub', 'trx', 'blc', 'hid'), port)
+    d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt'), port)
     if way == 'post':
         s = raw.decode('ascii')
         if reg(re.match('cm=(\S{1,12})&alias=(.+)$', s)):
@@ -444,11 +448,20 @@ def application(environ, start_response):
             if src in dpub: o = 'old'
             else: dpub[src], o = v, 'new'
             dpub.close()
+        elif re.match('\S{200}$', s): # certificate: bnk:9+dat:4+debt:5+sig:132 len(150)->200 
+            r = b64tob(bytes(s, 'ascii'))
+            src, v, dat, dbt, msg, sig, k, p = r[:9], r[9:], r[9:13], b2i(r[13:18]), r[:18], r[-132:], ecdsa(), b64tob(bytes(_root_pkey + _root_id, 'ascii'))
+            k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
+            if k.verify(sig, msg): 
+                o, dcrt = 'ok', wopen(d['crt'])
+                dcrt[src] = v 
+                dcrt.close()
         elif re.match('\S{212}$', s): # add transaction msg:27+sig:132 len(159->212)
             r = b64tob(bytes(s, 'ascii'))
             u, dat, v, src, dst, val, ref, msg, sig, k, dpub = r[:13], r[:4], r[13:-132], r[4:13], r[13:22], b2i(r[22:24]), b2i(r[24:27]), r[:-132], r[-132:], ecdsa(), ropen(d['pub'])
             if src in dpub and dst in dpub and src != dst:
                 k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
+                dpub.close()
                 if k.verify(sig, msg): 
                     dtrx = wopen(d['trx'])
                     if u in dtrx: o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][16:18]))
@@ -467,10 +480,9 @@ def application(environ, start_response):
                     dtrx.close()
                 else: o += ' signature!'
             else: o += ' ids!'
-            dpub.close()
         elif re.match('\S{400}$', s): # register main account: dat:4+hashid:32+pubkey:132+sig:132 len(300->400)
             r = b64tob(bytes(s, 'ascii'))
-            dat, hid, src, pk1, pk2, v, msg, sig, k = r[:4], r[4:36:], r[159:168], r[36:102], r[102:168], r[36:159], r[:-132], r[-132:], ecdsa()
+            dat, hid, src, pk1, pk2, v, msg, sig, k = r[:4], r[4:36], r[159:168], r[36:102], r[102:168], r[36:159], r[:-132], r[-132:], ecdsa()
             k.pt = Point(c521, b2i(pk1), b2i(pk2))
             if k.verify(sig, msg):
                 dpub, dhid = wopen(d['pub']), wopen(d['hid'])
