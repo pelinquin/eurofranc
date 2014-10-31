@@ -349,9 +349,9 @@ def app_report(d, src):
         n = len(dtrx[r])//13
         for i in range(n):
             s = dtrx[r][13*(n-i-1):13*(n-i)]
-            (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == src else (i2b(1,1), s[4:])
+            (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == r else (i2b(1,1), s[4:])
             way = '+' if b2i(w) == 1 else '-'
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td class="mono">%s</td><td class="num">%s%7.2f%s</td></tr>' % (i+1, datdecode(s[:4]), btob64(ur), way, b2i(dtrx[s][9:11])/100, un)
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s%7.2f%s</td></tr>' % (i+1, datdecode(s[:4]), btob64(ur), btob64(ur), way, b2i(dtrx[s][9:11])/100, un)
             #aa = (btob64(ur), way, b2i(dtrx[s][9:11]), b2i(dtrx[s][11:14]), b2i(dtrx[s][14:16]), b2i(dtrx[s][16:18]))
     dtrx.close()
     return o + '</table>' + footer()
