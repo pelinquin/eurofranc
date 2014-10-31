@@ -450,8 +450,9 @@ def application(environ, start_response):
             dpub.close()
         elif re.match('\S{200}$', s): # certificate: bnk:9+dat:4+debt:5+sig:132 len(150)->200 
             r = b64tob(bytes(s, 'ascii'))
-            src, v, dat, dbt, msg, sig, k, p = r[:9], r[9:], r[9:13], b2i(r[13:18]), r[:18], r[-132:], ecdsa(), b64tob(bytes(_root_pkey + _root_id, 'ascii'))
-            k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
+            src, v, dat, dbt, msg, sig, k = r[:9], r[9:], r[9:13], b2i(r[13:18]), r[:18], r[-132:], ecdsa()
+            p1, p2 = b64tob(bytes(_root_pkey, 'ascii')), b64tob(bytes(_root_id, 'ascii'))
+            k.pt = Point(c521, b2i(p1[:66]), b2i(p1[66:]+p2))
             if k.verify(sig, msg): 
                 o, dcrt = 'ok', wopen(d['crt'])
                 dcrt[src] = v 
