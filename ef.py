@@ -330,7 +330,7 @@ def app_users(d):
     o, un = header() + favicon() + style_html() + title() + '<table>', '<euro>&thinsp;€</euro>'
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
     for i, src in enumerate(dpub.keys()): 
-        o += '<tr><td class="num">%d</td><td><a href="./%s" class="mono">%s</a></td><td class="num">%7.2f%s</td></tr>' % (i+1, btob64(src), btob64(src), int(dblc[src])/100 if src in dblc else 0, un)
+        o += '<tr><td class="num">%d</td><td><a href="./%s" class="mono">%s</a></td><td>*</td><td class="num">%7.2f%s</td></tr>' % (i+1, btob64(src), btob64(src), int(dblc[src])/100 if src in dblc else 0, un)
     dpub.close()
     dblc.close()
     return o + '</table>' + footer()
@@ -356,7 +356,8 @@ def app_report(d, src):
             s = dtrx[r][13*(n-i-1):13*(n-i)]
             (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == r else (i2b(1,1), s[4:])
             way = '+' if b2i(w) == 1 else '-'
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="num">%07d</td><td class="num">%s%7.2f%s</td></tr>' % (i+1, datdecode(s[:4]), btob64(ur), btob64(ur), b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
+            prf = btob64(ur)[:1]
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s%07d</td><td class="num">%s%7.2f%s</td></tr>' % (i+1, datdecode(s[:4]), btob64(ur), btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -456,6 +457,8 @@ def application(environ, start_response):
                 o, dcrt = 'ok', wopen(d['crt'])
                 dcrt[src] = v 
                 dcrt.close()
+            else:
+                o += 'bad signature'
         elif re.match('\S{212}$', s): # add transaction msg:27+sig:132 len(159->212)
             r = b64tob(bytes(s, 'ascii'))
             u, dat, v, src, dst, val, ref, msg, sig, k, dpub = r[:13], r[:4], r[13:-132], r[4:13], r[13:22], b2i(r[22:24]), b2i(r[24:27]), r[:-132], r[-132:], ecdsa(), ropen(d['pub'])
