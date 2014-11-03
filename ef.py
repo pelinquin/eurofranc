@@ -252,6 +252,13 @@ def blc(d, cm):
     dblc.close()
     return bal
 
+def debt(d, cm):
+    "get max debt"
+    dcrt, dbt = ropen(d['crt']), 0
+    if cm in dcrt: dbt = b2i(dcrt[cm][4:9])*100
+    dcrt.close()
+    return dbt
+
 def init_dbs(dbs, port):
     "_"
     di = '/%s/%s_%s' % (__app__, __app__, port)
@@ -358,7 +365,7 @@ def app_report(d, src):
             dst = btob64(ur)
             prf = dst[:1] + src[:1] if b2i(w) == 1 else src[:1] + dst[:1]
             way = '+' if b2i(w) == 1 else '-'
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono,smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (i+1, datdecode(s[:4]), btob64(ur), btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (i+1, datdecode(s[:4]), btob64(ur), btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -468,8 +475,7 @@ def application(environ, start_response):
                     dtrx = wopen(d['trx'])
                     if u in dtrx: o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][16:18]))
                     else:
-                        b = blc(d, src)
-                        if b + 10000 > val: # allows temporary 100 €f for testing !
+                        if blc(d, src) + dbt(d, src) >= val:
                             dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
                             dtrx[dst] = dtrx[dst] + u if dst in dtrx else u # shortcut
                             ps, pd = len(dtrx[src])//13-1, len(dtrx[dst])//13-1
