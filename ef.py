@@ -378,7 +378,7 @@ def app_trx(d):
 def app_report(d, src):
     o, un, r = header() + favicon() + style_html() + title(), '<euro>&thinsp;€</euro>', b64tob(bytes(src, 'ascii'))
     dtrx, dblc, dbt = ropen(d['trx']), ropen(d['blc']), debt(d, r)
-    typ = '*' if is_principal(d, r) else '' if dbt == 0 else '%d%s' % (dbt, un)
+    typ = '*' if is_principal(d, r) else '' if dbt == 0 else 'Debt: %d%s' % (dbt, un)
     o += '<table><tr><td class="mono">%s</td><td class="num">%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
     dblc.close()
     if r in dtrx:
@@ -389,7 +389,7 @@ def app_report(d, src):
             dst = btob64(ur)
             prf = dst[:1] + src[:1] if b2i(w) == 1 else src[:1] + dst[:1]
             way = '+' if b2i(w) == 1 else '-'
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (i+1, datdecode(s[:4]), btob64(ur), btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
+            o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
     dtrx.close()
     return o + '</table>' + footer()
 
