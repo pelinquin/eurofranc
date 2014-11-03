@@ -263,11 +263,10 @@ def blc(d, cm):
 def debt(d, cm):
     "get max debt"
     dcrt, dbt = ropen(d['crt']), 0
-    if cm in dcrt and len(dcrt[cm]) == 144: 
+    if cm in dcrt and len(dcrt[cm]) == 141: 
         dat, msg, sig, k, p = dcrt[cm][:4], cm + dcrt[cm][:9], dcrt[cm][-132:], ecdsa(), b64tob(bytes(_ibank_pkey + _ibank_id, 'ascii'))
         k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
-        if is_future(dat) and k.verify(sig, msg): 
-            dbt = b2i(dcrt[cm][4:9])
+        if is_future(dat) and k.verify(sig, msg): dbt = b2i(dcrt[cm][4:9])
     dcrt.close()
     return dbt
 
@@ -556,10 +555,5 @@ if __name__ == '__main__':
     dtrx.close()
     dcrt = dbm.open('/ef/ef_80/crt')
     for src in dcrt.keys(): print (btob64(src), b2i(dcrt[src][4:9]))
-
-    a, b = datencode(), datencode(365)
-    print (is_future(a))
-    print (is_future(b))
-
 
 # End ⊔net!
