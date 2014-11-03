@@ -347,7 +347,8 @@ def app_trx(d):
     dtrx = ropen(d['trx'])
     for i, t in enumerate(dtrx.keys()): 
         if len(t) == 13:            
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="num">%07d</td><td class="num">%7.2f%s</tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
+            prf = btob64(t[4:])[:1] + btob64(dtrx[t][:9])[:1]
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7.2f%s</tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), prf ,b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -475,7 +476,7 @@ def application(environ, start_response):
                     dtrx = wopen(d['trx'])
                     if u in dtrx: o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][16:18]))
                     else:
-                        if blc(d, src) + dbt(d, src) >= val:
+                        if blc(d, src) + debt(d, src) >= val:
                             dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
                             dtrx[dst] = dtrx[dst] + u if dst in dtrx else u # shortcut
                             ps, pd = len(dtrx[src])//13-1, len(dtrx[dst])//13-1
