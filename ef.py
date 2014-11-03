@@ -93,8 +93,12 @@ __email__  = 'contact@%s.fr' % __ef__
 
 _SVGNS     = 'xmlns="http://www.w3.org/2000/svg"'
 _b58char   = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
-_root_id   = 'AdminJqjFdcY'
-_root_pkey = 'AdMctT3bXbwrTBGkB5eKAG74qIqShRRy1nHa_NWCHsxmKhmZeE_aWgo_S251td8d6C5uti6TymQSSZvhmO1b19pIAYYPFxkKL_13dnhBGXdFdmDQhQEZZbc1P7GDDrZZwU0FSGuwc53_AxHk1vVRte7bdmhzIcOUMUvO' 
+_admin_id   = 'AdminJqjFdcY'
+_ibank_id   = 'IbankVBixRIm' 
+_ibank_id   = 'AdminJqjFdcY'
+_admin_pkey = 'AdMctT3bXbwrTBGkB5eKAG74qIqShRRy1nHa_NWCHsxmKhmZeE_aWgo_S251td8d6C5uti6TymQSSZvhmO1b19pIAYYPFxkKL_13dnhBGXdFdmDQhQEZZbc1P7GDDrZZwU0FSGuwc53_AxHk1vVRte7bdmhzIcOUMUvO'
+_ibank_pkey = 'AQTMiBfFFaDdokV0d7dPEeyURA_yUmMaXVaQm86YxciRuOpz5oSXdAh2r-6jxdj3cazLExL4B75-V3_hqtbuG_yIAeqq8dmyMTAZUZFBS0fCPK52TzZ6bEyo3H3QHzbk5geIepws4bi2se19WoyZ6xiWDk0COUXLvQAE'   
+_ibank_pkey = 'AdMctT3bXbwrTBGkB5eKAG74qIqShRRy1nHa_NWCHsxmKhmZeE_aWgo_S251td8d6C5uti6TymQSSZvhmO1b19pIAYYPFxkKL_13dnhBGXdFdmDQhQEZZbc1P7GDDrZZwU0FSGuwc53_AxHk1vVRte7bdmhzIcOUMUvO'
 
 ##### ENCODING #####
 PAD = lambda s:(len(s)%2)*'0'+s[2:]
@@ -129,6 +133,10 @@ def H(*tab):
     "hash"
     #return b2i(hashlib.sha256(b''.join(tab)).digest()) 
     return int(hashlib.sha256(b''.join(tab)).hexdigest(), 16)
+
+def datencode(n=0):
+    "4 chars (minute precision)"
+    return i2b(int(time.mktime(time.gmtime())/60 + 60*24*n), 4)
 
 def datdecode(tt):
     "4 chars (minute precision)"
@@ -255,7 +263,11 @@ def blc(d, cm):
 def debt(d, cm):
     "get max debt"
     dcrt, dbt = ropen(d['crt']), 0
-    if cm in dcrt: dbt = b2i(dcrt[cm][4:9])
+    if cm in dcrt and len(dcrt[cm]) == 144: 
+        dat, msg, sig, k, p = dcrt[cm][:4], cm + dcrt[cm][:9], dcrt[cm][-132:], ecdsa(), b64tob(bytes(_ibank_pkey + _ibank_id, 'ascii'))
+        k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
+        if is_future(dat) and k.verify(sig, msg): 
+            dbt = b2i(dcrt[cm][4:9])
     dcrt.close()
     return dbt
 
@@ -388,6 +400,9 @@ def get_twitter_img(port, user, cm):
             open(fi, 'wb').write(co.getresponse().read())
     if not os.path.isfile(fc): os.symlink('%s.png' % user, fc)
 
+def is_future(da):
+    return int(time.mktime(time.gmtime())) < b2i(da)*60
+
 def application(environ, start_response):
     "wsgi server app"
     mime, o, now, fname, port = 'text/plain; charset=utf8', 'error', '%s' % datetime.datetime.now(), 'default.txt', environ['SERVER_PORT']
@@ -458,11 +473,19 @@ def application(environ, start_response):
             if src in dpub: o = 'old'
             else: dpub[src], o = v, 'new'
             dpub.close()
-        elif re.match('\S{200}$', s): # certificate: bnk:9+dat:4+debt:5+sig:132 len(150)->200 
+        elif re.match('\S{196}$', s): # admin certificate: usr:9+dat:4+spr:2+sig:132 len(147)->196 
             r = b64tob(bytes(s, 'ascii'))
-            src, v, dat, dbt, msg, sig, k, p = r[:9], r[9:], r[9:13], b2i(r[13:18]), r[:18], r[-132:], ecdsa(), b64tob(bytes(_root_pkey + _root_id, 'ascii'))
+            src, v, dat, msg, sig, k, p = r[:9], r[9:], r[9:13], r[:15], r[-132:], ecdsa(), b64tob(bytes(_admin_pkey + _admin_id, 'ascii'))
             k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
-            if k.verify(sig, msg): 
+            if is_future(dat) and k.verify(sig, msg): 
+                o, dcrt = 'ok', wopen(d['crt'])
+                dcrt[src] = v 
+                dcrt.close()
+        elif re.match('\S{200}$', s): # ibank certificate: bnk:9+dat:4+debt:5+sig:132 len(150)->200 
+            r = b64tob(bytes(s, 'ascii'))
+            src, v, dat, dbt, msg, sig, k, p = r[:9], r[9:], r[9:13], b2i(r[13:18]), r[:18], r[-132:], ecdsa(), b64tob(bytes(_ibank_pkey + _ibank_id, 'ascii'))
+            k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
+            if is_future(dat) and k.verify(sig, msg): 
                 o, dcrt = 'ok', wopen(d['crt'])
                 dcrt[src] = v 
                 dcrt.close()
@@ -533,6 +556,10 @@ if __name__ == '__main__':
     dtrx.close()
     dcrt = dbm.open('/ef/ef_80/crt')
     for src in dcrt.keys(): print (btob64(src), b2i(dcrt[src][4:9]))
-    
+
+    a, b = datencode(), datencode(365)
+    print (is_future(a))
+    print (is_future(b))
+
 
 # End ⊔net!
