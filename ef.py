@@ -272,7 +272,7 @@ def debt(d, cm):
 
 def is_principal(d, cm):
     ""
-    dcrt, red = ropen(d['crt']), False
+    dcrt, res = ropen(d['crt']), False
     if cm in dcrt and len(dcrt[cm]) == 138: 
         dat, msg, sig, k, p = dcrt[cm][:4], cm + dcrt[cm][:6], dcrt[cm][-132:], ecdsa(), b64tob(bytes(_admin_pkey + _admin_id, 'ascii'))
         k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
@@ -358,7 +358,9 @@ def app_users(d):
     o, un = header() + favicon() + style_html() + title() + '<table>', '<euro>&thinsp;€</euro>'
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
     for i, src in enumerate(dpub.keys()): 
-        o += '<tr><td class="num">%d</td><td><a href="./%s" class="mono">%s</a></td><td class="num">%d%s</td><td class="num">%7.2f%s</td></tr>' % (i+1, btob64(src), btob64(src), debt(d, src), un, int(dblc[src])/100 if src in dblc else 0, un)
+        dtb = debt(d, src)
+        typ = '*' if is_principal(d, src) else '' if dbt == 0 else '%d%s' % (dbt, un)
+        o += '<tr><td class="num">%d</td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%7.2f%s</td></tr>' % (i+1, btob64(src), btob64(src), typ, int(dblc[src])/100 if src in dblc else 0, un)
     dpub.close()
     dblc.close()
     return o + '</table>' + footer()
@@ -377,7 +379,7 @@ def app_report(d, src):
     o, un = header() + favicon() + style_html() + title(), '<euro>&thinsp;€</euro>'
     dtrx, dblc = ropen(d['trx']), ropen(d['blc'])
     r = b64tob(bytes(src, 'ascii'))
-    dtb = debt(d,r)
+    dtb = debt(d, r)
     typ = '*' if is_principal(d, r) else '' if dbt == 0 else '%d%s' % (dbt, un)
     o += '<table><tr><td class="mono">%s</td><td class="num">%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
     dblc.close()
