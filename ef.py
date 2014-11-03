@@ -358,7 +358,7 @@ def app_users(d):
     o, un = header() + favicon() + style_html() + title() + '<table>', '<euro>&thinsp;€</euro>'
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
     for i, src in enumerate(dpub.keys()): 
-        dtb = debt(d, src)
+        dbt = debt(d, src)
         typ = '*' if is_principal(d, src) else '' if dbt == 0 else '%d%s' % (dbt, un)
         o += '<tr><td class="num">%d</td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%7.2f%s</td></tr>' % (i+1, btob64(src), btob64(src), typ, int(dblc[src])/100 if src in dblc else 0, un)
     dpub.close()
@@ -376,10 +376,8 @@ def app_trx(d):
     return o + '</table>' + footer()
 
 def app_report(d, src):
-    o, un = header() + favicon() + style_html() + title(), '<euro>&thinsp;€</euro>'
-    dtrx, dblc = ropen(d['trx']), ropen(d['blc'])
-    r = b64tob(bytes(src, 'ascii'))
-    dtb = debt(d, r)
+    o, un, r = header() + favicon() + style_html() + title(), '<euro>&thinsp;€</euro>', b64tob(bytes(src, 'ascii'))
+    dtrx, dblc, dbt = ropen(d['trx']), ropen(d['blc']), debt(d, r)
     typ = '*' if is_principal(d, r) else '' if dbt == 0 else '%d%s' % (dbt, un)
     o += '<table><tr><td class="mono">%s</td><td class="num">%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
     dblc.close()
