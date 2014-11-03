@@ -270,6 +270,16 @@ def debt(d, cm):
     dcrt.close()
     return dbt
 
+def is_principal(d, cm):
+    ""
+    dcrt, red = ropen(d['crt']), False
+    if cm in dcrt and len(dcrt[cm]) == 138: 
+        dat, msg, sig, k, p = dcrt[cm][:4], cm + dcrt[cm][:6], dcrt[cm][-132:], ecdsa(), b64tob(bytes(_admin_pkey + _admin_id, 'ascii'))
+        k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
+        if is_future(dat) and k.verify(sig, msg): res = True
+    dcrt.close()
+    return res
+
 def init_dbs(dbs, port):
     "_"
     di = '/%s/%s_%s' % (__app__, __app__, port)
@@ -367,7 +377,9 @@ def app_report(d, src):
     o, un = header() + favicon() + style_html() + title(), '<euro>&thinsp;€</euro>'
     dtrx, dblc = ropen(d['trx']), ropen(d['blc'])
     r = b64tob(bytes(src, 'ascii'))
-    o += '<table><tr><td class="mono">%s</td><td class="num">%d%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (src, debt(d, r), un, int(dblc[r])/100 if r in dblc else 0, un) 
+    dtb = debt(d,r)
+    typ = '*' if is_principal(d, r) else '' if dbt == 0 else '%d%s' % (dbt, un)
+    o += '<table><tr><td class="mono">%s</td><td class="num">%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
     dblc.close()
     if r in dtrx:
         n = len(dtrx[r])//13
@@ -480,7 +492,7 @@ def application(environ, start_response):
                 o, dcrt = 'ok', wopen(d['crt'])
                 dcrt[src] = v 
                 dcrt.close()
-        elif re.match('\S{200}$', s): # ibank certificate: bnk:9+dat:4+debt:5+sig:132 len(150)->200 
+        elif re.match('\S{200}$', s): # ibank certificate: bnk:9+dat:4+dbt:5+sig:132 len(150)->200 
             r = b64tob(bytes(s, 'ascii'))
             src, v, dat, dbt, msg, sig, k, p = r[:9], r[9:], r[9:13], b2i(r[13:18]), r[:18], r[-132:], ecdsa(), b64tob(bytes(_ibank_pkey + _ibank_id, 'ascii'))
             k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
