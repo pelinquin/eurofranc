@@ -355,8 +355,9 @@ def app_report(d, src):
         for i in range(n):
             s = dtrx[r][13*(n-i-1):13*(n-i)]
             (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == r else (i2b(1,1), s[4:])
+            dst = btob64(ur)
+            prf = dst[:1] + src[:1] if b2i(w) == 1 else src[:1] + dst[:1]
             way = '+' if b2i(w) == 1 else '-'
-            prf = btob64(ur)[:1]
             o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s%07d</td><td class="num">%s%7.2f%s</td></tr>' % (i+1, datdecode(s[:4]), btob64(ur), btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
     dtrx.close()
     return o + '</table>' + footer()
