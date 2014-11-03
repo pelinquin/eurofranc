@@ -356,7 +356,7 @@ def app_report(d, src):
     o, un = header() + favicon() + style_html() + title(), '<euro>&thinsp;€</euro>'
     dtrx, dblc = ropen(d['trx']), ropen(d['blc'])
     r = b64tob(bytes(src, 'ascii'))
-    o += '<table><tr><td class="mono">%s</td><td class="num">%d%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (src, debt(d, src), un, int(dblc[r])/100 if r in dblc else 0, un) 
+    o += '<table><tr><td class="mono">%s</td><td class="num">%d%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (src, debt(d, r), un, int(dblc[r])/100 if r in dblc else 0, un) 
     dblc.close()
     if r in dtrx:
         n = len(dtrx[r])//13
