@@ -255,7 +255,7 @@ def blc(d, cm):
 def debt(d, cm):
     "get max debt"
     dcrt, dbt = ropen(d['crt']), 0
-    if cm in dcrt: dbt = b2i(dcrt[cm][4:9])*100
+    if cm in dcrt: dbt = b2i(dcrt[cm][4:9])
     dcrt.close()
     return dbt
 
@@ -337,7 +337,7 @@ def app_users(d):
     o, un = header() + favicon() + style_html() + title() + '<table>', '<euro>&thinsp;€</euro>'
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
     for i, src in enumerate(dpub.keys()): 
-        o += '<tr><td class="num">%d</td><td><a href="./%s" class="mono">%s</a></td><td>*</td><td class="num">%7.2f%s</td></tr>' % (i+1, btob64(src), btob64(src), int(dblc[src])/100 if src in dblc else 0, un)
+        o += '<tr><td class="num">%d</td><td><a href="./%s" class="mono">%s%s</a></td><td class="num">%d</td><td class="num">%7.2f%s</td></tr>' % (i+1, btob64(src), btob64(src), debt(d, src), un, int(dblc[src])/100 if src in dblc else 0, un)
     dpub.close()
     dblc.close()
     return o + '</table>' + footer()
@@ -476,7 +476,7 @@ def application(environ, start_response):
                     dtrx = wopen(d['trx'])
                     if u in dtrx: o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][16:18]))
                     else:
-                        if blc(d, src) + debt(d, src) >= val:
+                        if blc(d, src) + debt(d, src)*100 >= val:
                             dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
                             dtrx[dst] = dtrx[dst] + u if dst in dtrx else u # shortcut
                             ps, pd = len(dtrx[src])//13-1, len(dtrx[dst])//13-1
