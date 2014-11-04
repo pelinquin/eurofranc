@@ -401,7 +401,7 @@ def app_report(d, src, env):
     fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], src)
     img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
     typ = 'Mairie' if is_mairie(d, r) else '' if dbt == 0 else 'Debt: %d%s' % (dbt, un)
-    o += '<table><tr><td><img src="%s"/></td><td class="mono">%s</td><td class="num">%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (img, src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
+    o += '<table><tr><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (img, src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
     dblc.close()
     if r in dtrx:
         n = len(dtrx[r])//13
@@ -413,7 +413,7 @@ def app_report(d, src, env):
             way = '+' if b2i(w) == 1 else '-'
             fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], dst)
             img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-            o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), img, btob64(ur), btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
+            o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
     dtrx.close()
     return o + '</table>' + footer()
 
