@@ -373,7 +373,7 @@ def app_index(d, env):
         o += '<p><form method="post"><input type="submit" name="rem" value="Effacer les cookies"/></form></p>\n'
     return o + footer()
 
-def app_users(d):
+def app_users(d, env):
     o, un = header() + favicon() + style_html() + title() + '<table>', '<euro>&thinsp;€</euro>'
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
     for i, src in enumerate(dpub.keys()): 
@@ -565,7 +565,7 @@ def application(environ, start_response):
         elif s == '': 
             o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr'
             update_blc(d)
-        elif base == '' and s == 'users': o, mime = app_users(d), 'text/html; charset=utf-8'
+        elif base == '' and s == 'users': o, mime = app_users(d, environ), 'text/html; charset=utf-8'
         elif base == '' and s == 'transactions': o, mime = app_trx(d), 'text/html; charset=utf-8'
         elif base == '' and s == '_isactive': o = 'ok'
         elif base == '' and s == '_update': o = app_update()
