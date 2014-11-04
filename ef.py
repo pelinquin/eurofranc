@@ -523,14 +523,15 @@ def application(environ, start_response):
                 dpub = ropen(d['pub'])
                 k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]))
                 dpub.close()
-                if is_future(dat) and k.verify(sig, msg): 
-                    o = set_crt(d, usr, v) # strange bad signature !!
-                else:
-                    o += ' %s' % (btob64(msg))
+                if is_future(dat): 
+                    if k.verify(sig, msg): 
+                        o = set_crt(d, usr, v) # strange bad signature !!
+                    else:
+                        o += ' %s' % (btob64(msg))
         elif re.match('\S{212}$', s): # add transaction msg:27+sig:132 len(159->212)
             r = b64tob(bytes(s, 'ascii'))
             u, dat, v, src, dst, val, ref, msg, sig, k, dpub = r[:13], r[:4], r[13:-132], r[4:13], r[13:22], b2i(r[22:24]), b2i(r[24:27]), r[:-132], r[-132:], ecdsa(), ropen(d['pub'])
-            if src in dpub and dst in dpub and src != dst:
+            if src in dpub and dst in dpub and src != dst and val > 0:
                 k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
                 dpub.close()
                 if k.verify(sig, msg): 
