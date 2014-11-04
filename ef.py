@@ -523,7 +523,12 @@ def application(environ, start_response):
                 dpub = ropen(d['pub'])
                 k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]))
                 dpub.close()
-                if is_future(dat) and k.verify(sig, msg): o = set_crt(d, usr, v)
+                if is_future(dat) and k.verify(sig, msg): 
+                    o = set_crt(d, usr, v)
+                else:
+                    o += 'future'
+            else:
+                o += 'mairie'
         elif re.match('\S{212}$', s): # add transaction msg:27+sig:132 len(159->212)
             r = b64tob(bytes(s, 'ascii'))
             u, dat, v, src, dst, val, ref, msg, sig, k, dpub = r[:13], r[:4], r[13:-132], r[4:13], r[13:22], b2i(r[22:24]), b2i(r[24:27]), r[:-132], r[-132:], ecdsa(), ropen(d['pub'])
