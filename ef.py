@@ -270,13 +270,26 @@ def debt(d, cm):
     dcrt.close()
     return dbt
 
-def is_principal(d, cm):
+def is_mairie(d, cm):
     ""
     dcrt, res = ropen(d['crt']), False
     if cm in dcrt and len(dcrt[cm]) == 138: 
         dat, msg, sig, k, p = dcrt[cm][:4], cm + dcrt[cm][:6], dcrt[cm][-132:], ecdsa(), b64tob(bytes(_admin_pkey + _admin_id, 'ascii'))
         k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
         if is_future(dat) and k.verify(sig, msg): res = True
+    dcrt.close()
+    return res
+
+def is_principal(d, cm):
+    ""
+    dcrt, res = ropen(d['crt']), False
+    if cm in dcrt and len(dcrt[cm]) == 155: # adjust length !
+        dat, msg, adm, sig, k = dcrt[cm][:4], cm + dcrt[cm][:13], dcrt[cm][4:13], dcrt[cm][-132:], ecdsa()
+        if is_mairie(d, adm):
+            dpub = ropen(d['pub'])
+            k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]))
+            dpub.close()
+            if is_future(dat) and k.verify(sig, msg): res = True
     dcrt.close()
     return res
 
@@ -297,6 +310,12 @@ def ropen(d):
 
 def wopen(d):
     return dbm.open(d, 'c')
+
+def set_crt(d, k, v):
+    dcrt = wopen(d['crt'])
+    dcrt[k] = v 
+    dcrt.close()
+    return 'ok'
 
 def app_update():
     "_"
@@ -359,7 +378,7 @@ def app_users(d):
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
     for i, src in enumerate(dpub.keys()): 
         dbt = debt(d, src)
-        typ = '*' if is_principal(d, src) else '' if dbt == 0 else '%d%s' % (dbt, un)
+        typ = 'Mairie' if is_mairie(d, src) else '' if dbt == 0 else '%d%s' % (dbt, un)
         o += '<tr><td class="num">%d</td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%7.2f%s</td></tr>' % (i+1, btob64(src), btob64(src), typ, int(dblc[src])/100 if src in dblc else 0, un)
     dpub.close()
     dblc.close()
@@ -375,10 +394,15 @@ def app_trx(d):
     dtrx.close()
     return o + '</table>' + footer()
 
-def app_report(d, src):
+def app_report(d, src, env):
     o, un, r = header() + favicon() + style_html() + title(), '<euro>&thinsp;€</euro>', b64tob(bytes(src, 'ascii'))
     dtrx, dblc, dbt = ropen(d['trx']), ropen(d['blc']), debt(d, r)
-    typ = '*' if is_principal(d, r) else '' if dbt == 0 else 'Debt: %d%s' % (dbt, un)
+    #
+    fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], src)
+    img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
+    o += '<p title="%s"><img src="%s"/></p>' % (src, img)
+    #
+    typ = 'Mairie' if is_mairie(d, r) else '' if dbt == 0 else 'Debt: %d%s' % (dbt, un)
     o += '<table><tr><td class="mono">%s</td><td class="num">%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
     dblc.close()
     if r in dtrx:
@@ -454,7 +478,7 @@ def application(environ, start_response):
         elif re.match('@\S{12}$', s): # get Twitter image
             fimg = '/%s/%s_%s/img/%s.png' % (__app__, __app__, port, s[1:])
             if os.path.isfile(fimg): mime, o = 'image/png', open(fimg, 'rb').read()
-        elif re.match('\S{16}$', s): # get transaction | src:9+pos:3 len(12->16)
+        elif re.match('\S{16}$', s): # get transaction nb | src:9+pos:3 len(12->16)
             r = b64tob(bytes(s, 'ascii'))
             src, pos, dtrx = r[:9], b2i(r[9:]), ropen(d['trx'])
             if src in dtrx:
@@ -469,14 +493,12 @@ def application(environ, start_response):
         elif re.match('\S{20}$', s): # check transaction (short) | dat:4+scr:9+val:2 len(15->20)
             r = b64tob(bytes(s, 'ascii'))
             u, dat, src, val, dtrx = r[:13], r[:4], r[4:13], r[:-2], ropen(d['trx'])
-            if u in dtrx and dtrx[u][9:11] == val: 
-                o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][16,18]))
+            if u in dtrx and dtrx[u][9:11] == val: o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][16,18]))
             dtrx.close()
         elif re.match('\S{32}$', s): # check transaction (long) | dat:4+scr:9+dst:9+val:2 len(24->32)
             r = b64tob(bytes(s, 'ascii'))
             u, dst, val, dtrx = r[:13], r[13:22], r[:-2], ropen(d['trx'])
-            if u in dtrx and dtrx[u][:9] == dst and dtrx[u][9:11] == val: 
-                o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][14:16]))
+            if u in dtrx and dtrx[u][:9] == dst and dtrx[u][9:11] == val: o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][14:16]))
             dtrx.close()
         elif re.match('\S{176}$', s): # register publickey | pbk:132 len(132->176) SPAMING RISK -> SHALL BE REMOVED !
             r = b64tob(bytes(s, 'ascii'))
@@ -488,18 +510,20 @@ def application(environ, start_response):
             r = b64tob(bytes(s, 'ascii'))
             src, v, dat, msg, sig, k, p = r[:9], r[9:], r[9:13], r[:15], r[-132:], ecdsa(), b64tob(bytes(_admin_pkey + _admin_id, 'ascii'))
             k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
-            if is_future(dat) and k.verify(sig, msg): 
-                o, dcrt = 'ok', wopen(d['crt'])
-                dcrt[src] = v 
-                dcrt.close()
+            if is_future(dat) and k.verify(sig, msg): o = set_crt(d, src, v)
         elif re.match('\S{200}$', s): # ibank certificate: bnk:9+dat:4+dbt:5+sig:132 len(150)->200 
             r = b64tob(bytes(s, 'ascii'))
             src, v, dat, dbt, msg, sig, k, p = r[:9], r[9:], r[9:13], b2i(r[13:18]), r[:18], r[-132:], ecdsa(), b64tob(bytes(_ibank_pkey + _ibank_id, 'ascii'))
             k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
-            if is_future(dat) and k.verify(sig, msg): 
-                o, dcrt = 'ok', wopen(d['crt'])
-                dcrt[src] = v 
-                dcrt.close()
+            if is_future(dat) and k.verify(sig, msg): o = set_crt(d, src, v)
+        elif re.match('\S{208}$', s): # user principal certificate: usr:9+dat:4+adm:9:spr:2+sig:132 len(156)->208 
+            r = b64tob(bytes(s, 'ascii'))
+            usr, v, dat, adm, msg, sig, k = r[:9], r[9:], r[9:13], b2i(r[13:22]), r[:22], r[-132:], ecdsa()
+            if is_mairie(d, adm):
+                dpub = ropen(d['pub'])
+                k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]))
+                dpub.close()
+                if is_future(dat) and k.verify(sig, msg): o = set_crt(d, usr, v)
         elif re.match('\S{212}$', s): # add transaction msg:27+sig:132 len(159->212)
             r = b64tob(bytes(s, 'ascii'))
             u, dat, v, src, dst, val, ref, msg, sig, k, dpub = r[:13], r[:4], r[13:-132], r[4:13], r[13:22], b2i(r[22:24]), b2i(r[24:27]), r[:-132], r[-132:], ecdsa(), ropen(d['pub'])
@@ -537,7 +561,7 @@ def application(environ, start_response):
         else: o = "%s" % s
     else: # get
         s = raw # use directory or argument
-        if re.match('\S{12}$', base): o, mime = app_report(d, base), 'text/html; charset=utf-8'
+        if re.match('\S{12}$', base): o, mime = app_report(d, base, environ), 'text/html; charset=utf-8'
         elif base == '' and s == '': o, mime = app_index(d, environ), 'text/html; charset=utf-8'
         elif s == '': 
             o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr'
