@@ -245,7 +245,8 @@ def update_blc(d):
         src, dst, v, msg, sig, dpub = t[4:], dtrx[t][:9], b2i(dtrx[t][9:11]), t + dtrx[t][:14], dtrx[t][-132:], ropen(d['pub'])
         k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]))
         dpub.close()
-        if k.verify(sig, msg): b[src], b[dst] = b[src] - v if src in b else (-v), b[dst] + v if dst in b else v
+        if k.verify(sig, msg): # takes long time ! 
+            b[src], b[dst] = b[src] - v if src in b else (-v), b[dst] + v if dst in b else v
     dtrx.close()
     dblc = wopen(d['blc'])
     for x in b:
