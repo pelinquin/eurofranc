@@ -283,7 +283,7 @@ def is_mairie(d, cm):
 def is_principal(d, cm):
     ""
     dcrt, res = ropen(d['crt']), False
-    if cm in dcrt and len(dcrt[cm]) == 155: # adjust length !
+    if cm in dcrt and len(dcrt[cm]) == 147:
         dat, msg, adm, sig, k = dcrt[cm][:4], cm + dcrt[cm][:13], dcrt[cm][4:13], dcrt[cm][-132:], ecdsa()
         if is_mairie(d, adm):
             dpub = ropen(d['pub'])
@@ -379,7 +379,7 @@ def app_users(d, env):
     for i, src in enumerate(dpub.keys()): 
         dbt, fc = debt(d, src), '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], btob64(src))
         img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-        typ = 'Mairie' if is_mairie(d, src) else '' if dbt == 0 else '%d%s' % (dbt, un)
+        typ = '*' if is_principal(d, src) else 'Mairie' if is_mairie(d, src) else '' if dbt == 0 else '%d%s' % (dbt, un)
         o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%7.2f%s</td></tr>' % (i+1, img, btob64(src), btob64(src), typ, int(dblc[src])/100 if src in dblc else 0, un)
     dpub.close()
     dblc.close()
@@ -400,7 +400,7 @@ def app_report(d, src, env):
     dtrx, dblc, dbt = ropen(d['trx']), ropen(d['blc']), debt(d, r)    
     fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], src)
     img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-    typ = 'Mairie' if is_mairie(d, r) else '' if dbt == 0 else 'Debt: %d%s' % (dbt, un)
+    typ = '*' if is_principal(d, src) else 'Mairie' if is_mairie(d, r) else '' if dbt == 0 else 'Debt: %d%s' % (dbt, un)
     o += '<table><tr><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (img, src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
     dblc.close()
     if r in dtrx:
@@ -523,13 +523,7 @@ def application(environ, start_response):
                 dpub = ropen(d['pub'])
                 k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]))
                 dpub.close()
-                if is_future(dat): 
-                    if k.verify(sig, msg): 
-                        o = set_crt(d, usr, v)
-                    else:
-                        o += 'signature'
-                else:
-                    o += 'future'
+                if is_future(dat) and k.verify(sig, msg): o = set_crt(d, usr, v) # strange bad signature !!
         elif re.match('\S{212}$', s): # add transaction msg:27+sig:132 len(159->212)
             r = b64tob(bytes(s, 'ascii'))
             u, dat, v, src, dst, val, ref, msg, sig, k, dpub = r[:13], r[:4], r[13:-132], r[4:13], r[13:22], b2i(r[22:24]), b2i(r[24:27]), r[:-132], r[-132:], ecdsa(), ropen(d['pub'])
