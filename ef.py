@@ -240,17 +240,22 @@ def send_get(host='localhost', data=''):
 
 def update_blc(d):
     "_"
-    dtrx, b = ropen(d['trx']), {}
+    dtrx, b , o, k = ropen(d['trx']), {}, 'ok', ecdsa()
     for t in [x for x in dtrx.keys() if len(x) == 13]:
-        src, dst, v = t[4:], dtrx[t][:9], b2i(dtrx[t][9:11])
-        b[src], b[dst] = b[src] - v if src in b else (-v), b[dst] + v if dst in b else v
+        src, dst, v, msg, sig, dpub = t[4:], dtrx[t][:9], b2i(dtrx[t][9:11]), t + dtrx[t][:14], dtrx[t][-132:], ropen(d['pub'])
+        k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]))
+        dpub.close()
+        if k.verify(sig, msg): b[src], b[dst] = b[src] - v if src in b else (-v), b[dst] + v if dst in b else v
     dtrx.close()
     dblc = wopen(d['blc'])
     for x in b:
         if x in dblc and b[x] != int(dblc[x]): 
-            sys.stderr.write('Diff %d %s for %s\n' % (b[x], dblc[x], x))
+            merr = ' diff %d %s for %s\n' % (b[x], dblc[x], x)
+            sys.stderr.write(merr)
+            o = merr
             dblc[x] = '%d' % b[x]
     dblc.close()
+    return o
 
 def blc(d, cm):
     "get balance"
@@ -568,8 +573,7 @@ def application(environ, start_response):
         if re.match('\S{12}$', base): o, mime = app_report(d, base, environ), 'text/html; charset=utf-8'
         elif base == '' and s == '': o, mime = app_index(d, environ), 'text/html; charset=utf-8'
         elif s == '': 
-            o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr'
-            update_blc(d)
+            o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr\n Debug: %s' % update_blc(d)
         elif base == '' and s == 'users': o, mime = app_users(d, environ), 'text/html; charset=utf-8'
         elif base == '' and s == 'transactions': o, mime = app_trx(d), 'text/html; charset=utf-8'
         elif base == '' and s == '_isactive': o = 'ok'
