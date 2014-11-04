@@ -411,7 +411,9 @@ def app_report(d, src, env):
             dst = btob64(ur)
             prf = dst[:1] + src[:1] if b2i(w) == 1 else src[:1] + dst[:1]
             way = '+' if b2i(w) == 1 else '-'
-            o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
+            fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], dst)
+            img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
+            o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), img, btob64(ur), btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -517,7 +519,7 @@ def application(environ, start_response):
         elif re.match('\S{208}$', s): # user principal certificate: usr:9+dat:4+adm:9:spr:2+sig:132 len(156)->208 
             r = b64tob(bytes(s, 'ascii'))
             usr, v, dat, adm, msg, sig, k = r[:9], r[9:], r[9:13], b2i(r[13:22]), r[:22], r[-132:], ecdsa()
-            if is_mairie(d, adm):
+            if is_mairie(d, btob64(adm)):
                 dpub = ropen(d['pub'])
                 k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]))
                 dpub.close()
