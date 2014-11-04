@@ -518,8 +518,8 @@ def application(environ, start_response):
             if is_future(dat) and k.verify(sig, msg): o = set_crt(d, src, v)
         elif re.match('\S{208}$', s): # user principal certificate: usr:9+dat:4+adm:9:spr:2+sig:132 len(156)->208 
             r = b64tob(bytes(s, 'ascii'))
-            usr, v, dat, adm, msg, sig, k = r[:9], r[9:], r[9:13], b2i(r[13:22]), r[:22], r[-132:], ecdsa()
-            if is_mairie(d, btob64(adm)):
+            usr, v, dat, adm, msg, sig, k = r[:9], r[9:], r[9:13], r[13:22], r[:24], r[-132:], ecdsa()
+            if is_mairie(d, adm):
                 dpub = ropen(d['pub'])
                 k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]))
                 dpub.close()
