@@ -378,8 +378,10 @@ def app_users(d):
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
     for i, src in enumerate(dpub.keys()): 
         dbt = debt(d, src)
+        fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], src)
+        img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
         typ = 'Mairie' if is_mairie(d, src) else '' if dbt == 0 else '%d%s' % (dbt, un)
-        o += '<tr><td class="num">%d</td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%7.2f%s</td></tr>' % (i+1, btob64(src), btob64(src), typ, int(dblc[src])/100 if src in dblc else 0, un)
+        o += '<tr><td class="num">%d</td><td><img width="32" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%7.2f%s</td></tr>' % (i+1, img, btob64(src), btob64(src), typ, int(dblc[src])/100 if src in dblc else 0, un)
     dpub.close()
     dblc.close()
     return o + '</table>' + footer()
@@ -396,14 +398,11 @@ def app_trx(d):
 
 def app_report(d, src, env):
     o, un, r = header() + favicon() + style_html() + title(), '<euro>&thinsp;€</euro>', b64tob(bytes(src, 'ascii'))
-    dtrx, dblc, dbt = ropen(d['trx']), ropen(d['blc']), debt(d, r)
-    #
+    dtrx, dblc, dbt = ropen(d['trx']), ropen(d['blc']), debt(d, r)    
     fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], src)
     img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-    o += '<p title="%s"><img src="%s"/></p>' % (src, img)
-    #
     typ = 'Mairie' if is_mairie(d, r) else '' if dbt == 0 else 'Debt: %d%s' % (dbt, un)
-    o += '<table><tr><td class="mono">%s</td><td class="num">%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
+    o += '<table><tr><td><img src="%s"/></td><td class="mono">%s</td><td class="num">%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (img, src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
     dblc.close()
     if r in dtrx:
         n = len(dtrx[r])//13
