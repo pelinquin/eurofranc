@@ -72,6 +72,9 @@
 #    20\S check transaction (short)
 #    32\S check transaction (long)
 #   176\S record public-key # temporary !
+#   196\S Admin certificate
+#   200\S Ibank certificate
+#   208\S User principal certificat
 #   212\S record transaction 
 #   400\S record main account pubkey
 
@@ -403,12 +406,12 @@ def app_trx(d):
     return o + '</table>' + footer()
 
 def app_report(d, src, env):
-    o, un, r = header() + favicon() + style_html() + title(), '<euro>&thinsp;€</euro>', b64tob(bytes(src, 'ascii'))
+    o, un, r = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', b64tob(bytes(src, 'ascii'))
     dtrx, dblc, dbt = ropen(d['trx']), ropen(d['blc']), debt(d, r)    
     fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], src)
     img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
     typ = 'Principal' if is_principal(d, r) else 'Mairie' if is_mairie(d, r) else '' if dbt == 0 else 'Dette: %d%s' % (dbt, un)
-    o += '<table><tr><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num red">%7.2f%s</td></tr></table><table>' % (img, src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
+    o += '<table><tr><td>%s</td><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num red">%7.2f%s</td></tr></table><table>' % (title(), img, src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
     dblc.close()
     if r in dtrx:
         n = len(dtrx[r])//13
@@ -571,11 +574,12 @@ def application(environ, start_response):
         if re.match('\S{12}$', base): o, mime = app_report(d, base, environ), 'text/html; charset=utf-8'
         elif base == '' and s == '': o, mime = app_index(d, environ), 'text/html; charset=utf-8'
         elif s == '': 
-            o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr\n Debug: %s' % update_blc(d)
+            o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr'
         elif base == '' and s == 'users': o, mime = app_users(d, environ), 'text/html; charset=utf-8'
         elif base == '' and s == 'transactions': o, mime = app_trx(d), 'text/html; charset=utf-8'
         elif base == '' and s == '_isactive': o = 'ok'
         elif base == '' and s == '_update': o = app_update()
+        elif base == '' and s == '_check': o = update_blc(d)
     start_response('200 OK', [('Content-type', mime)] + ncok)
     return [o if mime in ('application/pdf', 'image/png', 'image/jpg') else o.encode('utf8')] 
 
