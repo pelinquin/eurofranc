@@ -367,7 +367,7 @@ def footer():
 
 def app_index(d, env):
     o = header() + favicon() + style_html() + title()
-    o += '<p><b class="green">Si vous désirez tester gratuitement l\'application <i>iOS</i>, envoyez nous votre e-mail d\'<i>AppleID</i> et installez <a href="https://www.testflightapp.com">Testflight</a> sur votre iPhone sous <i>iOS8</i></b></p>'
+    o += '<p><b class="green">Si vous désirez tester gratuitement l\'application <i>iOS</i>, envoyez nous votre adresse e-mail d\'<i>AppleID</i> et installez <a href="https://www.testflightapp.com">TestFlight</a> sur votre iPhone sous <i>iOS8</i></b></p>'
     o += '<p><i>Consultez un compte</i><form method="post"><input class="txt" title="code \'MOI\' de 18 caractères alphanumérique affiché en haut du téléphone" pattern="\S+" required="yes" name="cm" placeholder="...€f-ID"/><input title="@nom-public-Twitter ou alias-privé-local" class="txt" pattern=".+" required="yes" name="alias" placeholder="@... (Twitter)"/><input type="submit" value="ok"/></form></p>\n'
     if 'HTTP_COOKIE' in env:
         for x in env['HTTP_COOKIE'].split(';'):
@@ -534,7 +534,7 @@ def application(environ, start_response):
                     if k.verify(sig, msg): 
                         o = set_crt(d, usr, v) # strange bad signature !!
                     else:
-                        o += ' %s' % (btob64(msg))
+                        o += ' %s %s' % (len(s), s)
         elif re.match('\S{212}$', s): # add transaction msg:27+sig:132 len(159->212)
             r = b64tob(bytes(s, 'ascii'))
             u, dat, v, src, dst, val, ref, msg, sig, k, dpub = r[:13], r[:4], r[13:-132], r[4:13], r[13:22], b2i(r[22:24]), b2i(r[24:27]), r[:-132], r[-132:], ecdsa(), ropen(d['pub'])
