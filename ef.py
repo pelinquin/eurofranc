@@ -528,14 +528,9 @@ def application(environ, start_response):
             usr, v, dat, adm, msg, sig, k = r[:9], r[9:], r[9:13], r[13:22], r[:24], r[-132:], ecdsa()
             if is_mairie(d, adm):
                 dpub = ropen(d['pub'])
-                k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]))
-                #dpub.close()
-                if is_future(dat): 
-                    if k.verify(sig, msg): 
-                        o = set_crt(d, usr, v) # strange bad signature !!
-                    else:
-                        o += ' %s' % (btob64(dpub[adm]))
+                k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]+adm))
                 dpub.close()
+                if is_future(dat) and k.verify(sig, msg): o = set_crt(d, usr, v) 
         elif re.match('\S{212}$', s): # add transaction msg:27+sig:132 len(159->212)
             r = b64tob(bytes(s, 'ascii'))
             u, dat, v, src, dst, val, ref, msg, sig, k, dpub = r[:13], r[:4], r[13:-132], r[4:13], r[13:22], b2i(r[22:24]), b2i(r[24:27]), r[:-132], r[-132:], ecdsa(), ropen(d['pub'])
