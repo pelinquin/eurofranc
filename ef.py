@@ -386,7 +386,7 @@ def app_users(d, env):
     for i, src in enumerate(dpub.keys()): 
         dbt, fc = debt(d, src), '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], btob64(src))
         img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-        typ = '*' if is_principal(d, src) else 'Mairie' if is_mairie(d, src) else '' if dbt == 0 else '%d%s' % (dbt, un)
+        typ = 'Principal' if is_principal(d, src) else 'Mairie' if is_mairie(d, src) else '' if dbt == 0 else '%d%s' % (dbt, un)
         o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%7.2f%s</td></tr>' % (i+1, img, btob64(src), btob64(src), typ, int(dblc[src])/100 if src in dblc else 0, un)
     dpub.close()
     dblc.close()
@@ -407,8 +407,8 @@ def app_report(d, src, env):
     dtrx, dblc, dbt = ropen(d['trx']), ropen(d['blc']), debt(d, r)    
     fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], src)
     img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-    typ = '*' if is_principal(d, r) else 'Mairie' if is_mairie(d, r) else '' if dbt == 0 else 'Debt: %d%s' % (dbt, un)
-    o += '<table><tr><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num">%7.2f%s</td></tr></table><table>' % (img, src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
+    typ = 'Principal' if is_principal(d, r) else 'Mairie' if is_mairie(d, r) else '' if dbt == 0 else 'Dette: %d%s' % (dbt, un)
+    o += '<table><tr><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num red">%7.2f%s</td></tr></table><table>' % (img, src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
     dblc.close()
     if r in dtrx:
         n = len(dtrx[r])//13
