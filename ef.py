@@ -367,7 +367,7 @@ def footer():
 
 def app_index(d, env):
     o = header() + favicon() + style_html() + title()
-    o += '<b class="green">Si vous désirez tester gratuitement l\'application <i>iOS</i>, envoyez nous votre e-mail d\'<i>AppleID</i> et installez <a href="https://www.testflightapp.com/>TestFlight</a> sur votre iPhone sous <i>iOS8</i></b><br/>'
+    o += '<p><b class="green">Si vous désirez tester gratuitement l\'application <i>iOS</i>, envoyez nous votre e-mail d\'<i>AppleID</i> et installez <a href="https://www.testflightapp.com">Testflight</a> sur votre iPhone sous <i>iOS8</i></b></p>'
     o += '<p><i>Consultez un compte</i><form method="post"><input class="txt" title="code \'MOI\' de 18 caractères alphanumérique affiché en haut du téléphone" pattern="\S+" required="yes" name="cm" placeholder="...€f-ID"/><input title="@nom-public-Twitter ou alias-privé-local" class="txt" pattern=".+" required="yes" name="alias" placeholder="@... (Twitter)"/><input type="submit" value="ok"/></form></p>\n'
     if 'HTTP_COOKIE' in env:
         for x in env['HTTP_COOKIE'].split(';'):
