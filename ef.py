@@ -293,7 +293,7 @@ def is_principal(d, cm):
         dat, msg, adm, sig, k = dcrt[cm][:4], cm + dcrt[cm][:13], dcrt[cm][4:13], dcrt[cm][-132:], ecdsa()
         if is_mairie(d, adm):
             dpub = ropen(d['pub'])
-            k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]))
+            k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]+adm))
             dpub.close()
             if is_future(dat) and k.verify(sig, msg): res = True
     dcrt.close()
