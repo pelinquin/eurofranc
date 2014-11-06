@@ -455,7 +455,7 @@ def application(environ, start_response):
     (raw, way) = (environ['wsgi.input'].read(), 'post') if environ['REQUEST_METHOD'].lower() == 'post' else (urllib.parse.unquote(environ['QUERY_STRING']), 'get')
     base, ncok = environ['PATH_INFO'][1:], []
     d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt'), port)
-    if way == 'post' and len(raw) == 5: o = "%d" % len(s)
+    if way == 'post' and len(raw) == 5: o = "%d" % len(raw)
     elif way == 'post':
         s = raw.decode('ascii')
         if reg(re.match('cm=(\S{1,12})&alias=(.+)$', s)):
@@ -584,7 +584,7 @@ def application(environ, start_response):
                 if src not in dpub: dpub[src] = v
                 dhid.close()
                 dpub.close()
-        else: o = "%s" % s
+        else: o = "ERROR %s %d" % (s, len(raw))
     else: # get
         s = raw # use directory or argument
         if re.match('\S{12}$', base): o, mime = app_report(d, base, environ), 'text/html; charset=utf-8'
