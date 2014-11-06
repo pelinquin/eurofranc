@@ -78,12 +78,7 @@
 # b159->212\S record transaction 
 # b186->248\S user principal certificate (long)
 # b300->400\S record main account pubkey
-
-# TRANSACTION MSG
-# date(4)src(9)dst(9)val(2)ref(3):27
-
-# CERTIFICATE MSG
-# 
+ 
 
 import re, os, sys, urllib.parse, hashlib, http.client, base64, datetime, functools, subprocess, time, smtplib, operator, getpass, dbm.ndbm
 import requests, requests_oauthlib
@@ -449,15 +444,6 @@ def get_twitter_img(port, user, cm):
 def is_future(da):
     return int(time.mktime(time.gmtime())) < b2i(da)*60
 
-# POST: 
-# b13->@+12\S: get Twitter profile image 48x48 (png)
-
-# b147->196\S Admin certificate
-# b150->200\S Ibank certificate
-# b156->208\S user principal certificat (short) temporary !
-# b186->248\S user principal certificate (long)
-# b300->400\S record main account pubkey
-
 def req_9(d, r):
     "get balance | src:9"
     dpub, o = ropen(d['pub']), 'error'
@@ -529,7 +515,7 @@ def res_156(d, r):
     return o
 
 def req_159(d, r): 
-    "add transaction msg:27+sig:132"
+    "add transaction: dat:4+src:9+dst:9+val:2+ref:3+sig:132"
     u, dat, v, src, dst, val, ref, msg, sig, k, dpub, o = r[:13], r[:4], r[13:-132], r[4:13], r[13:22], b2i(r[22:24]), b2i(r[24:27]), r[:-132], r[-132:], ecdsa(), ropen(d['pub']), 'error'
     if src in dpub and dst in dpub and src != dst and val > 0:
         k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
@@ -625,110 +611,16 @@ def application(environ, start_response):
         elif re.match('@\S{12}$', s): # get Twitter image
             fimg = '/%s/%s_%s/img/%s.png' % (__app__, __app__, port, s[1:])
             if os.path.isfile(fimg): mime, o = 'image/png', open(fimg, 'rb').read()
-        elif re.match('\S{16}$', s): o = req_12  (d, b64tob(bytes(s, 'ascii')))
-        elif re.match('\S{16}$', s): # get transaction nb | src:9+pos:3 len(12->16)
-            r = b64tob(bytes(s, 'ascii'))
-            src, pos, dtrx = r[:9], b2i(r[9:]), ropen(d['trx'])
-            if src in dtrx:
-                n = len(dtrx[src])//13
-                if pos >= 0 and pos < n:
-                    sl = dtrx[src][13*pos:13*(pos+1)]
-                    (w, ur) = (i2b(0,1), dtrx[sl][:9]) if sl[4:] == src else (i2b(1,1), sl[4:])
-                    o = btob64(sl[:4] + ur + dtrx[sl][9:14] + w + i2b(n, 2)) 
-                    # return | dat:4+usr:9+val:2+ref:3+way:1+max:2 len(21->28)
-                    # QRCODE:15 btob64(dat+usr:12+val)
-            dtrx.close()
-        elif re.match('\S{20}$', s): o = req_15  (d, b64tob(bytes(s, 'ascii')))
-        elif re.match('\S{20}$', s): # check transaction (short) | dat:4+scr:9+val:2 len(15->20)
-            r = b64tob(bytes(s, 'ascii'))
-            u, dat, src, val, dtrx = r[:13], r[:4], r[4:13], r[:-2], ropen(d['trx'])
-            if u in dtrx and dtrx[u][9:11] == val: o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][16,18]))
-            dtrx.close()
-        elif re.match('\S{32}$', s): o = req_24  (d, b64tob(bytes(s, 'ascii')))
-        elif re.match('\S{32}$', s): # check transaction (long) | dat:4+scr:9+dst:9+val:2 len(24->32)
-            r = b64tob(bytes(s, 'ascii'))
-            u, dst, val, dtrx = r[:13], r[13:22], r[:-2], ropen(d['trx'])
-            if u in dtrx and dtrx[u][:9] == dst and dtrx[u][9:11] == val: o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][16:18]))
-            dtrx.close()
-        elif re.match('\S{176}$', s): o = req_132  (d, b64tob(bytes(s, 'ascii')))
-        elif re.match('\S{176}$', s): # register publickey | pbk:132 len(132->176) SPAMING RISK -> SHALL BE REMOVED !
-            r = b64tob(bytes(s, 'ascii'))
-            pub, src, v, dpub = r, r[-9:], r[:-9], wopen(d['pub'])
-            if src in dpub: o = 'old'
-            else: dpub[src], o = v, 'new'
-            dpub.close()
-        elif re.match('\S{196}$', s): o = req_147  (d, b64tob(bytes(s, 'ascii')))
-        elif re.match('\S{196}$', s): # admin certificate: usr:9+dat:4+spr:2+sig:132 len(147)->196 
-            r = b64tob(bytes(s, 'ascii'))
-            src, v, dat, msg, sig, k, p = r[:9], r[9:], r[9:13], r[:15], r[-132:], ecdsa(), b64tob(bytes(_admin_pkey + _admin_id, 'ascii'))
-            k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
-            if is_future(dat) and k.verify(sig, msg): o = set_crt(d, src, v)
-        elif re.match('\S{200}$', s): o = req_150  (d, b64tob(bytes(s, 'ascii')))
-        elif re.match('\S{200}$', s): # ibank certificate: bnk:9+dat:4+dbt:5+sig:132 len(150)->200 
-            r = b64tob(bytes(s, 'ascii'))
-            src, v, dat, dbt, msg, sig, k, p = r[:9], r[9:], r[9:13], b2i(r[13:18]), r[:18], r[-132:], ecdsa(), b64tob(bytes(_ibank_pkey + _ibank_id, 'ascii'))
-            k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
-            if is_future(dat) and k.verify(sig, msg): o = set_crt(d, src, v)
-        elif re.match('\S{208}$', s): o = req_156  (d, b64tob(bytes(s, 'ascii')))
-        elif re.match('\S{208}$', s): # user principal certificate (short): usr:9+dat:4+adm:9:spr:2+sig:132 len(156)->208 
-            r = b64tob(bytes(s, 'ascii'))
-            usr, v, dat, adm, msg, sig, k = r[:9], r[9:], r[9:13], r[13:22], r[:24], r[-132:], ecdsa()
-            if is_mairie(d, adm):
-                dhid = ropen(d['hid'])
-                if adm in dhid: h = dhid[adm][4:36] # next !
-                dhid.close()
-                dpub = ropen(d['pub'])
-                k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]+adm))
-                dpub.close()
-                if is_future(dat) and k.verify(sig, msg): o = set_crt(d, usr, v) 
-        elif re.match('\S{212}$', s): o = req_159  (d, b64tob(bytes(s, 'ascii')))
-        elif re.match('\S{212}$', s): # add transaction msg:27+sig:132 len(159->212)
-            r = b64tob(bytes(s, 'ascii'))
-            u, dat, v, src, dst, val, ref, msg, sig, k, dpub = r[:13], r[:4], r[13:-132], r[4:13], r[13:22], b2i(r[22:24]), b2i(r[24:27]), r[:-132], r[-132:], ecdsa(), ropen(d['pub'])
-            if src in dpub and dst in dpub and src != dst and val > 0:
-                k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
-                dpub.close()
-                if k.verify(sig, msg): 
-                    dtrx = wopen(d['trx'])
-                    if u in dtrx: o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][16:18]))
-                    else:
-                        if blc(d, src) + debt(d, src)*100 >= val:
-                            dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
-                            dtrx[dst] = dtrx[dst] + u if dst in dtrx else u # shortcut
-                            ps, pd = len(dtrx[src])//13-1, len(dtrx[dst])//13-1
-                            dtrx[u], dblc = v + i2b(ps, 2) + i2b(pd, 2) + sig, wopen(d['blc'])
-                            dblc[src] = '%d' % ((int(dblc[src])-val) if src in dblc else (-val)) # shortcut
-                            dblc[dst] = '%d' % ((int(dblc[dst])+val) if dst in dblc else val)    # shortcut
-                            o = '%d:%d' % (ps, pd)
-                            dblc.close()
-                        else: o += ' balance!'
-                    dtrx.close()
-                else: o += ' signature!'
-            else: o += ' ids!'
-        elif re.match('\S{248}$', s): o = req_186  (d, b64tob(bytes(s, 'ascii')))
-        elif re.match('\S{248}$', s): # user principal certificate: usr:9+dat:4+adm:9:hid:32+sig:132 len(186)->248 
-            r = b64tob(bytes(s, 'ascii'))
-            usr, v, dat, adm, hid, msg, sig, k, h = r[:9], r[9:], r[9:13], r[13:22], r[22:54], r[:54], r[-132:], ecdsa(), None
-            if is_mairie(d, adm):
-                dhid = ropen(d['hid'])
-                if adm in dhid: h = dhid[adm][4:36]
-                dhid.close()
-                dpub = ropen(d['pub'])
-                k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]+adm))
-                dpub.close()
-                if hid == h and is_future(dat) and k.verify(sig, msg): o = set_crt(d, usr, v)
-                # maybe re-check register signature !
-        elif re.match('\S{400}$', s): o = req_300  (d, b64tob(bytes(s, 'ascii')))
-        elif re.match('\S{400}$', s): # register main account: dat:4+hashid:32+pubkey:132+sig:132 len(300->400)
-            r = b64tob(bytes(s, 'ascii'))
-            dat, hid, src, pk1, pk2, v, msg, sig, k = r[:4], r[4:36], r[159:168], r[36:102], r[102:168], r[36:159], r[:-132], r[-132:], ecdsa()
-            k.pt = Point(c521, b2i(pk1), b2i(pk2))
-            if k.verify(sig, msg):
-                dpub, dhid = wopen(d['pub']), wopen(d['hid'])
-                if hid not in dhid: o, dhid[src], dhid[hid] = 'ok', dat + hid + sig, src
-                if src not in dpub: dpub[src] = v
-                dhid.close()
-                dpub.close()
+        elif re.match('\S{16}$', s):  o = req_12 (d, b64tob(bytes(s, 'ascii')))
+        elif re.match('\S{20}$', s):  o = req_15 (d, b64tob(bytes(s, 'ascii')))
+        elif re.match('\S{32}$', s):  o = req_24 (d, b64tob(bytes(s, 'ascii')))
+        elif re.match('\S{176}$', s): o = req_132(d, b64tob(bytes(s, 'ascii')))
+        elif re.match('\S{196}$', s): o = req_147(d, b64tob(bytes(s, 'ascii')))
+        elif re.match('\S{200}$', s): o = req_150(d, b64tob(bytes(s, 'ascii')))
+        elif re.match('\S{208}$', s): o = req_156(d, b64tob(bytes(s, 'ascii')))
+        elif re.match('\S{212}$', s): o = req_159(d, b64tob(bytes(s, 'ascii')))
+        elif re.match('\S{248}$', s): o = req_186(d, b64tob(bytes(s, 'ascii')))
+        elif re.match('\S{400}$', s): o = req_300(d, b64tob(bytes(s, 'ascii')))
         else: o = "ERROR %s" % (s)
     else: # get
         s = raw # use directory or argument
