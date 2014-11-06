@@ -458,7 +458,7 @@ def application(environ, start_response):
     if way == 'post' and len(raw) == 10: o = "%s" % H(raw)
     elif way == 'post' and len(raw) == 9: 
         dpub = ropen(d['pub'])
-        if r in dpub: o = '%d' % blc(d, raw)
+        if raw in dpub: o = '%d' % blc(d, raw)
         dpub.close()
     elif way == 'post':
         s = raw.decode('ascii')
