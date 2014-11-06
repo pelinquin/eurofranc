@@ -74,8 +74,9 @@
 #   176\S record public-key # temporary !
 #   196\S Admin certificate
 #   200\S Ibank certificate
-#   208\S User principal certificat
+#   208\S user principal certificat (short) temporary !
 #   212\S record transaction 
+#   248\S user principal certificate (long)
 #   400\S record main account pubkey
 
 # TRANSACTION MSG
@@ -454,7 +455,8 @@ def application(environ, start_response):
     (raw, way) = (environ['wsgi.input'].read(), 'post') if environ['REQUEST_METHOD'].lower() == 'post' else (urllib.parse.unquote(environ['QUERY_STRING']), 'get')
     base, ncok = environ['PATH_INFO'][1:], []
     d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt'), port)
-    if way == 'post':
+    if way == 'post' and len(raw) == 5: o = "%d" % len(s)
+    elif way == 'post':
         s = raw.decode('ascii')
         if reg(re.match('cm=(\S{1,12})&alias=(.+)$', s)):
             alias, cm = urllib.parse.unquote(reg.v.group(2).strip()), capture_id(d, reg.v.group(1).strip())
@@ -530,6 +532,9 @@ def application(environ, start_response):
             r = b64tob(bytes(s, 'ascii'))
             usr, v, dat, adm, msg, sig, k = r[:9], r[9:], r[9:13], r[13:22], r[:24], r[-132:], ecdsa()
             if is_mairie(d, adm):
+                dhid = ropen(d['hid'])
+                if adm in dhid: h = dhid[adm][4:36] # next !
+                dhid.close()
                 dpub = ropen(d['pub'])
                 k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]+adm))
                 dpub.close()
@@ -557,14 +562,25 @@ def application(environ, start_response):
                     dtrx.close()
                 else: o += ' signature!'
             else: o += ' ids!'
+        elif re.match('\S{248}$', s): # user principal certificate: usr:9+dat:4+adm:9:hid:32+sig:132 len(186)->248 
+            r = b64tob(bytes(s, 'ascii'))
+            usr, v, dat, adm, hid, msg, sig, k, h = r[:9], r[9:], r[9:13], r[13:22], r[22:54], r[:54], r[-132:], ecdsa(), None
+            if is_mairie(d, adm):
+                dhid = ropen(d['hid'])
+                if adm in dhid: h = dhid[adm][4:36]
+                dhid.close()
+                dpub = ropen(d['pub'])
+                k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]+adm))
+                dpub.close()
+                if hid == h and is_future(dat) and k.verify(sig, msg): o = set_crt(d, usr, v)
+                # maybe re-check register signature !
         elif re.match('\S{400}$', s): # register main account: dat:4+hashid:32+pubkey:132+sig:132 len(300->400)
             r = b64tob(bytes(s, 'ascii'))
             dat, hid, src, pk1, pk2, v, msg, sig, k = r[:4], r[4:36], r[159:168], r[36:102], r[102:168], r[36:159], r[:-132], r[-132:], ecdsa()
             k.pt = Point(c521, b2i(pk1), b2i(pk2))
             if k.verify(sig, msg):
                 dpub, dhid = wopen(d['pub']), wopen(d['hid'])
-                if hid not in dhid:
-                    o, dhid[src], dhid[hid] = 'ok', dat + hid + sig, src
+                if hid not in dhid: o, dhid[src], dhid[hid] = 'ok', dat + hid + sig, src
                 if src not in dpub: dpub[src] = v
                 dhid.close()
                 dpub.close()
