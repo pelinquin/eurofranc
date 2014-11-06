@@ -65,19 +65,19 @@
 #    NULL: index page + cookie management
 #    12\S: HTML balance report
 #    20\S: transaction page
-# POST: (after b64tob)
-#    12\S: get user's balance
-#  @+12\S: get Twitter profile image 48x48 (png)
-#    16\S get transaction at position
-#    20\S check transaction (short)
-#    32\S check transaction (long)
-#   176\S record public-key # temporary !
-#   196\S Admin certificate
-#   200\S Ibank certificate
-#   208\S user principal certificat (short) temporary !
-#   212\S record transaction 
-#   248\S user principal certificate (long)
-#   400\S record main account pubkey
+# POST: 
+# b13->@+12\S: get Twitter profile image 48x48 (png)
+# b9->12\S: get user's balance
+# b12->16\S get transaction at position
+# b15->20\S check transaction (short)
+# b24->32\S check transaction (long)
+# b132->176\S record public-key # temporary !
+# b147->196\S Admin certificate
+# b150->200\S Ibank certificate
+# b156->208\S user principal certificat (short) temporary !
+# b159->212\S record transaction 
+# b186->248\S user principal certificate (long)
+# b300->400\S record main account pubkey
 
 # TRANSACTION MSG
 # date(4)src(9)dst(9)val(2)ref(3):27
@@ -456,6 +456,10 @@ def application(environ, start_response):
     base, ncok = environ['PATH_INFO'][1:], []
     d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt'), port)
     if way == 'post' and len(raw) == 10: o = "%s" % H(raw)
+    elif way == 'post' and len(raw) == 9: 
+        dpub = ropen(d['pub'])
+        if r in dpub: o = '%d' % blc(d, raw)
+        dpub.close()
     elif way == 'post':
         s = raw.decode('ascii')
         if reg(re.match('cm=(\S{1,12})&alias=(.+)$', s)):
@@ -484,8 +488,7 @@ def application(environ, start_response):
         elif re.match('\S{12}$', s): # get balance | src:9 len(9->12)
             r = b64tob(bytes(s, 'ascii'))
             dpub = ropen(d['pub'])
-            if r in dpub: 
-                o = '%d' % blc(d, r)
+            if r in dpub: o = '%d' % blc(d, r)
             dpub.close()
         elif re.match('@\S{12}$', s): # get Twitter image
             fimg = '/%s/%s_%s/img/%s.png' % (__app__, __app__, port, s[1:])
