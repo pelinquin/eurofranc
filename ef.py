@@ -264,13 +264,13 @@ def blc(d, cm):
     dblc.close()
     return bal
 
-def debt(d, cm):
+def debt(d, cm, cut=False):
     "get max debt"
     dcrt, dbt = ropen(d['crt']), 0
     if cm in dcrt and len(dcrt[cm]) == 141: 
         dat, msg, sig, k, p = dcrt[cm][:4], cm + dcrt[cm][:9], dcrt[cm][-132:], ecdsa(), b64tob(bytes(_ibank_pkey + _ibank_id, 'ascii'))
         k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
-        if is_future(dat) and k.verify(sig, msg): dbt = b2i(dcrt[cm][4:9])
+        if is_future(dat) and (cut or k.verify(sig, msg)): dbt = b2i(dcrt[cm][4:9])
     dcrt.close()
     return dbt
 
@@ -280,7 +280,7 @@ def is_mairie(d, cm, cut=False):
     if cm in dcrt and len(dcrt[cm]) == 136: 
         dat, msg, sig, k, p = dcrt[cm][:4], cm + dcrt[cm][:4], dcrt[cm][-132:], ecdsa(), b64tob(bytes(_admin_pkey + _admin_id, 'ascii'))
         k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
-        if is_future(dat) and (k.verify(sig, msg) or cut) : res = True
+        if is_future(dat) and (cut or k.verify(sig, msg)) : res = True
     dcrt.close()
     return res
 
@@ -293,7 +293,7 @@ def is_principal(d, cm, cut=False):
             dpub = ropen(d['pub'])
             k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]+adm))
             dpub.close()
-            if is_future(dat) and (k.verify(sig, msg) or cut) : res = True
+            if is_future(dat) and (cut or k.verify(sig, msg)) : res = True
     dcrt.close()
     return res
 
