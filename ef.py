@@ -298,7 +298,7 @@ def is_principal(d, cm, cut=False):
     return res
 
 def get_type(d, src):
-    dbt, un = debt(d, src), '<euro>&thinsp;€</euro>'
+    dbt, un = debt(d, src, True), '<euro>&thinsp;€</euro>'
     return 'Principal' if is_principal(d, src, True) else 'Mairie' if is_mairie(d, src, True) else '' if dbt == 0 else '%d%s' % (dbt, un)
 
 def init_dbs(dbs, port):
