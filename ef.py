@@ -275,7 +275,7 @@ def debt(d, cm):
     return dbt
 
 def is_mairie(d, cm):
-    ""
+    "_"
     dcrt, res = ropen(d['crt']), False
     if cm in dcrt and len(dcrt[cm]) == 136: 
         dat, msg, sig, k, p = dcrt[cm][:4], cm + dcrt[cm][:4], dcrt[cm][-132:], ecdsa(), b64tob(bytes(_admin_pkey + _admin_id, 'ascii'))
@@ -285,11 +285,10 @@ def is_mairie(d, cm):
     return res
 
 def is_principal(d, cm):
-    ""
+    "_"
     dcrt, res = ropen(d['crt']), False
-    #if cm in dcrt and len(dcrt[cm]) == 147:
     if cm in dcrt and len(dcrt[cm]) == 145:
-        dat, msg, adm, sig, k = dcrt[cm][:4], cm + dcrt[cm][:15], dcrt[cm][4:13], dcrt[cm][-132:], ecdsa()
+        dat, msg, adm, sig, k = dcrt[cm][:4], cm + dcrt[cm][:13], dcrt[cm][4:13], dcrt[cm][-132:], ecdsa()
         if is_mairie(d, adm):
             dpub = ropen(d['pub'])
             k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]+adm))
