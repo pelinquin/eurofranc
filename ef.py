@@ -274,28 +274,32 @@ def debt(d, cm):
     dcrt.close()
     return dbt
 
-def is_mairie(d, cm):
+def is_mairie(d, cm, cut=False):
     "_"
     dcrt, res = ropen(d['crt']), False
     if cm in dcrt and len(dcrt[cm]) == 136: 
         dat, msg, sig, k, p = dcrt[cm][:4], cm + dcrt[cm][:4], dcrt[cm][-132:], ecdsa(), b64tob(bytes(_admin_pkey + _admin_id, 'ascii'))
         k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
-        if is_future(dat) and k.verify(sig, msg): res = True
+        if is_future(dat) and (k.verify(sig, msg) or cut) : res = True
     dcrt.close()
     return res
 
-def is_principal(d, cm):
+def is_principal(d, cm, cut=False):
     "_"
     dcrt, res = ropen(d['crt']), False
     if cm in dcrt and len(dcrt[cm]) == 145:
         dat, msg, adm, sig, k = dcrt[cm][:4], cm + dcrt[cm][:13], dcrt[cm][4:13], dcrt[cm][-132:], ecdsa()
-        if is_mairie(d, adm):
+        if is_mairie(d, adm, cut):
             dpub = ropen(d['pub'])
             k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]+adm))
             dpub.close()
-            if is_future(dat) and k.verify(sig, msg): res = True
+            if is_future(dat) and (k.verify(sig, msg) or cut) : res = True
     dcrt.close()
     return res
+
+def get_type(d, src):
+    dbt, un = debt(d, src), '<euro>&thinsp;€</euro>'
+    return 'Principal' if is_principal(d, src, True) else 'Mairie' if is_mairie(d, src, True) else '' if dbt == 0 else '%d%s' % (dbt, un)
 
 def init_dbs(dbs, port):
     "_"
@@ -382,10 +386,9 @@ def app_users(d, env):
     o, un = header() + favicon() + style_html() + title() + '<table>', '<euro>&thinsp;€</euro>'
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
     for i, src in enumerate(dpub.keys()): 
-        dbt, fc = debt(d, src), '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], btob64(src))
+        fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], btob64(src))
         img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-        typ = 'Principal' if is_principal(d, src) else 'Mairie' if is_mairie(d, src) else '' if dbt == 0 else '%d%s' % (dbt, un)
-        o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%7.2f%s</td></tr>' % (i+1, img, btob64(src), btob64(src), typ, int(dblc[src])/100 if src in dblc else 0, un)
+        o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%7.2f%s</td></tr>' % (i+1, img, btob64(src), btob64(src), get_type(d,src), int(dblc[src])/100 if src in dblc else 0, un)
     dpub.close()
     dblc.close()
     return o + '</table>' + footer()
@@ -402,11 +405,10 @@ def app_trx(d):
 
 def app_report(d, src, env):
     o, un, r = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', b64tob(bytes(src, 'ascii'))
-    dtrx, dblc, dbt = ropen(d['trx']), ropen(d['blc']), debt(d, r)    
+    dtrx, dblc = ropen(d['trx']), ropen(d['blc'])    
     fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], src)
     img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-    typ = 'Principal' if is_principal(d, r) else 'Mairie' if is_mairie(d, r) else '' if dbt == 0 else 'Dette: %d%s' % (dbt, un)
-    o += '<table><tr><td>%s</td><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num red">%7.2f%s</td></tr></table><table>' % (title(), img, src, typ, int(dblc[r])/100 if r in dblc else 0, un) 
+    o += '<table><tr><td>%s</td><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num red">%7.2f%s</td></tr></table><table>' % (title(), img, src, get_type(d, r), int(dblc[r])/100 if r in dblc else 0, un) 
     dblc.close()
     if r in dtrx:
         n = len(dtrx[r])//13
