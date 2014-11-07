@@ -77,8 +77,7 @@
 # b156->208\S user principal certificat (short) temporary !
 # b159->212\S record transaction 
 # b186->248\S user principal certificate (long)
-# b300->400\S record main account pubkey
- 
+# b300->400\S record main account pubkey 
 
 import re, os, sys, urllib.parse, hashlib, http.client, base64, datetime, functools, subprocess, time, smtplib, operator, getpass, dbm.ndbm
 import requests, requests_oauthlib
@@ -278,7 +277,8 @@ def debt(d, cm):
 def is_mairie(d, cm):
     ""
     dcrt, res = ropen(d['crt']), False
-    if cm in dcrt and len(dcrt[cm]) == 138: 
+    #if cm in dcrt and len(dcrt[cm]) == 138: 
+    if cm in dcrt and len(dcrt[cm]) == 136: 
         dat, msg, sig, k, p = dcrt[cm][:4], cm + dcrt[cm][:6], dcrt[cm][-132:], ecdsa(), b64tob(bytes(_admin_pkey + _admin_id, 'ascii'))
         k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
         if is_future(dat) and k.verify(sig, msg): res = True
@@ -288,7 +288,8 @@ def is_mairie(d, cm):
 def is_principal(d, cm):
     ""
     dcrt, res = ropen(d['crt']), False
-    if cm in dcrt and len(dcrt[cm]) == 147:
+    #if cm in dcrt and len(dcrt[cm]) == 147:
+    if cm in dcrt and len(dcrt[cm]) == 145:
         dat, msg, adm, sig, k = dcrt[cm][:4], cm + dcrt[cm][:15], dcrt[cm][4:13], dcrt[cm][-132:], ecdsa()
         if is_mairie(d, adm):
             dpub = ropen(d['pub'])
@@ -487,6 +488,13 @@ def req_132(d, r):
     dpub.close()
     return o
 
+def req_145(d, r):
+    "admin certificate: usr:9+dat:4+sig:132"
+    src, v, dat, msg, sig, k, p, o = r[:9], r[9:], r[9:13], r[:13], r[-132:], ecdsa(), b64tob(bytes(_admin_pkey + _admin_id, 'ascii')), 'error'
+    k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
+    if is_future(dat) and k.verify(sig, msg): o = set_crt(d, src, v)
+    return o
+
 def req_147(d, r):
     "admin certificate: usr:9+dat:4+spr:2+sig:132"
     src, v, dat, msg, sig, k, p, o = r[:9], r[9:], r[9:13], r[:15], r[-132:], ecdsa(), b64tob(bytes(_admin_pkey + _admin_id, 'ascii')), 'error'
@@ -501,7 +509,20 @@ def req_150(d, r):
     if is_future(dat) and k.verify(sig, msg): o = set_crt(d, src, v)
     return o
 
-def res_156(d, r):
+def req_154(d, r):
+    "user principal certificate (short): usr:9+dat:4+adm:9+sig:132"
+    usr, v, dat, adm, msg, sig, k, o = r[:9], r[9:], r[9:13], r[13:22], r[:22], r[-132:], ecdsa(), 'error'
+    if is_mairie(d, adm):
+        dhid = ropen(d['hid'])
+        if adm in dhid: h = dhid[adm][4:36] # next !
+        dhid.close()
+        dpub = ropen(d['pub'])
+        k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]+adm))
+        dpub.close()
+        if is_future(dat) and k.verify(sig, msg): o = set_crt(d, usr, v) 
+    return o
+
+def req_156(d, r):
     "user principal certificate (short): usr:9+dat:4+adm:9:spr:2+sig:132"
     usr, v, dat, adm, msg, sig, k, o = r[:9], r[9:], r[9:13], r[13:22], r[:24], r[-132:], ecdsa(), 'error'
     if is_mairie(d, adm):
@@ -576,9 +597,11 @@ def application(environ, start_response):
     elif len(raw) ==  15 and way == 'post': o = req_15 (d, raw)
     elif len(raw) ==  24 and way == 'post': o = req_24 (d, raw)
     elif len(raw) == 132 and way == 'post': o = req_132(d, raw)
-    elif len(raw) == 147 and way == 'post': o = req_147(d, raw)
+    elif len(raw) == 145 and way == 'post': o = req_145(d, raw)
+    #elif len(raw) == 147 and way == 'post': o = req_147(d, raw) # spare removed
     elif len(raw) == 150 and way == 'post': o = req_150(d, raw)
-    elif len(raw) == 156 and way == 'post': o = req_156(d, raw)
+    elif len(raw) == 154 and way == 'post': o = req_154(d, raw)
+    #elif len(raw) == 156 and way == 'post': o = req_156(d, raw) # spare removed
     elif len(raw) == 159 and way == 'post': o = req_159(d, raw)
     elif len(raw) == 186 and way == 'post': o = req_186(d, raw)
     elif len(raw) == 300 and way == 'post': o = req_300(d, raw)
@@ -615,9 +638,9 @@ def application(environ, start_response):
         elif re.match('\S{20}$', s):  o = req_15 (d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{32}$', s):  o = req_24 (d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{176}$', s): o = req_132(d, b64tob(bytes(s, 'ascii')))
-        elif re.match('\S{196}$', s): o = req_147(d, b64tob(bytes(s, 'ascii')))
+        #elif re.match('\S{196}$', s): o = req_147(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{200}$', s): o = req_150(d, b64tob(bytes(s, 'ascii')))
-        elif re.match('\S{208}$', s): o = req_156(d, b64tob(bytes(s, 'ascii')))
+        #elif re.match('\S{208}$', s): o = req_156(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{212}$', s): o = req_159(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{248}$', s): o = req_186(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{400}$', s): o = req_300(d, b64tob(bytes(s, 'ascii')))
