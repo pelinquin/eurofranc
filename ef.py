@@ -277,9 +277,8 @@ def debt(d, cm):
 def is_mairie(d, cm):
     ""
     dcrt, res = ropen(d['crt']), False
-    #if cm in dcrt and len(dcrt[cm]) == 138: 
     if cm in dcrt and len(dcrt[cm]) == 136: 
-        dat, msg, sig, k, p = dcrt[cm][:4], cm + dcrt[cm][:6], dcrt[cm][-132:], ecdsa(), b64tob(bytes(_admin_pkey + _admin_id, 'ascii'))
+        dat, msg, sig, k, p = dcrt[cm][:4], cm + dcrt[cm][:4], dcrt[cm][-132:], ecdsa(), b64tob(bytes(_admin_pkey + _admin_id, 'ascii'))
         k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
         if is_future(dat) and k.verify(sig, msg): res = True
     dcrt.close()
