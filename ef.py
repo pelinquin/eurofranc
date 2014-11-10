@@ -464,7 +464,7 @@ def req_9(d, r):
     "get balance and nb transactions | src:9"
     toto = blc(d, r)
     tata = nbt(d, r)
-    sys.stderr.write('%d %d' % (toto, tata))
+    sys.stderr.write('%s %s\n' % (toto, tata))
     return btob64(i2b(1234, 3) + i2b(12, 3))
 
 def req_12(d, r):
