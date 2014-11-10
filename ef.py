@@ -463,7 +463,7 @@ def req_9(d, r):
 def req_9(d, r):
     "get balance and nb transactions | src:9"
     #return i2b(blc(d, r), 4) + i2b(nbt(d, r), 4)
-    return i2b(543, 4) + i2b(12, 4)
+    return btob64(i2b(543, 3) + i2b(12, 3))
 
 def req_12(d, r):
     "get transaction nb | src:9+pos:3"
@@ -603,7 +603,7 @@ def application(environ, start_response):
     (raw, way) = (environ['wsgi.input'].read(), 'post') if environ['REQUEST_METHOD'].lower() == 'post' else (urllib.parse.unquote(environ['QUERY_STRING']), 'get')
     base, ncok = environ['PATH_INFO'][1:], []
     d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt'), port)
-    if   len(raw) ==   9 and way == 'post': o, mime = req_9  (d, raw), 'image/png'
+    if   len(raw) ==   9 and way == 'post': o = req_9  (d, raw)
     #elif len(raw) ==  12 and way == 'post': o = req_12 (d, raw)
     elif len(raw) ==  15 and way == 'post': o = req_15 (d, raw)
     elif len(raw) ==  24 and way == 'post': o = req_24 (d, raw)
