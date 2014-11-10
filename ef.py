@@ -256,6 +256,14 @@ def update_blc(d):
     dblc.close()
     return o
 
+def nbt(d, cm):
+    "get total transaction nb"
+    dtrx, n = ropen(d['trx']), 0
+    if cm in dtrx: 
+        n = len(dtrx[cm])//13
+    dtrx.close()
+    return n
+
 def blc(d, cm):
     "get balance"
     dblc, bal = ropen(d['blc']), 0
@@ -452,17 +460,22 @@ def req_9(d, r):
     dpub.close()
     return o
 
+def req_9(d, r):
+    "get balance and nb transactions | src:9"
+    dpub, o = ropen(d['pub']), 'error'
+    if r in dpub: o = '%d:%d' % (blc(d, r), nbt(d, r))
+    dpub.close()
+    return o
+
 def req_12(d, r):
     "get transaction nb | src:9+pos:3"
-    src, pos, dtrx, o = r[:9], b2i(r[9:]), ropen(d['trx']), 'error'
-    if src in dtrx:
-        n = len(dtrx[src])//13
-        if pos >= 0 and pos < n:
-            sl = dtrx[src][13*pos:13*(pos+1)]
-            (w, ur) = (i2b(0,1), dtrx[sl][:9]) if sl[4:] == src else (i2b(1,1), sl[4:])
-            o = btob64(sl[:4] + ur + dtrx[sl][9:14] + w + i2b(n, 2)) 
-            # return | dat:4+usr:9+val:2+ref:3+way:1+max:2 len(21->28)
-            # QRCODE:15 btob64(dat+usr:12+val)
+    src, pos, dtrx, o, n = r[:9], b2i(r[9:]), ropen(d['trx']), 'error', nbt(d, r[:9])
+    if n > 0 and pos >= 0 and pos < n:
+        sl = dtrx[src][13*pos:13*(pos+1)]
+        (w, ur) = (i2b(0,1), dtrx[sl][:9]) if sl[4:] == src else (i2b(1,1), sl[4:])
+        o = btob64(sl[:4] + ur + dtrx[sl][9:14] + w + i2b(n, 2)) 
+        # return | dat:4+usr:9+val:2+ref:3+way:1+max:2 len(21->28)
+        # QRCODE:15 btob64(dat+usr:12+val)
     dtrx.close()
     return o
 
