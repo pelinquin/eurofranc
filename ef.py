@@ -396,7 +396,7 @@ def app_users(d, env):
     for i, src in enumerate(dpub.keys()): 
         fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], btob64(src))
         img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-        o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%7.2f%s</td></tr>' % (i+1, img, btob64(src), btob64(src), get_type(d,src), int(dblc[src])/100 if src in dblc else 0, un)
+        o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%04d</td><td class="num">%7.2f%s</td></tr>' % (i+1, img, btob64(src), btob64(src), get_type(d, src), nbt(d, src), int(dblc[src])/100 if src in dblc else 0, un)
     dpub.close()
     dblc.close()
     return o + '</table>' + footer()
