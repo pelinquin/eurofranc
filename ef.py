@@ -462,6 +462,10 @@ def get_twitter_img(port, user, cm):
 def is_future(da):
     return int(time.mktime(time.gmtime())) < b2i(da)*60
 
+def req_5(r):
+    "is active"
+    return 'ok' if r == b'ef0.1' else ''
+
 def req_9(d, r):
     "get balance | src:9"
     dpub, o = ropen(d['pub']), 'error'
@@ -611,7 +615,8 @@ def application(environ, start_response):
     (raw, way) = (environ['wsgi.input'].read(), 'post') if environ['REQUEST_METHOD'].lower() == 'post' else (urllib.parse.unquote(environ['QUERY_STRING']), 'get')
     base, ncok = environ['PATH_INFO'][1:], []
     d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt'), port)
-    if   len(raw) ==   9 and way == 'post': o = req_9  (d, raw)
+    if   len(raw) ==   5 and way == 'post': o = req_5  (raw)
+    elif len(raw) ==   9 and way == 'post': o = req_9  (d, raw)
     #elif len(raw) ==  12 and way == 'post': o = req_12 (d, raw)
     elif len(raw) ==  15 and way == 'post': o = req_15 (d, raw)
     elif len(raw) ==  24 and way == 'post': o = req_24 (d, raw)
