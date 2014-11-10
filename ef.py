@@ -462,8 +462,7 @@ def req_9(d, r):
 
 def req_9(d, r):
     "get balance and nb transactions | src:9"
-    #return i2b(blc(d, r), 4) + i2b(nbt(d, r), 4)
-    return btob64(i2b(543, 3) + i2b(12, 3))
+    return btob64(i2b(blc(d, r), 3) + i2b(nbt(d, r), 3))
 
 def req_12(d, r):
     "get transaction nb | src:9+pos:3"
