@@ -462,10 +462,7 @@ def req_9(d, r):
 
 def req_9(d, r):
     "get balance and nb transactions | src:9"
-    dpub, o = ropen(d['pub']), 'error'
-    if r in dpub: o = '%d:%d' % (blc(d, r), nbt(d, r))
-    dpub.close()
-    return o
+    return i2b(blc(d, r), 4) + i2b(nbt(d, r), 4)
 
 def req_12(d, r):
     "get transaction nb | src:9+pos:3"
