@@ -462,7 +462,8 @@ def req_9(d, r):
 
 def req_9(d, r):
     "get balance and nb transactions | src:9"
-    return i2b(blc(d, r), 4) + i2b(nbt(d, r), 4)
+    #return i2b(blc(d, r), 4) + i2b(nbt(d, r), 4)
+    return i2b(543, 4) + i2b(12, 4)
 
 def req_12(d, r):
     "get transaction nb | src:9+pos:3"
@@ -602,7 +603,7 @@ def application(environ, start_response):
     (raw, way) = (environ['wsgi.input'].read(), 'post') if environ['REQUEST_METHOD'].lower() == 'post' else (urllib.parse.unquote(environ['QUERY_STRING']), 'get')
     base, ncok = environ['PATH_INFO'][1:], []
     d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt'), port)
-    if   len(raw) ==   9 and way == 'post': o = req_9  (d, raw)
+    if   len(raw) ==   9 and way == 'post': o, mime = req_9  (d, raw), 'image/png'
     #elif len(raw) ==  12 and way == 'post': o = req_12 (d, raw)
     elif len(raw) ==  15 and way == 'post': o = req_15 (d, raw)
     elif len(raw) ==  24 and way == 'post': o = req_24 (d, raw)
@@ -640,7 +641,7 @@ def application(environ, start_response):
                 ncok.append(('set-cookie', '%s=no;expires=Thu, 01 Jan 1970 00:00:00 GMT' % t[0]))            
             del environ['HTTP_COOKIE']
             o, mime = app_index(d, environ), 'text/html; charset=utf-8'
-        elif re.match('\S{12}$', s): o = req_9  (d, b64tob(bytes(s, 'ascii')))
+        elif re.match('\S{12}$', s): o = req_9(d, b64tob(bytes(s, 'ascii')))
         elif re.match('@\S{12}$', s): # get Twitter image
             fimg = '/%s/%s_%s/img/%s.png' % (__app__, __app__, port, s[1:])
             if os.path.isfile(fimg): mime, o = 'image/png', open(fimg, 'rb').read()
