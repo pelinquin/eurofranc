@@ -110,6 +110,15 @@ def b2i(x):
     "bytes to int"
     return int.from_bytes(x, 'big')
 
+def s2b(x, n=1):
+    "signed int to bytes with n padding"
+    z = bytes.fromhex(PAD(hex(x + (1<<(8*n-1)))))
+    return ((n-len(z))%n)*bytes.fromhex('00') + z
+
+def b2s(x, n=1):
+    "signed bytes to int"
+    return int.from_bytes(x, 'big') - (1<<(8*n-1)) 
+
 def itob64(n):
     "transform int to base64"
     return re.sub(b'=*$', b'', base64.urlsafe_b64encode(bytes.fromhex(PAD(hex(n)))))
@@ -462,10 +471,7 @@ def req_9(d, r):
 
 def req_9(d, r):
     "get balance and nb transactions | src:9"
-    toto = blc(d, r)
-    tata = nbt(d, r)
-    sys.stderr.write('%s %s\n' % (toto, tata))
-    return btob64(i2b(1234, 3) + i2b(12, 3))
+    return '%d:%d' % (blc(d, r), nbt(d, r))
 
 def req_12(d, r):
     "get transaction nb | src:9+pos:3"
