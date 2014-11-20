@@ -487,7 +487,7 @@ def app_report(d, src, env):
                 digs = ropen(d['igs'])
                 url = 'none' if hig not in digs else digs[hig]
                 digs.close()
-                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td class="mono" title="%s">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), url, btob64(i2b(0, 1) + hig), price(d, src, hig))
+                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td class="mono" title="%s">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), url, btob64(i2b(0, 1) + hig)[:10], price(d, src, hig))
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -659,16 +659,16 @@ def req_162(d, r):
         dpub.close()
         if k.verify(sig, msg): 
             dtrx = wopen(d['trx'])
+            digs = wopen(d['igs'])
             digs[igh] = 'eurofranc.fr/uppr'
+            digs.close()
             if u in dtrx: o = 'already there'
             else:
                 if blc_cup(d, src) + debt(d, src)*100 >= curprice(d, igh):
                     dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
                     dtrx[u], dblc = v + sig, wopen(d['blc'])
-                    # add blc
+                    # add cup_blc
                     dblc.close()
-                    digs = wopen(d['igs'])
-                    digs.close()
                     o = 'OK ig'
                 else: o += ' balance!'
             dtrx.close()
