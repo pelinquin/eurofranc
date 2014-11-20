@@ -459,7 +459,7 @@ def app_trx(d):
             digs = ropen(d['igs'])
             url = 'none' if hig not in digs else digs[hig]
             digs.close()
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono" title="%s">%s</td><td class="mono smallgreen">%s%09d</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), url, btob64(bytes(0) + hig)[:10], prf, b2i(dtrx[t][16:17]), price(d, t[4:], hig))
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono" title="%s">%s</td><td class="mono smallgreen">%s%09d</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), url, btob64(i2b(0, 1) + hig)[:10], prf, b2i(dtrx[t][16:17]), price(d, t[4:], hig))
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -484,7 +484,10 @@ def app_report(d, src, env):
                 o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
             else:
                 hig = dtrx[s][:14]
-                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td class="mono">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), btob64(bytes(0) + hig), price(d, src, hig))
+                digs = ropen(d['igs'])
+                url = 'none' if hig not in digs else digs[hig]
+                digs.close()
+                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td class="mono" title="%s">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), url, btob64(i2b(0, 1) + hig), price(d, src, hig))
     dtrx.close()
     return o + '</table>' + footer()
 
