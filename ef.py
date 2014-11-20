@@ -290,6 +290,18 @@ def debt(d, cm, cut=False):
     dcrt.close()
     return dbt
 
+def blc_cup(d, cm):
+    "get balance"
+    dtrx, bal = ropen(d['trx']), 0
+    if cm in dtrx: 
+        bal += 1
+    dtrx.close()
+    return bal
+
+def price(d, cm, hig):
+    "current price"
+    return 4
+
 def is_mairie(d, cm, cut=False):
     "_"
     dcrt, res = ropen(d['crt']), False
@@ -405,13 +417,13 @@ def app_users(d, env):
     for i, src in enumerate(dpub.keys()): 
         fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], btob64(src))
         img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-        o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%04d</td><td class="num">%7.2f%s</td></tr>' % (i+1, img, btob64(src), btob64(src), get_type(d, src), nbt(d, src), int(dblc[src])/100 if src in dblc else 0, un)
+        o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%04d</td><td class="num">%7.2f%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, img, btob64(src), btob64(src), get_type(d, src), nbt(d, src), int(dblc[src])/100 if src in dblc else 0, un, blc_cup(d, src))
     dpub.close()
     dblc.close()
     return o + '</table>' + footer()
 
 def app_trx(d):
-    o, un = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>'
+    o, un, uc = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', '&thinsp;⊔'
     dtrx = ropen(d['trx'])
     tab = [z for z in filter(lambda x:len(x) == 13, dtrx.keys())]
     o += '<table><tr><td>%s</td><td class="num">%d transactions</td></tr></table><table>' % (title(), len(tab)) 
@@ -421,7 +433,7 @@ def app_trx(d):
             o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), prf, b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
         else:
             hig, prf = btob64(bytes(0) + dtrx[t][9:23]), btob64(t[4:])[:1]
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono">%s</td><td class="mono smallgreen">%s%09d</td><td class="num">?&thinsp;⊔</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), hig, prf, b2i(dtrx[t][16:17]))
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono">%s</td><td class="mono smallgreen">%s%09d</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), hig, prf, b2i(dtrx[t][16:17]), price(d, t[4:], hig))
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -619,14 +631,16 @@ def req_162(d, r):
             dtrx = wopen(d['trx'])
             if u in dtrx: o = 'already there'
             else:
-                dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
-                dtrx[u], dblc = v + sig, wopen(d['blc'])
-                # add blc
-                dblc.close()
-                digs = wopen(d['igs'])
-                digs[igh] = 'eurofranc.fr/uppr'
-                digs.close()
-                o += ' ig yes'
+                if blc_cup(d, src) + debt(d, src)*100 >= 0:
+                    dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
+                    dtrx[u], dblc = v + sig, wopen(d['blc'])
+                    # add blc
+                    dblc.close()
+                    digs = wopen(d['igs'])
+                    digs[igh] = 'eurofranc.fr/uppr'
+                    digs.close()
+                    o = 'OK ig'
+                else: o += ' balance!'
             dtrx.close()
         else: o += ' signature!'
     else: o += ' ids!'
