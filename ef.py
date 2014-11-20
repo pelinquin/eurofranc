@@ -321,7 +321,7 @@ def curprice(d, hig):
             co = http.client.HTTPConnection(reg.v.group(1))
             co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' )
             res = co.getresponse().read()    
-            prc = 0
+            prc = 1
     digs.close()
     return prc
 
@@ -455,7 +455,7 @@ def app_trx(d):
             prf = btob64(t[4:])[:1] + btob64(dtrx[t][:9])[:1]
             o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), prf, b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
         else:
-            hig, prf = dtrx[t][9:23], btob64(t[4:])[:1]
+            hig, prf = dtrx[t][:14], btob64(t[4:])[:1]
             digs = ropen(d['igs'])
             url = 'none' if hig not in digs else digs[hig]
             digs.close()
