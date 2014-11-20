@@ -304,11 +304,12 @@ def blc_cup(d, cm):
 def price(d, cm, hig):
     "cup price for cm user"
     digs, prc = ropen(d['igs']), 0
-    if hig in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[hig])):
-        co = http.client.HTTPConnection(reg.v.group(1))
-        co.request('GET', urllib.parse.quote(reg.v.group(2)))
-        res = co.getresponse().read()    
-        prc += 1
+    if hig in digs:
+        if reg(re.match(r'([^/]+)(/\S+)$', digs[hig])):
+            co = http.client.HTTPConnection(reg.v.group(1))
+            co.request('GET', urllib.parse.quote(reg.v.group(2)))
+            res = co.getresponse().read()    
+            prc += 1
     digs.close()
     return prc
 
@@ -442,8 +443,8 @@ def app_trx(d):
             prf = btob64(t[4:])[:1] + btob64(dtrx[t][:9])[:1]
             o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), prf, b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
         else:
-            hig, prf = btob64(bytes(0) + dtrx[t][9:23]), btob64(t[4:])[:1]
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono">%s</td><td class="mono smallgreen">%s%09d</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), hig, prf, b2i(dtrx[t][16:17]), price(d, t[4:], hig))
+            hig, prf = dtrx[t][9:23], btob64(t[4:])[:1]
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono">%s</td><td class="mono smallgreen">%s%09d</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(bytes(0) + hig), prf, b2i(dtrx[t][16:17]), price(d, t[4:], hig))
     dtrx.close()
     return o + '</table>' + footer()
 
