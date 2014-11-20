@@ -436,7 +436,7 @@ def app_index(d, env):
 def app_users(d, env):
     o, un = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>'
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
-    o += '<table><tr><td>%s</td><td class="num">%d users</td></tr></table><table>' % (title(), len(dpub.keys())) 
+    o += '<table><tr><td>%s</td><td class="num">%d users</td><td><a href="./?transactions" class="num">transactions</a></td></tr></table><table>' % (title(), len(dpub.keys())) 
     for i, src in enumerate(dpub.keys()): 
         fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], btob64(src))
         img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
@@ -449,7 +449,7 @@ def app_trx(d):
     o, un, uc = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', '&thinsp;⊔'
     dtrx = ropen(d['trx'])
     tab = [z for z in filter(lambda x:len(x) == 13, dtrx.keys())]
-    o += '<table><tr><td>%s</td><td class="num">%d transactions</td></tr></table><table>' % (title(), len(tab)) 
+    o += '<table><tr><td>%s</td><td><a href="./?users" class="num">users</a></td><td class="num">%d transactions</td></tr></table><table>' % (title(), len(tab)) 
     for i, t in enumerate(filter(lambda x:len(x) == 13, dtrx.keys())):
         if len(dtrx[t]) == 150: 
             prf = btob64(t[4:])[:1] + btob64(dtrx[t][:9])[:1]
