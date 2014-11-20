@@ -399,8 +399,9 @@ def app_index(d, env):
     return o + footer()
 
 def app_users(d, env):
-    o, un = header() + favicon() + style_html() + title() + '<table>', '<euro>&thinsp;€</euro>'
+    o, un = header() + favicon() + style_html() + title(), '<euro>&thinsp;€</euro>'
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
+    o += '<table><tr><td class="num">%04d users</td></tr></table><table>' % len(dpub.keys()) 
     for i, src in enumerate(dpub.keys()): 
         fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], btob64(src))
         img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
