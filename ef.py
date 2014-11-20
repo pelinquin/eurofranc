@@ -772,13 +772,14 @@ def application(environ, start_response):
                     if cm == r[(i-b)*23:(i-b)*23+9]: cup -= 1
             o = '%d' % cup
         elif reg(re.match('(\S{2,30}):$', base)): 
-            figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1))
+            figf, pr = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), 0
             if os.path.isfile(figf): 
                 r = open(figf, 'rb').read()
                 s, a, t, pi, li = b2i(r[11:15]), b2i(r[15:16]), len(r), b2i(r[4:7]), b2i(r[7:11])
                 b = (t-s-148-10*a)//23
                 k, pr = b//2, pi - 2
-                o = '%d:%d:%d' % (b, k, pr) 
+                #o = '%d:%d:%d' % (b, k, pr) 
+            o = '%d' % pr
         elif re.match('\S{12}$', base): o, mime = app_report(d, base, environ), 'text/html; charset=utf-8'
         elif base == '' and s == '': o, mime = app_index(d, environ), 'text/html; charset=utf-8'
         elif s == '': 
