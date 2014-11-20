@@ -442,7 +442,7 @@ def app_report(d, src, env):
     dtrx, dblc = ropen(d['trx']), ropen(d['blc'])    
     fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], src)
     img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-    o += '<table><tr><td>%s</td><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num red">%7.2f%s</td></tr></table><table>' % (title(), img, src, get_type(d, r), int(dblc[r])/100 if r in dblc else 0, un) 
+    o += '<table><tr><td>%s</td><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num red">%7.2f%s</td><td class="num red">%7d&thinsp;⊔</td></tr></table><table>' % (title(), img, src, get_type(d, r), int(dblc[r])/100 if r in dblc else 0, un, blc(d, src)) 
     dblc.close()
     if r in dtrx:
         n = len(dtrx[r])//13
@@ -457,7 +457,8 @@ def app_report(d, src, env):
                 img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
                 o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
             else:
-                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td class="mono">%s</td><td class="num">?&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), btob64(bytes(0) + dtrx[s][:14]))
+                hig = dtrx[s][:14]
+                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td class="mono">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), btob64(bytes(0) + hig), price(d, src, hig))
     dtrx.close()
     return o + '</table>' + footer()
 
