@@ -80,7 +80,7 @@
 # b300->400\S record main account pubkey 
 
 import re, os, sys, urllib.parse, hashlib, http.client, base64, datetime, functools, subprocess, time, smtplib, operator, getpass, dbm.ndbm
-import requests, requests_oauthlib
+import requests, requests_oauthlib # for Twitter image capture
 import gmpy2 # for inverse_mod fast computing
 
 __app__    = os.path.basename(__file__)[:-3]
@@ -89,7 +89,6 @@ __base__   = '/%s/%s_%s/' % (__app__, __app__, __dfprt__)
 __ef__     = 'eurofranc'
 __email__  = 'contact@%s.fr' % __ef__
 
-_SVGNS     = 'xmlns="http://www.w3.org/2000/svg"'
 _b58char   = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
 _admin_id   = 'AdminJqjFdcY'
 _ibank_id   = 'IbankVBixRIm' 
@@ -462,11 +461,29 @@ def get_twitter_img(port, user, cm):
 def is_future(da):
     return int(time.mktime(time.gmtime())) < b2i(da)*60
 
+##### ⊔ management
+
+def func_price(p1, pf, j):
+    R, T = [(0,0)]*(j+1), p1
+    for i in range (j-1, j+1):
+        m, r, q = p1*p1+pf*pf, int(p1*(1-i/pf)), p1+5*i
+        pt, tt = r if r>=0 else 0, q if q<pf else pf
+        for t in range(T, pf+1):
+            for k in range (i+2):
+                for p in range(p1+1):
+                    if (i+1-k)*(p+1) + k*p == t:
+                        v = (pt-p)*(pt-p) + (tt-t)*(tt-t)
+                        if v <= m and t >= T: 
+                            m, T, R[i] = v, t, (p, k)
+    return R[j]
+
+#####
+
 def req_5(r):
     "is active"
     return 'ok' if r == b'ef0.1' else ''
 
-def req_9(d, r):
+def req_9_old(d, r):
     "get balance | src:9"
     dpub, o = ropen(d['pub']), 'error'
     if r in dpub: o = '%d' % blc(d, r)
@@ -583,6 +600,23 @@ def req_159(d, r):
     else: o += ' ids!'
     return o
 
+def req_162(d, r): 
+    "add ig-transaction: dat:4+src:9+igh:14+ref:3+sig:132"
+    u, dat, v, src, igh, ref, msg, sig, k, dpub, o = r[:13], r[:4], r[13:-132], r[4:13], r[13:27], b2i(r[27:30]), r[:-132], r[-132:], ecdsa(), ropen(d['pub']), 'error'
+    if src in dpub:
+        k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
+        dpub.close()
+        if k.verify(sig, msg): 
+            dtrx = wopen(d['trx'])
+            dtrx[u], dblc = v + sig, wopen(d['blc'])
+            # add blc
+            dblc.close()
+            o += ' ig yes'
+            dtrx.close()
+        else: o += ' signature!'
+    else: o += ' ids!'
+    return o
+
 def req_186(d, r):
     "user principal certificate: usr:9+dat:4+adm:9:hid:32+sig:132" 
     usr, v, dat, adm, hid, msg, sig, k, h, o = r[:9], r[9:], r[9:13], r[13:22], r[22:54], r[:54], r[-132:], ecdsa(), None, 'error'
@@ -627,6 +661,7 @@ def application(environ, start_response):
     elif len(raw) == 154 and way == 'post': o = req_154(d, raw)
     #elif len(raw) == 156 and way == 'post': o = req_156(d, raw) # spare removed
     elif len(raw) == 159 and way == 'post': o = req_159(d, raw)
+    elif len(raw) == 162 and way == 'post': o = req_162(d, raw)
     elif len(raw) == 186 and way == 'post': o = req_186(d, raw)
     elif len(raw) == 300 and way == 'post': o = req_300(d, raw)
     elif way == 'post':
@@ -666,12 +701,44 @@ def application(environ, start_response):
         elif re.match('\S{200}$', s): o = req_150(d, b64tob(bytes(s, 'ascii')))
         #elif re.match('\S{208}$', s): o = req_156(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{212}$', s): o = req_159(d, b64tob(bytes(s, 'ascii')))
+        elif re.match('\S{216}$', s): o = req_162(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{248}$', s): o = req_186(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{400}$', s): o = req_300(d, b64tob(bytes(s, 'ascii')))
         else: o = "ERROR %s" % (s)
     else: # get
         s = raw # use directory or argument
-        if re.match('\S{12}$', base): o, mime = app_report(d, base, environ), 'text/html; charset=utf-8'
+        if reg(re.match('(\S{2,30}):(\S{36})$', base)): # get igf
+            figf, rk = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), b64tob(bytes(reg.v.group(2), 'ascii')) 
+            p, u1, k1 = b2i(rk[9:13]), rk[:9], rk[13:]
+            if os.path.isfile(figf): 
+                r = open(figf, 'rb').read()
+                s, a, t = b2i(r[11:15]), b2i(r[15:16]), len(r)
+                b = (t-s-148-10*a)//23
+                if p <= b:
+                    ce = r[(p-b-1)*23:(p-b)*23]
+                    if ce[:9] == u1 and ce[-14:] == k1:
+                        mime, o = 'application/pdf', r[(16+10*a):-(132+23*b)]
+        elif reg(re.match('(\S{2,30}):(\S{12})$', base)): # get balance for an one user and one ig
+            figf, cm, cup = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), b64tob(bytes(reg.v.group(2), 'ascii')), 0 
+            if os.path.isfile(figf): 
+                r = open(figf, 'rb').read()
+                s, a, t = b2i(r[11:15]), b2i(r[15:16]), len(r)
+                b = (t-s-148-10*a)//23
+                for i in range(a):
+                    x, y = r[16+10*i:25+10*i], b2i(r[25+10*i:26+10*i])
+                    if cm == x: cup += 1*y
+                for i in range(b):
+                    if cm == r[(i-b)*23:(i-b)*23+9]: cup -= 1
+            o = '%d' % cup
+        elif reg(re.match('(\S{2,30}):$', base)): 
+            figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1))
+            if os.path.isfile(figf): 
+                r = open(figf, 'rb').read()
+                s, a, t, pi, li = b2i(r[11:15]), b2i(r[15:16]), len(r), b2i(r[4:7]), b2i(r[7:11])
+                b = (t-s-148-10*a)//23
+                k, pr = b//2, pi - 2
+                o = '%d:%d:%d' % (b, k, pr) 
+        elif re.match('\S{12}$', base): o, mime = app_report(d, base, environ), 'text/html; charset=utf-8'
         elif base == '' and s == '': o, mime = app_index(d, environ), 'text/html; charset=utf-8'
         elif s == '': 
             o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr'
