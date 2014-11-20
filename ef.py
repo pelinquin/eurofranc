@@ -619,7 +619,7 @@ def req_162(d, r):
             dtrx = wopen(d['trx'])
             if u in dtrx: o = 'already there'
             else:
-                #dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
+                dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
                 dtrx[u], dblc = v + sig, wopen(d['blc'])
                 # add blc
                 dblc.close()
