@@ -442,7 +442,7 @@ def app_report(d, src, env):
     dtrx, dblc = ropen(d['trx']), ropen(d['blc'])    
     fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], src)
     img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-    o += '<table><tr><td>%s</td><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num red">%7.2f%s</td><td class="num red">%7d&thinsp;⊔</td></tr></table><table>' % (title(), img, src, get_type(d, r), int(dblc[r])/100 if r in dblc else 0, un, blc(d, src)) 
+    o += '<table><tr><td>%s</td><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num red">%7.2f%s</td><td class="num red">%7d&thinsp;⊔</td></tr></table><table>' % (title(), img, src, get_type(d, r), int(dblc[r])/100 if r in dblc else 0, un, blc_cup(d, r)) 
     dblc.close()
     if r in dtrx:
         n = len(dtrx[r])//13
