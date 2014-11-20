@@ -291,16 +291,26 @@ def debt(d, cm, cut=False):
     return dbt
 
 def blc_cup(d, cm):
-    "get balance"
+    "get cup balance"
     dtrx, bal = ropen(d['trx']), 0
-    if cm in dtrx: 
-        bal += 1
+    if cm in dtrx:
+        n = len(dtrx[cm])//13
+        for i in range(n):
+            s = dtrx[cm][13*(n-i-1):13*(n-i)]
+            if len(dtrx[s]) != 150: bal += price(d, cm, dtrx[s][:14])
     dtrx.close()
     return bal
 
 def price(d, cm, hig):
-    "current price"
-    return 4
+    "cup price for cm user"
+    digs, prc = ropen(d['igs']), 0
+    if hig in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[hig])):
+        co = http.client.HTTPConnection(reg.v.group(1))
+        co.request('GET', urllib.parse.quote(reg.v.group(2)))
+        res = co.getresponse().read()    
+        prc += 1
+    digs.close()
+    return prc
 
 def is_mairie(d, cm, cut=False):
     "_"
