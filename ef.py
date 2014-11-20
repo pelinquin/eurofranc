@@ -307,9 +307,21 @@ def price(d, cm, hig):
     if hig in digs:
         if reg(re.match(r'([^/]+)(/\S+)$', digs[hig])):
             co = http.client.HTTPConnection(reg.v.group(1))
-            co.request('GET', urllib.parse.quote(reg.v.group(2)))
+            co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' + btob64(cm).decode('ascii'))
             res = co.getresponse().read()    
-            prc += 1
+            prc = 1
+    digs.close()
+    return prc
+
+def curprice(d, hig):
+    "cup price for cm user"
+    digs, prc = ropen(d['igs']), 0
+    if hig in digs:
+        if reg(re.match(r'([^/]+)(/\S+)$', digs[hig])):
+            co = http.client.HTTPConnection(reg.v.group(1))
+            co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' )
+            res = co.getresponse().read()    
+            prc = 0
     digs.close()
     return prc
 
@@ -641,15 +653,15 @@ def req_162(d, r):
         dpub.close()
         if k.verify(sig, msg): 
             dtrx = wopen(d['trx'])
+            digs[igh] = 'eurofranc.fr/uppr'
             if u in dtrx: o = 'already there'
             else:
-                if blc_cup(d, src) + debt(d, src)*100 >= 0:
+                if blc_cup(d, src) + debt(d, src)*100 >= curprice(d, igh):
                     dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
                     dtrx[u], dblc = v + sig, wopen(d['blc'])
                     # add blc
                     dblc.close()
                     digs = wopen(d['igs'])
-                    digs[igh] = 'eurofranc.fr/uppr'
                     digs.close()
                     o = 'OK ig'
                 else: o += ' balance!'
