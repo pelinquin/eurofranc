@@ -445,7 +445,7 @@ def app_report(d, src, env):
                 img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
                 o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
             else:
-                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td class="mono">%s</td><td class="num">?&thinsp;⊔</td></tr>' % (n-i, btob64(bytes(0) + dtrx[s][:14])  datdecode(s[:4]))
+                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td class="mono">%s</td><td class="num">?&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), btob64(bytes(0) + dtrx[s][:14]))
     dtrx.close()
     return o + '</table>' + footer()
 
