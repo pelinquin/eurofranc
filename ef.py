@@ -420,7 +420,8 @@ def app_trx(d):
             prf = btob64(t[4:])[:1] + btob64(dtrx[t][:9])[:1]
             o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), prf ,b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
         else:
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]))
+            hig = btob64(bytes(0) + dtrx[t][9:23])
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono">%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), hig)
     dtrx.close()
     return o + '</table>' + footer()
 
