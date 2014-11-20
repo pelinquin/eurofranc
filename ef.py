@@ -418,10 +418,10 @@ def app_trx(d):
     for i, t in enumerate(filter(lambda x:len(x) == 13, dtrx.keys())):
         if len(dtrx[t]) == 150: 
             prf = btob64(t[4:])[:1] + btob64(dtrx[t][:9])[:1]
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), prf ,b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), prf, b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
         else:
-            hig = btob64(bytes(0) + dtrx[t][9:23])
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono">%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), hig)
+            hig, prf = btob64(bytes(0) + dtrx[t][9:23]), btob64(t[4:])[:1]
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono">%s</td><td class="mono smallgreen">%s%09d</td><td class="num">?&thinsp;⊔</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), hig, prf, b2i(dtrx[t][16:17]))
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -436,13 +436,14 @@ def app_report(d, src, env):
         n = len(dtrx[r])//13
         for i in range(n):
             s = dtrx[r][13*(n-i-1):13*(n-i)]
-            (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == r else (i2b(1,1), s[4:])
-            dst = btob64(ur)
-            prf = dst[:1] + src[:1] if b2i(w) == 1 else src[:1] + dst[:1]
-            way = '+' if b2i(w) == 1 else '-'
-            fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], dst)
-            img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-            o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
+            if len(dtrxs[s]) == 150:
+                (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == r else (i2b(1,1), s[4:])
+                dst = btob64(ur)
+                prf = dst[:1] + src[:1] if b2i(w) == 1 else src[:1] + dst[:1]
+                way = '+' if b2i(w) == 1 else '-'
+                fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], dst)
+                img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
+                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -614,10 +615,13 @@ def req_162(d, r):
         dpub.close()
         if k.verify(sig, msg): 
             dtrx = wopen(d['trx'])
-            dtrx[u], dblc = v + sig, wopen(d['blc'])
-            # add blc
-            dblc.close()
-            o += ' ig yes'
+            if u in dtrx: o = 'already there'
+            else:
+                #dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
+                dtrx[u], dblc = v + sig, wopen(d['blc'])
+                # add blc
+                dblc.close()
+                o += ' ig yes'
             dtrx.close()
         else: o += ' signature!'
     else: o += ' ids!'
@@ -654,7 +658,7 @@ def application(environ, start_response):
     mime, o, now, fname, port = 'text/plain; charset=utf8', 'error', '%s' % datetime.datetime.now(), 'default.txt', environ['SERVER_PORT']
     (raw, way) = (environ['wsgi.input'].read(), 'post') if environ['REQUEST_METHOD'].lower() == 'post' else (urllib.parse.unquote(environ['QUERY_STRING']), 'get')
     base, ncok = environ['PATH_INFO'][1:], []
-    d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt'), port)
+    d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt', 'igs'), port)
     if   len(raw) ==   5 and way == 'post': o = req_5  (raw)
     elif len(raw) ==   9 and way == 'post': o = req_9  (d, raw)
     #elif len(raw) ==  12 and way == 'post': o = req_12 (d, raw)
