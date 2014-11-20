@@ -436,7 +436,7 @@ def app_report(d, src, env):
         n = len(dtrx[r])//13
         for i in range(n):
             s = dtrx[r][13*(n-i-1):13*(n-i)]
-            if len(dtrxs[s]) == 150:
+            if len(dtrx[s]) == 150:
                 (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == r else (i2b(1,1), s[4:])
                 dst = btob64(ur)
                 prf = dst[:1] + src[:1] if b2i(w) == 1 else src[:1] + dst[:1]
@@ -444,6 +444,8 @@ def app_report(d, src, env):
                 fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], dst)
                 img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
                 o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
+            else:
+                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td></tr>' % (n-i, datdecode(s[:4]))                
     dtrx.close()
     return o + '</table>' + footer()
 
