@@ -292,7 +292,7 @@ def debt(d, cm, cut=False):
 
 def blc_cup(d, cm):
     "get cup balance"
-    dtrx, bal = ropen(d['trx']), 0
+    dtrx, bal = ropen(d['trx']), 100
     if cm in dtrx:
         n = len(dtrx[cm])//13
         for i in range(n):
@@ -324,6 +324,17 @@ def curprice(d, hig):
             prc = 1
     digs.close()
     return prc
+
+def register_ig(d, cm, hig):
+    "register new purshase"
+    digs, o = ropen(d['igs']), 'error'
+    if hig in digs:
+        if reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
+            co = http.client.HTTPConnection(reg.v.group(1))
+            co.request('GET', urllib.parse.quote(reg.v.group(2)) + '|' + btob64(cm).decode('ascii'))
+            o = co.getresponse().read()    
+    digs.close()
+    return o
 
 def is_mairie(d, cm, cut=False):
     "_"
@@ -669,6 +680,7 @@ def req_162(d, r):
                     dtrx[u], dblc = v + sig, wopen(d['blc'])
                     # add cup_blc
                     dblc.close()
+                    register_ig(d, src, igh):
                     o = 'OK ig %d' % curprice(d, igh)
                 else: o += ' balance!'
             dtrx.close()
@@ -766,7 +778,7 @@ def application(environ, start_response):
         else: o = "ERROR %s" % (s)
     else: # get
         s = raw # use directory or argument
-        if reg(re.match('(\S{2,30}):(\S{36})$', base)): # get igf
+        if reg(re.match('(\S{2,30}):(\S{36})$', base)): # read igf
             figf, rk = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), b64tob(bytes(reg.v.group(2), 'ascii')) 
             p, u1, k1 = b2i(rk[9:13]), rk[:9], rk[13:]
             if os.path.isfile(figf): 
@@ -782,19 +794,28 @@ def application(environ, start_response):
             if os.path.isfile(figf): 
                 r = open(figf, 'rb').read()
                 s, a, t = b2i(r[11:15]), b2i(r[15:16]), len(r)
-                b = (t-s-148-10*a)//23
+                b = (t-s-16-142*a)//23
                 for i in range(a):
                     x, y = r[16+10*i:25+10*i], b2i(r[25+10*i:26+10*i])
                     if cm == x: cup += 1*y
                 for i in range(b):
                     if cm == r[(i-b)*23:(i-b)*23+9]: cup -= 1
             o = '%d' % cup
+        elif reg(re.match('(\S{2,30})|(\S{12})$', base)): # append purchase
+            figf, cm, cup = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), b64tob(bytes(reg.v.group(2), 'ascii')), 0 
+            if os.path.isfile(figf):
+                r = open(figf, 'rb').read()
+                s, a, t = b2i(r[11:15]), b2i(r[15:16]), len(r)
+                b = (t-s-16-142*a)//23 
+                rkey = hashlib.sha1(os.urandom(32)).digest()[:14]
+                open(figf, 'ab').write(cm + rkey)
+                o = '%s' % btob64(i2b(22, 4) + rkey)
         elif reg(re.match('(\S{2,30}):$', base)): 
             figf, pr = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), 0
             if os.path.isfile(figf): 
                 r = open(figf, 'rb').read()
                 s, a, t, pi, li = b2i(r[11:15]), b2i(r[15:16]), len(r), b2i(r[4:7]), b2i(r[7:11])
-                b = (t-s-148-10*a)//23
+                b = (t-s-16-142*a)//23
                 k, pr = b//2, pi - 2
                 #o = '%d:%d:%d' % (b, k, pr) 
             o = '%d' % pr
