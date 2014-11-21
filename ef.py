@@ -309,7 +309,7 @@ def price(d, cm, hig):
             co = http.client.HTTPConnection(reg.v.group(1))
             co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' + btob64(cm))
             res = co.getresponse().read().decode('ascii')
-            sys.stderr.write('price %s\n' % (res))
+            sys.stderr.write('xprice %s\n' % (res))
             prc = 1
     digs.close()
     return prc
