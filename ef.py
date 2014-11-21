@@ -305,7 +305,7 @@ def price(d, cm, hig):
     "cup price for cm user"
     digs, prc = ropen(d['igs']), 0
     if hig in digs:
-        if reg(re.match(r'([^/]+)(/\S+)$', digs[hig])):
+        if reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
             co = http.client.HTTPConnection(reg.v.group(1))
             co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' + btob64(cm).decode('ascii'))
             res = co.getresponse().read()    
@@ -317,7 +317,7 @@ def curprice(d, hig):
     "cup price for cm user"
     digs, prc = ropen(d['igs']), 0
     if hig in digs:
-        if reg(re.match(r'([^/]+)(/\S+)$', digs[hig])):
+        if reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
             co = http.client.HTTPConnection(reg.v.group(1))
             co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' )
             res = co.getresponse().read()    
