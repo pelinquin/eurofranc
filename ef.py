@@ -292,7 +292,7 @@ def debt(d, cm, cut=False):
 
 def blc_cup(d, cm):
     "get cup balance"
-    dtrx, bal = ropen(d['trx']), 0
+    dtrx, bal = ropen(d['trx']), 100
     if cm in dtrx:
         n = len(dtrx[cm])//13
         for i in range(n):
@@ -339,7 +339,6 @@ def register_ig(d, cm, hig):
             o = co.getresponse().read()    
             sys.stderr.write('zregister_ig %s\n' % (o))
     digs.close()
-    return o
 
 def is_mairie(d, cm, cut=False):
     "_"
