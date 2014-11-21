@@ -680,7 +680,7 @@ def req_162(d, r):
                     dtrx[u], dblc = v + sig, wopen(d['blc'])
                     # add cup_blc
                     dblc.close()
-                    register_ig(d, src, igh):
+                    register_ig(d, src, igh)
                     o = 'OK ig %d' % curprice(d, igh)
                 else: o += ' balance!'
             dtrx.close()
