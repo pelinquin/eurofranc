@@ -310,7 +310,7 @@ def price(d, cm, hig):
             co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' + btob64(cm))
             res = co.getresponse().read().decode('ascii')
             sys.stderr.write('xprice %s\n' % (res))
-            prc = 1
+            prc = int(res)
     digs.close()
     return prc
 
@@ -322,9 +322,9 @@ def curprice(d, hig):
             #sys.stderr.write('curprice %s %s\n' % (reg.v.group(1), reg.v.group(2)))
             co = http.client.HTTPConnection(reg.v.group(1))
             co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' )
-            res = co.getresponse().read()    
-            sys.stderr.write('curprice %s\n' % (res))
-            prc = 1
+            res = co.getresponse().read().decode('ascii')    
+            sys.stderr.write('ycurprice %s\n' % (res))
+            prc = int(res)
     digs.close()
     return prc
 
@@ -337,7 +337,7 @@ def register_ig(d, cm, hig):
             co = http.client.HTTPConnection(reg.v.group(1))
             co.request('GET', urllib.parse.quote(reg.v.group(2)) + '|' + btob64(cm))
             o = co.getresponse().read()    
-            sys.stderr.write('register_ig %s\n' % (o))
+            sys.stderr.write('zregister_ig %s\n' % (o))
     digs.close()
     return o
 
