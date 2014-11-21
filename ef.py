@@ -331,7 +331,7 @@ def register_ig(d, cm, hig):
     if hig in digs:
         if reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
             co = http.client.HTTPConnection(reg.v.group(1))
-            co.request('GET', urllib.parse.quote(reg.v.group(2)) + '|' + btob64(cm).decode('ascii'))
+            co.request('GET', urllib.parse.quote(reg.v.group(2)) + '|' + btob64(cm))
             o = co.getresponse().read()    
     digs.close()
     return o
