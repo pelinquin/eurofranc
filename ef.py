@@ -658,18 +658,18 @@ def req_162(d, r):
         k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
         dpub.close()
         if k.verify(sig, msg): 
-            dtrx = wopen(d['trx'])
             digs = wopen(d['igs'])
             digs[igh] = 'eurofranc.fr/uppr'
             digs.close()
-            if u in dtrx: o = 'already there'
+            dtrx = wopen(d['trx'])
+            if u in dtrx: o = 'already there %s' % curprice(d, igh)
             else:
                 if blc_cup(d, src) + debt(d, src)*100 >= curprice(d, igh):
                     dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
                     dtrx[u], dblc = v + sig, wopen(d['blc'])
                     # add cup_blc
                     dblc.close()
-                    o = 'OK ig'
+                    o = 'OK ig %d' % curprice(d, igh)
                 else: o += ' balance!'
             dtrx.close()
         else: o += ' signature!'
