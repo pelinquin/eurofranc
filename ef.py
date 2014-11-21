@@ -306,9 +306,10 @@ def price(d, cm, hig):
     digs, prc = ropen(d['igs']), 0
     if hig in digs:
         if reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
-            co = http.client.HTTPConnection(reg.v.group(1))
-            co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' + btob64(cm))
-            res = co.getresponse().read()    
+            sys.stderr.write('price %s %s\n' % (reg.v.group(1), reg.v.group(2)))
+            #co = http.client.HTTPConnection(reg.v.group(1))
+            #co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' + btob64(cm))
+            #res = co.getresponse().read()    
             prc = 1
     digs.close()
     return prc
@@ -318,9 +319,10 @@ def curprice(d, hig):
     digs, prc = ropen(d['igs']), 0
     if hig in digs:
         if reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
-            co = http.client.HTTPConnection(reg.v.group(1))
-            co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' )
-            res = co.getresponse().read()    
+            sys.stderr.write('curprice %s %s\n' % (reg.v.group(1), reg.v.group(2)))
+            #co = http.client.HTTPConnection(reg.v.group(1))
+            #co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' )
+            #res = co.getresponse().read()    
             prc = 1
     digs.close()
     return prc
@@ -330,9 +332,10 @@ def register_ig(d, cm, hig):
     digs, o = ropen(d['igs']), 'error'
     if hig in digs:
         if reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
-            co = http.client.HTTPConnection(reg.v.group(1))
-            co.request('GET', urllib.parse.quote(reg.v.group(2)) + '|' + btob64(cm))
-            o = co.getresponse().read()    
+            sys.stderr.write('register_ig %s %s\n' % (reg.v.group(1), reg.v.group(2)))
+            #co = http.client.HTTPConnection(reg.v.group(1))
+            #co.request('GET', urllib.parse.quote(reg.v.group(2)) + '|' + btob64(cm))
+            #o = co.getresponse().read()    
     digs.close()
     return o
 
@@ -802,7 +805,10 @@ def application(environ, start_response):
                     if cm == r[(i-b)*23:(i-b)*23+9]: cup -= 1
             o = '%d' % cup
         elif reg(re.match('(\S{2,30})|(\S{12})$', base)): # append purchase
-            figf, cm, cup = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), b64tob(bytes(reg.v.group(2), 'ascii')), 0 
+            #figf, cm, cup = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), b64tob(bytes(reg.v.group(2), 'ascii')), 0 
+            figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1))
+            cm = b64tob(bytes(reg.v.group(2), 'ascii'))
+            cup = 0
             if os.path.isfile(figf):
                 r = open(figf, 'rb').read()
                 s, a, t = b2i(r[11:15]), b2i(r[15:16]), len(r)
