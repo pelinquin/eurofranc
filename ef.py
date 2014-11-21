@@ -804,7 +804,7 @@ def application(environ, start_response):
                 for i in range(b):
                     if cm == r[(i-b)*23:(i-b)*23+9]: cup -= 1
             o = '%d' % cup
-        elif reg(re.match('(\S{2,30})|(\S{12})$', base)): # append purchase
+        elif reg(re.match('(\S{2,30})\|(\S{12})$', base)): # append purchase
             #figf, cm, cup = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), b64tob(bytes(reg.v.group(2), 'ascii')), 0 
             figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1))
             cm = b64tob(bytes(reg.v.group(2), 'ascii'))
