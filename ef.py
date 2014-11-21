@@ -307,9 +307,10 @@ def price(d, cm, hig):
     if hig in digs:
         if reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
             sys.stderr.write('price %s %s %s\n' % (reg.v.group(1), reg.v.group(2), cm))
-            #co = http.client.HTTPConnection(reg.v.group(1))
-            #co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' + btob64(cm))
-            #res = co.getresponse().read()
+            co = http.client.HTTPConnection(reg.v.group(1))
+            co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' + btob64(cm).decode('ascii'))
+            res = co.getresponse().read()
+            sys.stderr.write('price %s\n' % (res))
             prc = 1
     digs.close()
     return prc
