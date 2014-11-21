@@ -304,40 +304,31 @@ def blc_cup(d, cm):
 def price(d, cm, hig):
     "cup price for cm user"
     digs, prc = ropen(d['igs']), 0
-    if hig in digs:
-        if reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
-            co = http.client.HTTPConnection(reg.v.group(1))
-            co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' + btob64(cm))
-            res = co.getresponse().read().decode('ascii')
-            sys.stderr.write('xprice %s\n' % (res))
-            prc = int(res)
+    if hig in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
+        co = http.client.HTTPConnection(reg.v.group(1))
+        co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' + btob64(cm))
+        prc = int(co.getresponse().read().decode('ascii'))
     digs.close()
     return prc
 
 def curprice(d, hig):
     "cup price for cm user"
     digs, prc = ropen(d['igs']), 0
-    if hig in digs:
-        if reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
-            #sys.stderr.write('curprice %s %s\n' % (reg.v.group(1), reg.v.group(2)))
-            co = http.client.HTTPConnection(reg.v.group(1))
-            co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' )
-            res = co.getresponse().read().decode('ascii')    
-            sys.stderr.write('ycurprice %s\n' % (res))
-            prc = int(res)
+    if hig in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
+        co = http.client.HTTPConnection(reg.v.group(1))
+        co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' )
+        prc = int(co.getresponse().read().decode('ascii'))    
     digs.close()
     return prc
 
 def register_ig(d, cm, hig):
     "register new purshase"
     digs, o = ropen(d['igs']), 'error'
-    if hig in digs:
-        if reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
-            sys.stderr.write('register_ig %s %s\n' % (reg.v.group(1), reg.v.group(2)))
-            co = http.client.HTTPConnection(reg.v.group(1))
-            co.request('GET', urllib.parse.quote(reg.v.group(2)) + '|' + btob64(cm))
-            o = co.getresponse().read()    
-            sys.stderr.write('zregister_ig %s\n' % (o))
+    if hig in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
+        co = http.client.HTTPConnection(reg.v.group(1))
+        co.request('GET', urllib.parse.quote(reg.v.group(2)) + '|' + btob64(cm))
+        o = co.getresponse().read().decode('ascii')    
+        sys.stderr.write('register_ig %s\n' % o)
     digs.close()
 
 def is_mairie(d, cm, cut=False):
@@ -677,15 +668,13 @@ def req_162(d, r):
             digs[igh] = 'eurofranc.fr/uppr'
             digs.close()
             dtrx = wopen(d['trx'])
-            if u in dtrx: o = 'already there %s' % curprice(d, igh)
+            if u in dtrx: o = 'already baught'
             else:
                 if blc_cup(d, src) + debt(d, src)*100 >= curprice(d, igh):
                     dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
-                    dtrx[u], dblc = v + sig, wopen(d['blc'])
-                    # add cup_blc
-                    dblc.close()
+                    dtrx[u] = v + sig
                     register_ig(d, src, igh)
-                    o = 'OK ig %d' % curprice(d, igh)
+                    o = 'OK buy ig at price %d' % curprice(d, igh)
                 else: o += ' balance!'
             dtrx.close()
         else: o += ' signature!'
