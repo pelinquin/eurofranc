@@ -54,7 +54,7 @@ def generate():
     sys.exit()
 
 if __name__ == '__main__':
-    #generate()
+    if sys.argv[1] == 'gen': generate()
     ig, ah, rat = open(sys.argv[1], 'rb').read(), {}, {}
     t, s, m, a = len(ig), b2i(ig[6:14]), b2i(ig[4:6]), b2i(ig[26:28])
     q = 28+142*a+s
