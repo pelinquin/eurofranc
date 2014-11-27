@@ -774,9 +774,15 @@ def application(environ, start_response):
         if re.match('(\S{2,30})$', base) and len(s) == 196:
             figf, r = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base), b64tob(bytes(s, 'ascii'))
             # check signature and balance before !
+            #if blc_cup(d, src) + debt(d, src)*100 >= curprice(d, igh):
+            tg = b'@' + r[4:13]
             if os.path.isfile(figf):
+                dtrx = wopen(d['trx'])
+                dtrx[tg] = dtrx[tg] + igh if tg in dtrx else igh
+                n = len(dtrx[tg])//10
+                dtrx.close()
                 open(figf, 'ab').write(r + hashlib.sha1(os.urandom(32)).digest()[:12])
-                o = 'YES! %s/%s' % (environ['SERVER_NAME'], base)
+                o = 'YES! %s/%s %s' % (environ['SERVER_NAME'], base, n)
         elif reg(re.match('(\S{2,30}):(\S{36})$', base)): # read igf
             figf, rk = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), b64tob(bytes(reg.v.group(2), 'ascii')) 
             p, u1, k1 = b2i(rk[9:13]), rk[:9], rk[13:]
