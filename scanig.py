@@ -37,7 +37,7 @@ def generate():
     f, s, pi, li, a, b = open('uppr.igf', 'wb+'), len(ig), 10, 1000, 1, 2
     k, cm = b'AZERTYUIOPQSDF', b64tob(b'ApL7sWemaF7q')
     code = btob64(cm + i2b(1, 4) + k) # 9+4+14=27 -> 36
-    print (s, 28+142*a+s+162*b)
+    print (s, 28+142*a+s+159*b)
     print ('cup/uppr:%s' % code)
     f.write(bytes('⊔', 'utf8')+ i2b(1,1)) # 4  file-type + algo
     f.write(i2b(1,  2))                   # 6  ig type
@@ -48,17 +48,17 @@ def generate():
     for i in range(a): f.write(b64tob(b'ubrOTp1p7Yc6') + i2b(100, 1)) 
     f.write(ig)                           # 28+10*a+s 
     for i in range(a): f.write(i2b(6666554444455, 132)) # 28+142*a+s 
-    "add ig-transaction: dat:4+src:9+ref:3+sig:132+k:14"
-    for i in range(b): f.write(i2b(111, 4) + cm + i2b(1,3) + i2b(11155555, 132) + i2b(1116655444, 14)) 
-    f.close()                             # 28+142*a+s+162*b 
+    "add ig-transaction: dat:4+src:9+ref:2+sig:132+k:12"
+    for i in range(b): f.write(i2b(111, 4) + cm + i2b(1,2) + i2b(11155555, 132) + i2b(1116655444, 12)) 
+    f.close()                             # 28+142*a+s+159*b 
     sys.exit()
 
 if __name__ == '__main__':
-    generate()
+    #generate()
     ig, ah, rat = open(sys.argv[1], 'rb').read(), {}, {}
     t, s, m, a = len(ig), b2i(ig[6:14]), b2i(ig[4:6]), b2i(ig[26:28])
     q = 28+142*a+s
-    b = (t-q)//162
+    b = (t-q)//159
     p1, pf = b2i(ig[14:18]), b2i(ig[18:26])
     p, k = price(p1, pf, b)
     income = k*p + (b-k)*(p-1)
@@ -80,12 +80,12 @@ if __name__ == '__main__':
     print ('allocation:', rat)
     # check signature
     for i in range(b):
-        idb = ig[q+162*i:9+q+162*i]
+        idb = ig[q+159*i:9+q+159*i]
         ah[idb] = 0
     for i in range(b):
-        idb = ig[q+162*i:9+q+162*i]
+        idb = ig[q+159*i:9+q+159*i]
         ah[idb] -= p if i<=k else p-1
-        print (' buyer', i+1, ':', btob64(idb), 'key:', btob64(i2b(i, 4) + ig[9+q+162*i:23+q+162*i]))
+        print (' buyer', i+1, ':', btob64(idb), 'key:', btob64(i2b(i, 4) + ig[9+q+159*i:23+q+159*i]))
     assert sum(ah.values()) == 0 
     print (ah)
     print ('next price:', np)

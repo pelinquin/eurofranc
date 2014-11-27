@@ -460,7 +460,7 @@ def app_trx(d):
         if len(dtrx[t]) == 150: 
             prf = btob64(t[4:])[:1] + btob64(dtrx[t][:9])[:1]
             o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), prf, b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
-        else:
+        else: # revoir !
             hig, prf = dtrx[t][:14], btob64(t[4:])[:1]
             digs = ropen(d['igs'])
             url = 'none' if hig not in digs else digs[hig]
@@ -671,8 +671,8 @@ def req_162(d, r):
             if u in dtrx: o = 'already baught'
             else:
                 if blc_cup(d, src) + debt(d, src)*100 >= curprice(d, igh):
-                    dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
-                    dtrx[u] = v + sig
+                    tg = b'@' + src
+                    dtrx[tg] = dtrx[tg] + igh if tg in dtrx else igh
                     register_ig(d, src, igh)
                     o = 'OK buy ig at price %d' % curprice(d, igh)
                 else: o += ' balance!'
@@ -771,7 +771,13 @@ def application(environ, start_response):
         else: o = "ERROR %s" % (s)
     else: # get
         s = raw # use directory or argument
-        if reg(re.match('(\S{2,30}):(\S{36})$', base)): # read igf
+        if re.match('(\S{2,30})$', base) and len(s) == 196:
+            figf, r = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base), b64tob(bytes(s, 'ascii'))
+            # check signature and balance before !
+            if os.path.isfile(figf):
+                open(figf, 'ab').write(r + hashlib.sha1(os.urandom(32)).digest()[:12])
+                o = 'YES! %s/%s' % (environ['SERVER_NAME'], base)
+        elif reg(re.match('(\S{2,30}):(\S{36})$', base)): # read igf
             figf, rk = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), b64tob(bytes(reg.v.group(2), 'ascii')) 
             p, u1, k1 = b2i(rk[9:13]), rk[:9], rk[13:]
             if os.path.isfile(figf): 
