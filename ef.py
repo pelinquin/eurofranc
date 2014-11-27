@@ -725,7 +725,7 @@ def application(environ, start_response):
     elif len(raw) == 154 and way == 'post': o = req_154(d, raw)
     #elif len(raw) == 156 and way == 'post': o = req_156(d, raw) # spare removed
     elif len(raw) == 159 and way == 'post': o = req_159(d, raw)
-    elif len(raw) == 162 and way == 'post': o = req_162(d, raw)
+    #elif len(raw) == 162 and way == 'post': o = req_162(d, raw)
     elif len(raw) == 186 and way == 'post': o = req_186(d, raw)
     elif len(raw) == 300 and way == 'post': o = req_300(d, raw)
     elif way == 'post':
@@ -765,24 +765,27 @@ def application(environ, start_response):
         elif re.match('\S{200}$', s): o = req_150(d, b64tob(bytes(s, 'ascii')))
         #elif re.match('\S{208}$', s): o = req_156(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{212}$', s): o = req_159(d, b64tob(bytes(s, 'ascii')))
-        elif re.match('\S{216}$', s): o = req_162(d, b64tob(bytes(s, 'ascii')))
+        #elif re.match('\S{216}$', s): o = req_162(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{248}$', s): o = req_186(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{400}$', s): o = req_300(d, b64tob(bytes(s, 'ascii')))
         else: o = "ERROR %s" % (s)
     else: # get
         s = raw # use directory or argument
         if re.match('(\S{2,30})$', base) and len(s) == 196:
-            figf, r = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base), b64tob(bytes(s, 'ascii'))
+            figf, r, url = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base), b64tob(bytes(s, 'ascii')), '%s/%s' % (environ['SERVER_NAME'], base)
             # check signature and balance before !
             #if blc_cup(d, src) + debt(d, src)*100 >= curprice(d, igh):
-            tg = b'@' + r[4:13]
+            tg, igh = b'@' + r[4:13], hashlib.sha1(url.encode('utf8')).digest()[:10]
             if os.path.isfile(figf):
                 dtrx = wopen(d['trx'])
                 dtrx[tg] = dtrx[tg] + igh if tg in dtrx else igh
                 n = len(dtrx[tg])//10
                 dtrx.close()
+                digs = wopen(d['igs'])
+                digs[igh] = url.encode('utf8')
+                digs.close()
                 open(figf, 'ab').write(r + hashlib.sha1(os.urandom(32)).digest()[:12])
-                o = 'YES! %s/%s %s' % (environ['SERVER_NAME'], base, n)
+                o = 'YES! %d' % n
         elif reg(re.match('(\S{2,30}):(\S{36})$', base)): # read igf
             figf, rk = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), b64tob(bytes(reg.v.group(2), 'ascii')) 
             p, u1, k1 = b2i(rk[9:13]), rk[:9], rk[13:]
