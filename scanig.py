@@ -34,8 +34,9 @@ def price(p1, pf, i):
 
 def generate():
     ig = open('uppr.pdf', 'rb+').read()
-    f, s, pi, li, a, b = open('uppr.igf', 'wb+'), len(ig), 10, 1000, 1, 2
+    f, s, pi, li, a, b = open('uppr.igf', 'wb+'), len(ig), 10, 1000, 1, 3
     k, cm = b'AZERTYUIOPQSDF', b64tob(b'ApL7sWemaF7q')
+    buyers = [b'QZs_QO6iFHok', b'Il7IijlKWPwK', b'aDFMPHR_f_kO']
     code = btob64(cm + i2b(1, 4) + k) # 9+4+14=27 -> 36
     print (s, 28+142*a+s+159*b)
     print ('cup/uppr:%s' % code)
@@ -45,11 +46,11 @@ def generate():
     f.write(i2b(pi, 4))                   # 18 price-init
     f.write(i2b(li, 8))                   # 26 limit-income
     f.write(i2b(a,  2))                   # 28 number authors 
-    for i in range(a): f.write(b64tob(b'ubrOTp1p7Yc6') + i2b(100, 1)) 
+    for i in range(a): f.write(cm + i2b(100, 1)) 
     f.write(ig)                           # 28+10*a+s 
     for i in range(a): f.write(i2b(6666554444455, 132)) # 28+142*a+s 
     "add ig-transaction: dat:4+src:9+ref:2+sig:132+k:12"
-    for i in range(b): f.write(i2b(111, 4) + cm + i2b(1,2) + i2b(11155555, 132) + i2b(1116655444, 12)) 
+    for i in range(b): f.write(i2b(111, 4) + b64tob(buyers[i]) + i2b(1,2) + i2b(11155555, 132) + i2b(1116655444, 12)) 
     f.close()                             # 28+142*a+s+159*b 
     sys.exit()
 
@@ -64,30 +65,22 @@ if __name__ == '__main__':
     income = k*p + (b-k)*(p-1)
     np, nk = price(p1, pf, b+1)
     sumr, tab = 0, []
-    print (ig[:3].decode('utf8'), ' igf size:', t, 'version:', b2i(ig[3:4]))
-    print ('init-price:', p1, 'limit-income:', pf, 'ig-size:', s)
-    print ('nb-authors:', a, 'nb-buyers:', b)
+    print ('%s v%s size:%d/%d nb-authors:%d nb-buyers:%d init-price:%d limit-income:%d current-price:%d' % (ig[:3].decode('utf8'), b2i(ig[3:4]), t, s, a, b, p1, pf, np))
     for i in range(a):
         ida = ig[28+10*i:37+10*i]
-        ah[ida] = 0
-        rat[ida] = b2i(ig[37+10*i:38+i*142])
+        ah[ida], rat[ida] = 0, b2i(ig[37+10*i:38+i*142])
         sumr += rat[ida]
-        print ('seller', i+1, ':', btob64(ida), 'ratio:', rat[ida])
+    print ('Allocation:', {btob64(x):rat[x] for x in rat})
     for x in rat:
-        rat[x] = rat[x]/sumr
-    for x in rat:
-        ah[x] += int(income/rat[x]) # attention arrondi!
-    print ('allocation:', rat)
+        ah[x] += int(income/rat[x]*sumr) # attention arrondi!
     # check signature
     for i in range(b):
-        idb = ig[q+159*i:9+q+159*i]
-        ah[idb] = 0
-    for i in range(b):
-        idb = ig[q+159*i:9+q+159*i]
-        ah[idb] -= p if i<=k else p-1
-        print (' buyer', i+1, ':', btob64(idb), 'key:', btob64(i2b(i, 4) + ig[9+q+159*i:23+q+159*i]))
+        idb = ig[q+4+159*i:q+13+159*i]
+        prc = -p if i<=k else 1-p
+        ah[idb] = ah[ihb] + prc if idb in ah else prc
+        #print (' buyer', i+1, ':', btob64(idb), 'key:', btob64(i2b(i, 4) + ig[9+q+159*i:23+q+159*i]))
     assert sum(ah.values()) == 0 
-    print (ah)
-    print ('next price:', np)
+    print ('Balances:', {btob64(x):ah[x] for x in ah})
+
 
 
