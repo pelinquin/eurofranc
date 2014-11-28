@@ -51,7 +51,7 @@ def generate():
     for i in range(a): f.write(i2b(6666554444455, 132)) # 28+142*a+s 
     "add ig-transaction: dat:4+src:9+ref:2+sig:132+k:12"
     for i in range(b): f.write(i2b(111, 4) + b64tob(buyers[i]) + i2b(1,2) + i2b(11155555, 132) + i2b(1116655444, 12)) 
-    f.close()                             # 28+142*a+s+159*b 
+    f.close()                             # 28+142*a+s+159*b  #4+9+2+132+12=159
     sys.exit()
 
 if __name__ == '__main__':
@@ -77,7 +77,7 @@ if __name__ == '__main__':
     for i in range(b):
         idb = ig[q+4+159*i:q+13+159*i]
         prc = -p if i<=k else 1-p
-        ah[idb] = ah[ihb] + prc if idb in ah else prc
+        ah[idb] = ah[idb] + prc if idb in ah else prc
         #print (' buyer', i+1, ':', btob64(idb), 'key:', btob64(i2b(i, 4) + ig[9+q+159*i:23+q+159*i]))
     assert sum(ah.values()) == 0 
     print ('Balances:', {btob64(x):ah[x] for x in ah})

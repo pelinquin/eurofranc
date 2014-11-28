@@ -290,38 +290,44 @@ def debt(d, cm, cut=False):
     dcrt.close()
     return dbt
 
-def blc_cup(d, cm):
-    "get cup balance"
-    dtrx, bal = ropen(d['trx']), 100
-    if cm in dtrx:
-        n = len(dtrx[cm])//13
+def tublc(env, d, cm):
+    dtrx, bl, tg = ropen(d['trx']), 0, b'@'+cm
+    if tg in dtrx:
+        n = len(dtrx[tg])//10
         for i in range(n):
-            s = dtrx[cm][13*(n-i-1):13*(n-i)]
-            if len(dtrx[s]) != 150: bal += price(d, cm, dtrx[s][:14])
+            s = dtrx[tg][10*(n-i-1):10*(n-i)]
+            digs = ropen(d['igs'])
+            url = 'none' if s not in digs else digs[s].decode('utf8')
+            digs.close()
+            if reg(re.match(r'([^/]+)(/\S+)$', url)):
+                figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], reg.v.group(2))          
+                bl += ublc(figf, cm)
     dtrx.close()
-    return bal
+    return bl
 
-def price(d, cm, hig):
-    "cup price for cm user"
-    digs, prc = ropen(d['igs']), 0
-    if hig in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
-        co = http.client.HTTPConnection(reg.v.group(1))
-        co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' + btob64(cm))
-        prc = int(co.getresponse().read().decode('ascii'))
-    digs.close()
-    return prc
+def ublc(figs, cm):
+    bl = 0
+    if os.path.isfile(figs):
+        ig, rat, sumr = open(figs, 'rb').read(), {}, 0
+        s, a = b2i(ig[6:14]), b2i(ig[26:28])
+        b = (len(ig)-28-142*a-s)//159
+        p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), b)
+        for i in range(a):
+            ida = ig[28+10*i:37+10*i]
+            rat[ida] = b2i(ig[37+10*i:38+i*142])
+            sumr += rat[ida]
+        bl = sum([int(k*p+(b-k)*(p-1)/rat[x]*sumr) for x in  filter(lambda y:y == cm, rat)]) + sum([-p if i<=k else 1-p for i in filter(lambda j:ig[32+142*a+s+159*j:41+142*a+s+159*j] == cm, range(b))])
+    return bl
 
-def curprice(d, hig):
-    "cup price for cm user"
-    digs, prc = ropen(d['igs']), 0
-    if hig in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
-        co = http.client.HTTPConnection(reg.v.group(1))
-        co.request('GET', urllib.parse.quote(reg.v.group(2)) + ':' )
-        prc = int(co.getresponse().read().decode('ascii'))    
-    digs.close()
-    return prc
+def curblc(fig):
+    p = 0
+    if os.path.isfile(fig): 
+        ig = open(fig, 'rb').read()
+        s, a = b2i(ig[6:14]), b2i(ig[26:28])
+        p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), 1+(len(ig)-28-142*a-s)//159)
+    return p    
 
-def register_ig(d, cm, hig):
+def register_ig_old(d, cm, hig):
     "register new purshase"
     digs, o = ropen(d['igs']), 'error'
     if hig in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
@@ -446,12 +452,12 @@ def app_users(d, env):
     for i, src in enumerate(dpub.keys()): 
         fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], btob64(src))
         img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-        o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%04d</td><td class="num">%7.2f%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, img, btob64(src), btob64(src), get_type(d, src), nbt(d, src), int(dblc[src])/100 if src in dblc else 0, un, blc_cup(d, src))
+        o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%04d</td><td class="num">%7.2f%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, img, btob64(src), btob64(src), get_type(d, src), nbt(d, src), int(dblc[src])/100 if src in dblc else 0, un, tublc(env, d, src))
     dpub.close()
     dblc.close()
     return o + '</table>' + footer()
 
-def app_trx(d):
+def app_trx(env, d):
     o, un, uc = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', '&thinsp;⊔'
     dtrx = ropen(d['trx'])
     tab = [z for z in filter(lambda x:len(x) == 13, dtrx.keys())]
@@ -460,22 +466,43 @@ def app_trx(d):
         if len(dtrx[t]) == 150: 
             prf = btob64(t[4:])[:1] + btob64(dtrx[t][:9])[:1]
             o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), prf, b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
-        else: # revoir !
-            hig, prf = dtrx[t][:14], btob64(t[4:])[:1]
+    j = 0
+    for t in filter(lambda x:len(x) == 10, dtrx.keys()):
+        n = len(dtrx[t])//10
+        for i in range(n):
+            s = dtrx[t][10*(n-i-1):10*(n-i)]
             digs = ropen(d['igs'])
-            url = 'none' if hig not in digs else digs[hig]
+            url = 'none' if s not in digs else digs[s].decode('utf8')
             digs.close()
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td class="mono" title="%s">%s</td><td class="mono smallgreen">%s%09d</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), url, btob64(i2b(0, 1) + hig)[:10], prf, b2i(dtrx[t][16:17]), price(d, t[4:], hig))
+            if reg(re.match(r'([^/]+)(/\S+)$', url)):
+                figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], reg.v.group(2))          
+                bl = ublc(figf, t[1:])
+                o += '<tr><td class="num">%03d</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="num">%s</a></td><td class="num">%7d&thinsp;⊔</td></tr>' % (j+1, btob64(t[1:]), btob64(t[1:]), url, url, bl)
+                # <td class="num">%s</td><td><td class="mono" title="%s">%s</td><td class="mono smallgreen">%s%09d</td><td class="num">%7d&thinsp;⊔</td>' % (datdecode(t[:4]), url, btob64(i2b(0, 1) + hig)[:10], prf, b2i(dtrx[t][16:17]), price(d, t[4:], hig))
+                j += 1
     dtrx.close()
     return o + '</table>' + footer()
 
 def app_report(d, src, env):
     o, un, r = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', b64tob(bytes(src, 'ascii'))
-    dtrx, dblc = ropen(d['trx']), ropen(d['blc'])    
+    dtrx, dblc, tg = ropen(d['trx']), ropen(d['blc']), b'@' + r    
     fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], src)
     img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-    o += '<table><tr><td>%s</td><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num red">%7.2f%s</td><td class="num red">%7d&thinsp;⊔</td></tr></table><table>' % (title(), img, src, get_type(d, r), int(dblc[r])/100 if r in dblc else 0, un, blc_cup(d, r)) 
+    o += '<table><tr><td>%s</td><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num red">%7.2f%s</td><td class="num red">%7d&thinsp;⊔</td></tr></table><table>' % (title(), img, src, get_type(d, r), int(dblc[r])/100 if r in dblc else 0, un, tublc(env, d, r)) 
     dblc.close()
+    if tg in dtrx:
+        n = len(dtrx[tg])//10
+        for i in range(n):
+            s = dtrx[tg][10*(n-i-1):10*(n-i)]
+            digs = ropen(d['igs'])
+            url = 'none' if s not in digs else digs[s].decode('utf8')
+            digs.close()
+            if reg(re.match(r'([^/]+)(/\S+)$', url)):
+                #for i in range(b):
+                #    ce = ig[28+142*a+s+159*i:28+142*a+s+159*(i+1)] 
+                figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], reg.v.group(2))          
+                bl = ublc(figf, r)
+                o += '<tr><td class="num">%03d</td><td><a href="%s" class="num">%s</a></td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, url, url, bl)
     if r in dtrx:
         n = len(dtrx[r])//13
         for i in range(n):
@@ -488,12 +515,12 @@ def app_report(d, src, env):
                 fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], dst)
                 img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
                 o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
-            else:
-                hig = dtrx[s][:14]
-                digs = ropen(d['igs'])
-                url = 'none' if hig not in digs else digs[hig]
-                digs.close()
-                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td class="mono" title="%s">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), url, btob64(i2b(0, 1) + hig)[:10], price(d, r, hig))
+            #else: # revoir
+            #    hig = dtrx[s][:14]
+            #    digs = ropen(d['igs'])
+            #    url = 'none' if hig not in digs else digs[hig]
+            #    digs.close()
+            #    o += '<tr><td class="num">%03d</td><td class="num">%s</td><td class="mono" title="%s">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), url, btob64(i2b(0, 1) + hig)[:10], price(d, r, hig))
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -519,20 +546,14 @@ def is_future(da):
     return int(time.mktime(time.gmtime())) < b2i(da)*60
 
 ##### ⊔ management
+def price_max(p1, pf, i):
+    if p1*i < pf: return p1, i
+    for j in range(p1):
+        k = pf-(p1-j-1)*i
+        if k>0: return p1-j, k
 
-def func_price(p1, pf, j):
-    R, T = [(0,0)]*(j+1), p1
-    for i in range (j-1, j+1):
-        m, r, q = p1*p1+pf*pf, int(p1*(1-i/pf)), p1+5*i
-        pt, tt = r if r>=0 else 0, q if q<pf else pf
-        for t in range(T, pf+1):
-            for k in range (i+2):
-                for p in range(p1+1):
-                    if (i+1-k)*(p+1) + k*p == t:
-                        v = (pt-p)*(pt-p) + (tt-t)*(tt-t)
-                        if v <= m and t >= T: 
-                            m, T, R[i] = v, t, (p, k)
-    return R[j]
+def cupprice(p1, pf, i):
+    return price_max(p1, pf, i)
 
 #####
 
@@ -657,30 +678,6 @@ def req_159(d, r):
     else: o += ' ids!'
     return o
 
-def req_162(d, r): 
-    "add ig-transaction: dat:4+src:9+igh:14+ref:3+sig:132"
-    u, dat, v, src, igh, ref, msg, sig, k, dpub, o = r[:13], r[:4], r[13:-132], r[4:13], r[13:27], b2i(r[27:30]), r[:-132], r[-132:], ecdsa(), ropen(d['pub']), 'error'
-    if src in dpub:
-        k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
-        dpub.close()
-        if k.verify(sig, msg): 
-            digs = wopen(d['igs'])
-            digs[igh] = 'eurofranc.fr/uppr'
-            digs.close()
-            dtrx = wopen(d['trx'])
-            if u in dtrx: o = 'already baught'
-            else:
-                if blc_cup(d, src) + debt(d, src)*100 >= curprice(d, igh):
-                    tg = b'@' + src
-                    dtrx[tg] = dtrx[tg] + igh if tg in dtrx else igh
-                    register_ig(d, src, igh)
-                    o = 'OK buy ig at price %d' % curprice(d, igh)
-                else: o += ' balance!'
-            dtrx.close()
-        else: o += ' signature!'
-    else: o += ' ids!'
-    return o
-
 def req_186(d, r):
     "user principal certificate: usr:9+dat:4+adm:9:hid:32+sig:132" 
     usr, v, dat, adm, hid, msg, sig, k, h, o = r[:9], r[9:], r[9:13], r[13:22], r[22:54], r[:54], r[-132:], ecdsa(), None, 'error'
@@ -725,7 +722,6 @@ def application(environ, start_response):
     elif len(raw) == 154 and way == 'post': o = req_154(d, raw)
     #elif len(raw) == 156 and way == 'post': o = req_156(d, raw) # spare removed
     elif len(raw) == 159 and way == 'post': o = req_159(d, raw)
-    #elif len(raw) == 162 and way == 'post': o = req_162(d, raw)
     elif len(raw) == 186 and way == 'post': o = req_186(d, raw)
     elif len(raw) == 300 and way == 'post': o = req_300(d, raw)
     elif way == 'post':
@@ -765,77 +761,60 @@ def application(environ, start_response):
         elif re.match('\S{200}$', s): o = req_150(d, b64tob(bytes(s, 'ascii')))
         #elif re.match('\S{208}$', s): o = req_156(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{212}$', s): o = req_159(d, b64tob(bytes(s, 'ascii')))
-        #elif re.match('\S{216}$', s): o = req_162(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{248}$', s): o = req_186(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{400}$', s): o = req_300(d, b64tob(bytes(s, 'ascii')))
         else: o = "ERROR %s" % (s)
     else: # get
         s = raw # use directory or argument
-        if re.match('(\S{2,30})$', base) and len(s) == 196:
+        if re.match('(\S{2,30})$', base) and len(s) == 196: # buy ig
             figf, r, url = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base), b64tob(bytes(s, 'ascii')), '%s/%s' % (environ['SERVER_NAME'], base)
-            # check signature and balance before !
-            #if blc_cup(d, src) + debt(d, src)*100 >= curprice(d, igh):
-            tg, igh = b'@' + r[4:13], hashlib.sha1(url.encode('utf8')).digest()[:10]
+            src, tg, igh, msg, sig, k, vu = r[4:13], b'@' + r[4:13], hashlib.sha1(url.encode('utf8')).digest()[:10], r[:-132], r[-132:], ecdsa(), False
             if os.path.isfile(figf):
-                dtrx = wopen(d['trx'])
-                dtrx[tg] = dtrx[tg] + igh if tg in dtrx else igh
-                n = len(dtrx[tg])//10
-                dtrx.close()
-                digs = wopen(d['igs'])
-                digs[igh] = url.encode('utf8')
-                digs.close()
-                open(figf, 'ab').write(r + hashlib.sha1(os.urandom(32)).digest()[:12])
-                o = 'YES! %d' % n
-        elif reg(re.match('(\S{2,30}):(\S{36})$', base)): # read igf
-            figf, rk = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), b64tob(bytes(reg.v.group(2), 'ascii')) 
-            p, u1, k1 = b2i(rk[9:13]), rk[:9], rk[13:]
-            if os.path.isfile(figf): 
-                r = open(figf, 'rb').read()
-                s, a, t = b2i(r[11:15]), b2i(r[15:16]), len(r)
-                b = (t-s-148-10*a)//23
-                if p <= b:
-                    ce = r[(p-b-1)*23:(p-b)*23]
-                    if ce[:9] == u1 and ce[-14:] == k1:
-                        mime, o = 'application/pdf', r[(16+10*a):-(132+23*b)]
-        elif reg(re.match('(\S{2,30}):(\S{12})$', base)): # get balance for an one user and one ig
-            figf, cm, cup = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), b64tob(bytes(reg.v.group(2), 'ascii')), 0 
-            if os.path.isfile(figf): 
-                r = open(figf, 'rb').read()
-                s, a, t = b2i(r[11:15]), b2i(r[15:16]), len(r)
-                b = (t-s-16-142*a)//23
-                for i in range(a):
-                    x, y = r[16+10*i:25+10*i], b2i(r[25+10*i:26+10*i])
-                    if cm == x: cup += 1*y
+                ig = open(figf, 'rb').read()
+                s, a = b2i(ig[6:14]), b2i(ig[26:28])
+                b = (len(ig)-28-142*a-s)//159
+                dpub = wopen(d['pub'])                    
+                k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
+                dpub.close()
                 for i in range(b):
-                    if cm == r[(i-b)*23:(i-b)*23+9]: cup -= 1
-            o = '%d' % cup
-        elif reg(re.match('(\S{2,30})\|(\S{12})$', base)): # append purchase
-            #figf, cm, cup = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), b64tob(bytes(reg.v.group(2), 'ascii')), 0 
-            figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1))
-            cm = b64tob(bytes(reg.v.group(2), 'ascii'))
-            cup = 0
-            if os.path.isfile(figf):
-                r = open(figf, 'rb').read()
-                s, a, t = b2i(r[11:15]), b2i(r[15:16]), len(r)
-                b = (t-s-16-142*a)//23 
-                rkey = hashlib.sha1(os.urandom(32)).digest()[:14]
-                open(figf, 'ab').write(cm + rkey)
-                o = '%s' % btob64(i2b(22, 4) + rkey)
-        elif reg(re.match('(\S{2,30}):$', base)): 
-            figf, pr = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, reg.v.group(1)), 0
+                    ce = ig[28+142*a+s+159*i:28+142*a+s+159*(i+1)] 
+                    if ce[:147] == r:
+                        o, vu = 'AGAIN %s' % btob64(ce[4:13] + i2b(i, 6) + ce[-12:]), True
+                if not vu:
+                    if tublc(environ, d, src) + debt(d, src) + 100 > curblc(figf):
+                        if k.verify(sig, msg + base.encode('utf8')):
+                            dtrx = wopen(d['trx'])
+                            dtrx[tg] = dtrx[tg] + igh if tg in dtrx else igh
+                            n = len(dtrx[tg])//10
+                            dtrx.close()
+                            digs = wopen(d['igs'])
+                            digs[igh] = url.encode('utf8')
+                            digs.close()
+                            sk = hashlib.sha1(os.urandom(32)).digest()[:12]
+                            open(figf, 'ab').write(r + sk)
+                            o = btob64(src + i2b(b+1, 6) + sk)
+                        else:
+                            o += ' signature'
+                    else:
+                        o += ' balance'
+        elif re.match('(\S{2,30})$', base) and len(s) == 36: # read igf
+            figf, rk = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base), b64tob(bytes(s, 'ascii')) 
+            p, u1, k1 = b2i(rk[9:15]), rk[:9], rk[15:]
             if os.path.isfile(figf): 
                 r = open(figf, 'rb').read()
-                s, a, t, pi, li = b2i(r[11:15]), b2i(r[15:16]), len(r), b2i(r[4:7]), b2i(r[7:11])
-                b = (t-s-16-142*a)//23
-                k, pr = b//2, pi - 2
-                #o = '%d:%d:%d' % (b, k, pr) 
-            o = '%d' % pr
+                s, a, t = b2i(r[6:14]), b2i(r[26:28]), len(r)
+                b = (t-28-142*a-s)//159
+                if p <= b:
+                    ce = r[28+142*a+s+159*(p-1):28+142*a+s+159*(p)]
+                    if ce[4:13] == u1 and ce[-12:] == k1: mime, o = 'application/pdf', r[28+10*a:s+28+10*a]
+        elif re.match('(\S{2,30}):$', base) and s == '': # current price
+            o = '%d' % curblc('/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base[:-1]))
         elif re.match('\S{12}$', base): o, mime = app_report(d, base, environ), 'text/html; charset=utf-8'
         elif base == '' and s == '': o, mime = app_index(d, environ), 'text/html; charset=utf-8'
         elif s == '': 
             o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr'
         elif base == '' and s == 'users': o, mime = app_users(d, environ), 'text/html; charset=utf-8'
-        elif base == '' and s == 'transactions': o, mime = app_trx(d), 'text/html; charset=utf-8'
+        elif base == '' and s == 'transactions': o, mime = app_trx(environ, d), 'text/html; charset=utf-8'
         elif base == '' and s == '_isactive': o = 'ok'
         elif base == '' and s == '_update': o = app_update()
         elif base == '' and s == '_check': o = update_blc(d)
