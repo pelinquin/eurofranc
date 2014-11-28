@@ -31,6 +31,12 @@
 #    * Encryption with ECC use an idea of jackjack-jj on github
 #-----------------------------------------------------------------------------
 
+# SHORT TODO LIST
+# IG registration (local or with the browser)
+# Price average (min/max with constraints)
+# Add server owner concept to match IGs
+# Use of iOS App to buy IGs
+
 # 0 STATE INIT (other color)
 # 1 STATE PING (pink color)
 #   YES balance + date_now + 
@@ -291,6 +297,7 @@ def debt(d, cm, cut=False):
     return dbt
 
 def tublc(env, d, cm):
+    "total cup balance"
     dtrx, bl, tg = ropen(d['trx']), 0, b'@'+cm
     if tg in dtrx:
         n = len(dtrx[tg])//10
@@ -304,6 +311,7 @@ def tublc(env, d, cm):
     return bl
 
 def ublc(figs, cm):
+    "cup balance"
     bl = 0
     if os.path.isfile(figs):
         ig, rat, sumr = open(figs, 'rb').read(), {}, 0
@@ -318,6 +326,7 @@ def ublc(figs, cm):
     return bl
 
 def curblc(fig):
+    "current cup price"
     p = 0
     if os.path.isfile(fig): 
         ig = open(fig, 'rb').read()
@@ -475,7 +484,7 @@ def app_trx(env, d):
             if reg(re.match(r'([^/]+)(/\S+)$', url)):
                 figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], reg.v.group(2))          
                 bl = ublc(figf, t[1:])
-                o += '<tr><td class="num">%03d</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="num">%s</a></td><td class="num">%7d&thinsp;⊔</td></tr>' % (j+1, btob64(t[1:]), btob64(t[1:]), url, url, bl)
+                o += '<tr><td class="num">%d</td><td class="num">DATE</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">REF</td><td class="num">%7d&thinsp;⊔</td></tr>' % (j+1, btob64(t[1:]), btob64(t[1:]), url, url, bl)
                 # <td class="num">%s</td><td><td class="mono" title="%s">%s</td><td class="mono smallgreen">%s%09d</td><td class="num">%7d&thinsp;⊔</td>' % (datdecode(t[:4]), url, btob64(i2b(0, 1) + hig)[:10], prf, b2i(dtrx[t][16:17]), price(d, t[4:], hig))
                 j += 1
     dtrx.close()
