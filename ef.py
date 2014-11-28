@@ -297,11 +297,9 @@ def tublc(env, d, cm):
         for i in range(n):
             s = dtrx[tg][10*(n-i-1):10*(n-i)]
             digs = ropen(d['igs'])
-            url = 'none' if s not in digs else digs[s].decode('utf8')
+            if s in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[s].decode('utf8'))):
+                bl += ublc('/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], reg.v.group(2)), cm)
             digs.close()
-            if reg(re.match(r'([^/]+)(/\S+)$', url)):
-                figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], reg.v.group(2))          
-                bl += ublc(figf, cm)
     dtrx.close()
     return bl
 
@@ -498,8 +496,7 @@ def app_report(d, src, env):
             url = 'none' if s not in digs else digs[s].decode('utf8')
             digs.close()
             if reg(re.match(r'([^/]+)(/\S+)$', url)):
-                #for i in range(b):
-                #    ce = ig[28+142*a+s+159*i:28+142*a+s+159*(i+1)] 
+                #for i in range(b): ce = ig[28+142*a+s+159*i:28+142*a+s+159*(i+1)] add date
                 figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], reg.v.group(2))          
                 bl = ublc(figf, r)
                 o += '<tr><td class="num">%03d</td><td><a href="%s" class="num">%s</a></td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, url, url, bl)
@@ -515,12 +512,7 @@ def app_report(d, src, env):
                 fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], dst)
                 img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
                 o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
-            #else: # revoir
-            #    hig = dtrx[s][:14]
-            #    digs = ropen(d['igs'])
-            #    url = 'none' if hig not in digs else digs[hig]
-            #    digs.close()
-            #    o += '<tr><td class="num">%03d</td><td class="num">%s</td><td class="mono" title="%s">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), url, btob64(i2b(0, 1) + hig)[:10], price(d, r, hig))
+                # revoir <td class="num">%s</td><td class="mono" title="%s">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (datdecode(s[:4]), url, btob64(i2b(0, 1) + hig)[:10], price(d, r, hig))
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -552,8 +544,15 @@ def price_max(p1, pf, i):
         k = pf-(p1-j-1)*i
         if k>0: return p1-j, k
 
+def price_min(p1, pf, i):
+    if i >= pf: return 1, pf
+    if i >= p1: return 1, i
+    p = 1+(p1-1)//i
+    for k in range (1, i+1):
+        if k*p +(i-k)*(p-1) == p1: return p, k
+
 def cupprice(p1, pf, i):
-    return price_max(p1, pf, i)
+    return price_min(p1, pf, i)
 
 #####
 
@@ -779,13 +778,16 @@ def application(environ, start_response):
                 for i in range(b):
                     ce = ig[28+142*a+s+159*i:28+142*a+s+159*(i+1)] 
                     if ce[:147] == r:
-                        o, vu = 'AGAIN %s' % btob64(ce[4:13] + i2b(i, 6) + ce[-12:]), True
+                        o, vu = 'REPEATED %s' % btob64(ce[4:13] + i2b(i, 6) + ce[-12:]), True
                 if not vu:
                     if tublc(environ, d, src) + debt(d, src) + 100 > curblc(figf):
                         if k.verify(sig, msg + base.encode('utf8')):
                             dtrx = wopen(d['trx'])
-                            dtrx[tg] = dtrx[tg] + igh if tg in dtrx else igh
-                            n = len(dtrx[tg])//10
+                            if tg in dtrx:
+                                if igh not in {dtrx[tg][i:i+10]:True for i in range(0, len(dtrx[tg]), 10)}:
+                                    dtrx[tg] += igh 
+                            else:
+                                dtrx[tg] = igh
                             dtrx.close()
                             digs = wopen(d['igs'])
                             digs[igh] = url.encode('utf8')
