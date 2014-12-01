@@ -479,14 +479,17 @@ def app_trx(env, d):
         for i in range(n):
             s = dtrx[t][10*(n-i-1):10*(n-i)]
             digs = ropen(d['igs'])
-            url = 'none' if s not in digs else digs[s].decode('utf8')
+            if s in digs:
+                url = digs[s].decode('utf8')
+                if reg(re.match(r'([^/]+)(/\S+)$', url)):
+                    figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], reg.v.group(2))          
+                    bl = ublc(figf, t[1:])
+                    dat = i2b(0, 4);
+                    prf = btob64(t[1:])[:1]
+                    ref = 0
+                    o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7d&thinsp;⊔</td></tr>' % (j+1, datdecode(dat), btob64(t[1:]), btob64(t[1:]), url, url, prf, ref, bl)
+                    j += 1
             digs.close()
-            if reg(re.match(r'([^/]+)(/\S+)$', url)):
-                figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], reg.v.group(2))          
-                bl = ublc(figf, t[1:])
-                o += '<tr><td class="num">%d</td><td class="num">DATE</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">REF</td><td class="num">%7d&thinsp;⊔</td></tr>' % (j+1, btob64(t[1:]), btob64(t[1:]), url, url, bl)
-                # <td class="num">%s</td><td><td class="mono" title="%s">%s</td><td class="mono smallgreen">%s%09d</td><td class="num">%7d&thinsp;⊔</td>' % (datdecode(t[:4]), url, btob64(i2b(0, 1) + hig)[:10], prf, b2i(dtrx[t][16:17]), price(d, t[4:], hig))
-                j += 1
     dtrx.close()
     return o + '</table>' + footer()
 
