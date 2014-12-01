@@ -304,15 +304,21 @@ def tublc(env, d, cm):
         for i in range(n):
             s = dtrx[tg][10*(n-i-1):10*(n-i)]
             digs = ropen(d['igs'])
-            if s in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[s].decode('utf8'))):
-                bl += ublc('/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], reg.v.group(2)), cm)
+            if s in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[s].decode('utf8'))): bl += ubl(env, reg.v.group(2), cm)
             digs.close()
     dtrx.close()
     return bl
 
-def ublc(figs, cm):
+def nbig(d, cm):
+    "total nb of igs"
+    dtrx, tg = ropen(d['trx']), b'@'+cm
+    n = len(dtrx[tg])//10 if tg in dtrx else 0
+    dtrx.close()
+    return n
+
+def ubl(env, url, cm):
     "cup balance"
-    bl = 0
+    figs, bl = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), 0          
     if os.path.isfile(figs):
         ig, rat, sumr = open(figs, 'rb').read(), {}, 0
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
@@ -322,7 +328,7 @@ def ublc(figs, cm):
             ida = ig[28+10*i:37+10*i]
             rat[ida] = b2i(ig[37+10*i:38+i*142])
             sumr += rat[ida]
-        bl = sum([int(k*p+(b-k)*(p-1)/rat[x]*sumr) for x in  filter(lambda y:y == cm, rat)]) + sum([-p if i<=k else 1-p for i in filter(lambda j:ig[32+142*a+s+159*j:41+142*a+s+159*j] == cm, range(b))])
+        bl = sum([int(k*p+(b-k)*(p-1)/rat[x]*sumr) for x in filter(lambda y:y == cm, rat)]) + sum([-p if i<=k else 1-p for i in filter(lambda j:ig[32+142*a+s+159*j:41+142*a+s+159*j] == cm, range(b))])
     return bl
 
 def curblc(fig):
@@ -472,7 +478,7 @@ def app_trx(env, d):
     for i, t in enumerate(filter(lambda x:len(x) == 13, dtrx.keys())):
         if len(dtrx[t]) == 150: 
             prf = btob64(t[4:])[:1] + btob64(dtrx[t][:9])[:1]
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), prf, b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">%s%07d</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), prf, b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
     j = 0
     for t in filter(lambda x:len(x) == 10, dtrx.keys()):
         n = len(dtrx[t])//10
@@ -482,12 +488,8 @@ def app_trx(env, d):
             if s in digs:
                 url = digs[s].decode('utf8')
                 if reg(re.match(r'([^/]+)(/\S+)$', url)):
-                    figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], reg.v.group(2))          
-                    bl = ublc(figf, t[1:])
-                    dat = i2b(0, 4);
-                    prf = btob64(t[1:])[:1]
-                    ref = 0
-                    o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7d&thinsp;⊔</td></tr>' % (j+1, datdecode(dat), btob64(t[1:]), btob64(t[1:]), url, url, prf, ref, bl)
+                    dat, prf, ref = i2b(0, 4), btob64(t[1:])[:1], 0
+                    o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7d&thinsp;⊔</td></tr>' % (j+1, datdecode(dat), btob64(t[1:]), btob64(t[1:]), url, url, prf, ref, ubl(env, reg.v.group(2), t[1:]))
                     j += 1
             digs.close()
     dtrx.close()
@@ -509,8 +511,7 @@ def app_report(d, src, env):
             digs.close()
             if reg(re.match(r'([^/]+)(/\S+)$', url)):
                 #for i in range(b): ce = ig[28+142*a+s+159*i:28+142*a+s+159*(i+1)] add date
-                figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], reg.v.group(2))          
-                bl = ublc(figf, r)
+                bl = ubl(env, reg.v.group(2), r)
                 o += '<tr><td class="num">%03d</td><td><a href="%s" class="num">%s</a></td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, url, url, bl)
     if r in dtrx:
         n = len(dtrx[r])//13
@@ -523,7 +524,7 @@ def app_report(d, src, env):
                 way = '+' if b2i(w) == 1 else '-'
                 fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], dst)
                 img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
+                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%07d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
                 # revoir <td class="num">%s</td><td class="mono" title="%s">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (datdecode(s[:4]), url, btob64(i2b(0, 1) + hig)[:10], price(d, r, hig))
     dtrx.close()
     return o + '</table>' + footer()
@@ -573,15 +574,13 @@ def req_5(r):
     return 'ok' if r == b'ef0.1' else ''
 
 def req_9_old(d, r):
-    "get balance | src:9"
-    dpub, o = ropen(d['pub']), 'error'
-    if r in dpub: o = '%d' % blc(d, r)
-    dpub.close()
-    return o
-
-def req_9(d, r):
     "get balance and nb transactions | src:9"
     return '%d:%d' % (blc(d, r), nbt(d, r))
+
+def req_9(env, d, r):
+    "get balance €f + nb transactions + balance cup + nb igs | src:9"
+    o = '%d:%d:%d:%d' % (blc(d, r), nbt(d, r), tublc(env, d, r), nbig(d, r))
+    return o
 
 def req_12(d, r):
     "get transaction nb | src:9+pos:3"
@@ -722,7 +721,7 @@ def application(environ, start_response):
     base, ncok = environ['PATH_INFO'][1:], []
     d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt', 'igs'), port)
     if   len(raw) ==   5 and way == 'post': o = req_5  (raw)
-    elif len(raw) ==   9 and way == 'post': o = req_9  (d, raw)
+    elif len(raw) ==   9 and way == 'post': o = req_9  (environ, d, raw)
     #elif len(raw) ==  12 and way == 'post': o = req_12 (d, raw)
     elif len(raw) ==  15 and way == 'post': o = req_15 (d, raw)
     elif len(raw) ==  24 and way == 'post': o = req_24 (d, raw)
@@ -760,7 +759,7 @@ def application(environ, start_response):
                 ncok.append(('set-cookie', '%s=no;expires=Thu, 01 Jan 1970 00:00:00 GMT' % t[0]))            
             del environ['HTTP_COOKIE']
             o, mime = app_index(d, environ), 'text/html; charset=utf-8'
-        elif re.match('\S{12}$', s): o = req_9(d, b64tob(bytes(s, 'ascii')))
+        elif re.match('\S{12}$', s): o = req_9(environ, d, b64tob(bytes(s, 'ascii')))
         elif re.match('@\S{12}$', s): # get Twitter image
             fimg = '/%s/%s_%s/img/%s.png' % (__app__, __app__, port, s[1:])
             if os.path.isfile(fimg): mime, o = 'image/png', open(fimg, 'rb').read()
