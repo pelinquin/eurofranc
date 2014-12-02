@@ -298,9 +298,10 @@ def update_ubl_url(env, d, url):
         ig, rat, sumr = open(figs, 'rb').read(), {}, 0
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
         b = (len(ig)-28-142*a-s)//159
-        p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), b)
-        ll = {ig[28+10*i:37+10*i]:True for i in range(a) }
-        ll.update({ig[32+142*a+s+159*j:41+142*a+s+159*j]:True for j in range(b)})
+        if b>0:
+            p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), b)
+            ll = {ig[28+10*i:37+10*i]:True for i in range(a) }
+            ll.update({ig[32+142*a+s+159*j:41+142*a+s+159*j]:True for j in range(b)})
     dblc = ropen(d['blc'])
     for cm in ll: dblc[b'@' + cm] = ubl(env, url, cm)
     dblc.close()
@@ -359,6 +360,7 @@ def ubl(env, url, cm):
         ig, rat, sumr = open(figs, 'rb').read(), {}, 0
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
         b = (len(ig)-28-142*a-s)//159
+        if b == 0: return 0
         p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), b)
         for i in range(a):
             ida = ig[28+10*i:37+10*i]
