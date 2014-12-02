@@ -272,7 +272,7 @@ def update_blc(d):
 
 def update_ubl(env, d):
     "_"
-    dtrx, b , o, k = ropen(d['trx']), {}, 'ok', ecdsa()
+    dtrx, b, o = ropen(d['trx']), {}, 'ok'
     for t in filter(lambda x:len(x) == 10, dtrx.keys()):
         n, b[t] = len(dtrx[t])//10, 0
         for i in range(n):
@@ -290,6 +290,21 @@ def update_ubl(env, d):
             dblc[x] = '%d' % b[x]
     dblc.close()
     return o
+
+def update_ubl_url(env, d, url):
+    "list all cm involved in url end update dblc for each cm" 
+    figs, ll = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), {}  
+    if os.path.isfile(figs):
+        ig, rat, sumr = open(figs, 'rb').read(), {}, 0
+        s, a = b2i(ig[6:14]), b2i(ig[26:28])
+        b = (len(ig)-28-142*a-s)//159
+        p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), b)
+        ll = {ig[28+10*i:37+10*i]:True for i in range(a) }
+        ll.update({ig[32+142*a+s+159*j:41+142*a+s+159*j]:True for j in range(b)})
+    dblc = ropen(d['blc'])
+    for cm in ll: dblc[b'@' + cm] = ubl(env, url, cm)
+    dblc.close()
+    return ll
 
 def nbt(d, cm):
     "get total transaction nb"
@@ -486,7 +501,6 @@ def app_users(d, env):
     for i, src in enumerate(dpub.keys()): 
         fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], btob64(src))
         img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-        #bl = tublc(env, d, src)
         bl = blc(d, src, True)
         o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%04d</td><td class="num">%7.2f%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, img, btob64(src), btob64(src), get_type(d, src), nbt(d, src), int(dblc[src])/100 if src in dblc else 0, un, bl)
     dpub.close()
@@ -523,7 +537,6 @@ def app_report(d, src, env):
     dtrx, dblc, tg = ropen(d['trx']), ropen(d['blc']), b'@' + r    
     fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], src)
     img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-    #bl = tublc(env, d, r)
     bl = blc(d, r, True)
     o += '<table><tr><td>%s</td><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num red">%7.2f%s</td><td class="num red">%7d&thinsp;⊔</td></tr></table><table>' % (title(), img, src, get_type(d, r), int(dblc[r])/100 if r in dblc else 0, un, bl) 
     dblc.close()
@@ -759,6 +772,7 @@ def buy_ig(env, d, r, base):
                 else:
                     dtrx[tg] = igh
                 dtrx.close()
+                update_ubl_url(env, d, url)
                 digs = wopen(d['igs'])
                 digs[igh] = url.encode('utf8')
                 digs.close()
