@@ -270,6 +270,27 @@ def update_blc(d):
     dblc.close()
     return o
 
+def update_ubl(env, d):
+    "_"
+    dtrx, b , o, k = ropen(d['trx']), {}, 'ok', ecdsa()
+    for t in filter(lambda x:len(x) == 10, dtrx.keys()):
+        n, b[t] = len(dtrx[t])//10, 0
+        for i in range(n):
+            s = dtrx[t][10*(n-i-1):10*(n-i)]
+            digs = ropen(d['igs'])
+            if s in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[s].decode('utf8'))): b[t] += ubl(env, reg.v.group(2), t[1:])
+            digs.close()
+    dtrx.close()
+    dblc = wopen(d['blc'])
+    for x in b:
+        if x in dblc and b[x] != int(dblc[x]): 
+            merr = ' diff %d %s for %s\n' % (b[x], dblc[x], x)
+            sys.stderr.write(merr)
+            o = merr
+            dblc[x] = '%d' % b[x]
+    dblc.close()
+    return o
+
 def nbt(d, cm):
     "get total transaction nb"
     dtrx, n = ropen(d['trx']), 0
@@ -278,23 +299,13 @@ def nbt(d, cm):
     dtrx.close()
     return n
 
-def blc(d, cm):
+def blc(d, cm, cup=False):
     "get balance"
+    tg = b'@'+cm if cup else cm
     dblc, bal = ropen(d['blc']), 0
-    if cm in dblc: 
-        bal = int(dblc[cm])
+    if tg in dblc: bal = int(dblc[tg])
     dblc.close()
     return bal
-
-def debt(d, cm, cut=False):
-    "get max debt"
-    dcrt, dbt = ropen(d['crt']), 0
-    if cm in dcrt and len(dcrt[cm]) == 141: 
-        dat, msg, sig, k, p = dcrt[cm][:4], cm + dcrt[cm][:9], dcrt[cm][-132:], ecdsa(), b64tob(bytes(_ibank_pkey + _ibank_id, 'ascii'))
-        k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
-        if is_future(dat) and (cut or k.verify(sig, msg)): dbt = b2i(dcrt[cm][4:9])
-    dcrt.close()
-    return dbt
 
 def tublc(env, d, cm):
     "total cup balance"
@@ -308,6 +319,16 @@ def tublc(env, d, cm):
             digs.close()
     dtrx.close()
     return bl
+
+def debt(d, cm, cut=False):
+    "get max debt"
+    dcrt, dbt = ropen(d['crt']), 0
+    if cm in dcrt and len(dcrt[cm]) == 141: 
+        dat, msg, sig, k, p = dcrt[cm][:4], cm + dcrt[cm][:9], dcrt[cm][-132:], ecdsa(), b64tob(bytes(_ibank_pkey + _ibank_id, 'ascii'))
+        k.pt = Point(c521, b2i(p[:66]), b2i(p[66:]))
+        if is_future(dat) and (cut or k.verify(sig, msg)): dbt = b2i(dcrt[cm][4:9])
+    dcrt.close()
+    return dbt
 
 def nbig(d, cm):
     "total nb of igs"
@@ -465,7 +486,9 @@ def app_users(d, env):
     for i, src in enumerate(dpub.keys()): 
         fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], btob64(src))
         img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-        o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%04d</td><td class="num">%7.2f%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, img, btob64(src), btob64(src), get_type(d, src), nbt(d, src), int(dblc[src])/100 if src in dblc else 0, un, tublc(env, d, src))
+        #bl = tublc(env, d, src)
+        bl = blc(d, src, True)
+        o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%04d</td><td class="num">%7.2f%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, img, btob64(src), btob64(src), get_type(d, src), nbt(d, src), int(dblc[src])/100 if src in dblc else 0, un, bl)
     dpub.close()
     dblc.close()
     return o + '</table>' + footer()
@@ -500,7 +523,9 @@ def app_report(d, src, env):
     dtrx, dblc, tg = ropen(d['trx']), ropen(d['blc']), b'@' + r    
     fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], src)
     img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-    o += '<table><tr><td>%s</td><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num red">%7.2f%s</td><td class="num red">%7d&thinsp;⊔</td></tr></table><table>' % (title(), img, src, get_type(d, r), int(dblc[r])/100 if r in dblc else 0, un, tublc(env, d, r)) 
+    #bl = tublc(env, d, r)
+    bl = blc(d, r, True)
+    o += '<table><tr><td>%s</td><td class="mono"><img src="%s"/> %s</td><td class="num">%s</td><td class="num red">%7.2f%s</td><td class="num red">%7d&thinsp;⊔</td></tr></table><table>' % (title(), img, src, get_type(d, r), int(dblc[r])/100 if r in dblc else 0, un, bl) 
     dblc.close()
     if tg in dtrx:
         n = len(dtrx[tg])//10
@@ -573,13 +598,9 @@ def req_5(r):
     "is active"
     return 'ok' if r == b'ef0.1' else ''
 
-def req_9_old(d, r):
-    "get balance and nb transactions | src:9"
-    return '%d:%d' % (blc(d, r), nbt(d, r))
-
-def req_9(env, d, r):
+def req_9(d, r):
     "get balance €f + nb transactions + balance cup + nb igs | src:9"
-    o = '%d:%d:%d:%d' % (blc(d, r), nbt(d, r), tublc(env, d, r), nbig(d, r))
+    o = '%d:%d:%d:%d' % (blc(d, r), nbt(d, r), blc(d, r, True), nbig(d, r))
     return o
 
 def req_12(d, r):
@@ -714,6 +735,55 @@ def req_300(d, r):
         dpub.close()
     return o
 
+def buy_ig(env, d, r, base):
+    "_"
+    figf, url, o = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], base), '%s/%s' % (env['SERVER_NAME'], base), 'error'
+    src, tg, igh, msg, sig, k, vu = r[4:13], b'@' + r[4:13], hashlib.sha1(url.encode('utf8')).digest()[:10], r[:-132], r[-132:], ecdsa(), False
+    if os.path.isfile(figf):
+        ig = open(figf, 'rb').read()
+        s, a = b2i(ig[6:14]), b2i(ig[26:28])
+        b = (len(ig)-28-142*a-s)//159
+        dpub = wopen(d['pub'])                    
+        k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
+        dpub.close()
+        for i in range(b):
+            ce = ig[28+142*a+s+159*i:28+142*a+s+159*(i+1)] 
+            if ce[:147] == r:
+                o, vu = 'REPEATED %s' % btob64(ce[4:13] + i2b(i, 6) + ce[-12:]), True
+        if not vu and blc(d, src, True) + debt(d, src) + 100 > curblc(figf):
+            if k.verify(sig, msg + base.encode('utf8')):
+                dtrx = wopen(d['trx'])
+                if tg in dtrx:
+                    if igh not in {dtrx[tg][i:i+10]:True for i in range(0, len(dtrx[tg]), 10)}:
+                        dtrx[tg] += igh 
+                else:
+                    dtrx[tg] = igh
+                dtrx.close()
+                digs = wopen(d['igs'])
+                digs[igh] = url.encode('utf8')
+                digs.close()
+                sk = hashlib.sha1(os.urandom(32)).digest()[:12]
+                open(figf, 'ab').write(r + sk)
+                o = btob64(src + i2b(b+1, 6) + sk)
+            else:
+                o += ' signature'
+        else:
+            o += ' balance'
+    return o
+
+def read_ig(env, rk, base):
+    "_"
+    figf, o = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], base), ''
+    p, u1, k1 = b2i(rk[9:15]), rk[:9], rk[15:]
+    if os.path.isfile(figf): 
+        r = open(figf, 'rb').read()
+        s, a, t = b2i(r[6:14]), b2i(r[26:28]), len(r)
+        b = (t-28-142*a-s)//159
+        if p <= b:
+            ce = r[28+142*a+s+159*(p-1):28+142*a+s+159*(p)]
+            if ce[4:13] == u1 and ce[-12:] == k1: o = r[28+10*a:s+28+10*a]
+    return o
+
 def application(environ, start_response):
     "wsgi server app"
     mime, o, now, fname, port = 'text/plain; charset=utf8', 'error', '%s' % datetime.datetime.now(), 'default.txt', environ['SERVER_PORT']
@@ -721,7 +791,7 @@ def application(environ, start_response):
     base, ncok = environ['PATH_INFO'][1:], []
     d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt', 'igs'), port)
     if   len(raw) ==   5 and way == 'post': o = req_5  (raw)
-    elif len(raw) ==   9 and way == 'post': o = req_9  (environ, d, raw)
+    elif len(raw) ==   9 and way == 'post': o = req_9  (d, raw)
     #elif len(raw) ==  12 and way == 'post': o = req_12 (d, raw)
     elif len(raw) ==  15 and way == 'post': o = req_15 (d, raw)
     elif len(raw) ==  24 and way == 'post': o = req_24 (d, raw)
@@ -759,7 +829,7 @@ def application(environ, start_response):
                 ncok.append(('set-cookie', '%s=no;expires=Thu, 01 Jan 1970 00:00:00 GMT' % t[0]))            
             del environ['HTTP_COOKIE']
             o, mime = app_index(d, environ), 'text/html; charset=utf-8'
-        elif re.match('\S{12}$', s): o = req_9(environ, d, b64tob(bytes(s, 'ascii')))
+        elif re.match('\S{12}$', s): o = req_9(d, b64tob(bytes(s, 'ascii')))
         elif re.match('@\S{12}$', s): # get Twitter image
             fimg = '/%s/%s_%s/img/%s.png' % (__app__, __app__, port, s[1:])
             if os.path.isfile(fimg): mime, o = 'image/png', open(fimg, 'rb').read()
@@ -776,50 +846,11 @@ def application(environ, start_response):
         else: o = "ERROR %s" % (s)
     else: # get
         s = raw # use directory or argument
-        if re.match('(\S{2,30})$', base) and len(s) == 196: # buy ig
-            figf, r, url = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base), b64tob(bytes(s, 'ascii')), '%s/%s' % (environ['SERVER_NAME'], base)
-            src, tg, igh, msg, sig, k, vu = r[4:13], b'@' + r[4:13], hashlib.sha1(url.encode('utf8')).digest()[:10], r[:-132], r[-132:], ecdsa(), False
-            if os.path.isfile(figf):
-                ig = open(figf, 'rb').read()
-                s, a = b2i(ig[6:14]), b2i(ig[26:28])
-                b = (len(ig)-28-142*a-s)//159
-                dpub = wopen(d['pub'])                    
-                k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
-                dpub.close()
-                for i in range(b):
-                    ce = ig[28+142*a+s+159*i:28+142*a+s+159*(i+1)] 
-                    if ce[:147] == r:
-                        o, vu = 'REPEATED %s' % btob64(ce[4:13] + i2b(i, 6) + ce[-12:]), True
-                if not vu:
-                    if tublc(environ, d, src) + debt(d, src) + 100 > curblc(figf):
-                        if k.verify(sig, msg + base.encode('utf8')):
-                            dtrx = wopen(d['trx'])
-                            if tg in dtrx:
-                                if igh not in {dtrx[tg][i:i+10]:True for i in range(0, len(dtrx[tg]), 10)}:
-                                    dtrx[tg] += igh 
-                            else:
-                                dtrx[tg] = igh
-                            dtrx.close()
-                            digs = wopen(d['igs'])
-                            digs[igh] = url.encode('utf8')
-                            digs.close()
-                            sk = hashlib.sha1(os.urandom(32)).digest()[:12]
-                            open(figf, 'ab').write(r + sk)
-                            o = btob64(src + i2b(b+1, 6) + sk)
-                        else:
-                            o += ' signature'
-                    else:
-                        o += ' balance'
-        elif re.match('(\S{2,30})$', base) and len(s) == 36: # read igf
-            figf, rk = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base), b64tob(bytes(s, 'ascii')) 
-            p, u1, k1 = b2i(rk[9:15]), rk[:9], rk[15:]
-            if os.path.isfile(figf): 
-                r = open(figf, 'rb').read()
-                s, a, t = b2i(r[6:14]), b2i(r[26:28]), len(r)
-                b = (t-28-142*a-s)//159
-                if p <= b:
-                    ce = r[28+142*a+s+159*(p-1):28+142*a+s+159*(p)]
-                    if ce[4:13] == u1 and ce[-12:] == k1: mime, o = 'application/pdf', r[28+10*a:s+28+10*a]
+        if re.match('(\S{2,30})$', base) and len(s) == 196: 
+            o = buy_ig(environ, d, b64tob(bytes(s, 'ascii')), base)
+        elif re.match('(\S{2,30})$', base) and len(s) == 36: 
+            o = read_ig(env, b64tob(bytes(s, 'ascii')), base)
+            if o != '': mime = 'application/pdf'
         elif re.match('(\S{2,30}):$', base) and s == '': # current price
             o = '%d' % curblc('/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base[:-1]))
         elif re.match('\S{12}$', base): o, mime = app_report(d, base, environ), 'text/html; charset=utf-8'
@@ -830,7 +861,7 @@ def application(environ, start_response):
         elif base == '' and s == 'transactions': o, mime = app_trx(environ, d), 'text/html; charset=utf-8'
         elif base == '' and s == '_isactive': o = 'ok'
         elif base == '' and s == '_update': o = app_update()
-        elif base == '' and s == '_check': o = update_blc(d)
+        elif base == '' and s == '_check': o = update_blc(d) + update_ubl(environ, d)
     start_response('200 OK', [('Content-type', mime)] + ncok)
     return [o if mime in ('application/pdf', 'image/png', 'image/jpg') else o.encode('utf8')] 
 

@@ -54,7 +54,22 @@ def generate():
     f.close()                             # 28+142*a+s+159*b  #4+9+2+132+12=159
     sys.exit()
 
-if __name__ == '__main__':
+def gencheck():
+    ""
+    f, val, cm, buyer = open('check.igf', 'wb+'), 1000, b64tob(b'ApL7sWemaF7q'), b64tob(b'QZs_QO6iFHok')
+    s = 333
+    f.write(bytes('⊔', 'utf8')+ i2b(0, 1)) # 4  file-type + algo
+    f.write(i2b(s, 4))                     # 8 pdf size 
+    f.write(i2b(val, 4))                   # 12 value
+    f.write(cm)                            # 21  
+    f.write(buyer)                         # 30
+    f.write(i2b(2222, s))                  # 30+s 
+    f.write(i2b(6666554444455, 132))       # 162+s 
+    f.write(i2b(111, 4) + i2b(1,2) + i2b(11155555, 132)) # 46/3*4=184  
+    f.close()                              #  346+s
+    sys.exit()
+
+def scan():
     if sys.argv[1] == 'gen': generate()
     ig, ah, rat = open(sys.argv[1], 'rb').read(), {}, {}
     t, s, m, a = len(ig), b2i(ig[6:14]), b2i(ig[4:6]), b2i(ig[26:28])
@@ -82,5 +97,9 @@ if __name__ == '__main__':
     assert sum(ah.values()) == 0 
     print ('Balances:', {btob64(x):ah[x] for x in ah})
 
-
+if __name__ == '__main__':
+    if sys.argv[1] == 'gen': 
+        generate()
+    else:
+        scan()
 
