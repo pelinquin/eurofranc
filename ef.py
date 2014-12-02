@@ -376,6 +376,24 @@ def curblc(fig):
         p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), 1+(len(ig)-28-142*a-s)//159)
     return p    
 
+def igregister(env, d, url):
+    "register new ig"
+    figf, lurl = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), '%s/%s' % (env['SERVER_NAME'], url)
+    if os.path.isfile(figf):
+        igh, ig, dtrx = hashlib.sha1(lurl.encode('utf8')).digest()[:10], open(figf, 'rb').read(), wopen(d['trx'])
+        digs = wopen(d['igs'])
+        digs[igh] = url.encode('utf8')
+        digs.close()
+        for i in range(b2i(ig[26:28])):
+            tg = b'@' + ig[28+10*i:37+10*i]
+            if tg in dtrx:
+                if igh not in {dtrx[tg][i:i+10]:True for i in range(0, len(dtrx[tg]), 10)}:
+                    dtrx[tg] += igh 
+            else:
+                dtrx[tg] = igh
+        dtrx.close()
+    return 'ok'    
+
 def register_ig_old(d, cm, hig):
     "register new purshase"
     digs, o = ropen(d['igs']), 'error'
@@ -773,9 +791,9 @@ def buy_ig(env, d, r, base):
                     dtrx[tg] = igh
                 dtrx.close()
                 update_ubl_url(env, d, url)
-                digs = wopen(d['igs'])
-                digs[igh] = url.encode('utf8')
-                digs.close()
+                #digs = wopen(d['igs'])
+                #digs[igh] = url.encode('utf8') # done in register
+                #digs.close()
                 sk = hashlib.sha1(os.urandom(32)).digest()[:12]
                 open(figf, 'ab').write(r + sk)
                 o = btob64(src + i2b(b+1, 6) + sk)
@@ -867,6 +885,7 @@ def application(environ, start_response):
             if o != '': mime = 'application/pdf'
         elif re.match('(\S{2,30}):$', base) and s == '': # current price
             o = '%d' % curblc('/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base[:-1]))
+        elif re.match('(\S{2,30})$', base) and s == '@': o = igregister(environ, d, base)
         elif re.match('\S{12}$', base): o, mime = app_report(d, base, environ), 'text/html; charset=utf-8'
         elif base == '' and s == '': o, mime = app_index(d, environ), 'text/html; charset=utf-8'
         elif s == '': 
