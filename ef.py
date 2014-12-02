@@ -331,7 +331,7 @@ def tublc(env, d, cm):
         for i in range(n):
             s = dtrx[tg][10*(n-i-1):10*(n-i)]
             digs = ropen(d['igs'])
-            if s in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[s].decode('utf8'))): bl += ubl(env, reg.v.group(2), cm)
+            if s in digs and reg(re.match(r'([^/]+)/(\S+)$', digs[s].decode('utf8'))): bl += ubl(env, reg.v.group(2), cm)
             digs.close()
     dtrx.close()
     return bl
@@ -384,7 +384,7 @@ def igregister(env, d, url):
     if os.path.isfile(figf):
         igh, ig, dtrx = hashlib.sha1(lurl.encode('utf8')).digest()[:10], open(figf, 'rb').read(), wopen(d['trx'])
         digs = wopen(d['igs'])
-        digs[igh] = url.encode('utf8')
+        digs[igh] = lurl.encode('utf8')
         digs.close()
         for i in range(b2i(ig[26:28])):
             tg = b'@' + ig[28+10*i:37+10*i]
@@ -395,16 +395,6 @@ def igregister(env, d, url):
                 dtrx[tg] = igh
         dtrx.close()
     return 'ok'    
-
-def register_ig_old(d, cm, hig):
-    "register new purshase"
-    digs, o = ropen(d['igs']), 'error'
-    if hig in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[hig].decode('ascii'))):
-        co = http.client.HTTPConnection(reg.v.group(1))
-        co.request('GET', urllib.parse.quote(reg.v.group(2)) + '|' + btob64(cm))
-        o = co.getresponse().read().decode('ascii')    
-        sys.stderr.write('register_ig %s\n' % o)
-    digs.close()
 
 def is_mairie(d, cm, cut=False):
     "_"
