@@ -32,7 +32,7 @@ def price_max(p1, pf, i):
 def price(p1, pf, i):
     return price_max(p1, pf, i)
 
-def generate():
+def generate3():
     ig = open('uppr.pdf', 'rb+').read()
     f, s, pi, li, a, b = open('uppr.igf', 'wb+'), len(ig), 10, 1000, 1, 3
     k, cm = b'AZERTYUIOPQSDF', b64tob(b'ApL7sWemaF7q')
@@ -52,6 +52,25 @@ def generate():
     "add ig-transaction: dat:4+src:9+ref:2+sig:132+k:12"
     for i in range(b): f.write(i2b(111, 4) + b64tob(buyers[i]) + i2b(1,2) + i2b(11155555, 132) + i2b(1116655444, 12)) 
     f.close()                             # 28+142*a+s+159*b  #4+9+2+132+12=159
+    sys.exit()
+
+def generate0():
+    ig = open('uppr.pdf', 'rb+').read()
+    f, s, pi, li, a = open('uppr.igf', 'wb+'), len(ig), 10, 1000, 1
+    k, cm = b'AZERTYUIOPQSDF', b64tob(b'ubrOTp1p7Yc6')
+    code = btob64(cm + i2b(1, 4) + k) # 9+4+14=27 -> 36
+    print (s, 28+142*a+s)
+    print ('cup/uppr:%s' % code)
+    f.write(bytes('⊔', 'utf8')+ i2b(1,1)) # 4  file-type + algo
+    f.write(i2b(1,  2))                   # 6  ig type
+    f.write(i2b(s,  8))                   # 14 ig size 
+    f.write(i2b(pi, 4))                   # 18 price-init
+    f.write(i2b(li, 8))                   # 26 limit-income
+    f.write(i2b(a,  2))                   # 28 number authors 
+    for i in range(a): f.write(cm + i2b(100, 1)) 
+    f.write(ig)                           # 28+10*a+s 
+    for i in range(a): f.write(i2b(6666554444455, 132)) # 28+142*a+s 
+    f.close()                             
     sys.exit()
 
 def gencheck():
@@ -99,7 +118,7 @@ def scan():
 
 if __name__ == '__main__':
     if sys.argv[1] == 'gen': 
-        generate()
+        generate0()
     else:
         scan()
 
