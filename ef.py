@@ -381,7 +381,7 @@ def posubl(env, url, cm):
             ida = ig[28+10*i:37+10*i]
             rat[ida] = b2i(ig[37+10*i:38+10*i])
             sumr += rat[ida]
-        if cm in rat: p += '%d PC ' % (rat[cm]*100//sumr)
+        if cm in rat: p += '%d %% ' % (rat[cm]*100//sumr)
         for i in range((len(ig)-28-142*a-s)//159):
             ofst = 142*a+s+159*i
             if cm == ig[32+ofst:41+ofst]: p += '%s %d ' % (datdecode(ig[28+ofst:32+ofst]), b2i(ig[41+ofst:43+ofst]))
@@ -554,8 +554,8 @@ def app_trx(env, d):
             if s in digs:
                 url = digs[s].decode('utf8')
                 if reg(re.match(r'([^/]+)(/\S+)$', url)):
-                    dat, prf, ref = i2b(0, 4), btob64(t[1:])[:1], 0
-                    o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7d&thinsp;⊔</td></tr>' % (j+1, datdecode(dat), btob64(t[1:]), btob64(t[1:]), url, url, prf, ref, ubl(env, reg.v.group(2), t[1:]))
+                    dat, prf, ref = posubl(env, reg.v.group(2), t[1:]), btob64(t[1:])[:1], 0
+                    o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7d&thinsp;⊔</td></tr>' % (j+1, dat, btob64(t[1:]), btob64(t[1:]), url, url, prf, ref, ubl(env, reg.v.group(2), t[1:]))
                     j += 1
             digs.close()
     dtrx.close()
@@ -577,7 +577,6 @@ def app_report(d, src, env):
             url = 'none' if s not in digs else digs[s].decode('utf8')
             digs.close()
             if reg(re.match(r'([^/]+)(/\S+)$', url)):
-                #for i in range(b): ce = ig[28+142*a+s+159*i:28+142*a+s+159*(i+1)] add date
                 bl, pos = ubl(env, reg.v.group(2), r), posubl(env, reg.v.group(2), r)
                 o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">%sREF</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, pos, url, url, src[:1], bl)
     if r in dtrx:
