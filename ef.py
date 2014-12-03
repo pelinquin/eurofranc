@@ -366,25 +366,31 @@ def ubl(env, url, cm):
         p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), b)
         for i in range(a):
             ida = ig[28+10*i:37+10*i]
-            rat[ida] = b2i(ig[37+10*i:38+i*142])
+            rat[ida] = b2i(ig[37+10*i:38+10*i])
             sumr += rat[ida]
         bl = sum([int(k*p+(b-k)*(p-1)/rat[x]*sumr) for x in filter(lambda y:y == cm, rat)]) + sum([-p if i<=k else 1-p for i in filter(lambda j:ig[32+142*a+s+159*j:41+142*a+s+159*j] == cm, range(b))])
     return bl
 
-def datubl(env, url, cm):
-    "cup first date"
-    figs, dat = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), ''          
+def posubl(env, url, cm):
+    "cup positions"
+    figs, pos = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), ''          
     if os.path.isfile(figs):
-        ig = open(figs, 'rb').read()
+        ig, rat, sumr = open(figs, 'rb').read(), {}, 0
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
         b = (len(ig)-28-142*a-s)//159
         if b == 0: return 0
         p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), b)
         for i in range(a):
             ida = ig[28+10*i:37+10*i]
+            rat[ida] = b2i(ig[37+10*i:38+10*i])
+            sumr += rat[ida]
+        if cm in rat:
+            pos += '%d %% ' % rat[cm]*100//sumr
         for i in range(b):
-            idb = ig[32+142*a+s+159*j:41+142*a+s+159*j]
-    return dat
+            ofset = 142*a+s+159*i
+            if cm == ig[32+offset:41+ofset]:
+                pos += ' %s %d' % (datdecode(ig[28+ofset:32+ofset]), b2i(ig[41+ofset:43+ofset]))
+    return pos
 
 def curblc(fig):
     "current cup price"
@@ -577,9 +583,8 @@ def app_report(d, src, env):
             digs.close()
             if reg(re.match(r'([^/]+)(/\S+)$', url)):
                 #for i in range(b): ce = ig[28+142*a+s+159*i:28+142*a+s+159*(i+1)] add date
-                bl = ubl(env, reg.v.group(2), r)
-                o += '<tr><td class="num">%03d</td><td class="num">DATE</td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">%sREF</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, url, url, src[:1], bl)
-                # revoir <td class="num">%s</td><td class="mono" title="%s">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (datdecode(s[:4]), url, btob64(i2b(0, 1) + hig)[:10], price(d, r, hig))
+                bl, pos = ubl(env, reg.v.group(2), r), posubl(env, reg.v.group(2), r)
+                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">%sREF</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, pos, url, url, src[:1], bl)
     if r in dtrx:
         n = len(dtrx[r])//13
         for i in range(n):
