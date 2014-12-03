@@ -278,17 +278,18 @@ def update_ubl(env, d):
         for i in range(n):
             s = dtrx[t][10*(n-i-1):10*(n-i)]
             digs = ropen(d['igs'])
-            if s in digs and reg(re.match(r'([^/]+)/(\S+)$', digs[s].decode('utf8'))): b[t] += ubl(env, reg.v.group(2), t[1:])
-            #if s in digs: b[t] += ubl(env, digs[s].decode('utf8'), t[1:])
+            if s in digs and reg(re.match(r'([^/]+)/(\S+)$', digs[s].decode('utf8'))): 
+                b[t] += ubl(env, reg.v.group(2), t[1:])
             digs.close()
     dtrx.close()
     dblc = wopen(d['blc'])
+    sys.stderr.write('%s\n' % b)
     for x in b:
         if x in dblc and b[x] != int(dblc[x]): 
             merr = ' diff %d %s for %s\n' % (b[x], dblc[x], x)
             sys.stderr.write(merr)
             o = merr
-            dblc[x] = '%d' % b[x]
+        dblc[x] = '%d' % b[x]
     dblc.close()
     return o
 
@@ -774,7 +775,7 @@ def buy_ig(env, d, r, base):
         for i in range(b):
             ce = ig[28+142*a+s+159*i:28+142*a+s+159*(i+1)] 
             if ce[:147] == r:
-                o, vu = 'REPEATED %s' % btob64(ce[4:13] + i2b(i, 6) + ce[-12:]), True
+                o, vu = btob64(ce[4:13] + i2b(i, 6) + ce[-12:]), True
         if not vu and blc(d, src, True) + debt(d, src) + 100 > curblc(figf):
             if k.verify(sig, msg + base.encode('utf8')):
                 dtrx = wopen(d['trx'])
@@ -794,7 +795,7 @@ def buy_ig(env, d, r, base):
             else:
                 o += ' signature'
         else:
-            o += ' balance'
+            o += ' again'
     return o
 
 def read_ig(env, rk, base):
@@ -917,6 +918,19 @@ if __name__ == '__main__':
     for i in digs.keys(): print (btob64(i), digs[i])
     digs.close()
 
+    dtrx, digs = dbm.open('/ef/ef_80/trx'), dbm.open('/ef/ef_80/igs')
+    for t in filter(lambda x:len(x) == 10, dtrx.keys()):
+        n = len(dtrx[t])//10
+        for i in range(n):
+            s = dtrx[t][10*(n-i-1):10*(n-i)]
+            if s in digs and reg(re.match(r'([^/]+)/(\S+)$', digs[s].decode('utf8'))): 
+                print('-> %s %s' %(reg.v.group(2), btob64(t[1:])))
+    dtrx.close()
+    digs.close()
+    print ('blc file')
+    dblc = dbm.open('/ef/ef_80/blc')
+    for i in filter(lambda x:len(x) == 10, dblc.keys()): print (btob64(i[1:]), dblc[i])
+    dblc.close()
 
 
 # End ⊔net!
