@@ -373,24 +373,19 @@ def ubl(env, url, cm):
 
 def posubl(env, url, cm):
     "cup positions"
-    figs, pos = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), ''          
+    figs, p = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), ''          
     if os.path.isfile(figs):
         ig, rat, sumr = open(figs, 'rb').read(), {}, 0
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
-        b = (len(ig)-28-142*a-s)//159
-        if b == 0: return 0
-        p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), b)
         for i in range(a):
             ida = ig[28+10*i:37+10*i]
             rat[ida] = b2i(ig[37+10*i:38+10*i])
             sumr += rat[ida]
-        if cm in rat:
-            pos += '%d %% ' % rat[cm]*100//sumr
-        for i in range(b):
+        if cm in rat: p += '%d PC ' % (rat[cm]*100//sumr)
+        for i in range((len(ig)-28-142*a-s)//159):
             ofset = 142*a+s+159*i
-            if cm == ig[32+offset:41+ofset]:
-                pos += ' %s %d' % (datdecode(ig[28+ofset:32+ofset]), b2i(ig[41+ofset:43+ofset]))
-    return pos
+            if cm == ig[32+offset:41+ofset]: p += '%s %d ' % (datdecode(ig[28+ofset:32+ofset]), b2i(ig[41+ofset:43+ofset]))
+    return p
 
 def curblc(fig):
     "current cup price"
