@@ -278,8 +278,8 @@ def update_ubl(env, d):
         for i in range(n):
             s = dtrx[t][10*(n-i-1):10*(n-i)]
             digs = ropen(d['igs'])
-            #if s in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[s].decode('utf8'))): b[t] += ubl(env, reg.v.group(2), t[1:])
-            if s in digs: b[t] += ubl(env, digs[s].decode('utf8'), t[1:])
+            if s in digs and reg(re.match(r'([^/]+)/(\S+)$', digs[s].decode('utf8'))): b[t] += ubl(env, reg.v.group(2), t[1:])
+            #if s in digs: b[t] += ubl(env, digs[s].decode('utf8'), t[1:])
             digs.close()
     dtrx.close()
     dblc = wopen(d['blc'])
