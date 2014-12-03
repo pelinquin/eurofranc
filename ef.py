@@ -278,7 +278,8 @@ def update_ubl(env, d):
         for i in range(n):
             s = dtrx[t][10*(n-i-1):10*(n-i)]
             digs = ropen(d['igs'])
-            if s in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[s].decode('utf8'))): b[t] += ubl(env, reg.v.group(2), t[1:])
+            #if s in digs and reg(re.match(r'([^/]+)(/\S+)$', digs[s].decode('utf8'))): b[t] += ubl(env, reg.v.group(2), t[1:])
+            if s in digs: b[t] += ubl(env, digs[s].decode('utf8'), t[1:])
             digs.close()
     dtrx.close()
     dblc = wopen(d['blc'])
@@ -907,7 +908,15 @@ if __name__ == '__main__':
                 print (x, datdecode(s[:4]), btob64(ur), way, b2i(dtrx[s][9:11]), b2i(dtrx[s][11:14]), b2i(dtrx[s][14:16]), b2i(dtrx[s][16:18])  )  
     dblc.close()
     dtrx.close()
+    print ('crt file')
     dcrt = dbm.open('/ef/ef_80/crt')
     for src in dcrt.keys(): print (btob64(src), b2i(dcrt[src][4:9]))
+    dcrt.close()
+    print ('igs file')
+    digs = dbm.open('/ef/ef_80/igs')
+    for i in digs.keys(): print (btob64(i), digs[i])
+    digs.close()
+
+
 
 # End ⊔net!
