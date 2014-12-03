@@ -383,8 +383,8 @@ def posubl(env, url, cm):
             sumr += rat[ida]
         if cm in rat: p += '%d PC ' % (rat[cm]*100//sumr)
         for i in range((len(ig)-28-142*a-s)//159):
-            ofset = 142*a+s+159*i
-            if cm == ig[32+offset:41+ofset]: p += '%s %d ' % (datdecode(ig[28+ofset:32+ofset]), b2i(ig[41+ofset:43+ofset]))
+            ofst = 142*a+s+159*i
+            if cm == ig[32+ofst:41+ofst]: p += '%s %d ' % (datdecode(ig[28+ofst:32+ofst]), b2i(ig[41+ofst:43+ofst]))
     return p
 
 def curblc(fig):
