@@ -375,17 +375,29 @@ def posubl(env, url, cm):
     "cup positions"
     figs, p = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), ''          
     if os.path.isfile(figs):
+        ig = open(figs, 'rb').read()
+        s, a = b2i(ig[6:14]), b2i(ig[26:28])
+        for i in range(a):
+            if ig[28+10*i:37+10*i] == cm: p = '%dx ' % b
+        for i in range((len(ig)-28-142*a-s)//159):
+            oft = 142*a+s+159*i
+            if cm == ig[32+oft:41+oft]: p += '%d:%s ' (i+1, datdecode(ig[28+oft:32+oft]))
+    return p
+
+def refubl(env, url, cm):
+    "cup reference"
+    figs = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url)
+    if os.path.isfile(figs):
         ig, rat, sumr = open(figs, 'rb').read(), {}, 0
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
         for i in range(a):
             ida = ig[28+10*i:37+10*i]
             rat[ida] = b2i(ig[37+10*i:38+10*i])
             sumr += rat[ida]
-        if cm in rat: p += '%d %% ' % (rat[cm]*100//sumr)
+        if cm in rat: return '%s_%03d%%' % (btob64(cm)[:1], rat[cm]*100//sumr)
         for i in range((len(ig)-28-142*a-s)//159):
             ofst = 142*a+s+159*i
-            if cm == ig[32+ofst:41+ofst]: p += '%s %d ' % (datdecode(ig[28+ofst:32+ofst]), b2i(ig[41+ofst:43+ofst]))
-    return p
+            if cm == ig[32+ofst:41+ofst]: return '%s_%05d' % (btob64(cm)[:1], b2i(ig[41+ofst:43+ofst]))
 
 def curblc(fig):
     "current cup price"
@@ -554,8 +566,8 @@ def app_trx(env, d):
             if s in digs:
                 url = digs[s].decode('utf8')
                 if reg(re.match(r'([^/]+)(/\S+)$', url)):
-                    dat, prf, ref = posubl(env, reg.v.group(2), t[1:]), btob64(t[1:])[:1], 0
-                    o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">%s%08d</td><td class="num">%7d&thinsp;⊔</td></tr>' % (j+1, dat, btob64(t[1:]), btob64(t[1:]), url, url, prf, ref, ubl(env, reg.v.group(2), t[1:]))
+                    dat, ref = posubl(env, reg.v.group(2), t[1:]), refubl(env, reg.v.group(2), t[1:])
+                    o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (j+1, dat, btob64(t[1:]), btob64(t[1:]), url, url, ref, ubl(env, reg.v.group(2), t[1:]))
                     j += 1
             digs.close()
     dtrx.close()
@@ -577,8 +589,8 @@ def app_report(d, src, env):
             url = 'none' if s not in digs else digs[s].decode('utf8')
             digs.close()
             if reg(re.match(r'([^/]+)(/\S+)$', url)):
-                bl, pos = ubl(env, reg.v.group(2), r), posubl(env, reg.v.group(2), r)
-                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">%sREF</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, pos, url, url, src[:1], bl)
+                bl, pos, ref = ubl(env, reg.v.group(2), r), posubl(env, reg.v.group(2), r), refubl(env, reg.v.group(2), r)
+                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, pos, url, url, ref, bl)
     if r in dtrx:
         n = len(dtrx[r])//13
         for i in range(n):
