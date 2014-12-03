@@ -373,16 +373,16 @@ def ubl(env, url, cm):
 
 def posubl(env, url, cm):
     "cup positions"
-    figs, p = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), ''          
+    figs = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url)   
     if os.path.isfile(figs):
         ig = open(figs, 'rb').read()
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
+        b = (len(ig)-28-142*a-s)//159
         for i in range(a):
-            if ig[28+10*i:37+10*i] == cm: p = '%dx ' % b
-        for i in range((len(ig)-28-142*a-s)//159):
+            if ig[28+10*i:37+10*i] == cm: return '%dx' % b
+        for i in range(b):
             oft = 142*a+s+159*i
-            if cm == ig[32+oft:41+oft]: p += '%d:%s ' (i+1, datdecode(ig[28+oft:32+oft]))
-    return p
+            if cm == ig[32+oft:41+oft]: return '%d:%s ' % (i+1, datdecode(ig[28+oft:32+oft]))
 
 def refubl(env, url, cm):
     "cup reference"
