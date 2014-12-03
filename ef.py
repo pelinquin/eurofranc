@@ -368,7 +368,7 @@ def ubl(env, url, cm):
             ida = ig[28+10*i:37+10*i]
             rat[ida] = b2i(ig[37+10*i:38+10*i])
             sumr += rat[ida]
-        bl = sum([int(k*p+(b-k)*(p-1)/rat[x]*sumr) for x in filter(lambda y:y == cm, rat)]) + sum([-p if i<=k else 1-p for i in filter(lambda j:ig[32+142*a+s+159*j:41+142*a+s+159*j] == cm, range(b))])
+        bl = sum([int(k*p+(b-k)*(p-1)/rat[x]*sumr) for x in filter(lambda y:y == cm, rat)]) + sum([-p if i<k else 1-p for i in filter(lambda j:ig[32+142*a+s+159*j:41+142*a+s+159*j] == cm, range(b))])
     return bl
 
 def posubl(env, url, cm):
