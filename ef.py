@@ -382,7 +382,7 @@ def posubl(env, url, cm):
             if ig[28+10*i:37+10*i] == cm: return '%dx' % b
         for i in range(b):
             oft = 142*a+s+159*i
-            if cm == ig[32+oft:41+oft]: return '%d:%s ' % (i+1, datdecode(ig[28+oft:32+oft]))
+            if cm == ig[32+oft:41+oft]: return '%s (%d)' % (datdecode(ig[28+oft:32+oft]), i+1)
 
 def refubl(env, url, cm):
     "cup reference"
