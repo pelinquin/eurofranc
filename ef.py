@@ -371,6 +371,21 @@ def ubl(env, url, cm):
         bl = sum([int(k*p+(b-k)*(p-1)/rat[x]*sumr) for x in filter(lambda y:y == cm, rat)]) + sum([-p if i<=k else 1-p for i in filter(lambda j:ig[32+142*a+s+159*j:41+142*a+s+159*j] == cm, range(b))])
     return bl
 
+def datubl(env, url, cm):
+    "cup first date"
+    figs, dat = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), ''          
+    if os.path.isfile(figs):
+        ig = open(figs, 'rb').read()
+        s, a = b2i(ig[6:14]), b2i(ig[26:28])
+        b = (len(ig)-28-142*a-s)//159
+        if b == 0: return 0
+        p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), b)
+        for i in range(a):
+            ida = ig[28+10*i:37+10*i]
+        for i in range(b):
+            idb = ig[32+142*a+s+159*j:41+142*a+s+159*j]
+    return dat
+
 def curblc(fig):
     "current cup price"
     p = 0
@@ -563,7 +578,8 @@ def app_report(d, src, env):
             if reg(re.match(r'([^/]+)(/\S+)$', url)):
                 #for i in range(b): ce = ig[28+142*a+s+159*i:28+142*a+s+159*(i+1)] add date
                 bl = ubl(env, reg.v.group(2), r)
-                o += '<tr><td class="num">%03d</td><td><a href="%s" class="num">%s</a></td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, url, url, bl)
+                o += '<tr><td class="num">%03d</td><td class="num">DATE</td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">%sREF</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, url, url, src[:1], bl)
+                # revoir <td class="num">%s</td><td class="mono" title="%s">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (datdecode(s[:4]), url, btob64(i2b(0, 1) + hig)[:10], price(d, r, hig))
     if r in dtrx:
         n = len(dtrx[r])//13
         for i in range(n):
@@ -576,7 +592,6 @@ def app_report(d, src, env):
                 fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], dst)
                 img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
                 o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%07d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
-                # revoir <td class="num">%s</td><td class="mono" title="%s">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (datdecode(s[:4]), url, btob64(i2b(0, 1) + hig)[:10], price(d, r, hig))
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -786,9 +801,6 @@ def buy_ig(env, d, r, base):
                     dtrx[tg] = igh
                 dtrx.close()
                 update_ubl_url(env, d, url)
-                #digs = wopen(d['igs'])
-                #digs[igh] = url.encode('utf8') # done in register
-                #digs.close()
                 sk = hashlib.sha1(os.urandom(32)).digest()[:12]
                 open(figf, 'ab').write(r + sk)
                 o = btob64(src + i2b(b+1, 6) + sk)
@@ -917,7 +929,6 @@ if __name__ == '__main__':
     digs = dbm.open('/ef/ef_80/igs')
     for i in digs.keys(): print (btob64(i), digs[i])
     digs.close()
-
     dtrx, digs = dbm.open('/ef/ef_80/trx'), dbm.open('/ef/ef_80/igs')
     for t in filter(lambda x:len(x) == 10, dtrx.keys()):
         n = len(dtrx[t])//10
