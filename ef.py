@@ -641,8 +641,20 @@ def price_min(p1, pf, i):
     for k in range (1, i+1):
         if k*p +(i-k)*(p-1) == p1: return p, k
 
+def price_xi(pu, pi, j, xi=2):
+    ko, po = 1, pu
+    for i in range(1, j+1):
+        x = pu + (i-1)*pu//xi
+        t = x if x<=pi else pi if xi<pu else pu if i<pu else i if i<pi else pi
+        for p in range(t//i-2, t//i+2):
+            k = t-i*(p-1)
+            if k>0 and k<=i and (p!=po or k<=ko or t==pi or p<=1 or k>=i): 
+                po, ko = p, k
+                break
+    return p, k
+
 def cupprice(p1, pf, i):
-    return price_min(p1, pf, i)
+    return price_xi(p1, pf, i)
 
 #####
 
