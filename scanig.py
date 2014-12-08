@@ -23,14 +23,13 @@ def b64tob(c):
     "base64 to bytes"
     return base64.urlsafe_b64decode(c + b'='*((4-(len(c)%4))%4))
 
-def price_max(p1, pf, i):
-    if p1*i < pf: return p1, i
-    for j in range(p1):
-        k = pf-(p1-j-1)*i
-        if k>0: return p1-j, k
-
-def price(p1, pf, i):
-    return price_max(p1, pf, i)
+def price(pu, pi, i, ko, po):
+    "_"
+    x = pu + (i-1)*pu//2
+    t = x if x<=pi else pi if pu>2 else pu if i<pu else i if i<pi else pi
+    for p in range(t//i-2, t//i+2):
+        k = t-i*(p-1)
+        if k>0 and k<=i and (p!=po or k<=ko or t==pi or p<=1 or k>=i): return p, k
 
 def generate3():
     ig = open('uppr.pdf', 'rb+').read()
@@ -38,7 +37,7 @@ def generate3():
     k, cm = b'AZERTYUIOPQSDF', b64tob(b'ApL7sWemaF7q')
     buyers = [b'QZs_QO6iFHok', b'Il7IijlKWPwK', b'aDFMPHR_f_kO']
     code = btob64(cm + i2b(1, 4) + k) # 9+4+14=27 -> 36
-    print (s, 28+142*a+s+159*b)
+    print (s, 28+142*a+s+167*b)
     print ('cup/uppr:%s' % code)
     f.write(bytes('⊔', 'utf8')+ i2b(1,1)) # 4  file-type + algo
     f.write(i2b(1,  2))                   # 6  ig type
@@ -49,9 +48,12 @@ def generate3():
     for i in range(a): f.write(cm + i2b(100, 1)) 
     f.write(ig)                           # 28+10*a+s 
     for i in range(a): f.write(i2b(6666554444455, 132)) # 28+142*a+s 
-    "add ig-transaction: dat:4+src:9+ref:2+sig:132+k:12"
-    for i in range(b): f.write(i2b(111, 4) + b64tob(buyers[i]) + i2b(1,2) + i2b(11155555, 132) + i2b(1116655444, 12)) 
-    f.close()                             # 28+142*a+s+159*b  #4+9+2+132+12=159
+    "add ig-transaction: dat:4+src:9+ref:2+p:4+k:4+sig:132+key:12"  #167 
+    po, ko = pi, 1
+    for i in range(b):
+        po, ko = price(pi, li, i+1, ko, po)
+        f.write(i2b(111, 4) + b64tob(buyers[i]) + i2b(i, 2) + i2b(11155555, 132) + i2b(1116655444, 12) + i2b(po, 4) + i2b(ko, 4)) 
+    f.close()                             # 28+142*a+s+167*b  
     sys.exit()
 
 def generate0():
@@ -89,17 +91,17 @@ def gencheck():
     sys.exit()
 
 def scan():
-    if sys.argv[1] == 'gen': generate()
     ig, ah, rat = open(sys.argv[1], 'rb').read(), {}, {}
     t, s, m, a = len(ig), b2i(ig[6:14]), b2i(ig[4:6]), b2i(ig[26:28])
     q = 28+142*a+s
-    b = (t-q)//159
+    b = (t-q)//167
     p1, pf = b2i(ig[14:18]), b2i(ig[18:26])
-    p, k = price(p1, pf, b)
-    income = k*p + (b-k)*(p-1)
-    np, nk = price(p1, pf, b+1)
+    p, k = b2i(ig[-8:-4]) if b>0 else p1, b2i(ig[-4:]) if b>0 else 1
+    income = k*p + (b-k)*(p-1) if b>0 else 0
+    np, nk = price(p1, pf, b+1, p, k)
+    nprc = np if nk == b+1 else np-1
     sumr, tab = 0, []
-    print ('%s v%s size:%d/%d nb-authors:%d nb-buyers:%d init-price:%d limit-income:%d current-price:%d' % (ig[:3].decode('utf8'), b2i(ig[3:4]), t, s, a, b, p1, pf, np))
+    print ('%s v%s size:%d/%d nb-authors:%d nb-buyers:%d init-price:%d limit-income:%d income:%d next-price:%d' % (ig[:3].decode('utf8'), b2i(ig[3:4]), t, s, a, b, p1, pf, income, nprc))
     for i in range(a):
         ida = ig[28+10*i:37+10*i]
         ah[ida], rat[ida] = 0, b2i(ig[37+10*i:38+i*142])
@@ -109,10 +111,10 @@ def scan():
         ah[x] += int(income/rat[x]*sumr) # attention arrondi!
     # check signature
     for i in range(b):
-        idb = ig[q+4+159*i:q+13+159*i]
-        prc = -p if i<=k else 1-p
+        idb = ig[q+4+167*i:q+13+167*i]
+        prc = -p if i<k else 1-p
         ah[idb] = ah[idb] + prc if idb in ah else prc
-        #print (' buyer', i+1, ':', btob64(idb), 'key:', btob64(i2b(i, 4) + ig[9+q+159*i:23+q+159*i]))
+        #print (' buyer', i+1, ':', btob64(idb), 'key:', btob64(i2b(i, 4) + ig[9+q+167*i:23+q+167*i]))
     assert sum(ah.values()) == 0 
     print ('Balances:', {btob64(x):ah[x] for x in ah})
 

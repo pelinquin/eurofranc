@@ -22,13 +22,8 @@
 #    * ECDSA has been adapted to Python3 and simplified for NIST521P curve only 
 #      code inspired from:
 #      Brian Warner  
-#    * The PyCrypt library is far too complex for our needs so we used a code 
-#      for AES inspired from:
-#      Josh Davis ( http://www.josh-davis.org )
-#      Laurent Haan (http://www.progressive-coding.com)
 #    * QRcode is extented to PDF and SVG from the inspired code of:
 #      Sam Curren (porting from Javascript)
-#    * Encryption with ECC use an idea of jackjack-jj on github
 #-----------------------------------------------------------------------------
 
 # SHORT TODO LIST
@@ -65,25 +60,6 @@
 # 8 slide down: init
 # 9 double tap: init
 # 0 push scan (id:val, msg+sig, transaction_proof)
-
-# API reminder
-# GET: 
-#    NULL: index page + cookie management
-#    12\S: HTML balance report
-#    20\S: transaction page
-# POST: 
-# b13->@+12\S: get Twitter profile image 48x48 (png)
-# b9->12\S: get user's balance
-# b12->16\S get transaction at position
-# b15->20\S check transaction (short)
-# b24->32\S check transaction (long)
-# b132->176\S record public-key # temporary !
-# b147->196\S Admin certificate
-# b150->200\S Ibank certificate
-# b156->208\S user principal certificat (short) temporary !
-# b159->212\S record transaction 
-# b186->248\S user principal certificate (long)
-# b300->400\S record main account pubkey 
 
 import re, os, sys, urllib.parse, hashlib, http.client, base64, datetime, functools, subprocess, time, smtplib, operator, getpass, dbm.ndbm
 import requests, requests_oauthlib # for Twitter image capture
@@ -299,11 +275,11 @@ def update_ubl_url(env, d, url):
     if os.path.isfile(figs):
         ig, rat, sumr = open(figs, 'rb').read(), {}, 0
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
-        b = (len(ig)-28-142*a-s)//159
+        b = (len(ig)-28-142*a-s)//167
         if b>0:
             p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), b)
             ll = {ig[28+10*i:37+10*i]:True for i in range(a) }
-            ll.update({ig[32+142*a+s+159*j:41+142*a+s+159*j]:True for j in range(b)})
+            ll.update({ig[32+142*a+s+167*j:41+142*a+s+167*j]:True for j in range(b)})
     dblc = ropen(d['blc'])
     for cm in ll: dblc[b'@' + cm] = ubl(env, url, cm)
     dblc.close()
@@ -361,14 +337,14 @@ def ubl(env, url, cm):
     if os.path.isfile(figs):
         ig, rat, sumr = open(figs, 'rb').read(), {}, 0
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
-        b = (len(ig)-28-142*a-s)//159
+        b = (len(ig)-28-142*a-s)//167
         if b == 0: return 0
         p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), b)
         for i in range(a):
             ida = ig[28+10*i:37+10*i]
             rat[ida] = b2i(ig[37+10*i:38+10*i])
             sumr += rat[ida]
-        bl = sum([int(k*p+(b-k)*(p-1)/rat[x]*sumr) for x in filter(lambda y:y == cm, rat)]) + sum([-p if i<k else 1-p for i in filter(lambda j:ig[32+142*a+s+159*j:41+142*a+s+159*j] == cm, range(b))])
+        bl = sum([int(k*p+(b-k)*(p-1)/rat[x]*sumr) for x in filter(lambda y:y == cm, rat)]) + sum([-p if i<k else 1-p for i in filter(lambda j:ig[32+142*a+s+167*j:41+142*a+s+167*j] == cm, range(b))])
     return bl
 
 def posubl(env, url, cm):
@@ -377,11 +353,11 @@ def posubl(env, url, cm):
     if os.path.isfile(figs):
         ig = open(figs, 'rb').read()
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
-        b = (len(ig)-28-142*a-s)//159
+        b = (len(ig)-28-142*a-s)//167
         for i in range(a):
             if ig[28+10*i:37+10*i] == cm: return '%dx' % b
         for i in range(b):
-            oft = 142*a+s+159*i
+            oft = 142*a+s+167*i
             if cm == ig[32+oft:41+oft]: return '%s (%d)' % (datdecode(ig[28+oft:32+oft]), i+1)
 
 def refubl(env, url, cm):
@@ -395,18 +371,29 @@ def refubl(env, url, cm):
             rat[ida] = b2i(ig[37+10*i:38+10*i])
             sumr += rat[ida]
         if cm in rat: return '%s_%03d%%' % (btob64(cm)[:1], rat[cm]*100//sumr)
-        for i in range((len(ig)-28-142*a-s)//159):
-            ofst = 142*a+s+159*i
+        for i in range((len(ig)-28-142*a-s)//167):
+            ofst = 142*a+s+167*i
             if cm == ig[32+ofst:41+ofst]: return '%s_%05d' % (btob64(cm)[:1], b2i(ig[41+ofst:43+ofst]))
 
 def curblc(fig):
     "current cup price"
-    p = 0
     if os.path.isfile(fig): 
         ig = open(fig, 'rb').read()
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
-        p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), 1+(len(ig)-28-142*a-s)//159)
-    return p    
+        b, pu, pi = (len(ig)-28-142*a-s)//167, b2i(ig[14:18]), b2i(ig[18:26])
+        p, k = cupprice_new(pu, pi, b+1, b2i(ig[-8:-4]) if b>0 else pu, b2i(ig[-4:]) if b>0 else 1)
+        return p if k<1+b else p-1
+    return 0    
+
+def curpkn(fig):
+    "current p/k/n"
+    if os.path.isfile(fig): 
+        ig = open(fig, 'rb').read()
+        s, a = b2i(ig[6:14]), b2i(ig[26:28])
+        b, pu, pi = (len(ig)-28-142*a-s)//167, b2i(ig[14:18]), b2i(ig[18:26])
+        p, k = cupprice_new(pu, pi, b+1, b2i(ig[-8:-4]) if b>0 else pu, b2i(ig[-4:]) if b>0 else 1)
+        return (p, k, b+1)
+    return 0, 0, 0
 
 def igregister(env, d, url):
     "register new ig"
@@ -627,21 +614,8 @@ def get_twitter_img(port, user, cm):
 def is_future(da):
     return int(time.mktime(time.gmtime())) < b2i(da)*60
 
-##### ⊔ management
-def price_max(p1, pf, i):
-    if p1*i < pf: return p1, i
-    for j in range(p1):
-        k = pf-(p1-j-1)*i
-        if k>0: return p1-j, k
-
-def price_min(p1, pf, i):
-    if i >= pf: return 1, pf
-    if i >= p1: return 1, i
-    p = 1+(p1-1)//i
-    for k in range (1, i+1):
-        if k*p +(i-k)*(p-1) == p1: return p, k
-
-def price_xi(pu, pi, j, xi=2):
+def cupprice(pu, pi, j, xi=2):
+    "⊔ price function"
     ko, po = 1, pu
     for i in range(1, j+1):
         x = pu + (i-1)*pu//xi
@@ -653,10 +627,13 @@ def price_xi(pu, pi, j, xi=2):
                 break
     return p, k
 
-def cupprice(p1, pf, i):
-    return price_xi(p1, pf, i)
-
-#####
+def cupprice_new(pu, pi, i, ko, po):
+    "_"
+    x = pu + (i-1)*pu//2
+    t = x if x<=pi else pi if pu>2 else pu if i<pu else i if i<pi else pi
+    for p in range(t//i-2, t//i+2):
+        k = t-i*(p-1)
+        if k>0 and k<=i and (p!=po or k<=ko or t==pi or p<=1 or k>=i): return p, k
 
 def req_5(r):
     "is active"
@@ -799,23 +776,26 @@ def req_300(d, r):
         dpub.close()
     return o
 
-def buy_ig(env, d, r, base):
+def buyig(env, d, r, base):
     "_"
     figf, url, o = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], base), '%s/%s' % (env['SERVER_NAME'], base), 'error'
-    src, tg, igh, msg, sig, k, vu = r[4:13], b'@' + r[4:13], hashlib.sha1(url.encode('utf8')).digest()[:10], r[:-132], r[-132:], ecdsa(), False
+    src, tg, igh, msg, sig, q, vu = r[4:13], b'@' + r[4:13], hashlib.sha1(url.encode('utf8')).digest()[:10], r[:-132], r[-132:], ecdsa(), False
     if os.path.isfile(figf):
         ig = open(figf, 'rb').read()
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
-        b = (len(ig)-28-142*a-s)//159
+        b = (len(ig)-28-142*a-s)//167
         dpub = wopen(d['pub'])                    
-        k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
+        q.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
         dpub.close()
         for i in range(b):
-            ce = ig[28+142*a+s+159*i:28+142*a+s+159*(i+1)] 
+            ce = ig[28+142*a+s+167*i:28+142*a+s+167*(i+1)] 
             if ce[:147] == r:
                 o, vu = btob64(ce[4:13] + i2b(i, 6) + ce[-12:]), True
-        if not vu and blc(d, src, True) + debt(d, src) + 100 > curblc(figf):
-            if k.verify(sig, msg + base.encode('utf8')):
+        [p, k, n]  = curpkn(figf)
+        if n != b+1: return 'Error position'
+        prc = p if k==n else p-1 
+        if not vu and blc(d, src, True) + debt(d, src) + 100 > prc:
+            if q.verify(sig, msg + i2b(p, 4) + i2b(k, 4) + i2b(n, 4) + base.encode('utf8')):
                 dtrx = wopen(d['trx'])
                 if tg in dtrx:
                     if igh not in {dtrx[tg][i:i+10]:True for i in range(0, len(dtrx[tg]), 10)}:
@@ -825,7 +805,7 @@ def buy_ig(env, d, r, base):
                 dtrx.close()
                 update_ubl_url(env, d, url)
                 sk = hashlib.sha1(os.urandom(32)).digest()[:12]
-                open(figf, 'ab').write(r + sk)
+                open(figf, 'ab').write(r + sk + i2b(p, 4) + i2b(k, 4))
                 o = btob64(src + i2b(b+1, 6) + sk)
             else:
                 o += ' signature'
@@ -840,9 +820,9 @@ def read_ig(env, rk, base):
     if os.path.isfile(figf): 
         r = open(figf, 'rb').read()
         s, a, t = b2i(r[6:14]), b2i(r[26:28]), len(r)
-        b = (t-28-142*a-s)//159
+        b = (t-28-142*a-s)//167
         if p <= b:
-            ce = r[28+142*a+s+159*(p-1):28+142*a+s+159*(p)]
+            ce = r[28+142*a+s+167*(p-1):28+142*a+s+167*(p)]
             if ce[4:13] == u1 and ce[-12:] == k1: o = r[28+10*a:s+28+10*a]
     return o
 
@@ -908,13 +888,12 @@ def application(environ, start_response):
         else: o = "ERROR %s" % (s)
     else: # get
         s = raw # use directory or argument
-        if re.match('(\S{2,30})$', base) and len(s) == 196: 
-            o = buy_ig(environ, d, b64tob(bytes(s, 'ascii')), base)
+        if re.match('(\S{2,30})$', base) and len(s) == 196: o = buyig(environ, d, b64tob(bytes(s, 'ascii')), base)
         elif re.match('(\S{2,30})$', base) and len(s) == 36: 
             o = read_ig(env, b64tob(bytes(s, 'ascii')), base)
             if o != '': mime = 'application/pdf'
-        elif re.match('(\S{2,30}):$', base) and s == '': # current price
-            o = '%d' % curblc('/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base[:-1]))
+        elif re.match('(\S{2,30})$', base) and s == ':': # current p/k/n
+            o = '%d:%d:%d' % curpkn('/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base))
         elif re.match('(\S{2,30})$', base) and s == '@': o = igregister(environ, d, base)
         elif re.match('\S{12}$', base): o, mime = app_report(d, base, environ), 'text/html; charset=utf-8'
         elif base == '' and s == '': o, mime = app_index(d, environ), 'text/html; charset=utf-8'
@@ -965,6 +944,5 @@ if __name__ == '__main__':
     dblc = dbm.open('/ef/ef_80/blc')
     for i in filter(lambda x:len(x) == 10, dblc.keys()): print (btob64(i[1:]), dblc[i])
     dblc.close()
-
 
 # End ⊔net!
