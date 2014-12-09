@@ -375,16 +375,6 @@ def refubl(env, url, cm):
             ofst = 142*a+s+167*i
             if cm == ig[32+ofst:41+ofst]: return '%s_%05d' % (btob64(cm)[:1], b2i(ig[41+ofst:43+ofst]))
 
-def curblc(fig):
-    "current cup price"
-    if os.path.isfile(fig): 
-        ig = open(fig, 'rb').read()
-        s, a = b2i(ig[6:14]), b2i(ig[26:28])
-        b, pu, pi = (len(ig)-28-142*a-s)//167, b2i(ig[14:18]), b2i(ig[18:26])
-        p, k = cupprice_new(pu, pi, b+1, b2i(ig[-8:-4]) if b>0 else pu, b2i(ig[-4:]) if b>0 else 1)
-        return p if k<1+b else p-1
-    return 0    
-
 def curpkn(fig):
     "current p/k/n"
     if os.path.isfile(fig): 
@@ -790,7 +780,7 @@ def buyig(env, d, r, base):
         for i in range(b):
             ce = ig[28+142*a+s+167*i:28+142*a+s+167*(i+1)] 
             if ce[:147] == r:
-                o, vu = btob64(ce[4:13] + i2b(i, 6) + ce[-12:]), True
+                o, vu = btob64(ce[4:13] + i2b(i, 6) + ce[-20:-8]), True
         [p, k, n]  = curpkn(figf)
         if n != b+1: return 'Error position'
         prc = p if k==n else p-1 
