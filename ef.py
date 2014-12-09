@@ -811,7 +811,7 @@ def readig(env, rk, base):
         if p <= (t-28-142*a-s)//167:
             c = r[28+142*a+s+167*(p-1):28+142*a+s+167*(p)]
             if c[4:13] == rk[:9] and c[-20:-8] == rk[15:]: return r[28+142*a:28+142*a+s]
-    return 'none'
+    return ''
 
 def application(environ, start_response):
     "wsgi server app"
@@ -877,7 +877,10 @@ def application(environ, start_response):
         s = raw # use directory or argument
         if re.match('(\S{2,30})$', base) and len(s) == 196: o = buyig(environ, d, b64tob(bytes(s, 'ascii')), base)
         elif re.match('(\S{2,30})$', base) and len(s) == 36: 
-            if readig(environ, b64tob(bytes(s, 'ascii')), base): mime = 'application/pdf'
+            if readig(environ, b64tob(bytes(s, 'ascii')), base): 
+                o = 'ok ig' #mime = 'application/pdf'
+            else:
+                o += 'ko readig'
         elif re.match('(\S{2,30})$', base) and s == ':': o = '%d:%d:%d' % curpkn('/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base))
         elif re.match('(\S{2,30})$', base) and s == '@': o = igregister(environ, d, base)
         elif re.match('\S{12}$', base): o, mime = app_report(d, base, environ), 'text/html; charset=utf-8'
