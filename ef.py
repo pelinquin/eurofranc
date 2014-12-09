@@ -810,8 +810,8 @@ def readig(env, rk, base):
         s, a, t = b2i(r[6:14]), b2i(r[26:28]), len(r)
         if p <= (t-28-142*a-s)//167:
             c = r[28+142*a+s+167*(p-1):28+142*a+s+167*(p)]
-            if c[4:13] == rk[:9] and c[-20:-8] == rk[15:]: return r[28+10*a:s+28+10*a]
-    return ''
+            if c[4:13] == rk[:9] and c[-20:-8] == rk[15:]: return r[28+142*a:28+142*a+s]
+    return 'none'
 
 def application(environ, start_response):
     "wsgi server app"
