@@ -778,9 +778,8 @@ def buyig(env, d, r, base):
         q.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
         dpub.close()
         for i in range(b):
-            ce = ig[28+142*a+s+167*i:28+142*a+s+167*(i+1)] 
-            if ce[:147] == r:
-                o, vu = btob64(ce[4:13] + i2b(i, 6) + ce[-20:-8]), True
+            c = ig[28+142*a+s+167*i:28+142*a+s+167*(i+1)] 
+            if c[:147] == r: o, vu = btob64(c[4:13] + i2b(i, 6) + c[-20:-8]), True
         [p, k, n]  = curpkn(figf)
         if n != b+1: return 'Error position'
         prc = p if k==n else p-1 
@@ -803,18 +802,16 @@ def buyig(env, d, r, base):
             o += ' again'
     return o
 
-def read_ig(env, rk, base):
+def readig(env, rk, base):
     "_"
-    figf, o = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], base), ''
-    p, u1, k1 = b2i(rk[9:15]), rk[:9], rk[15:]
+    figf, p = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], base), b2i(rk[9:15])
     if os.path.isfile(figf): 
         r = open(figf, 'rb').read()
         s, a, t = b2i(r[6:14]), b2i(r[26:28]), len(r)
-        b = (t-28-142*a-s)//167
-        if p <= b:
-            ce = r[28+142*a+s+167*(p-1):28+142*a+s+167*(p)]
-            if ce[4:13] == u1 and ce[-12:] == k1: o = r[28+10*a:s+28+10*a]
-    return o
+        if p <= (t-28-142*a-s)//167:
+            c = r[28+142*a+s+167*(p-1):28+142*a+s+167*(p)]
+            if c[4:13] == rk[:9] and c[-20:-8] == rk[15:]: return r[28+10*a:s+28+10*a]
+    return ''
 
 def application(environ, start_response):
     "wsgi server app"
@@ -880,10 +877,8 @@ def application(environ, start_response):
         s = raw # use directory or argument
         if re.match('(\S{2,30})$', base) and len(s) == 196: o = buyig(environ, d, b64tob(bytes(s, 'ascii')), base)
         elif re.match('(\S{2,30})$', base) and len(s) == 36: 
-            o = read_ig(env, b64tob(bytes(s, 'ascii')), base)
-            if o != '': mime = 'application/pdf'
-        elif re.match('(\S{2,30})$', base) and s == ':': # current p/k/n
-            o = '%d:%d:%d' % curpkn('/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base))
+            if readig(env, b64tob(bytes(s, 'ascii')), base): mime = 'application/pdf'
+        elif re.match('(\S{2,30})$', base) and s == ':': o = '%d:%d:%d' % curpkn('/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base))
         elif re.match('(\S{2,30})$', base) and s == '@': o = igregister(environ, d, base)
         elif re.match('\S{12}$', base): o, mime = app_report(d, base, environ), 'text/html; charset=utf-8'
         elif base == '' and s == '': o, mime = app_index(d, environ), 'text/html; charset=utf-8'
