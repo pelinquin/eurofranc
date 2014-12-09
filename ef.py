@@ -876,8 +876,7 @@ def application(environ, start_response):
     else: # get
         s = raw # use directory or argument
         if re.match('(\S{2,30})$', base) and len(s) == 196: o = buyig(environ, d, b64tob(bytes(s, 'ascii')), base)
-        elif re.match('(\S{2,30})$', base) and len(s) == 36: 
-            if o = readig(environ, b64tob(bytes(s, 'ascii')), base): mime = 'application/pdf'
+        elif re.match('(\S{2,30})$', base) and len(s) == 36: o, mime = readig(environ, b64tob(bytes(s, 'ascii')), base), 'application/pdf'
         elif re.match('(\S{2,30})$', base) and s == ':': o = '%d:%d:%d' % curpkn('/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base))
         elif re.match('(\S{2,30})$', base) and s == '@': o = igregister(environ, d, base)
         elif re.match('\S{12}$', base): o, mime = app_report(d, base, environ), 'text/html; charset=utf-8'
