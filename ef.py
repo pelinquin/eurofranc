@@ -707,7 +707,7 @@ def req_156(d, r):
     if src in dpub and dst in dpub and src != dst and val != 0:
         k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
         dpub.close()
-        if k.verify(sig, msg) and u not in dtrx and if blc(d, src, True) + debt(d, src)*100 >= val:
+        if k.verify(sig, msg) and u not in dtrx and blc(d, src, True) + debt(d, src)*100 >= val:
             dtrx[u], dblc, tgsrc, tgdst, o = v + i2b(ps, 2) + i2b(pd, 2) + sig, wopen(d['blc']), b'@' + src, b'@' + dst, 'ok trx'
             dblc[tgsrc] = '%d' % ((int(dblc[tgsrc])-val) if tgsrc in dblc else (-val)) # shortcut
             dblc[tgdst] = '%d' % ((int(dblc[tgdst])+val) if tgdst in dblc else val)    # shortcut
