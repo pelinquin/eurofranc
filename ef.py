@@ -288,8 +288,7 @@ def update_ubl_url(env, d, url):
 def nbt(d, cm):
     "get total transaction nb"
     dtrx, n = ropen(d['trx']), 0
-    if cm in dtrx: 
-        n = len(dtrx[cm])//13
+    if cm in dtrx: n = len(dtrx[cm])//13
     dtrx.close()
     return n
 
@@ -518,9 +517,9 @@ def app_users(d, env):
     for i, src in enumerate(dpub.keys()): 
         fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], btob64(src))
         img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-        bl = blc(d, src, True)
-        #bl = tublc(env, d, src)
-        o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%04d</td><td class="num">%7.2f%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, img, btob64(src), btob64(src), get_type(d, src), nbt(d, src), int(dblc[src])/100 if src in dblc else 0, un, bl)
+        #blcup = tublc(env, d, src)
+        #blef = int(dblc[src])/100 if src in dblc else 0
+        o += '<tr><td class="num">%d</td><td><img width="24" src="%s"/></td><td><a href="./%s" class="mono">%s</a></td><td class="num">%s</td><td class="num">%04d</td><td class="num">%7.2f%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, img, btob64(src), btob64(src), get_type(d, src), nbt(d, src), blc(d, src)/100, un, blc(d, src, True))
     dpub.close()
     dblc.close()
     return o + '</table>' + footer()
@@ -703,22 +702,22 @@ def req_154(d, r):
     return o
 
 def req_156(d, r):
-    "user principal certificate (short): usr:9+dat:4+adm:9:spr:2+sig:132"
-    usr, v, dat, adm, msg, sig, k, o = r[:9], r[9:], r[9:13], r[13:22], r[:24], r[-132:], ecdsa(), 'error'
-    if is_mairie(d, adm):
-        dhid = ropen(d['hid'])
-        if adm in dhid: h = dhid[adm][4:36] # next !
-        dhid.close()
-        dpub = ropen(d['pub'])
-        k.pt = Point(c521, b2i(dpub[adm][:66]), b2i(dpub[adm][66:]+adm))
+    "add cup transaction dat:4+src:9+dst:9+val:2+sig:132"
+    u, v, dat, src, dst, val, sig, k, o = r[:13], r[13:-132], r[:4], r[4:13], r[13:22], b2i(r[22:24]), r[-132:], ecdsa(), 'error'
+    if src in dpub and dst in dpub and src != dst and val != 0:
+        k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
         dpub.close()
-        if is_future(dat) and k.verify(sig, msg): o = set_crt(d, usr, v) 
+        if k.verify(sig, msg) and u not in dtrx and if blc(d, src, True) + debt(d, src)*100 >= val:
+            dtrx[u], dblc, tgsrc, tgdst, o = v + i2b(ps, 2) + i2b(pd, 2) + sig, wopen(d['blc']), b'@' + src, b'@' + dst, 'ok trx'
+            dblc[tgsrc] = '%d' % ((int(dblc[tgsrc])-val) if tgsrc in dblc else (-val)) # shortcut
+            dblc[tgdst] = '%d' % ((int(dblc[tgdst])+val) if tgdst in dblc else val)    # shortcut
+            dblc.close()
     return o
 
 def req_159(d, r): 
     "add transaction: dat:4+src:9+dst:9+val:2+ref:3+sig:132"
-    u, dat, v, src, dst, val, ref, msg, sig, k, dpub, o = r[:13], r[:4], r[13:-132], r[4:13], r[13:22], b2i(r[22:24]), b2i(r[24:27]), r[:-132], r[-132:], ecdsa(), ropen(d['pub']), 'error'
-    if src in dpub and dst in dpub and src != dst and val > 0:
+    u, v, dat, src, dst, val, ref, msg, sig, k, dpub, o = r[:13], r[13:-132], r[:4], r[4:13], r[13:22], b2i(r[22:24]), b2i(r[24:27]), r[:-132], r[-132:], ecdsa(), ropen(d['pub']), 'error'
+    if src in dpub and dst in dpub and src != dst and val != 0:
         k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
         dpub.close()
         if k.verify(sig, msg): 
@@ -772,6 +771,9 @@ def buyig(env, d, r, base):
     src, tg, igh, msg, sig, q, vu = r[4:13], b'@' + r[4:13], hashlib.sha1(url.encode('utf8')).digest()[:10], r[:-132], r[-132:], ecdsa(), False
     if os.path.isfile(figf):
         ig = open(figf, 'rb').read()
+        if b2i(ig[4:6]) == 0:
+            tg = b'$' + r[4:13]
+            return 'cheque'
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
         b = (len(ig)-28-142*a-s)//167
         dpub = wopen(d['pub'])                    
@@ -831,7 +833,7 @@ def application(environ, start_response):
     #elif len(raw) == 147 and way == 'post': o = req_147(d, raw) # spare removed
     elif len(raw) == 150 and way == 'post': o = req_150(d, raw)
     elif len(raw) == 154 and way == 'post': o = req_154(d, raw)
-    #elif len(raw) == 156 and way == 'post': o = req_156(d, raw) # spare removed
+    elif len(raw) == 156 and way == 'post': o = req_156(d, raw)
     elif len(raw) == 159 and way == 'post': o = req_159(d, raw)
     elif len(raw) == 186 and way == 'post': o = req_186(d, raw)
     elif len(raw) == 300 and way == 'post': o = req_300(d, raw)
@@ -870,7 +872,7 @@ def application(environ, start_response):
         elif re.match('\S{176}$', s): o = req_132(d, b64tob(bytes(s, 'ascii')))
         #elif re.match('\S{196}$', s): o = req_147(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{200}$', s): o = req_150(d, b64tob(bytes(s, 'ascii')))
-        #elif re.match('\S{208}$', s): o = req_156(d, b64tob(bytes(s, 'ascii')))
+        elif re.match('\S{208}$', s): o = req_156(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{212}$', s): o = req_159(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{248}$', s): o = req_186(d, b64tob(bytes(s, 'ascii')))
         elif re.match('\S{400}$', s): o = req_300(d, b64tob(bytes(s, 'ascii')))

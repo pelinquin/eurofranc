@@ -78,16 +78,17 @@ def generate0():
 def gencheck():
     ""
     f, val, cm, buyer = open('check.igf', 'wb+'), 1000, b64tob(b'ApL7sWemaF7q'), b64tob(b'QZs_QO6iFHok')
-    s = 333
+    s = 0
+    pcup, pefr, dat = 123, 55, 888
     f.write(bytes('⊔', 'utf8')+ i2b(0, 1)) # 4  file-type + algo
-    f.write(i2b(s, 4))                     # 8 pdf size 
-    f.write(i2b(val, 4))                   # 12 value
-    f.write(cm)                            # 21  
-    f.write(buyer)                         # 30
-    f.write(i2b(2222, s))                  # 30+s 
-    f.write(i2b(6666554444455, 132))       # 162+s 
-    f.write(i2b(111, 4) + i2b(1,2) + i2b(11155555, 132)) # 46/3*4=184  
-    f.close()                              #  346+s
+    f.write(i2b(dat, 4))                   # 8 date
+    f.write(i2b(pcup, 4))                  # 12 ⊔  value
+    f.write(i2b(pefr, 4))                  # 15 €f value
+    f.write(cm)                            # 24  
+    f.write(buyer)                         # 33
+    f.write(i2b(6666554444455, 132))       # 165
+    # after validation 
+    f.close()                              # 165
     sys.exit()
 
 def scan():
@@ -119,8 +120,11 @@ def scan():
     print ('Balances:', {btob64(x):ah[x] for x in ah})
 
 if __name__ == '__main__':
-    if sys.argv[1] == 'gen': 
-        generate0()
+    if len(sys.argv == 2):
+        if sys.argv[1] == 'gen': 
+            generate0()
+        else:
+            scan()
     else:
-        scan()
+        gencheck()
 
