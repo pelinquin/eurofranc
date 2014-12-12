@@ -533,6 +533,8 @@ def app_trx(env, d):
         if len(dtrx[t]) == 150: 
             prf = btob64(t[4:])[:1] + btob64(dtrx[t][:9])[:1]
             o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">%s%07d</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), prf, b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
+        elif len(dtrx[t]) == 143:
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">REF</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), b2i(dtrx[t][9:11]))
     j = 0
     for t in filter(lambda x:len(x) == 10, dtrx.keys()):
         n = len(dtrx[t])//10
@@ -579,6 +581,13 @@ def app_report(d, src, env):
                 fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], dst)
                 img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
                 o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%07d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
+            elif len(dtrx[s]) == 143:
+                (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == r else (i2b(1,1), s[4:])
+                dst = btob64(ur)
+                way = '+' if b2i(w) == 1 else '-'
+                fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], dst)
+                img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
+                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen"> </td><td class="num">%s%7d&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), way, b2i(dtrx[s][9:11]))
     dtrx.close()
     return o + '</table>' + footer()
 
@@ -703,34 +712,17 @@ def req_154(d, r):
 
 def req_156(d, r):
     "add ⊔ transaction dat:4+src:9+dst:9+val:2+sig:132"
-    u, v, dat, src, dst, val, msg, sig, k, dpub, o = r[:13], r[13:-132], r[:4], r[4:13], r[13:22], b2i(r[22:24]), r[:-132], r[-132:], ecdsa(), ropen(d['pub']), 'error'
-    if src in dpub and dst in dpub and src != dst and val != 0:
+    u, v, dat, src, dst, val, msg, sig, k, dpub, o = r[:13], r[13:], r[:4], r[4:13], r[13:22], b2i(r[22:24]), r[:-132], r[-132:], ecdsa(), ropen(d['pub']), 'error'
+    if src in dpub and dst in dpub and src != dst and val != 0 and (debt(d, src)>0 or debt(d, dst)>0):
         k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
         dpub.close()
         dtrx = wopen(d['trx'])
         if k.verify(sig, msg) and u not in dtrx and blc(d, src, True) + debt(d, src)*100 >= val:
-            dtrx[u], dblc, tgsrc, tgdst, o = v + i2b(ps, 2) + i2b(pd, 2) + sig, wopen(d['blc']), b'@' + src, b'@' + dst, 'ok trx'
+            dtrx[u], dblc, tgsrc, tgdst, o = v, wopen(d['blc']), b'@' + src, b'@' + dst, 'ok'
+            dtrx[src], dtrx[dst] = dtrx[src] + u if src in dtrx else u, dtrx[dst] + u if dst in dtrx else u # shortcut
             dblc[tgsrc] = '%d' % ((int(dblc[tgsrc])-val) if tgsrc in dblc else (-val)) # shortcut
             dblc[tgdst] = '%d' % ((int(dblc[tgdst])+val) if tgdst in dblc else val)    # shortcut
             dblc.close()
-        dtrx.close()
-    return o
-
-def req_156(d, r):
-    "add ⊔ transaction dat:4+src:9+dst:9+val:2+sig:132"
-    u, v, dat, src, dst, val, msg, sig, k, dpub, o = r[:13], r[13:], r[:4], r[4:13], r[13:22], b2i(r[22:24]), r[:-132], r[-132:], ecdsa(), ropen(d['pub']), 'error'
-    if src in dpub and dst in dpub and src != dst and val != 0:
-        k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
-        dpub.close()
-        dtrx = wopen(d['trx'])
-        if k.verify(sig, msg) and u not in dtrx: 
-            if  blc(d, src, True) + debt(d, src)*100 >= val:
-                dtrx[u], dblc, tgsrc, tgdst, o = v, wopen(d['blc']), b'@' + src, b'@' + dst, 'ok trx'
-                dblc[tgsrc] = '%d' % ((int(dblc[tgsrc])-val) if tgsrc in dblc else (-val)) # shortcut
-                dblc[tgdst] = '%d' % ((int(dblc[tgdst])+val) if tgdst in dblc else val)    # shortcut
-                dblc.close()
-            else:
-                o += '%d %d %d' % (blc(d, src, True), debt(d, src), val)
         dtrx.close()
     return o
 
@@ -745,8 +737,7 @@ def req_159(d, r):
             if u in dtrx: o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][16:18]))
             else:
                 if blc(d, src) + debt(d, src)*100 >= val:
-                    dtrx[src] = dtrx[src] + u if src in dtrx else u # shortcut
-                    dtrx[dst] = dtrx[dst] + u if dst in dtrx else u # shortcut
+                    dtrx[src], dtrx[dst] = dtrx[src] + u if src in dtrx else u, dtrx[dst] + u if dst in dtrx else u # shortcut
                     ps, pd = len(dtrx[src])//13-1, len(dtrx[dst])//13-1
                     dtrx[u], dblc = v + i2b(ps, 2) + i2b(pd, 2) + sig, wopen(d['blc'])
                     dblc[src] = '%d' % ((int(dblc[src])-val) if src in dblc else (-val)) # shortcut
