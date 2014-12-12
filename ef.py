@@ -702,20 +702,40 @@ def req_154(d, r):
     return o
 
 def req_156(d, r):
-    "add cup transaction dat:4+src:9+dst:9+val:2+sig:132"
-    u, v, dat, src, dst, val, sig, k, dpub, o = r[:13], r[13:-132], r[:4], r[4:13], r[13:22], b2i(r[22:24]), r[-132:], ecdsa(), ropen(d['pub']), 'error'
+    "add ⊔ transaction dat:4+src:9+dst:9+val:2+sig:132"
+    u, v, dat, src, dst, val, msg, sig, k, dpub, o = r[:13], r[13:-132], r[:4], r[4:13], r[13:22], b2i(r[22:24]), r[:-132], r[-132:], ecdsa(), ropen(d['pub']), 'error'
     if src in dpub and dst in dpub and src != dst and val != 0:
         k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
         dpub.close()
+        dtrx = wopen(d['trx'])
         if k.verify(sig, msg) and u not in dtrx and blc(d, src, True) + debt(d, src)*100 >= val:
             dtrx[u], dblc, tgsrc, tgdst, o = v + i2b(ps, 2) + i2b(pd, 2) + sig, wopen(d['blc']), b'@' + src, b'@' + dst, 'ok trx'
             dblc[tgsrc] = '%d' % ((int(dblc[tgsrc])-val) if tgsrc in dblc else (-val)) # shortcut
             dblc[tgdst] = '%d' % ((int(dblc[tgdst])+val) if tgdst in dblc else val)    # shortcut
             dblc.close()
+        dtrx.close()
+    return o
+
+def req_156(d, r):
+    "add ⊔ transaction dat:4+src:9+dst:9+val:2+sig:132"
+    u, v, dat, src, dst, val, msg, sig, k, dpub, o = r[:13], r[13:], r[:4], r[4:13], r[13:22], b2i(r[22:24]), r[:-132], r[-132:], ecdsa(), ropen(d['pub']), 'error'
+    if src in dpub and dst in dpub and src != dst and val != 0:
+        k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
+        dpub.close()
+        dtrx = wopen(d['trx'])
+        if k.verify(sig, msg) and u not in dtrx: 
+            if  blc(d, src, True) + debt(d, src)*100 >= val:
+                dtrx[u], dblc, tgsrc, tgdst, o = v, wopen(d['blc']), b'@' + src, b'@' + dst, 'ok trx'
+                dblc[tgsrc] = '%d' % ((int(dblc[tgsrc])-val) if tgsrc in dblc else (-val)) # shortcut
+                dblc[tgdst] = '%d' % ((int(dblc[tgdst])+val) if tgdst in dblc else val)    # shortcut
+                dblc.close()
+            else:
+                o += '%d %d %d' % (blc(d, src, True), debt(d, src), val)
+        dtrx.close()
     return o
 
 def req_159(d, r): 
-    "add transaction: dat:4+src:9+dst:9+val:2+ref:3+sig:132"
+    "add €f transaction: dat:4+src:9+dst:9+val:2+ref:3+sig:132"
     u, v, dat, src, dst, val, ref, msg, sig, k, dpub, o = r[:13], r[13:-132], r[:4], r[4:13], r[13:22], b2i(r[22:24]), b2i(r[24:27]), r[:-132], r[-132:], ecdsa(), ropen(d['pub']), 'error'
     if src in dpub and dst in dpub and src != dst and val != 0:
         k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
