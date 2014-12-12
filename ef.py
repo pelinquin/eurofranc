@@ -703,7 +703,7 @@ def req_154(d, r):
 
 def req_156(d, r):
     "add cup transaction dat:4+src:9+dst:9+val:2+sig:132"
-    u, v, dat, src, dst, val, sig, k, o = r[:13], r[13:-132], r[:4], r[4:13], r[13:22], b2i(r[22:24]), r[-132:], ecdsa(), 'error'
+    u, v, dat, src, dst, val, sig, k, dpub, o = r[:13], r[13:-132], r[:4], r[4:13], r[13:22], b2i(r[22:24]), r[-132:], ecdsa(), ropen(d['pub']), 'error'
     if src in dpub and dst in dpub and src != dst and val != 0:
         k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
         dpub.close()
