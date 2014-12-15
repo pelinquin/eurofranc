@@ -229,7 +229,7 @@ def send_get(host='localhost', data=''):
 def update_blc(d):
     "_"
     dtrx, b , o, k = ropen(d['trx']), {}, 'ok', ecdsa()
-    for t in [x for x in dtrx.keys() if len(x) == 13 and len(dtrx[t]) == 150]:
+    for t in [x for x in dtrx.keys() if len(x) == 13 and len(dtrx[x]) == 150]:
         src, dst, v, msg, sig, dpub = t[4:], dtrx[t][:9], b2i(dtrx[t][9:11]), t + dtrx[t][:14], dtrx[t][-132:], ropen(d['pub'])
         k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]))
         dpub.close()
@@ -255,7 +255,7 @@ def update_ubl(env, d):
             digs = ropen(d['igs'])
             if s in digs and reg(re.match(r'([^/]+)/(\S+)$', digs[s].decode('utf8'))): b[t] += ubl(env, reg.v.group(2), t[1:])
             digs.close()
-    for t in [x for x in dtrx.keys() if len(x) == 13 and len(dtrx[t]) == 143]:
+    for t in [x for x in dtrx.keys() if len(x) == 13 and len(dtrx[x]) == 143]:
         src, dst, v, msg, sig, dpub = t[4:], dtrx[t][:9], b2i(dtrx[t][9:11]), t + dtrx[t][:11], dtrx[t][-132:], ropen(d['pub'])
         k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]))
         dpub.close()
