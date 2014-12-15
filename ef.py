@@ -231,7 +231,7 @@ def update_blc(d):
     dtrx, b, o, k = ropen(d['trx']), {}, 'ok', ecdsa()
     for t in [x for x in dtrx.keys() if len(x) == 13 and len(dtrx[x]) == 150]:
         src, dst, v, msg, sig, dpub = t[4:], dtrx[t][:9], b2i(dtrx[t][9:11]), t + dtrx[t][:14], dtrx[t][-132:], ropen(d['pub'])
-        k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]))
+        k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]) + src)
         dpub.close()
         if k.verify(sig, msg): b[src], b[dst] = b[src] - v if src in b else (-v), b[dst] + v if dst in b else v
     dtrx.close()
@@ -257,9 +257,12 @@ def update_ubl(env, d):
             digs.close()
     for t in [x for x in dtrx.keys() if len(x) == 13 and len(dtrx[x]) == 143]:
         src, dst, v, msg, sig, dpub = t[4:], dtrx[t][:9], b2i(dtrx[t][9:11]), t + dtrx[t][:11], dtrx[t][-132:], ropen(d['pub'])
-        k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]))
+        k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]) + src)
         dpub.close()
-        if k.verify(sig, msg): b[src], b[dst] = b[src] - v if src in b else (-v), b[dst] + v if dst in b else v
+        if k.verify(sig, msg): 
+            b[src], b[dst] = b[src] - v if src in b else (-v), b[dst] + v if dst in b else v
+        else:
+            sys.stderr.write('PB SIGNATURE !\n')            
     dtrx.close()
     dblc = wopen(d['blc'])
     sys.stderr.write('%s\n' % b)
@@ -580,17 +583,16 @@ def app_report(d, src, env):
                 (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == r else (i2b(1,1), s[4:])
                 dst = btob64(ur)
                 prf = dst[:1] + src[:1] if b2i(w) == 1 else src[:1] + dst[:1]
-                way = '+' if b2i(w) == 1 else '-'
+                val = b2i(dtrx[s][9:11]) if b2i(w) == 1 else -b2i(dtrx[s][9:11])
                 fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], dst)
                 img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%07d</td><td class="num">%s%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), way, b2i(dtrx[s][9:11])/100, un)
+                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">%s%07d</td><td class="num">%7.2f%s</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), prf, b2i(dtrx[s][11:14]), val/100, un)
             elif len(dtrx[s]) == 143:
                 (w, ur) = (i2b(0,1), dtrx[s][:9]) if s[4:] == r else (i2b(1,1), s[4:])
-                dst = btob64(ur)
-                way = '+' if b2i(w) == 1 else '-'
+                dst, val = btob64(ur), b2i(dtrx[s][9:11]) if b2i(w) == 1 else -b2i(dtrx[s][9:11])
                 fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], dst)
                 img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">iBank</td><td class="num">%s%7d&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), way, b2i(dtrx[s][9:11]))
+                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">iBank</td><td class="num">%7d&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), val)
     dtrx.close()
     return o + '</table>' + footer()
 
