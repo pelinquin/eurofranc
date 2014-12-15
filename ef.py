@@ -257,10 +257,10 @@ def update_ubl(env, d):
             digs.close()
     for t in [x for x in dtrx.keys() if len(x) == 13 and len(dtrx[x]) == 143]:
         src, dst, v, msg, sig, dpub = t[4:], dtrx[t][:9], b2i(dtrx[t][9:11]), t + dtrx[t][:11], dtrx[t][-132:], ropen(d['pub'])
-        k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
+        k.pt, tsrc, tdst = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src)), b'@' + src, b'@' + dst
         dpub.close()
         if k.verify(sig, msg): 
-            b[src], b[dst] = b[src] - v if src in b else (-v), b[dst] + v if dst in b else v
+            b[tsrc], b[tdst] = b[tsrc] - v if tsrc in b else (-v), b[tdst] + v if tdst in b else v
         else:
             sys.stderr.write('PB SIGNATURE !\n')            
     dtrx.close()
