@@ -228,7 +228,7 @@ def send_get(host='localhost', data=''):
 
 def update_blc(d):
     "_"
-    dtrx, b , o, k = ropen(d['trx']), {}, 'ok', ecdsa()
+    dtrx, b, o, k = ropen(d['trx']), {}, 'ok', ecdsa()
     for t in [x for x in dtrx.keys() if len(x) == 13 and len(dtrx[x]) == 150]:
         src, dst, v, msg, sig, dpub = t[4:], dtrx[t][:9], b2i(dtrx[t][9:11]), t + dtrx[t][:14], dtrx[t][-132:], ropen(d['pub'])
         k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]))
@@ -247,7 +247,7 @@ def update_blc(d):
 
 def update_ubl(env, d):
     "_"
-    dtrx, b, o = ropen(d['trx']), {}, 'ok'
+    dtrx, b, k, o = ropen(d['trx']), {}, ecdsa(), 'ok'
     for t in filter(lambda x:len(x) == 10, dtrx.keys()):
         n, b[t] = len(dtrx[t])//10, 0
         for i in range(n):
