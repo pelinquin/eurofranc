@@ -534,7 +534,7 @@ def app_trx(env, d):
             prf = btob64(t[4:])[:1] + btob64(dtrx[t][:9])[:1]
             o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">%s%07d</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), prf, b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
         elif len(dtrx[t]) == 143:
-            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">REF</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), b2i(dtrx[t][9:11]))
+            o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">iBank</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), b2i(dtrx[t][9:11]))
     j = 0
     for t in filter(lambda x:len(x) == 10, dtrx.keys()):
         n = len(dtrx[t])//10
@@ -587,7 +587,7 @@ def app_report(d, src, env):
                 way = '+' if b2i(w) == 1 else '-'
                 fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], dst)
                 img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
-                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen"> </td><td class="num">%s%7d&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), way, b2i(dtrx[s][9:11]))
+                o += '<tr><td class="num">%03d</td><td class="num">%s</td><td><a href="./%s" class="mono"><img width="24" src="%s"/> %s</a></td><td class="mono smallgreen">iBank</td><td class="num">%s%7d&thinsp;⊔</td></tr>' % (n-i, datdecode(s[:4]), btob64(ur), img, btob64(ur), way, b2i(dtrx[s][9:11]))
     dtrx.close()
     return o + '</table>' + footer()
 
