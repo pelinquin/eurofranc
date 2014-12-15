@@ -229,12 +229,11 @@ def send_get(host='localhost', data=''):
 def update_blc(d):
     "_"
     dtrx, b , o, k = ropen(d['trx']), {}, 'ok', ecdsa()
-    for t in [x for x in dtrx.keys() if len(x) == 13]:
+    for t in [x for x in dtrx.keys() if len(x) == 13 and len(dtrx[t]) == 150]:
         src, dst, v, msg, sig, dpub = t[4:], dtrx[t][:9], b2i(dtrx[t][9:11]), t + dtrx[t][:14], dtrx[t][-132:], ropen(d['pub'])
         k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]))
         dpub.close()
-        if k.verify(sig, msg): # takes long time ! 
-            b[src], b[dst] = b[src] - v if src in b else (-v), b[dst] + v if dst in b else v
+        if k.verify(sig, msg): b[src], b[dst] = b[src] - v if src in b else (-v), b[dst] + v if dst in b else v
     dtrx.close()
     dblc = wopen(d['blc'])
     for x in b:
@@ -254,9 +253,13 @@ def update_ubl(env, d):
         for i in range(n):
             s = dtrx[t][10*(n-i-1):10*(n-i)]
             digs = ropen(d['igs'])
-            if s in digs and reg(re.match(r'([^/]+)/(\S+)$', digs[s].decode('utf8'))): 
-                b[t] += ubl(env, reg.v.group(2), t[1:])
+            if s in digs and reg(re.match(r'([^/]+)/(\S+)$', digs[s].decode('utf8'))): b[t] += ubl(env, reg.v.group(2), t[1:])
             digs.close()
+    for t in [x for x in dtrx.keys() if len(x) == 13 and len(dtrx[t]) == 143]:
+        src, dst, v, msg, sig, dpub = t[4:], dtrx[t][:9], b2i(dtrx[t][9:11]), t + dtrx[t][:11], dtrx[t][-132:], ropen(d['pub'])
+        k.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]))
+        dpub.close()
+        if k.verify(sig, msg): b[src], b[dst] = b[src] - v if src in b else (-v), b[dst] + v if dst in b else v
     dtrx.close()
     dblc = wopen(d['blc'])
     sys.stderr.write('%s\n' % b)
@@ -270,7 +273,7 @@ def update_ubl(env, d):
     return o
 
 def update_ubl_url(env, d, url):
-    "list all cm involved in url end update dblc for each cm" 
+    "list all cm involved in url and update dblc for each cm" 
     figs, ll = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), {}  
     if os.path.isfile(figs):
         ig, rat, sumr = open(figs, 'rb').read(), {}, 0
@@ -783,7 +786,7 @@ def buyig(env, d, r, base):
     if os.path.isfile(figf):
         ig = open(figf, 'rb').read()
         if b2i(ig[4:6]) == 0:
-            tg = b'$' + r[4:13]
+            tg = b'$' + r[4:13] # finir
             return 'cheque'
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
         b = (len(ig)-28-142*a-s)//167
