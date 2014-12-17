@@ -79,6 +79,8 @@ _admin_pkey = 'AdMctT3bXbwrTBGkB5eKAG74qIqShRRy1nHa_NWCHsxmKhmZeE_aWgo_S251td8d6
 _ibank_pkey = 'AQTMiBfFFaDdokV0d7dPEeyURA_yUmMaXVaQm86YxciRuOpz5oSXdAh2r-6jxdj3cazLExL4B75-V3_hqtbuG_yIAeqq8dmyMTAZUZFBS0fCPK52TzZ6bEyo3H3QHzbk5geIepws4bi2se19WoyZ6xiWDk0COUXLvQAE'   
 _ibank_pkey = 'AdMctT3bXbwrTBGkB5eKAG74qIqShRRy1nHa_NWCHsxmKhmZeE_aWgo_S251td8d6C5uti6TymQSSZvhmO1b19pIAYYPFxkKL_13dnhBGXdFdmDQhQEZZbc1P7GDDrZZwU0FSGuwc53_AxHk1vVRte7bdmhzIcOUMUvO'
 
+__curset__ = {'USD':870, 'EUR':334, 'JPY':230, 'GBP':118, 'AUD':86, 'CHF':52,  'CAD':46,  'MXN':25,  'CNY':22,  'NZD':20, 'SEK':18,  'RUB':16,  'HKD':14,  'SGD':14,  'TRY':13}
+
 ##### ENCODING #####
 PAD = lambda s:(len(s)%2)*'0'+s[2:]
 
@@ -227,7 +229,7 @@ def send_get(host='localhost', data=''):
 ##### WEB APP #####
 
 def update_blc(d):
-    "_"
+    "€f"
     dtrx, b, o, k = ropen(d['trx']), {}, 'ok', ecdsa()
     for t in [x for x in dtrx.keys() if len(x) == 13 and len(dtrx[x]) == 150]:
         src, dst, v, msg, sig, dpub = t[4:], dtrx[t][:9], b2i(dtrx[t][9:11]), t + dtrx[t][:14], dtrx[t][-132:], ropen(d['pub'])
@@ -246,7 +248,7 @@ def update_blc(d):
     return o
 
 def update_ubl(env, d):
-    "_"
+    "cup"
     dtrx, b, k, o = ropen(d['trx']), {}, ecdsa(), 'ok'
     for t in filter(lambda x:len(x) == 10, dtrx.keys()):
         n, b[t] = len(dtrx[t])//10, 0
@@ -259,10 +261,7 @@ def update_ubl(env, d):
         src, dst, v, msg, sig, dpub = t[4:], dtrx[t][:9], b2i(dtrx[t][9:11]), t + dtrx[t][:11], dtrx[t][-132:], ropen(d['pub'])
         k.pt, tsrc, tdst = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src)), b'@' + src, b'@' + dst
         dpub.close()
-        if k.verify(sig, msg): 
-            b[tsrc], b[tdst] = b[tsrc] - v if tsrc in b else (-v), b[tdst] + v if tdst in b else v
-        else:
-            sys.stderr.write('PB SIGNATURE !\n')            
+        if k.verify(sig, msg): b[tsrc], b[tdst] = b[tsrc] - v if tsrc in b else (-v), b[tdst] + v if tdst in b else v
     dtrx.close()
     dblc = wopen(d['blc'])
     sys.stderr.write('%s\n' % b)
@@ -833,12 +832,49 @@ def readig(env, rk, base):
         return '%d %d' % (a, s)
     return ''
 
+def forex(db):
+    now, h = '%s' % datetime.datetime.now(), {}
+    dr = dbm.open(db, 'c')
+    cu, co = datetime.datetime(2014, 1, 1), http.client.HTTPConnection('currencies.apps.grandtrunk.net')
+    while cu < datetime.datetime.now():
+        cc = '%s' % cu
+        if bytes(cc[:10], 'ascii') not in dr:
+            for c in filter(lambda i:i!='USD', __curset__):
+                sys.stderr.write('grandtrunk request for %s %s\n' % (c, cc[:10]))
+                co.request('GET', '/getrate/%s/%s/USD' % (cc[:10], c))
+                h[c] = float(co.getresponse().read())
+            dr[cc[:10]] = '%s' % h
+        cu += datetime.timedelta(days=1)
+    dr.close()
+
+def rates(db):
+    d, c = dbm.open(db, 'c'), datetime.datetime(2014, 1, 1)
+    x = bytes(('%s' % c)[:10], 'ascii')
+    A = eval(d[x].decode('ascii'))
+    A['⊔'] = .1*A['EUR']
+    while x in d:
+        c += datetime.timedelta(days=1)
+        x = bytes(('%s' % c)[:10], 'ascii')
+        if x in d:
+            B = eval(d[x].decode('ascii'))
+            B['⊔'] = A['⊔']*coef(d, A, B)
+            A = B
+    d.close()
+    return '%s 1⊔=%s€ 1⊔=%s$' % (x.decode('ascii'), B['⊔']/B['EUR'], B['⊔'])
+    
+def coef(d, A, B):
+    n, m = __curset__['USD'], __curset__['USD'] 
+    for i in [x for x in sorted(__curset__) if x!='USD']:
+        n, m = n+A[i]/B[i]*__curset__[i], m+A[i]*A[i]/B[i]/B[i]*__curset__[i]
+    return n/m
+
 def application(environ, start_response):
     "wsgi server app"
     mime, o, now, fname, port = 'text/plain; charset=utf8', 'error', '%s' % datetime.datetime.now(), 'default.txt', environ['SERVER_PORT']
     (raw, way) = (environ['wsgi.input'].read(), 'post') if environ['REQUEST_METHOD'].lower() == 'post' else (urllib.parse.unquote(environ['QUERY_STRING']), 'get')
     base, ncok = environ['PATH_INFO'][1:], []
     d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt', 'igs'), port)
+    forex('/%s/%s_%s/rates' % (__app__, __app__, port))
     if   len(raw) ==   5 and way == 'post': o = req_5  (raw)
     elif len(raw) ==   9 and way == 'post': o = req_9  (d, raw)
     #elif len(raw) ==  12 and way == 'post': o = req_12 (d, raw)
@@ -908,6 +944,7 @@ def application(environ, start_response):
         elif base == '' and s == '_isactive': o = 'ok'
         elif base == '' and s == '_update': o = app_update()
         elif base == '' and s == '_check': o = update_blc(d) + update_ubl(environ, d)
+        elif base == '' and s == '_rates': o = rates('/%s/%s_%s/rates' % (__app__, __app__, port))
     start_response('200 OK', [('Content-type', mime)] + ncok)
     return [o if mime in ('application/pdf', 'image/png', 'image/jpg') else o.encode('utf8')] 
 
