@@ -503,7 +503,7 @@ def footer():
 def app_index(d, env):
     o = header() + favicon() + style_html() + title()
     o += '<p><b class="green">Si vous désirez tester gratuitement l\'application <i>iOS</i>, envoyez nous votre adresse e-mail d\'<i>AppleID</i> et installez <a href="https://www.testflightapp.com">TestFlight</a> sur votre iPhone sous <i>iOS8</i></b></p>'
-    o += '<p>%s</p>' % rates('/%s/%s_%s/rates' % (__app__, __app__, env['SERVER_PORT']), True)
+    o += '<p><a href="./?users">Users</a> | <a href="./?transactions">Transactions</a> | <a href="./?rates">%s</a></p>' % rates('/%s/%s_%s/rates' % (__app__, __app__, env['SERVER_PORT']), True)
     o += '<p><i>Consultez un compte</i><form method="post"><input class="txt" title="code \'MOI\' de 18 caractères alphanumérique affiché en haut du téléphone" pattern="\S+" required="yes" name="cm" placeholder="...€f-ID"/><input title="@nom-public-Twitter ou alias-privé-local" class="txt" pattern=".+" required="yes" name="alias" placeholder="@... (Twitter)"/><input type="submit" value="ok"/></form></p>\n'
     if 'HTTP_COOKIE' in env:
         for x in env['HTTP_COOKIE'].split(';'):
@@ -851,12 +851,13 @@ def forex(db, disp=False):
         cu += datetime.timedelta(days=1)
     dr.close()
 
-def rates(db, dbl=True):
-    d, c = dbm.open(db, 'c'), datetime.datetime(2014, 1, 1)
+def rates(db, dbl=True, all=False):
+    d, c, o = dbm.open(db, 'c'), datetime.datetime(2014, 1, 1), ''
     x = bytes(('%s' % c)[:10], 'ascii')
     A = eval(d[x].decode('ascii'))
     A['⊔'] = .1*A['EUR']
     while x in d:
+        if all: o += '%s: 1⊔=%s€f\n' % (x.decode('ascii'), A['⊔']/A['EUR'])
         c += datetime.timedelta(days=1)
         x = bytes(('%s' % c)[:10], 'ascii')
         if x in d:
@@ -864,7 +865,7 @@ def rates(db, dbl=True):
             B['⊔'] = delta2(d, A, B) if dbl else delta1(d, A, B) 
             A = B
     d.close()
-    return '%s 1⊔=%s€ 1⊔=%s$' % (x.decode('ascii'), B['⊔']/B['EUR'], B['⊔'])
+    return o + '%s: 1⊔=%s€f' % (x.decode('ascii'), B['⊔']/B['EUR'])
     
 def delta2(d, A, B):
     "square distance"
@@ -957,6 +958,7 @@ def application(environ, start_response):
         elif base == '' and s == '_check': o = update_blc(d) + update_ubl(environ, d)
         elif base == '' and s == 'rate1': o = rates('/%s/%s_%s/rates' % (__app__, __app__, port), False)
         elif base == '' and s == 'rate2': o = rates('/%s/%s_%s/rates' % (__app__, __app__, port), True)
+        elif base == '' and s == 'rates': o = rates('/%s/%s_%s/rates' % (__app__, __app__, port), True, True)
     start_response('200 OK', [('Content-type', mime)] + ncok)
     return [o if mime in ('application/pdf', 'image/png', 'image/jpg') else o.encode('utf8')] 
 
