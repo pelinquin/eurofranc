@@ -833,7 +833,7 @@ def readig(env, rk, base):
         return '%d %d' % (a, s)
     return ''
 
-def forex(db):
+def forex(db, disp=False):
     now, h = '%s' % datetime.datetime.now(), {}
     dr = dbm.open(db, 'c')
     cu, co = datetime.datetime(2014, 1, 1), http.client.HTTPConnection('currencies.apps.grandtrunk.net')
@@ -841,7 +841,10 @@ def forex(db):
         cc = '%s' % cu
         if bytes(cc[:10], 'ascii') not in dr:
             for c in filter(lambda i:i!='USD', __curset__):
-                sys.stderr.write('grandtrunk request for %s %s\n' % (c, cc[:10]))
+                if disp:
+                    print('grandtrunk request for %s %s' % (c, cc[:10]))                    
+                else:
+                    sys.stderr.write('grandtrunk request for %s %s\n' % (c, cc[:10]))
                 co.request('GET', '/getrate/%s/%s/USD' % (cc[:10], c))
                 h[c] = float(co.getresponse().read())
             dr[cc[:10]] = '%s' % h
@@ -958,7 +961,7 @@ def application(environ, start_response):
     return [o if mime in ('application/pdf', 'image/png', 'image/jpg') else o.encode('utf8')] 
 
 if __name__ == '__main__':
-    forex('/%s/%s_80/rates' % (__app__, __app__))
+    forex('rates', True)
     sys.exit()
     dpub = dbm.open('/ef/ef_80/pub')
     for src in dpub.keys(): print (btob64(src))
