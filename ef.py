@@ -958,6 +958,8 @@ def application(environ, start_response):
     return [o if mime in ('application/pdf', 'image/png', 'image/jpg') else o.encode('utf8')] 
 
 if __name__ == '__main__':
+    forex('/%s/%s_80/rates' % (__app__, __app__))
+    sys.exit()
     dpub = dbm.open('/ef/ef_80/pub')
     for src in dpub.keys(): print (btob64(src))
     dpub.close()
