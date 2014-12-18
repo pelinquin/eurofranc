@@ -503,6 +503,7 @@ def footer():
 def app_index(d, env):
     o = header() + favicon() + style_html() + title()
     o += '<p><b class="green">Si vous désirez tester gratuitement l\'application <i>iOS</i>, envoyez nous votre adresse e-mail d\'<i>AppleID</i> et installez <a href="https://www.testflightapp.com">TestFlight</a> sur votre iPhone sous <i>iOS8</i></b></p>'
+    o += '<p>%s</p>' % rates('/%s/%s_%s/rates' % (__app__, __app__, env['SERVER_PORT']), True)
     o += '<p><i>Consultez un compte</i><form method="post"><input class="txt" title="code \'MOI\' de 18 caractères alphanumérique affiché en haut du téléphone" pattern="\S+" required="yes" name="cm" placeholder="...€f-ID"/><input title="@nom-public-Twitter ou alias-privé-local" class="txt" pattern=".+" required="yes" name="alias" placeholder="@... (Twitter)"/><input type="submit" value="ok"/></form></p>\n'
     if 'HTTP_COOKIE' in env:
         for x in env['HTTP_COOKIE'].split(';'):
@@ -847,7 +848,7 @@ def forex(db):
         cu += datetime.timedelta(days=1)
     dr.close()
 
-def rates(db):
+def rates(db, dbl=True):
     d, c = dbm.open(db, 'c'), datetime.datetime(2014, 1, 1)
     x = bytes(('%s' % c)[:10], 'ascii')
     A = eval(d[x].decode('ascii'))
@@ -857,16 +858,23 @@ def rates(db):
         x = bytes(('%s' % c)[:10], 'ascii')
         if x in d:
             B = eval(d[x].decode('ascii'))
-            B['⊔'] = A['⊔']*coef(d, A, B)
+            B['⊔'] = delta2(d, A, B) if dbl else delta1(d, A, B) 
             A = B
     d.close()
     return '%s 1⊔=%s€ 1⊔=%s$' % (x.decode('ascii'), B['⊔']/B['EUR'], B['⊔'])
     
-def coef(d, A, B):
+def delta2(d, A, B):
+    "square distance"
     n, m = __curset__['USD'], __curset__['USD'] 
     for i in [x for x in sorted(__curset__) if x!='USD']:
         n, m = n+A[i]/B[i]*__curset__[i], m+A[i]*A[i]/B[i]/B[i]*__curset__[i]
-    return n/m
+    return n/m*A['⊔']
+
+def delta1(d, A, B):
+    "linear distance"
+    A['USD'] = B['USD'] = 1
+    d = {B[i]/A[i]*A['⊔']: sum([abs(1-B[i]/B[j]*A[j]/A[i])*__curset__[j] for j in __curset__ if j!=i]) for i in __curset__}
+    return min(d, key=d.get)
 
 def application(environ, start_response):
     "wsgi server app"
@@ -944,7 +952,8 @@ def application(environ, start_response):
         elif base == '' and s == '_isactive': o = 'ok'
         elif base == '' and s == '_update': o = app_update()
         elif base == '' and s == '_check': o = update_blc(d) + update_ubl(environ, d)
-        elif base == '' and s == '_rates': o = rates('/%s/%s_%s/rates' % (__app__, __app__, port))
+        elif base == '' and s == 'rate1': o = rates('/%s/%s_%s/rates' % (__app__, __app__, port), False)
+        elif base == '' and s == 'rate2': o = rates('/%s/%s_%s/rates' % (__app__, __app__, port), True)
     start_response('200 OK', [('Content-type', mime)] + ncok)
     return [o if mime in ('application/pdf', 'image/png', 'image/jpg') else o.encode('utf8')] 
 
