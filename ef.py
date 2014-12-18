@@ -882,7 +882,7 @@ def application(environ, start_response):
     (raw, way) = (environ['wsgi.input'].read(), 'post') if environ['REQUEST_METHOD'].lower() == 'post' else (urllib.parse.unquote(environ['QUERY_STRING']), 'get')
     base, ncok = environ['PATH_INFO'][1:], []
     d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt', 'igs'), port)
-    forex('/%s/%s_%s/rates' % (__app__, __app__, port))
+    #forex('/%s/%s_%s/rates' % (__app__, __app__, port))
     if   len(raw) ==   5 and way == 'post': o = req_5  (raw)
     elif len(raw) ==   9 and way == 'post': o = req_9  (d, raw)
     #elif len(raw) ==  12 and way == 'post': o = req_12 (d, raw)
