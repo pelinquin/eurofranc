@@ -280,11 +280,12 @@ def update_ubl_url(env, d, url):
     if os.path.isfile(figs):
         ig, rat, sumr = open(figs, 'rb').read(), {}, 0
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
-        b = (len(ig)-28-142*a-s)//167
+        b, pu, pi = (len(ig)-28-142*a-s)//167, b2i(ig[14:18]), b2i(ig[18:26])
         if b>0:
-            p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), b)
+            p, k = cupprice(pu, pi, b, b2i(ig[-8:-4]) if b>0 else pu, b2i(ig[-4:]) if b>0 else 1)
             ll = {ig[28+10*i:37+10*i]:True for i in range(a) }
             ll.update({ig[32+142*a+s+167*j:41+142*a+s+167*j]:True for j in range(b)})
+    #
     dblc = ropen(d['blc'])
     for cm in ll: dblc[b'@' + cm] = ubl(env, url, cm)
     dblc.close()
@@ -341,9 +342,10 @@ def ubl(env, url, cm):
     if os.path.isfile(figs):
         ig, rat, sumr = open(figs, 'rb').read(), {}, 0
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
-        b = (len(ig)-28-142*a-s)//167
+        b, pu, pi = (len(ig)-28-142*a-s)//167, b2i(ig[14:18]), b2i(ig[18:26])
         if b == 0: return 0
-        p, k  = cupprice(b2i(ig[14:18]), b2i(ig[18:26]), b)
+        #p, k  = cupprice_old(b2i(ig[14:18]), b2i(ig[18:26]), b)
+        p, k = cupprice(pu, pi, b+1, b2i(ig[-8:-4]) if b>0 else pu, b2i(ig[-4:]) if b>0 else 1)
         for i in range(a):
             ida = ig[28+10*i:37+10*i]
             rat[ida] = b2i(ig[37+10*i:38+10*i])
@@ -385,7 +387,7 @@ def curpkn(fig):
         ig = open(fig, 'rb').read()
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
         b, pu, pi = (len(ig)-28-142*a-s)//167, b2i(ig[14:18]), b2i(ig[18:26])
-        p, k = cupprice_new(pu, pi, b+1, b2i(ig[-8:-4]) if b>0 else pu, b2i(ig[-4:]) if b>0 else 1)
+        p, k = cupprice(pu, pi, b+1, b2i(ig[-8:-4]) if b>0 else pu, b2i(ig[-4:]) if b>0 else 1)
         return (p, k, b+1)
     return 0, 0, 0
 
@@ -617,7 +619,7 @@ def get_twitter_img(port, user, cm):
 def is_future(da):
     return int(time.mktime(time.gmtime())) < b2i(da)*60
 
-def cupprice(pu, pi, j, xi=2):
+def cupprice_old(pu, pi, j, xi=2):
     "⊔ price function"
     ko, po = 1, pu
     for i in range(1, j+1):
@@ -630,7 +632,7 @@ def cupprice(pu, pi, j, xi=2):
                 break
     return p, k
 
-def cupprice_new(pu, pi, i, ko, po):
+def cupprice(pu, pi, i, ko, po):
     "_"
     x = pu + (i-1)*pu//2
     t = x if x<=pi else pi if pu>2 else pu if i<pu else i if i<pi else pi
@@ -852,12 +854,13 @@ def forex(db, disp=False):
     dr.close()
 
 def rates(db, dbl=True, all=False):
-    d, c, o = dbm.open(db, 'c'), datetime.datetime(2014, 1, 1), ''
+    "with 5% taxes"
+    d, c, o = dbm.open(db, 'c'), datetime.datetime(2014, 1, 1), 'Date            | 5% selling-tax | nominal-rate | 5% buying-tax\n'
     x = bytes(('%s' % c)[:10], 'ascii')
     A = eval(d[x].decode('ascii'))
     A['⊔'] = .1*A['EUR']
     while x in d:
-        if all: o += '%s: 1⊔=%s€f\n' % (x.decode('ascii'), A['⊔']/A['EUR'])
+        if all: o += '%s: 1⊔ = [%12.10f > %12.10f < %12.10f] €f\n' % (x.decode('ascii'), .95*A['⊔']/A['EUR'], A['⊔']/A['EUR'], 1.05*A['⊔']/A['EUR'])
         c += datetime.timedelta(days=1)
         x = bytes(('%s' % c)[:10], 'ascii')
         if x in d:
