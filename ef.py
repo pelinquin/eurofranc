@@ -895,6 +895,7 @@ def forex(db, disp=False):
                     print('grandtrunk request for %s %s' % (c, cc[:10]))                    
                 else:
                     sys.stderr.write('grandtrunk request for %s %s\n' % (c, cc[:10]))
+                #print('GET', '/getrate/%s/%s/USD' % (cc[:10], c))
                 co.request('GET', '/getrate/%s/%s/USD' % (cc[:10], c))
                 h[c] = float(co.getresponse().read())
             dr[cc[:10]] = '%s' % h
@@ -903,7 +904,7 @@ def forex(db, disp=False):
 
 def rates(db, dbl=True, all=False):
     "with 5% taxes"
-    d, c, o = dbm.open(db, 'c'), datetime.datetime(2014, 1, 1), 'Date            | 5% selling-tax | nominal-rate | 5% buying-tax\n'
+    d, c, o = dbm.open(db, 'c'), datetime.datetime(2014, 1, 1), 'Date            | 5% selling-tax | nominal-rate | 5% buying-tax\n' if all else ''
     x = bytes(('%s' % c)[:10], 'ascii')
     A = eval(d[x].decode('ascii'))
     A['⊔'] = .1*A['EUR']
@@ -937,7 +938,7 @@ def application(environ, start_response):
     (raw, way) = (environ['wsgi.input'].read(), 'post') if environ['REQUEST_METHOD'].lower() == 'post' else (urllib.parse.unquote(environ['QUERY_STRING']), 'get')
     base, ncok = environ['PATH_INFO'][1:], []
     d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt', 'igs'), port)
-    #forex('/%s/%s_%s/rates' % (__app__, __app__, port))
+    forex('/%s/%s_%s/rates' % (__app__, __app__, port)) # warning if not updated too frequently
     if   len(raw) ==   5 and way == 'post': o = req_5  (raw)
     elif len(raw) ==   9 and way == 'post': o = req_9  (d, raw)
     #elif len(raw) ==  12 and way == 'post': o = req_12 (d, raw)
