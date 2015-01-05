@@ -274,7 +274,54 @@ def update_ubl(env, d):
     dblc.close()
     return o
 
-def update_ubl_url(env, d, url):
+
+
+def update_new(pu, pi, i, po, ko):
+    "_"
+    x = pu + (i-1)*pu//2
+    t = x if x<=pi else pi if pu>2 else pu if i<pu else i if i<pi else pi
+    for p in range(t//i-2, t//i+2):
+        k = t-i*(p-1)
+        if k>0 and k<=i and (p!=po or k<=ko or t==pi or p<=1 or k>=i):
+            if i == 1: delta = k*p + (i-k)*(p-1)
+            else: delta = k*p + (i-k)*(p-1) - ko*po - (i-1-ko)*(po-1)
+            for j in range(1, i):
+                refund = (po if j<=ko else po-1) - (p if j<=k else p-1)
+                if refund != 0: print ('refund(%d):' % j, refund)
+            prc = p if k==i else p-1
+            if prc != 0: print ('price(%d):' % i, -prc)
+            if delta != 0: print ('income(a):', delta)
+            return p, k
+
+def update_cup(figs):
+    "list all cm involved in url and update dblc for each cm" 
+    ig, rat, sumr = open(figs, 'rb').read(), {}, 0
+    s, a = b2i(ig[6:14]), b2i(ig[26:28])
+    b, pu, pi = (len(ig)-28-142*a-s)//167, b2i(ig[14:18]), b2i(ig[18:26])
+    po, ko = b2i(ig[-8:-4]) if b>0 else pu, b2i(ig[-4:]) if b>0 else 1
+    p, k = cupprice(pu, pi, b+1, po, ko)
+    n = b+1
+    ll = {}
+    if n == 1: delta = k*p + (n-k)*(p-1)
+    else: delta = k*p + (n-k)*(p-1) - ko*po - (n-1-ko)*(po-1)
+    for i in range(a):
+        ll[ig[28+10*i:37+10*i]] = delta
+    for i in range(1, n):
+        refund = (po if j<=ko else po-1) - (p if j<=k else p-1)
+        #if refund != 0: 
+        #    print ('refund(%d):' % j, refund)
+        #ll[ig[32+142*a+s+167*j:41+142*a+s+167*j] = -1
+    prc = p if k==n else p-1
+    #if prc != 0: 
+    #    ll[ig[32+142*a+s+167*n:41+142*a+s+167*n] = -prc
+    #
+    dblc = ropen(d['blc'])
+    for cm in ll: dblc[b'@' + cm] = ll[cm]
+    dblc.close()
+    return ll
+
+
+def update_ubl_url_old(env, d, url):
     "list all cm involved in url and update dblc for each cm" 
     figs, ll = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), {}  
     if os.path.isfile(figs):
@@ -282,7 +329,7 @@ def update_ubl_url(env, d, url):
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
         b, pu, pi = (len(ig)-28-142*a-s)//167, b2i(ig[14:18]), b2i(ig[18:26])
         if b>0:
-            p, k = cupprice(pu, pi, b, b2i(ig[-8:-4]) if b>0 else pu, b2i(ig[-4:]) if b>0 else 1)
+            #p, k = cupprice(pu, pi, b, b2i(ig[-8:-4]) if b>0 else pu, b2i(ig[-4:]) if b>0 else 1)
             ll = {ig[28+10*i:37+10*i]:True for i in range(a) }
             ll.update({ig[32+142*a+s+167*j:41+142*a+s+167*j]:True for j in range(b)})
     #
@@ -812,7 +859,8 @@ def buyig(env, d, r, base):
                 else:
                     dtrx[tg] = igh
                 dtrx.close()
-                update_ubl_url(env, d, url)
+                #update_ubl_url(env, d, url)
+                update_cup(figf, p, k, n)
                 sk = hashlib.sha1(os.urandom(32)).digest()[:12]
                 open(figf, 'ab').write(r + sk + i2b(p, 4) + i2b(k, 4))
                 o = btob64(src + i2b(b+1, 6) + sk)
