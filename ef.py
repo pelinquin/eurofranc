@@ -887,6 +887,7 @@ def forex(db, disp=False):
     now, h = '%s' % datetime.datetime.now(), {}
     dr = dbm.open(db, 'c')
     cu, co = datetime.datetime(2014, 1, 1), http.client.HTTPConnection('currencies.apps.grandtrunk.net')
+    del dr['2014-01-01']
     while cu < datetime.datetime.now():
         cc = '%s' % cu
         if bytes(cc[:10], 'ascii') not in dr:
@@ -918,6 +919,20 @@ def rates(db, dbl=True, all=False):
             A = B
     d.close()
     return o + '%s: 1⊔=%s€f' % (x.decode('ascii'), B['⊔']/B['EUR'])
+
+def rates0(db):
+    d, c, o = dbm.open(db, 'c'), datetime.datetime(2014, 1, 1), '' 
+    x = bytes(('%s' % c)[:10], 'ascii')
+    A = eval(d[x].decode('ascii'))
+    while x in d:
+        o += '%s: 1€ = %12.10f $\n' % (x.decode('ascii'), A['EUR'])
+        c += datetime.timedelta(days=1)
+        x = bytes(('%s' % c)[:10], 'ascii')
+        if x in d:
+            B = eval(d[x].decode('ascii'))
+            A = B
+    d.close()
+    return o
     
 def delta2(d, A, B):
     "square distance"
@@ -1011,6 +1026,7 @@ def application(environ, start_response):
         elif base == '' and s == 'rate1': o = rates('/%s/%s_%s/rates' % (__app__, __app__, port), False)
         elif base == '' and s == 'rate2': o = rates('/%s/%s_%s/rates' % (__app__, __app__, port), True)
         elif base == '' and s == 'rates': o = rates('/%s/%s_%s/rates' % (__app__, __app__, port), True, True)
+        elif base == '' and s == 'rates0': o = rates0('/%s/%s_%s/rates' % (__app__, __app__, port))
     start_response('200 OK', [('Content-type', mime)] + ncok)
     return [o if mime in ('application/pdf', 'image/png', 'image/jpg') else o.encode('utf8')] 
 
