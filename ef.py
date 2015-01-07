@@ -844,11 +844,33 @@ def readig(env, rk, base):
         return '%d %d' % (a, s)
     return ''
 
+
+def readforex(db, disp=False):
+    dr = dbm.open(db, 'r')
+    for i in dr.keys():
+        l = eval(dr[i])
+        print (i.decode('ascii'), l['EUR'])
+    dr.close()
+
+def testforex():
+    co, cu = http.client.HTTPConnection('currencies.apps.grandtrunk.net'), datetime.datetime.now()
+    cc = '%s' % cu
+    co.request('GET', '/getrate/%s/EUR/USD' % (cc[:10]))
+    print (cc[:16], float(co.getresponse().read()))
+    co.close()
+    cu = datetime.datetime(2015, 1, 1)
+    while cu < datetime.datetime.now() - datetime.timedelta(days=1):
+        cc = '%s' % cu
+        print(cc[:10])
+        cu += datetime.timedelta(days=1)
+        print ('cu ', '%s', cu)
+
+
 def forex(db, disp=False):
     now, h = '%s' % datetime.datetime.now(), {}
     dr = dbm.open(db, 'c')
     cu, co = datetime.datetime(2014, 1, 1), http.client.HTTPConnection('currencies.apps.grandtrunk.net')
-    del dr['2014-01-01']
+    del dr['2015-01-07']
     while cu < datetime.datetime.now():
         cc = '%s' % cu
         if bytes(cc[:10], 'ascii') not in dr:
@@ -862,6 +884,7 @@ def forex(db, disp=False):
                 h[c] = float(co.getresponse().read())
             dr[cc[:10]] = '%s' % h
         cu += datetime.timedelta(days=1)
+    co.close()
     dr.close()
 
 def rates(db, dbl=True, all=False):
@@ -992,7 +1015,9 @@ def application(environ, start_response):
     return [o if mime in ('application/pdf', 'image/png', 'image/jpg') else o.encode('utf8')] 
 
 if __name__ == '__main__':
-    forex('rates', True)
+    #forex('rates3', True)
+    #readforex('rates3')
+    testforex()
     sys.exit()
     dpub = dbm.open('/ef/ef_80/pub')
     for src in dpub.keys(): print (btob64(src))
