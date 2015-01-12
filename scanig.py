@@ -100,7 +100,9 @@ def scan():
     p, k = b2i(ig[-8:-4]) if b>0 else p1, b2i(ig[-4:]) if b>0 else 1
     income = k*p + (b-k)*(p-1) if b>0 else 0
     np, nk = price(p1, pf, b+1, p, k)
+    #print (b+1, np, nk)
     nprc = np if nk == b+1 else np-1
+    #
     sumr, tab = 0, []
     print ('%s v%s size:%d/%d nb-authors:%d nb-buyers:%d init-price:%d limit-income:%d income:%d next-price:%d' % (ig[:3].decode('utf8'), b2i(ig[3:4]), t, s, a, b, p1, pf, income, nprc))
     for i in range(a):
@@ -120,7 +122,7 @@ def scan():
     print ('Balances:', {btob64(x):ah[x] for x in ah})
 
 if __name__ == '__main__':
-    if len(sys.argv == 2):
+    if len(sys.argv) == 2:
         if sys.argv[1] == 'gen': 
             generate0()
         else:

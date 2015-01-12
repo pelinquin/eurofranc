@@ -274,28 +274,21 @@ def update_ubl(env, d):
     dblc.close()
     return o
 
-def update_cup(d, figs):
+def update_cup(d, figs, po, ko, p, k):
     "update cup balances after a purchase"
     ig, l = open(figs, 'rb').read(), {}
     s, a = b2i(ig[6:14]), b2i(ig[26:28])
     assert a == 1 # temporary
     i, pu, pi = (len(ig)-28-142*a-s)//167, b2i(ig[14:18]), b2i(ig[18:26])
-    po, ko = b2i(ig[-8:-4]) if i>0 else pu, b2i(ig[-4:]) if i>0 else 1
-    x = pu + (i-1)*pu//2
-    t = x if x<=pi else pi if pu>2 else pu if i<pu else i if i<pi else pi
-    for p in range(t//i-2, t//i+2):
-        k = t-i*(p-1)
-        if k>0 and k<=i and (p!=po or k<=ko or t==pi or p<=1 or k>=i):
-            if i == 1: icm = k*p + (i-k)*(p-1)
-            else: icm = k*p + (i-k)*(p-1) - ko*po - (i-1-ko)*(po-1)
-            iga = ig[28:37] # if a == 1 !!!!!!
-            if icm != 0: l[iga] = icm
-            for j in range(1, i):
-                rfd, igb = (po if j<=ko else po-1) - (p if j<=k else p-1), ig[32+142*a+s+167*j:41+142*a+s+167*j]
-                if rfd != 0: l[igb] = l[igb] + rfd if igb in l else rfd
-            prc, igp = p if k==i else p-1, ig[32+142*a+s+167*i:41+142*a+s+167*i]
-            if prc != 0: l[igp] = l[igp] - prc if igp in l else -prc
-            break
+    if i == 1: icm = k*p + (i-k)*(p-1)
+    else: icm = k*p + (i-k)*(p-1) - ko*po - (i-1-ko)*(po-1)
+    iga = ig[28:37] # if a == 1 !!!!!!
+    if icm != 0: l[iga] = icm
+    for j in range(1, i):
+        rfd, igb = (po if j<=ko else po-1) - (p if j<=k else p-1), ig[142*a+s+167*j-135:142*a+s+167*j-126]
+        if rfd != 0: l[igb] = l[igb] + rfd if igb in l else rfd
+    prc, igp = p if k==i else p-1, ig[142*a+s+167*i-135:142*a+s+167*i-126]
+    if prc != 0: l[igp] = l[igp] - prc if igp in l else -prc
     dblc = wopen(d['blc'])
     for c in l: dblc[b'@'+c] = '%d' % ((int(dblc[b'@'+c])+l[c]) if b'@'+c in dblc else l[c]) 
     dblc.close()
@@ -347,19 +340,19 @@ def nbig(d, cm):
 
 def ubl(env, url, cm):
     "cup balance"
-    figs, bl = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), 0          
+    figs, bl = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), 0      
     if os.path.isfile(figs):
         ig, rat, sumr = open(figs, 'rb').read(), {}, 0
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
         b, pu, pi = (len(ig)-28-142*a-s)//167, b2i(ig[14:18]), b2i(ig[18:26])
         if b == 0: return 0
-        #p, k  = cupprice_old(b2i(ig[14:18]), b2i(ig[18:26]), b)
-        p, k = cupprice(pu, pi, b+1, b2i(ig[-8:-4]) if b>0 else pu, b2i(ig[-4:]) if b>0 else 1)
+        p, k =  b2i(ig[-8:-4]), b2i(ig[-4:])
         for i in range(a):
             ida = ig[28+10*i:37+10*i]
             rat[ida] = b2i(ig[37+10*i:38+10*i])
             sumr += rat[ida]
-        bl = sum([int(k*p+(b-k)*(p-1)/rat[x]*sumr) for x in filter(lambda y:y == cm, rat)]) + sum([-p if i<k else 1-p for i in filter(lambda j:ig[32+142*a+s+167*j:41+142*a+s+167*j] == cm, range(b))])
+        bl = sum([int(k*p+(b-k)*(p-1)/rat[x]*sumr) for x in filter(lambda y:y == cm, rat)])
+        bl += sum([-p if i<k else 1-p for i in filter(lambda j:ig[32+142*a+s+167*j:41+142*a+s+167*j] == cm, range(b))])
     return bl
 
 def posubl(env, url, cm):
@@ -628,19 +621,6 @@ def get_twitter_img(port, user, cm):
 def is_future(da):
     return int(time.mktime(time.gmtime())) < b2i(da)*60
 
-def cupprice_old(pu, pi, j, xi=2):
-    "⊔ price function"
-    ko, po = 1, pu
-    for i in range(1, j+1):
-        x = pu + (i-1)*pu//xi
-        t = x if x<=pi else pi if xi<pu else pu if i<pu else i if i<pi else pi
-        for p in range(t//i-2, t//i+2):
-            k = t-i*(p-1)
-            if k>0 and k<=i and (p!=po or k<=ko or t==pi or p<=1 or k>=i): 
-                po, ko = p, k
-                break
-    return p, k
-
 def cupprice(pu, pi, i, ko, po):
     "_"
     x = pu + (i-1)*pu//2
@@ -811,6 +791,7 @@ def buyig(env, d, r, base):
             if c[:147] == r: o, vu = btob64(c[4:13] + i2b(i, 6) + c[-20:-8]), True
         [p, k, n]  = curpkn(figf)
         if n != b+1: return 'Error position'
+        po, ko = b2i(ig[-8:-4]) if b>0 else b2i(ig[14:18]), b2i(ig[-4:]) if b>0 else 1
         prc = p if k==n else p-1 
         if not vu and blc(d, src, True) + debt(d, src) + 100 > prc:
             if q.verify(sig, msg + i2b(p, 4) + i2b(k, 4) + i2b(n, 4) + base.encode('utf8')):
@@ -823,12 +804,12 @@ def buyig(env, d, r, base):
                 dtrx.close()
                 sk = hashlib.sha1(os.urandom(32)).digest()[:12]
                 open(figf, 'ab').write(r + sk + i2b(p, 4) + i2b(k, 4))
-                update_cup(d, figf)
+                update_cup(d, figf, po, ko, p, k)
                 o = btob64(src + i2b(b+1, 6) + sk)
             else:
                 o += ' signature'
         else:
-            o += ' again'
+            o = 'old purchase'
     return o
 
 def readig(env, rk, base):
@@ -870,8 +851,9 @@ def forex(db, disp=False):
     now, h = '%s' % datetime.datetime.now(), {}
     dr = dbm.open(db, 'c')
     cu, co = datetime.datetime(2014, 1, 1), http.client.HTTPConnection('currencies.apps.grandtrunk.net')
-    del dr['2015-01-07']
-    while cu < datetime.datetime.now():
+    #del dr['2015-01-13']
+    #del dr['2015-01-12']
+    while cu < datetime.datetime.now() - datetime.timedelta(days=1):
         cc = '%s' % cu
         if bytes(cc[:10], 'ascii') not in dr:
             for c in filter(lambda i:i!='USD', __curset__):
@@ -1014,11 +996,38 @@ def application(environ, start_response):
     start_response('200 OK', [('Content-type', mime)] + ncok)
     return [o if mime in ('application/pdf', 'image/png', 'image/jpg') else o.encode('utf8')] 
 
-if __name__ == '__main__':
-    #forex('rates3', True)
-    #readforex('rates3')
-    testforex()
-    sys.exit()
+
+def update_cup1(figs, po, ko, p, k):
+    "update cup balances after a purchase"
+    ig, l = open(figs, 'rb').read(), {}
+    s, a = b2i(ig[6:14]), b2i(ig[26:28])
+    assert a == 1 # temporary
+    i, pu, pi = (len(ig)-28-142*a-s)//167, b2i(ig[14:18]), b2i(ig[18:26])
+    assert i > 0
+    print (i)
+    if i == 1: icm = k*p + (i-k)*(p-1)
+    else: icm = k*p + (i-k)*(p-1) - ko*po - (i-1-ko)*(po-1)
+    iga = ig[28:37] # if a == 1 !!!!!!
+    if icm != 0: l[iga] = icm
+    for j in range(1, i):
+        rfd, igb = (po if j<=ko else po-1) - (p if j<=k else p-1), ig[142*a+s+167*j-135:142*a+s+167*j-126]
+        if rfd != 0: l[igb] = l[igb] + rfd if igb in l else rfd
+    prc, igp = p if k==i else p-1, ig[142*a+s+167*i-135:142*a+s+167*i-126]
+    if prc != 0: l[igp] = l[igp] - prc if igp in l else -prc
+    print (l)
+
+def ubl1(cm):
+    figs, bl = '/ef/ef_80/igf/uppr.igf', 0      
+    if os.path.isfile(figs):
+        ig, rat, sumr = open(figs, 'rb').read(), {}, 0
+        s, a = b2i(ig[6:14]), b2i(ig[26:28])
+        b, pu, pi = (len(ig)-28-142*a-s)//167, b2i(ig[14:18]), b2i(ig[18:26])
+        p, k =  b2i(ig[-8:-4]), b2i(ig[-4:])
+        print (a, b, p, k)
+        bl = sum([-p if i<k else 1-p for i in filter(lambda j:ig[32+142*a+s+167*j:41+142*a+s+167*j] == cm, range(b))])
+    print (bl)
+
+def stat():
     dpub = dbm.open('/ef/ef_80/pub')
     for src in dpub.keys(): print (btob64(src))
     dpub.close()
@@ -1055,5 +1064,14 @@ if __name__ == '__main__':
     dblc = dbm.open('/ef/ef_80/blc')
     for i in filter(lambda x:len(x) == 10, dblc.keys()): print (btob64(i[1:]), dblc[i])
     dblc.close()
+
+if __name__ == '__main__':
+    stat()
+    #ubl1(b64tob(b'6qfGc2EhJNqW'))
+    #update_cup1('/ef/ef_80/igf/uppr.igf', 10, 1, 10, 1)
+    #forex('rates3', True)
+    #readforex('rates3')
+    #testforex()
+    #sys.exit()
 
 # End ⊔net!
