@@ -546,7 +546,7 @@ def app_users(d, env):
     return o + '</table>' + footer()
 
 def app_trx(env, d):
-    o, un, uc = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', '&thinsp;⊔'
+    o, un, uc, i = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', '&thinsp;⊔', 0
     dtrx = ropen(d['trx'])
     tab = [z for z in filter(lambda x:(len(x) == 13) or (len(x) == 10), dtrx.keys())]
     o += '<table><tr><td>%s</td><td><a href="./?users" class="num">users</a></td><td class="num">%d transactions</td><td><a href="./?igs" class="num">intangible-goods</a></td></tr></table><table>' % (title(), len(tab)) 
@@ -943,7 +943,7 @@ def application(environ, start_response):
     mime, o, now, fname, port = 'text/plain; charset=utf8', 'error', '%s' % datetime.datetime.now(), 'default.txt', environ['SERVER_PORT']
     (raw, way) = (environ['wsgi.input'].read(), 'post') if environ['REQUEST_METHOD'].lower() == 'post' else (urllib.parse.unquote(environ['QUERY_STRING']), 'get')
     base, ncok = environ['PATH_INFO'][1:], []
-    d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt', 'igs'), port)
+    d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt', 'igs', 'own'), port)
     forex('/%s/%s_%s/rates' % (__app__, __app__, port)) # warning if not updated too frequently
     if   len(raw) ==   5 and way == 'post': o = req_5  (raw)
     elif len(raw) ==   9 and way == 'post': o = req_9  (d, raw)
@@ -1091,8 +1091,15 @@ def stat():
     for i in filter(lambda x:len(x) == 10, dblc.keys()): print (btob64(i[1:]), dblc[i])
     dblc.close()
 
+def set_owner():
+    owners = [b'QZs_QO6iFHok',]
+    dwn = wopen('/ef/ef_80/own')
+    for x in owners: dwn[b64tob(x)] = datencode()
+    dwn.close()
+
 if __name__ == '__main__':
-    stat()
+    set_owner()
+    #stat()
     #ubl1(b64tob(b'6qfGc2EhJNqW'))
     #update_cup1('/ef/ef_80/igf/uppr.igf', 10, 1, 10, 1)
     #forex('rates3', True)
