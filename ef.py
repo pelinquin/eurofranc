@@ -393,6 +393,17 @@ def curpkn(fig):
         return (p, k, b+1)
     return 0, 0, 0
 
+def curinfo(fig):
+    "current p/k/n"
+    if os.path.isfile(fig): 
+        ig = open(fig, 'rb').read()
+        s, a = b2i(ig[6:14]), b2i(ig[26:28])
+        b, pu, pi = (len(ig)-28-142*a-s)//167, b2i(ig[14:18]), b2i(ig[18:26])
+        p, k = cupprice(pu, pi, b+1, b2i(ig[-8:-4]) if b>0 else pu, b2i(ig[-4:]) if b>0 else 1)
+        prc = p if k==b+1 else p-1 
+        return (pu, pi, a, b, prc)
+    return 0, 0, 0, 0, 0
+
 def igregister(env, d, url):
     "register new ig"
     figf, lurl = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], url), '%s/%s' % (env['SERVER_NAME'], url)
@@ -507,7 +518,7 @@ def footer():
 def app_index(d, env):
     o = header() + favicon() + style_html() + title()
     o += '<p><b class="green">Si vous désirez tester gratuitement l\'application <i>iOS</i>, envoyez nous votre adresse e-mail d\'<i>AppleID</i> et installez <a href="https://www.testflightapp.com">TestFlight</a> sur votre iPhone sous <i>iOS8</i></b></p>'
-    o += '<p><a href="./?users">Users</a> | <a href="./?transactions">Transactions</a> | <a href="./?rates">%s</a></p>' % rates('/%s/%s_%s/rates' % (__app__, __app__, env['SERVER_PORT']), True)
+    o += '<p><a href="./?users">Users</a> | <a href="./?transactions">Transactions</a> | <a href="./?igs">Intangible-goods</a> | <a href="./?rates">%s</a></p>' % rates('/%s/%s_%s/rates' % (__app__, __app__, env['SERVER_PORT']), True)
     o += '<p><i>Consultez un compte</i><form method="post"><input class="txt" title="code \'MOI\' de 18 caractères alphanumérique affiché en haut du téléphone" pattern="\S+" required="yes" name="cm" placeholder="...€f-ID"/><input title="@nom-public-Twitter ou alias-privé-local" class="txt" pattern=".+" required="yes" name="alias" placeholder="@... (Twitter)"/><input type="submit" value="ok"/></form></p>\n'
     if 'HTTP_COOKIE' in env:
         for x in env['HTTP_COOKIE'].split(';'):
@@ -523,7 +534,7 @@ def app_index(d, env):
 def app_users(d, env):
     o, un = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>'
     dpub, dblc = ropen(d['pub']), ropen(d['blc'])
-    o += '<table><tr><td>%s</td><td class="num">%d users</td><td><a href="./?transactions" class="num">transactions</a></td></tr></table><table>' % (title(), len(dpub.keys())) 
+    o += '<table><tr><td>%s</td><td class="num">%d users</td><td><a href="./?transactions" class="num">transactions</a></td><td><a href="./?igs" class="num">intangible-goods</a></td></tr></table><table>' % (title(), len(dpub.keys()))
     for i, src in enumerate(dpub.keys()): 
         fc = '/%s/%s_%s/img/%s.png' % (__app__, __app__, env['SERVER_PORT'], btob64(src))
         img = getimg(fc) if os.path.isfile(fc) else get_image('user48.png')
@@ -537,15 +548,15 @@ def app_users(d, env):
 def app_trx(env, d):
     o, un, uc = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', '&thinsp;⊔'
     dtrx = ropen(d['trx'])
-    tab = [z for z in filter(lambda x:len(x) == 13, dtrx.keys())]
-    o += '<table><tr><td>%s</td><td><a href="./?users" class="num">users</a></td><td class="num">%d transactions</td></tr></table><table>' % (title(), len(tab)) 
+    tab = [z for z in filter(lambda x:(len(x) == 13) or (len(x) == 10), dtrx.keys())]
+    o += '<table><tr><td>%s</td><td><a href="./?users" class="num">users</a></td><td class="num">%d transactions</td><td><a href="./?igs" class="num">intangible-goods</a></td></tr></table><table>' % (title(), len(tab)) 
     for i, t in enumerate(filter(lambda x:len(x) == 13, dtrx.keys())):
         if len(dtrx[t]) == 150: 
             prf = btob64(t[4:])[:1] + btob64(dtrx[t][:9])[:1]
             o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">%s%07d</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), prf, b2i(dtrx[t][11:14]), b2i(dtrx[t][9:11])/100, un)
         elif len(dtrx[t]) == 143:
             o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="mono">%s</a></td><td class="mono smallgreen">iBank</td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, datdecode(t[:4]), btob64(t[4:]), btob64(t[4:]), btob64(dtrx[t][:9]), btob64(dtrx[t][:9]), b2i(dtrx[t][9:11]))
-    j = 0
+    j = i+1
     for t in filter(lambda x:len(x) == 10, dtrx.keys()):
         n = len(dtrx[t])//10
         for i in range(n):
@@ -555,10 +566,24 @@ def app_trx(env, d):
                 url = digs[s].decode('utf8')
                 if reg(re.match(r'([^/]+)(/\S+)$', url)):
                     dat, ref = posubl(env, reg.v.group(2), t[1:]), refubl(env, reg.v.group(2), t[1:])
-                    o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="%s" class="num">%s</a></td><td class="mono smallgreen">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (j+1, dat, btob64(t[1:]), btob64(t[1:]), url, url, ref, ubl(env, reg.v.group(2), t[1:]))
+                    o += '<tr><td class="num">%d</td><td class="num">%s</td><td><a href="./%s" class="mono">%s</a></td><td><a href="http://%s?:" class="num">%s</a></td><td class="mono smallgreen">%s</td><td class="num">%7d&thinsp;⊔</td></tr>' % (j+1, dat, btob64(t[1:]), btob64(t[1:]), url, url, ref, ubl(env, reg.v.group(2), t[1:]))
                     j += 1
             digs.close()
     dtrx.close()
+    return o + '</table>' + footer()
+
+def app_igs(env, d):
+    o, un, uc = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', '&thinsp;⊔'
+    digs = ropen(d['igs'])
+    o += '<table><tr><td>%s</td><td><a href="./?users" class="num">users</a></td><td><a href="./?transactions" class="num">transactions</td><td class="num">%d intangible-goods</a></td></tr></table><table>' % (title(), len(digs.keys())) 
+    for i, ig in enumerate(digs.keys()):
+        url = digs[ig].decode('utf8')
+        if reg(re.match(r'([^/]+)(/\S+)$', url)):
+            figf = '/%s/%s_%s/igf/%s.igf' % (__app__, __app__, env['SERVER_PORT'], reg.v.group(2))
+            [pu, pi, a, n, prc]  = curinfo(figf)
+            sdisp, bdisp = 'sellers' if a>1 else 'seller', 'buyers' if n>1 else 'buyer'
+            o += '<tr><td class="num">%d</td><td class="num">%d %s -> %d %s</td><td class="num">init-price: %d&thinsp;⊔</td><td class="num">expected-income: %d&thinsp;⊔</td><td><a href="http://%s?:" class="num">%s</a></td><td class="num">%7d&thinsp;⊔</td></tr>' % (i+1, a, sdisp, n, bdisp, pu, pi, url, url, prc)
+    digs.close()
     return o + '</table>' + footer()
 
 def app_report(d, src, env):
@@ -871,12 +896,12 @@ def forex(db, disp=False):
 
 def rates(db, dbl=True, all=False):
     "with 5% taxes"
-    d, c, o = dbm.open(db, 'c'), datetime.datetime(2014, 1, 1), 'Date            | 5% selling-tax | nominal-rate | 5% buying-tax\n' if all else ''
+    d, c, o, o1 = dbm.open(db, 'c'), datetime.datetime(2014, 1, 1), '', 'Date            | 5% selling-tax | nominal-rate | 5% buying-tax\n' if all else ''
     x = bytes(('%s' % c)[:10], 'ascii')
     A = eval(d[x].decode('ascii'))
     A['⊔'] = .1*A['EUR']
     while x in d:
-        if all: o += '%s: 1⊔ = [%12.10f > %12.10f < %12.10f] €f\n' % (x.decode('ascii'), .95*A['⊔']/A['EUR'], A['⊔']/A['EUR'], 1.05*A['⊔']/A['EUR'])
+        if all: o = '%s: 1⊔ = [%12.10f > %12.10f < %12.10f] €f\n' % (x.decode('ascii'), .95*A['⊔']/A['EUR'], A['⊔']/A['EUR'], 1.05*A['⊔']/A['EUR']) + o
         c += datetime.timedelta(days=1)
         x = bytes(('%s' % c)[:10], 'ascii')
         if x in d:
@@ -884,7 +909,7 @@ def rates(db, dbl=True, all=False):
             B['⊔'] = delta2(d, A, B) if dbl else delta1(d, A, B) 
             A = B
     d.close()
-    return o + '%s: 1⊔=%s€f' % (x.decode('ascii'), B['⊔']/B['EUR'])
+    return '%s: 1⊔ = %s€f\n' % (x.decode('ascii'), B['⊔']/B['EUR']) + o1 + o
 
 def rates0(db):
     d, c, o = dbm.open(db, 'c'), datetime.datetime(2014, 1, 1), '' 
@@ -986,6 +1011,7 @@ def application(environ, start_response):
             o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr'
         elif base == '' and s == 'users': o, mime = app_users(d, environ), 'text/html; charset=utf-8'
         elif base == '' and s == 'transactions': o, mime = app_trx(environ, d), 'text/html; charset=utf-8'
+        elif base == '' and s == 'igs': o, mime = app_igs(environ, d), 'text/html; charset=utf-8'
         elif base == '' and s == '_isactive': o = 'ok'
         elif base == '' and s == '_update': o = app_update()
         elif base == '' and s == '_check': o = update_blc(d) + update_ubl(environ, d)
