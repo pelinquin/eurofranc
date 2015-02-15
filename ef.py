@@ -673,8 +673,8 @@ def req_9(d, r):
 
 def req_10(d, r):
     "read obj state"
-    dobj, obj = ropen(d['obj']), b64tob(r)
-    o = dobj[obj].decode('ascii') if obj in dobj.keys() else '0'
+    dobj = ropen(d['obj'])
+    o = dobj[r].decode('ascii') if r in dobj.keys() else '0'
     dobj.close()
     return o
 
