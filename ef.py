@@ -1003,8 +1003,6 @@ def application(environ, start_response):
                 ncok.append(('set-cookie', '%s=no;expires=Thu, 01 Jan 1970 00:00:00 GMT' % t[0]))            
             del environ['HTTP_COOKIE']
             o, mime = app_index(d, environ), 'text/html; charset=utf-8'
-        elif re.match('\S{8}$', s): o = req_8(d, b64tob(bytes(s, 'ascii')))
-        elif re.match('ZZ\S{8}$', s): o = req_10(d, b64tob(bytes(s[2:], 'ascii')))
         elif re.match('\S{12}$', s): o = req_9(d, b64tob(bytes(s, 'ascii')))
         elif re.match('@\S{12}$', s): # get Twitter image
             fimg = '/%s/%s_%s/img/%s.png' % (__app__, __app__, port, s[1:])
@@ -1022,7 +1020,9 @@ def application(environ, start_response):
         else: o = "ERROR %s" % (s)
     else: # get
         s = raw # use directory or argument
-        if re.match('(\S{2,30})$', base) and len(s) == 196: o = buyig(environ, d, b64tob(bytes(s, 'ascii')), base)
+        if re.match('\S{8}$', base): o = req_8(d, b64tob(bytes(base, 'ascii')))
+        elif re.match('ZZ\S{8}$', base): o = req_10(d, b64tob(bytes(base[2:], 'ascii')))
+        elif re.match('(\S{2,30})$', base) and len(s) == 196: o = buyig(environ, d, b64tob(bytes(s, 'ascii')), base)
         elif re.match('(\S{2,30})$', base) and len(s) == 36: o, mime = readig(environ, b64tob(bytes(s, 'ascii')), base), 'application/pdf'
         elif re.match('(\S{2,30})$', base) and s == ':': o = '%d:%d:%d' % curpkn('/%s/%s_%s/igf/%s.igf' % (__app__, __app__, port, base))
         elif re.match('(\S{2,30})$', base) and s == '@': o = igregister(environ, d, base)
