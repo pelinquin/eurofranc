@@ -1020,7 +1020,9 @@ def application(environ, start_response):
         else: o = "ERROR %s" % (s)
     else: # get
         s = raw # use directory or argument
-        if re.match('\S{8}$', base): o = req_8(d, b64tob(bytes(base, 'ascii')))
+        if re.match('\S{8}$', base): 
+            #o = req_8(d, b64tob(bytes(base, 'ascii')))
+            o = base
         elif re.match('ZZ\S{8}$', base): o = req_10(d, b64tob(bytes(base[2:], 'ascii')))
         elif re.match('(\S{2,30})$', base) and len(s) == 196: o = buyig(environ, d, b64tob(bytes(s, 'ascii')), base)
         elif re.match('(\S{2,30})$', base) and len(s) == 36: o, mime = readig(environ, b64tob(bytes(s, 'ascii')), base), 'application/pdf'
@@ -1119,7 +1121,10 @@ def set_owner():
     dwn.close()
 
 if __name__ == '__main__':
-    set_owner()
+    #set_owner()
+    base = 'Prototyp'
+    toto = b64tob(bytes(base, 'ascii'))
+    print (toto)
     #stat()
     #ubl1(b64tob(b'6qfGc2EhJNqW'))
     #update_cup1('/ef/ef_80/igf/uppr.igf', 10, 1, 10, 1)
