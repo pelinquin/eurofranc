@@ -673,7 +673,7 @@ def req_9(d, r):
 
 def req_10(d, r):
     "read obj state"
-    dobj, obj = ropen(d['obj']), b64tob(r[2:])
+    dobj, obj = ropen(d['obj']), b64tob(r)
     o = dobj[obj].decode('ascii') if obj in dobj.keys() else '0'
     dobj.close()
     return o
@@ -1003,6 +1003,8 @@ def application(environ, start_response):
                 ncok.append(('set-cookie', '%s=no;expires=Thu, 01 Jan 1970 00:00:00 GMT' % t[0]))            
             del environ['HTTP_COOKIE']
             o, mime = app_index(d, environ), 'text/html; charset=utf-8'
+        elif re.match('\S{8}$', s): o = req_8(d, b64tob(bytes(s, 'ascii')))
+        elif re.match('ZZ\S{8}$', s): o = req_10(d, b64tob(bytes(s[2:], 'ascii')))
         elif re.match('\S{12}$', s): o = req_9(d, b64tob(bytes(s, 'ascii')))
         elif re.match('@\S{12}$', s): # get Twitter image
             fimg = '/%s/%s_%s/img/%s.png' % (__app__, __app__, port, s[1:])
