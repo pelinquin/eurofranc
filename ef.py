@@ -660,9 +660,9 @@ def req_5(r):
 
 def req_8(d, r):
     "toggle obj"
-    dobj, obj = wopen(d['obj']), b64tob(r)
-    dobj[obj] = b'0' if obj in dobj.keys() and dobj[obj] == b'1' else b'1'
-    o = dobj[obj].decode('ascii')
+    dobj = wopen(d['obj'])
+    dobj[r] = b'0' if r in dobj.keys() and dobj[r] == b'1' else b'1'
+    o = dobj[r].decode('ascii')
     dobj.close()
     return o
 
@@ -1020,9 +1020,7 @@ def application(environ, start_response):
         else: o = "ERROR %s" % (s)
     else: # get
         s = raw # use directory or argument
-        if re.match('\S{8}$', base): 
-            #o = req_8(d, b64tob(bytes(base, 'ascii')))
-            o = base
+        if re.match('\S{8}$', base): o = req_8(d, b64tob(bytes(base, 'ascii')))
         elif re.match('ZZ\S{8}$', base): o = req_10(d, b64tob(bytes(base[2:], 'ascii')))
         elif re.match('(\S{2,30})$', base) and len(s) == 196: o = buyig(environ, d, b64tob(bytes(s, 'ascii')), base)
         elif re.match('(\S{2,30})$', base) and len(s) == 36: o, mime = readig(environ, b64tob(bytes(s, 'ascii')), base), 'application/pdf'
