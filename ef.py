@@ -363,7 +363,7 @@ def posubl(env, url, cm):
         s, a = b2i(ig[6:14]), b2i(ig[26:28])
         b = (len(ig)-28-142*a-s)//167
         for i in range(a):
-            if ig[28+10*i:37+10*i] == cm: return '%dx' % b
+            if ig[28+10*i:37+10*i] == cm: return 'x %d' % b
         for i in range(b):
             oft = 142*a+s+167*i
             if cm == ig[32+oft:41+oft]: return '%s (%d)' % (datdecode(ig[28+oft:32+oft]), i+1)
@@ -658,9 +658,24 @@ def req_5(r):
     "is active"
     return 'ok' if r == b'ef0.1' else ''
 
+def req_8(d, r):
+    "toggle obj"
+    dobj, obj = wopen(d['obj']), b64tob(r)
+    dobj[obj] = b'0' if obj in dobj.keys() and dobj[obj] == b'1' else b'1'
+    o = dobj[obj].decode('ascii')
+    dobj.close()
+    return o
+
 def req_9(d, r):
     "get balance €f + nb transactions + balance cup + nb igs | src:9"
     o = '%d:%d:%d:%d' % (blc(d, r), nbt(d, r), blc(d, r, True), nbig(d, r))
+    return o
+
+def req_10(d, r):
+    "read obj state"
+    dobj, obj = ropen(d['obj']), b64tob(r[2:])
+    o = dobj[obj].decode('ascii') if obj in dobj.keys() else '0'
+    dobj.close()
     return o
 
 def req_12(d, r):
@@ -771,6 +786,10 @@ def req_159(d, r):
     else: o += ' ids!'
     return o
 
+def req_162(d, r): 
+    "add €f pending transaction: dat:4+src:9+dst:9+val:2+ref:5+pnd:1+sig:132"
+    pass
+
 def req_186(d, r):
     "user principal certificate: usr:9+dat:4+adm:9:hid:32+sig:132" 
     usr, v, dat, adm, hid, msg, sig, k, h, o = r[:9], r[9:], r[9:13], r[13:22], r[22:54], r[:54], r[-132:], ecdsa(), None, 'error'
@@ -812,7 +831,7 @@ def buyig(env, d, r, base):
         q.pt = Point(c521, b2i(dpub[src][:66]), b2i(dpub[src][66:]+src))
         dpub.close()
         for i in range(b):
-            c = ig[28+142*a+s+167*i:28+142*a+s+167*(i+1)] 
+            c = ig[28+142*a+s+167*i:195+142*a+s+167*i] 
             if c[:147] == r: o, vu = btob64(c[4:13] + i2b(i, 6) + c[-20:-8]), True
         [p, k, n]  = curpkn(figf)
         if n != b+1: return 'Error position'
@@ -943,7 +962,7 @@ def application(environ, start_response):
     mime, o, now, fname, port = 'text/plain; charset=utf8', 'error', '%s' % datetime.datetime.now(), 'default.txt', environ['SERVER_PORT']
     (raw, way) = (environ['wsgi.input'].read(), 'post') if environ['REQUEST_METHOD'].lower() == 'post' else (urllib.parse.unquote(environ['QUERY_STRING']), 'get')
     base, ncok = environ['PATH_INFO'][1:], []
-    d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt', 'igs', 'own'), port)
+    d = init_dbs(('pub', 'trx', 'blc', 'hid', 'crt', 'igs', 'own', 'obj'), port)
     forex('/%s/%s_%s/rates' % (__app__, __app__, port)) # warning if not updated too frequently
     if   len(raw) ==   5 and way == 'post': o = req_5  (raw)
     elif len(raw) ==   9 and way == 'post': o = req_9  (d, raw)
