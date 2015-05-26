@@ -658,6 +658,7 @@ def req_5(r):
     "is active"
     return 'ok' if r == b'ef0.1' else ''
 
+# pluggle (iphone call)
 def req_8(d, r):
     "toggle obj"
     dobj = wopen(d['obj'])
@@ -671,6 +672,18 @@ def req_9(d, r):
     o = '%d:%d:%d:%d' % (blc(d, r), nbt(d, r), blc(d, r, True), nbig(d, r))
     return o
 
+# PLUGGLE RPI polling 1Hz
+# phone send ON
+
+#
+# RPI send date+conso
+# web store conso
+# web response ON/OFF
+# RPI activate/decactivate relay
+
+
+# pluggle (rpi call)
+# send objid:8+ consovalue:8
 def req_10(d, r):
     "read obj state"
     dobj = ropen(d['obj'])
@@ -695,6 +708,15 @@ def req_15(d, r):
     u, dat, src, val, dtrx, o = r[:13], r[:4], r[4:13], r[:-2], ropen(d['trx']), 'error'
     if u in dtrx and dtrx[u][9:11] == val: o = '%d:%d' % (b2i(dtrx[u][14:16]), b2i(dtrx[u][16,18]))
     dtrx.close()
+    return o
+
+# pluggle (rpi call)
+# send objid:8+ consovalue:8
+def req_16(d, r):
+    "read obj state"
+    dobj = ropen(d['obj'])
+    o = dobj[r].decode('ascii') if r in dobj.keys() else '0'
+    dobj.close()
     return o
 
 def req_24(d, r): 
