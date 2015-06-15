@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# v0.1 -> coq-club request - 2015, May
+# v0.1 -> coq-club request - 2015, June
 
 # The following is a possible discrete solution to Pelinquin's equation: 
 #   $\mathcal{T}_i^{\nearrow{}}\!=\,{i}\mathcal{P}_i^{\searrow{}}$
@@ -19,8 +19,8 @@
 # Any suggestion/help please contact: 
 #   laurent.fournier@cupfoundation.net
 #   laurent.fournier@pluggle.fr
-#   laurent.fournier@irt-saintexupery.com
-# Last Paper: http://arxiv.org/1405.2051.pdf
+#
+# Last Paper: http://arxiv.org/pdf/1405.2051.pdf
 
 def value(d, f, i, p, k, x):
     assert d>0 and f>=d and x>=0 and x<=100 and i>0 and p>=0 and k>=0 and k<=i #PRECOND
@@ -58,9 +58,11 @@ def simu(d, f, x): # x is a speed parameter in [0,100]
         t, tm, tM = k*p +(i-k)*(p-1), km*pm +(i-km)*(pm-1), kM*pM +(i-kM)*(pM-1)
         assert p==pm and k==km if x==0 else p==pM and k==kM if x==100 else t>=tm and t<=tM     # POST1 
         assert p>0 and k>0 and k<=i and t>=to and k<=ko if (p==po and k<i) else p<=po and t<=f # POST2
+        #assert p>0 and k>0 and k<=i and t>=to and k<=ko if (p==po) else p<=po and t<=f # POST2
         print ('%d: %d*%d+%d*%d=%d' % (i, k, p, i-k, p-1, t))
         to, po, ko = t, p, k
 
 if __name__ == '__main__': # simple check with simulation
-    for d in range (1, 200): # as an example
-        for x in range(101): simu(d, 200, x) 
+    simu(10, 100, 0)
+    #for d in range (1, 200): # as an example
+    #    for x in range(101): simu(d, 200, x) 
