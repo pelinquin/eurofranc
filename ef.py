@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Welcome to ⊔net!
 #-----------------------------------------------------------------------------
-#  © Copyright 2014 ⊔Foundation
+#  © Copyright 2015 ⊔Foundation
 #    This file is part of ⊔net.
 #
 #    ⊔net is free software: you can redistribute it and/or modify
@@ -545,6 +545,22 @@ def app_users(d, env):
     dblc.close()
     return o + '</table>' + footer()
 
+def app_invoice(d, env):
+    o, un, dat, tot = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', '%s' % datetime.datetime.now(), 0
+    dobj = ropen(d['obj'])
+    o += '<h1>Invoice</h1>'
+    o += '<h2>%s</h2>' % dat[:-10]
+    o += '<table><tr><th></th><th>Charger</th><th>User</th><th>Begin</th><th>End</th><th>Duration</th><th>Price</th></tr>' 
+    for i, t in enumerate(filter(lambda x:len(x) == 4, dobj.keys())):
+        dur = b2i(dobj[t]) - b2i(t)
+        prc = dur*0.18
+        tot += prc
+        o += '<tr><td class="num">%d</td><td>XXXXXXX</td><td>YYYYYYY</td><td>%s</td><td>%s</td><td class="num">%s\'</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t), datdecode(dobj[t]), dur, prc, un)
+    dobj.close()
+    o += '<tr><th></th><th colspan="5">Total</th><th class="num">%7.2f%s</th></tr>' %(tot,un)
+
+    return o + '</table>' + footer()
+
 def app_trx(env, d):
     o, un, uc, i = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', '&thinsp;⊔', 0
     dtrx = ropen(d['trx'])
@@ -661,8 +677,13 @@ def req_5(r):
 # pluggle (iphone call)
 def req_8(d, r):
     "toggle obj"
+    deb = datencode()
     dobj = wopen(d['obj'])
     dobj[r] = b'0' if r in dobj.keys() and dobj[r] == b'1' else b'1'
+    if dobj[r] == b'1':
+        dobj[b'c'] = deb
+    if dobj[r] == b'0' and b'c' in dobj.keys():
+        dobj[dobj[b'c']] = deb
     o = dobj[r].decode('ascii')
     dobj.close()
     return o
@@ -1053,6 +1074,7 @@ def application(environ, start_response):
         elif s == '': 
             o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr'
         elif base == '' and s == 'users': o, mime = app_users(d, environ), 'text/html; charset=utf-8'
+        elif base == '' and s == 'invoice': o, mime = app_invoice(d, environ), 'text/html; charset=utf-8'
         elif base == '' and s == 'transactions': o, mime = app_trx(environ, d), 'text/html; charset=utf-8'
         elif base == '' and s == 'igs': o, mime = app_igs(environ, d), 'text/html; charset=utf-8'
         elif base == '' and s == '_isactive': o = 'ok'
