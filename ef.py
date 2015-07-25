@@ -132,6 +132,14 @@ def datdecode(tt):
     "4 chars (minute precision)"
     return time.strftime('%d/%m/%y %H:%M', time.localtime(float(b2i(tt)*60)))
 
+def secencode():
+    "4 chars (seconde precision)"
+    return i2b(int(time.mktime(time.gmtime())), 4)
+
+def secdecode(tt):
+    "4 chars (seconde precision)"
+    return time.strftime('%d/%m/%y %H:%M:%S', time.localtime(float(b2i(tt))))
+
 ##### ECDSA NIST CURVE P-521 #####
 
 _B = b'UZU-uWGOHJofkpohoLaFQO6i2nJbmbMV87i0iZGO8QnhVhk5Uex-k3sWUsC9O7G_BzVz34g9LDTx70Uf1GtQPwA'
@@ -504,7 +512,7 @@ def getimg(img):
 
 def style_html():
     "_"
-    o = '<style type="text/css">@import url(http://fonts.googleapis.com/css?family=Schoolbell);h1,h2,p,li,i,b,a,div,input,td,th,footer,svg{font-family:"Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif}a.mono,p.mono,td.mono,b.mono{font-family:"Lucida Concole",Courier;font-weight:bold}a.name{margin:50}a{color:DodgerBlue;text-decoration:none}p.alpha{font-family:Schoolbell;color:#F87217;font-size:26pt;position:absolute;top:115;left:80}div.qr,a.qr{position:absolute;top:0;right:0;margin:15}p.note{font-size:9}p.msg{font-size:12;position:absolute;top:0;right:120;color:#F87217}p.stat{font-size:9;position:absolute;top:0;right:20;color:#999}input{font-size:28;margin:3}input.txt{width:210}input.digit{width:120;text-align:right}input.simu{width:120;text-align:right}input[type=checkbox]{width:50}input[type=submit]{color:white;background-color:#AAA;border:none;border-radius:8px;padding:3}p,li{margin:10;font-size:18;color:#333}b.red,td.red{color:red}b.green{color:green}b.blue{color:blue}b.bigorange{font-size:32;color:#F87217}b.biggreen{font-size:32;color:green}td.smallgreen{font-size:9;color:green}b.huge{position:absolute;top:15;left:76;font-size:90;}#wrap{overflow:hidden}a.ppc{font-weight:bold;font-size:.9em}a.ppc:after{font-weight:normal;content:"Cash"}#lcol{float:left;width:360;padding:4}#rcol{margin-left:368;padding:4}footer{bottom:0;color:#444;font-size:10;padding:4}table{margin:1;border:2px solid #999;border-collapse:collapse; background-color:white; opacity:.7}td,th{font-size:11pt;border:1px solid #666;padding:2pt}th{background-color:#DDD}td.num{font-size:12;text-align:right}#c1{float:left;width:23%;padding:1%}#c2{float:left;width:23%;padding:1%}#c3{float:left;width:23%;padding:1%}#c4{float:left;width:23%;padding:1%}h1{color:#888;font-size:25;margin:10 0 0 6}h2{color:#AAA;font-size:18;margin:5 0 0 30}svg{background-color:white}img.book{border:2px outset}text{font-size:18pt}body{margin:0}euro:after{font-size:60%;vertical-align:30%;content:"f"}img{vertical-align:middle}'
+    o = '<style type="text/css">@import url(http://fonts.googleapis.com/css?family=Schoolbell);h1,h2,p,li,i,b,a,div,input,td,th,footer,svg{font-family:"Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif}a.mono,p.mono,td.mono,b.mono{font-family:"Lucida Concole",Courier;font-weight:bold}a.name{margin:50}a{color:DodgerBlue;text-decoration:none}p.alpha{font-family:Schoolbell;color:#F87217;font-size:26pt;position:absolute;top:115;left:80}div.qr,a.qr{position:absolute;top:0;right:0;margin:15}p.note{font-size:9}p.msg{font-size:12;position:absolute;top:0;right:120;color:#F87217}p.stat{font-size:9;position:absolute;top:0;right:20;color:#999}input{font-size:28;margin:3}input.txt{width:210}input.digit{width:120;text-align:right}input.simu{width:120;text-align:right}input[type=checkbox]{width:50}input[type=submit]{color:white;background-color:#AAA;border:none;border-radius:8px;padding:3}p,li{margin:10;font-size:18;color:#333}b.red,td.red{color:red}b.green{color:green}b.blue{color:blue}b.bigorange{font-size:32;color:#F87217}b.biggreen{font-size:32;color:green}td.smallgreen{font-size:9;color:green}b.huge{position:absolute;top:15;left:76;font-size:90;}#wrap{overflow:hidden}a.ppc{font-weight:bold;font-size:.9em}a.ppc:after{font-weight:normal;content:"Cash"}#lcol{float:left;width:360;padding:4}#rcol{margin-left:368;padding:4}footer{bottom:0;color:#444;font-size:10;padding:4}table{margin:1;border:2px solid #999;border-collapse:collapse; background-color:white; opacity:.7}td,th{font-size:11pt;border:1px solid #666;padding:2pt}th{background-color:#DDD}td.num{font-size:12;text-align:right}#c1{float:left;width:23%;padding:1%}#c2{float:left;width:23%;padding:1%}#c3{float:left;width:23%;padding:1%}#c4{float:left;width:23%;padding:1%}h1{color:#888;font-size:25;margin:10 0 0 6}h2{color:#AAA;font-size:18;margin:5 0 0 30}svg{background-color:white}img.book{border:2px outset}text{font-size:18pt}body{margin:0}euro:after{font-size:60%;vertical-align:30%;content:"f"}img{vertical-align:middle}p.address{position:relative;left:380;color:blue}'
     return o + '</style>'
 
 def favicon():
@@ -549,13 +557,15 @@ def app_invoice(d, env):
     o, un, dat, tot = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', '%s' % datetime.datetime.now(), 0
     dobj = ropen(d['obj'])
     o += '<h1>Invoice</h1>'
-    o += '<h2>%s</h2>' % dat[:-10]
+    o += '<h2>%s</h2>' % dat[:-16]
+    o += '<p class="address"><b>PluggleSAS</b><br/><small><i>Service facturation</i><br/>2 bis avenue de Mons<br/>31280 Drémil-Lafage<br/>France<small></p>'
+    o += '<p><i>Ref:</i>CUSTOMER020150901</p>'
     o += '<table><tr><th></th><th>Charger</th><th>User</th><th>Begin</th><th>End</th><th>Duration</th><th>Price</th></tr>' 
     for i, t in enumerate(filter(lambda x:len(x) == 4, dobj.keys())):
         dur = b2i(dobj[t]) - b2i(t)
-        prc = dur*0.18
+        prc = dur*0.0054
         tot += prc
-        o += '<tr><td class="num">%d</td><td>XXXXXXX</td><td>YYYYYYY</td><td>%s</td><td>%s</td><td class="num">%s\'</td><td class="num">%7.2f%s</td></tr>' % (i+1, datdecode(t), datdecode(dobj[t]), dur, prc, un)
+        o += '<tr><td class="num">%d</td><td>201505180002</td><td>ZqYajTFslPpX</td><td>%s</td><td>%s</td><td class="num">%s\'\'</td><td class="num">%7.2f%s</td></tr>' % (i+1, secdecode(t), secdecode(dobj[t]), dur, prc, un)
     dobj.close()
     o += '<tr><th></th><th colspan="5">Total</th><th class="num">%7.2f%s</th></tr>' %(tot,un)
 
@@ -677,8 +687,7 @@ def req_5(r):
 # pluggle (iphone call)
 def req_8(d, r):
     "toggle obj"
-    deb = datencode()
-    dobj = wopen(d['obj'])
+    dobj, deb = wopen(d['obj']), secencode()
     dobj[r] = b'0' if r in dobj.keys() and dobj[r] == b'1' else b'1'
     if dobj[r] == b'1':
         dobj[b'c'] = deb
