@@ -554,22 +554,24 @@ def app_users(d, env):
     return o + '</table>' + footer()
 
 def app_invoice(d, env):
-    o, un, dat, tot = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', '%s' % datetime.datetime.now(), 0
+    o, un, dat, tot = header() + favicon() + style_html(), '<euro0>&thinsp;€</euro0>', '%s' % datetime.datetime.now(), 0
     dobj = ropen(d['obj'])
-    o += '<h1>Invoice</h1>'
+    o += '<right><h1>Facture</h1></right>'
     o += '<h2>%s</h2>' % dat[:-16]
-    o += '<p class="address"><b>PluggleSAS</b><br/><small><i>Service facturation</i><br/>2 bis avenue de Mons<br/>31280 Drémil-Lafage<br/>France<small></p>'
+    o += '<p class="address"><b>PluggleS.A.S.</b><br/><small><i>Service facturation</i><br/>2 bis avenue de Mons<br/>31280 Drémil-Lafage<br/>France<small></p>'
     o += '<p><i>Ref:</i>CUSTOMER020150901</p>'
-    o += '<table><tr><th></th><th>Charger</th><th>User</th><th>Begin</th><th>End</th><th>Duration</th><th>Price</th></tr>' 
-    for i, t in enumerate(filter(lambda x:len(x) == 4, dobj.keys())):
+    o += '<table><tr><th></th><th>Borne</th><th>Utilisateur</th><th>Groupe</th><th>Début</th><th>Fin</th><th>Durée</th><th>Prix</th></tr>' 
+    tmp = [ b2i(t) for t in filter(lambda x:len(x) == 4, dobj.keys())]
+    for i, z in enumerate(sorted(tmp)):
+        t = i2b(z)
         dur = b2i(dobj[t]) - b2i(t)
-        prc = dur*0.0054
+        delta, prc = datetime.timedelta(seconds = dur), dur*0.0054
+        o += '<tr><td class="num">%d</td><td>201505180002</td><td>ZqYajTFslP</td><td>EmployéT1</td><td>%s</td><td>%s</td><td class="num">%s</td><td class="num">%7.2f%s</td></tr>' % (i+1, secdecode(t), secdecode(dobj[t]), delta, prc, un)
         tot += prc
-        o += '<tr><td class="num">%d</td><td>201505180002</td><td>ZqYajTFslPpX</td><td>%s</td><td>%s</td><td class="num">%s\'\'</td><td class="num">%7.2f%s</td></tr>' % (i+1, secdecode(t), secdecode(dobj[t]), dur, prc, un)
     dobj.close()
-    o += '<tr><th></th><th colspan="5">Total</th><th class="num">%7.2f%s</th></tr>' %(tot,un)
-
-    return o + '</table>' + footer()
+    o += '<tr><th></th><th colspan="6">Total</th><th class="num">%7.2f%s</th></tr>' %(tot,un)
+    o += '</table>'      
+    return o 
 
 def app_trx(env, d):
     o, un, uc, i = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', '&thinsp;⊔', 0
