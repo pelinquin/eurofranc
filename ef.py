@@ -727,6 +727,11 @@ def app_invoicePDF(d, env):
     dobj.close()
     return gen_pdf(t2)
 
+def app_clean(d, env):
+    dobj = wopen(d['obj'])
+    for x in dobj.keys(): del dobj[x]
+    dobj.close()
+    return 'cleaned'
 
 def app_trx(env, d):
     o, un, uc, i = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', '&thinsp;⊔', 0
@@ -1242,6 +1247,7 @@ def application(environ, start_response):
         elif base == '' and s == 'users': o, mime = app_users(d, environ), 'text/html; charset=utf-8'
         elif base == '' and s == 'invoice': o, mime = app_invoice(d, environ), 'text/html; charset=utf-8'
         elif base == '' and s == 'invoicePDF': o, mime = app_invoicePDF(d, environ), 'application/pdf'
+        elif base == '' and s == '_clean': o = app_clean(d, environ)
         elif base == '' and s == 'transactions': o, mime = app_trx(environ, d), 'text/html; charset=utf-8'
         elif base == '' and s == 'igs': o, mime = app_igs(environ, d), 'text/html; charset=utf-8'
         elif base == '' and s == '_isactive': o = 'ok'
