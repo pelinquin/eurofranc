@@ -61,7 +61,7 @@
 # 9 double tap: init
 # 0 push scan (id:val, msg+sig, transaction_proof)
 
-import re, os, sys, urllib.parse, hashlib, http.client, base64, datetime, functools, subprocess, time, smtplib, operator, getpass, dbm.ndbm
+import re, os, sys, urllib.parse, hashlib, http.client, base64, datetime, functools, subprocess, time, smtplib, operator, getpass, dbm.ndbm, zlib
 import requests, requests_oauthlib # for Twitter image capture
 import gmpy2 # for inverse_mod fast computing
 
@@ -80,6 +80,149 @@ _ibank_pkey = 'AQTMiBfFFaDdokV0d7dPEeyURA_yUmMaXVaQm86YxciRuOpz5oSXdAh2r-6jxdj3c
 _ibank_pkey = 'AdMctT3bXbwrTBGkB5eKAG74qIqShRRy1nHa_NWCHsxmKhmZeE_aWgo_S251td8d6C5uti6TymQSSZvhmO1b19pIAYYPFxkKL_13dnhBGXdFdmDQhQEZZbc1P7GDDrZZwU0FSGuwc53_AxHk1vVRte7bdmhzIcOUMUvO'
 
 __curset__ = {'USD':870, 'EUR':334, 'JPY':230, 'GBP':118, 'AUD':86, 'CHF':52,  'CAD':46,  'MXN':25,  'CNY':22,  'NZD':20, 'SEK':18,  'RUB':16,  'HKD':14,  'SGD':14,  'TRY':13}
+
+##### PDF GENERATOR #####
+
+__fonts__ = ('Helvetica', 'Times-Roman', 'Courier', 'Times-Bold', 'Helvetica-Bold', 'Courier-Bold', 'Times-Italic', 'Helvetica-Oblique', 
+             'Courier-Oblique', 'Times-BoldItalic', 'Helvetica-BoldOblique', 'Courier-BoldOblique', 'Symbol')
+__e__ = '/Euro /ccedilla /' + ' /'.join(['%s%s' % (x,y) for x in ('a','e','i','o','u','y') for y in ('acute', 'grave', 'circumflex', 'dieresis')])
+
+class pdf:
+    def __init__(self, pagew, pageh, letterw=595, letterh=842):
+        "_"
+        self.pw, self.ph = pagew, pageh
+        self.mx, self.my = 0, 0
+        self.pos = []
+        self.o = b'%PDF-1.5\n%\xBF\xF7\xA2\xFE\n'
+    
+    def add(self, line):
+        "_"
+        self.pos.append(len(self.o))
+        self.o += bytes('%d 0 obj<<%s>>endobj\n' % (len(self.pos), line), 'ascii')
+
+    def addimg(self, img, jpg=False):
+        "_"
+        self.pos.append(len(self.o))
+        tf = open(img, 'rb').read()
+        if jpg:
+            fil = '/Filter/DCTDecode'
+            self.o += bytes('%s 0 obj<</Type/XObject/Subtype/Image/ColorSpace/DeviceRGB/Width 875/Height 1200/BitsPerComponent 8/Length %s%s>>stream\n' % (len(self.pos), len(tf), fil), 'ascii')
+        else:
+            tf = zlib.compress(tf) 
+            fil = '/Filter/FlateDecode'
+            self.o += bytes('%s 0 obj<</Type/XObject/Subtype/Form/BBox[0 0 500 500]/FormType 1/Length %s%s>>stream\n' % (len(self.pos), len(tf), fil), 'ascii')
+        self.o += tf + bytes('endstream endobj\n', 'ascii')
+
+    def addstream(self, stream):
+        "_"
+        self.pos.append(len(self.o))
+        stream = zlib.compress(stream) 
+        fil = '/Filter/FlateDecode'
+        self.o += bytes('%d 0 obj<</Length %d%s>>stream\n' % (len(self.pos), len(stream), fil), 'ascii')
+        self.o += stream
+        self.o += b'endstream endobj\n'
+
+    def addref(self):
+        "_"
+        self.pos.append(len(self.o))
+        n, size = len(self.pos), len(self.o)
+        PADA = lambda s:(len(s)%2)*'0'+s
+        r = functools.reduce(lambda y, i: y+bytes('01%06x00' % i, 'ascii'), self.pos, b'00000000ff')
+        z = zlib.compress(bytes.fromhex(PADA(r.decode('ascii'))))
+        self.o += bytes('%s 0 obj<</Type/XRef/Index[0 %s]/Size %s/W[1 3 1]/Root 1 0 R/Length %s/Filter/FlateDecode>>stream\n' % (n, n, n, len(z)), 'ascii') + z + b'endstream endobj\n'
+        return size
+
+    def ltext(self, tab, r):
+        "_"
+        o = b'BT '
+        for (x, y, ft, sz, s) in tab: 
+            o += bytes('1 0 0 1 %d %d Tm /F%d %d Tf %s TL ' % (x+self.mx+r[0], r[1]-self.my-y, ft, sz, 1.2*sz), 'ascii')
+            for l in s.split('\n'): o += bytes('(%s) Tj T* ' % (l), 'ascii')
+            o = o[:-3]
+        return o + b' ET '
+
+    def ctext(self, tab, r):
+        "_"
+        o = b'BT '
+        for (x, y, ft, sz, c, s) in tab: 
+            if c == 1: # vertical left
+                o += bytes('.8 .8 .8 rg 0 -1 1 0 %d %d Tm /F%d %d Tf (%s) Tj ' % (x+self.mx+r[0], r[1]-self.my-y, ft, sz, s), 'ascii')
+            elif c == 2: # vertical right
+                o += bytes('.5 .5 .5 rg 0 1 -1 0 %d %d Tm /F%d %d Tf (%s) Tj ' % (x+self.mx+r[0], r[1]-self.my-y, ft, sz, s), 'ascii')
+            elif c == 3: # vertical right light color
+                o += bytes('.9 .9 .9 rg 0 1 -1 0 %d %d Tm /F%d %d Tf (%s) Tj ' % (x+self.mx+r[0], r[1]-self.my-y, ft, sz, s), 'ascii')
+            else:
+                o += bytes('%s rg 1 0 0 1 %d %d Tm /F%d %d Tf (%s) Tj ' % (c, x+self.mx+r[0], r[1]-self.my-y, ft, sz, s), 'ascii')
+        return o + b' 0 0 0 rg ET '
+
+    def gen(self, pages):
+        "_"
+        ft = (1, 3, 5, 8) # font references
+        self.add('/Type/Catalog/Pages 2 0 R')
+        self.add('/Type/Pages/MediaBox[0 0 %d %d]/Count 1/Kids[3 0 R]' % (self.pw, self.ph))
+        fonts = '/Font<<' + ''.join(['/F%d %d 0 R' % (f, i+4)  for i,f in enumerate(ft)]) + '>>'
+        self.add('/Type/Page/Parent 2 0 R/Resources<<%s>>/Contents %d 0 R' % (fonts, len(ft)+4))
+        enc = '/Encoding<</Type/Encoding/Differences[1 %s]>> ' % __e__
+        for f in ft: self.add('/Type/Font/Subtype/Type1/BaseFont/%s %s' % (__fonts__[f-1], enc))
+        o, urlink = b'', []
+        for (pa, pc, gr, rect) in pages: o += gr + self.ctext(pc, rect) + self.ltext(pa, rect)
+        self.addstream(o)
+        size = self.addref()
+        return self.o + bytes('startxref %s\n' % size, 'ascii') + b'%%EOF'
+
+def sanity(s):
+    __o__ = r'([çáàâäéèêëíìîïóòôöúùûüŷÿ])'
+    return re.sub(__o__, lambda m: r'\%03o' % __o__.index(m.group(1)), s)
+
+def logo(r, c1, c2, x, y):
+    return bytes ('q %s rg q %s rg %s 0 0 %s %s %s cm /Im1 Do Q ' % (c1, c2, r, r, x, y), 'ascii')
+
+def img(ratio, x, y):
+    return bytes ('q %s 0 0 %s 0 0 cm q 630 0 0 864 %s %s cm /Im2 Do Q Q ' % (ratio, ratio, x, y), 'ascii')
+
+def gen_pdf(t):
+    a, color, c1, c2, c3 = pdf(595, 841), (.8,.7,.3), '0 .3 .7', '.3 .3 .3', '.2 .6 .1'
+    p = []
+    for i in range(len(t)):
+        for j in range(len(t[i])):
+            xpos, ypos = 40+68*j, 245+12*i
+            if j == 2: xpos-=5
+            elif j == 3: xpos-=25
+            elif j == 4: xpos-=10
+            elif j == 5: xpos+=10
+            dsp = '%7.2f \001' % t[i][j] if j==7 else '%07d Wh' % t[i][j] if j==6 else '%s' % datetime.timedelta(seconds = t[i][j]) if j==5 else t[i][j]
+            p.append((xpos, ypos, 1, 8, dsp))
+                   
+    header_page = [(300, 50, 5, 24, 'Facture'),
+                   (490, 40, 8, 12, '15/09/2015'),
+                   (24, 180, 5, 10, 'Ref:'),
+                   (50, 180, 8, 10, 'AG-PLG-201601010001'),
+                   (40, 220, 1, 12, 'Borne'),
+                   (100, 220, 1, 12, 'Utilisateur'),
+                   (168, 220, 1, 12, 'Groupe'),
+                   (224, 220, 1, 12, sanity('Début')),
+                   (312, 220, 1, 12, 'Fin'),
+                   (387, 220, 1, 12, sanity('Durée')),
+                   (430, 220, 1, 12, 'Consommation'),
+                   (520, 220, 1, 12, 'Prix')]
+                   
+
+    y, dt, ct, pt = 255+12*len(t), sum([x[5] for x in t]), sum([x[6] for x in t]), sum([x[7] for x in t]) 
+    ddisp = datetime.timedelta(seconds = dt)
+    foot_page = [(40, y, 1, 12, 'Total'), (388,  y, 5, 9, '%s' % ddisp),(444,  y, 5, 9, '%8d Wh' % ct), (516,  y, 5, 10, '%7.2f \001' % pt)]
+    
+    colored_page = [(10, 70, 1, 76, c3, 'MON'),
+                    (12, 110, 1, 60, c3, 'LOGO'),
+                    (360, 120, 5, 16, c1, 'Pluggle S.A.S.'),
+                    (360, 140, 1, 12, c1, 'Service Facturation'),
+                    (360, 156, 1, 12, c1, '2 bis avenue de MONS'),
+                    (360, 172, 1, 12, c1, sanity('31280 Drémil-Lafage')),
+                    (60, 820, 1, 6, c2, 'XXXXXXXX SAS Adresse Tel Email TVA FR11000000000 RCS Toulouse'),
+                    (86,  730, 1, 96, 3, sanity('Publicité'))]
+    graph = b'40 612 m 555 612 l S '
+    #graph += bytes('40 %d m 555 %d l S ' % (600-12*len(t), 600-12*len(t)), 'ascii')
+    pages = ((header_page + p + foot_page, colored_page, graph, (0, 841)),)
+    return a.gen(pages) 
 
 ##### ENCODING #####
 PAD = lambda s:(len(s)%2)*'0'+s[2:]
@@ -572,6 +715,18 @@ def app_invoice(d, env):
     o += '<tr><th></th><th colspan="6">Total</th><th class="num">%7.2f%s</th></tr>' %(tot,un)
     o += '</table>'      
     return o 
+
+
+def app_invoicePDF(d, env):
+    dobj, t2 = ropen(d['obj']), []
+    tmp = [ b2i(t) for t in filter(lambda x:len(x) == 4, dobj.keys())]
+    for i, z in enumerate(sorted(tmp)):
+        t = i2b(z)
+        dur = b2i(dobj[t]) - b2i(t)
+        t2.append(['201505180002', 'ZqYajTFslP', 'Empl_T1', '%s' % secdecode(t), '%s' % secdecode(dobj[t]), dur, dur*1.5, dur*0.0054])
+    dobj.close()
+    return gen_pdf(t2)
+
 
 def app_trx(env, d):
     o, un, uc, i = header() + favicon() + style_html(), '<euro>&thinsp;€</euro>', '&thinsp;⊔', 0
@@ -1086,6 +1241,7 @@ def application(environ, start_response):
             o = 'Attention !\nLe site est temporairement en phase de test de communication avec l\'application iOS8 pour iPhone4S à iPhone6(6+)\nVeuillez nous en excuser\nPour toute question: contact@eurofranc.fr'
         elif base == '' and s == 'users': o, mime = app_users(d, environ), 'text/html; charset=utf-8'
         elif base == '' and s == 'invoice': o, mime = app_invoice(d, environ), 'text/html; charset=utf-8'
+        elif base == '' and s == 'invoicePDF': o, mime = app_invoicePDF(d, environ), 'application/pdf'
         elif base == '' and s == 'transactions': o, mime = app_trx(environ, d), 'text/html; charset=utf-8'
         elif base == '' and s == 'igs': o, mime = app_igs(environ, d), 'text/html; charset=utf-8'
         elif base == '' and s == '_isactive': o = 'ok'
